@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="SubscriberCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="303" height="257"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="303" height="257"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tFZ-cC-MRY" customClass="BAVVideoView">
+                        <rect key="frame" x="0.0" y="0.0" width="303" height="257"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8fp-9t-sL1">
+                        <rect key="frame" x="0.0" y="0.0" width="303" height="257"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qJT-2d-UyV">
+                                <rect key="frame" x="0.0" y="213" width="303" height="44"/>
+                                <items>
+                                    <barButtonItem image="exit" id="YEX-m5-Tj1">
+                                        <connections>
+                                            <action selector="unsubscribeButtonTouched:" destination="gTV-IL-0wX" id="0Tj-E2-nbH"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="JD2-TY-qaf"/>
+                                    <barButtonItem image="settings_horizontal" id="uLx-YZ-a8P">
+                                        <connections>
+                                            <action selector="videoQualityButtonTouched:" destination="gTV-IL-0wX" id="ErL-Fd-1kb"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="hSq-bs-Hus"/>
+                                    <barButtonItem image="video_proportions" id="V2d-cs-25p">
+                                        <connections>
+                                            <action selector="fittingModeButtonTouched:" destination="gTV-IL-0wX" id="5Dw-XX-CxH"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="KoL-E1-MRx"/>
+                                    <barButtonItem image="mic_enabled" id="6wQ-7K-68F">
+                                        <connections>
+                                            <action selector="audioButtonTouched:" destination="gTV-IL-0wX" id="hhX-YA-aBX"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="UCI-Ph-jHw"/>
+                                    <barButtonItem image="video_enabled" id="R7m-Eb-QxE">
+                                        <connections>
+                                            <action selector="videoButtonTouched:" destination="gTV-IL-0wX" id="SoX-AS-eI7"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="0gX-BG-wTq"/>
+                                    <barButtonItem image="info" id="cfb-w8-Ex0">
+                                        <connections>
+                                            <action selector="infoButtonTouched:" destination="gTV-IL-0wX" id="VNW-5b-roh"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="qJT-2d-UyV" secondAttribute="bottom" id="1w1-4Y-Avc"/>
+                            <constraint firstItem="qJT-2d-UyV" firstAttribute="leading" secondItem="8fp-9t-sL1" secondAttribute="leading" id="339-bd-kDB"/>
+                            <constraint firstAttribute="trailing" secondItem="qJT-2d-UyV" secondAttribute="trailing" id="KmP-vM-35f"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <gestureRecognizers/>
+            <constraints>
+                <constraint firstItem="8fp-9t-sL1" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="301-Ke-Mob"/>
+                <constraint firstAttribute="bottom" secondItem="8fp-9t-sL1" secondAttribute="bottom" id="HLU-d7-6j2"/>
+                <constraint firstAttribute="bottom" secondItem="tFZ-cC-MRY" secondAttribute="bottom" id="HcV-NS-rRT"/>
+                <constraint firstItem="tFZ-cC-MRY" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Kfu-Yv-nF0"/>
+                <constraint firstAttribute="trailing" secondItem="8fp-9t-sL1" secondAttribute="trailing" id="das-eo-bHx"/>
+                <constraint firstItem="8fp-9t-sL1" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="pFd-8X-sZ9"/>
+                <constraint firstAttribute="trailing" secondItem="tFZ-cC-MRY" secondAttribute="trailing" id="rra-c0-pDF"/>
+                <constraint firstItem="tFZ-cC-MRY" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="uVE-NQ-DfF"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
+            <size key="customSize" width="303" height="257"/>
+            <connections>
+                <outlet property="audioBarButtonItem" destination="6wQ-7K-68F" id="m0v-r3-lgX"/>
+                <outlet property="controlsOverlayView" destination="8fp-9t-sL1" id="ham-Mz-Dq3"/>
+                <outlet property="infoBarButtonItem" destination="cfb-w8-Ex0" id="w3E-Zq-bdi"/>
+                <outlet property="toolbar" destination="qJT-2d-UyV" id="1Ux-U2-FOg"/>
+                <outlet property="unsubscribeBarButtonItem" destination="YEX-m5-Tj1" id="sZV-W3-Ehg"/>
+                <outlet property="videoBarButtonItem" destination="R7m-Eb-QxE" id="MH7-xj-0F4"/>
+                <outlet property="videoFittingBarButtonItem" destination="V2d-cs-25p" id="rof-lZ-d7z"/>
+                <outlet property="videoQualityBarButtonItem" destination="uLx-YZ-a8P" id="aDk-k0-vvw"/>
+                <outlet property="videoView" destination="tFZ-cC-MRY" id="2BK-a1-JNG"/>
+            </connections>
+            <point key="canvasLocation" x="-81.5" y="50.5"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="exit" width="25" height="25"/>
+        <image name="info" width="25" height="25"/>
+        <image name="mic_enabled" width="25" height="25"/>
+        <image name="settings_horizontal" width="25" height="25"/>
+        <image name="video_enabled" width="25" height="25"/>
+        <image name="video_proportions" width="25" height="25"/>
+    </resources>
+</document>

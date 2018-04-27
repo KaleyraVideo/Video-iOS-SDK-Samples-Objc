@@ -1,0 +1,737 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A95501C3209353FD00B08F6F /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A95501C2209353FD00B08F6F /* MediaPlayer.framework */; };
+		A95501C6209354FD00B08F6F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A95501C4209354FD00B08F6F /* LaunchScreen.storyboard */; };
+		A993CAA32093134100819D56 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A993CAA22093134100819D56 /* AppDelegate.m */; };
+		A993CAB12093134300819D56 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A993CAB02093134300819D56 /* main.m */; };
+		A993CB122093151400819D56 /* StreamInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A993CAB92093151300819D56 /* StreamInfoTableViewController.m */; };
+		A993CB152093151400819D56 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A993CABE2093151300819D56 /* Main.storyboard */; };
+		A993CB162093151400819D56 /* CreateSubscriber.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A993CAC02093151300819D56 /* CreateSubscriber.storyboard */; };
+		A993CB172093151400819D56 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A993CAC22093151300819D56 /* Settings.storyboard */; };
+		A993CB182093151400819D56 /* CreatePublisher.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A993CAC42093151300819D56 /* CreatePublisher.storyboard */; };
+		A993CB192093151400819D56 /* PublisherInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A993CAC82093151300819D56 /* PublisherInfoTableViewController.m */; };
+		A993CB1A2093151400819D56 /* SessionSummaryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A993CACA2093151300819D56 /* SessionSummaryTableViewController.m */; };
+		A993CB1B2093151400819D56 /* VideoQualitySelectionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A993CACC2093151300819D56 /* VideoQualitySelectionTableViewController.m */; };
+		A993CB1C2093151400819D56 /* SampleVideo_640x360_10mb.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = A993CACF2093151300819D56 /* SampleVideo_640x360_10mb.mp4 */; };
+		A993CB1D2093151400819D56 /* SubscriberInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A993CAD22093151300819D56 /* SubscriberInfoTableViewController.m */; };
+		A993CB1E2093151400819D56 /* VideoModeSelectionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A993CAD42093151400819D56 /* VideoModeSelectionTableViewController.m */; };
+		A993CB1F2093151400819D56 /* PublishSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = A993CAD72093151400819D56 /* PublishSettings.m */; };
+		A993CB202093151400819D56 /* VideoSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A993CAD82093151400819D56 /* VideoSettingsTableViewController.m */; };
+		A993CB212093151400819D56 /* RoomSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A993CAD92093151400819D56 /* RoomSettingsTableViewController.m */; };
+		A993CB222093151400819D56 /* CameraPositionPickingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A993CADD2093151400819D56 /* CameraPositionPickingTableViewCell.m */; };
+		A993CB232093151400819D56 /* SettingsRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = A993CADE2093151400819D56 /* SettingsRepository.m */; };
+		A993CB242093151400819D56 /* SubscribeSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = A993CADF2093151400819D56 /* SubscribeSettings.m */; };
+		A993CB252093151400819D56 /* AudioSessionSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = A993CAE12093151400819D56 /* AudioSessionSettings.m */; };
+		A993CB262093151400819D56 /* SessionSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = A993CAE22093151400819D56 /* SessionSettings.m */; };
+		A993CB272093151400819D56 /* PublishSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A993CAE32093151400819D56 /* PublishSettingsTableViewController.m */; };
+		A993CB282093151400819D56 /* SubscribeSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A993CAE42093151400819D56 /* SubscribeSettingsTableViewController.m */; };
+		A993CB292093151400819D56 /* VideoFormatPickingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A993CAE52093151400819D56 /* VideoFormatPickingTableViewCell.m */; };
+		A993CB2A2093151400819D56 /* SubscribeSettings+BAVSubscribeOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = A993CAE62093151400819D56 /* SubscribeSettings+BAVSubscribeOptions.m */; };
+		A993CB2B2093151400819D56 /* PublishSettings+BAVPublishOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = A993CAE72093151400819D56 /* PublishSettings+BAVPublishOptions.m */; };
+		A993CB2C2093151400819D56 /* RoomSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = A993CAE82093151400819D56 /* RoomSettings.m */; };
+		A993CB2D2093151400819D56 /* AudioSessionSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A993CAEF2093151400819D56 /* AudioSessionSettingsTableViewController.m */; };
+		A993CB2E2093151400819D56 /* SettingsRootTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A993CAF12093151400819D56 /* SettingsRootTableViewController.m */; };
+		A993CB2F2093151400819D56 /* DetailedStreamTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A993CAF82093151400819D56 /* DetailedStreamTableViewCell.m */; };
+		A993CB302093151400819D56 /* SubscribeOptionsSelectionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A993CAFC2093151400819D56 /* SubscribeOptionsSelectionTableViewController.m */; };
+		A993CB312093151400819D56 /* StreamSelectionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A993CAFE2093151400819D56 /* StreamSelectionTableViewController.m */; };
+		A993CB322093151400819D56 /* PublishOptionsSelectionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A993CB002093151400819D56 /* PublishOptionsSelectionTableViewController.m */; };
+		A993CB332093151400819D56 /* SubscriberCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A993CB032093151400819D56 /* SubscriberCollectionViewCell.xib */; };
+		A993CB342093151400819D56 /* CreateSubscriberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A993CB042093151400819D56 /* CreateSubscriberViewController.m */; };
+		A993CB352093151400819D56 /* StreamDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A993CB052093151400819D56 /* StreamDetailTableViewCell.m */; };
+		A993CB362093151400819D56 /* RoomDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A993CB072093151400819D56 /* RoomDetailsViewController.m */; };
+		A993CB372093151400819D56 /* RoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A993CB082093151400819D56 /* RoomViewController.m */; };
+		A993CB382093151400819D56 /* ArrayDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = A993CB0B2093151400819D56 /* ArrayDataProvider.m */; };
+		A993CB392093151400819D56 /* CreatePublisherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A993CB0E2093151400819D56 /* CreatePublisherViewController.m */; };
+		A993CB3A2093151400819D56 /* SubscriberCollectionViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A993CB0F2093151400819D56 /* SubscriberCollectionViewDataSource.m */; };
+		A993CB3B2093151400819D56 /* SubscriberCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A993CB112093151400819D56 /* SubscriberCollectionViewCell.m */; };
+		C3DB76728325A333778EC4C9 /* Pods_BandyerVideoChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FFB3012D0AF02BBE3996B3E /* Pods_BandyerVideoChat.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		9FFB3012D0AF02BBE3996B3E /* Pods_BandyerVideoChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BandyerVideoChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A95501C2209353FD00B08F6F /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		A95501C5209354FD00B08F6F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A993CA9E2093134100819D56 /* BandyerVideoChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BandyerVideoChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A993CAA12093134100819D56 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		A993CAA22093134100819D56 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		A993CAAF2093134300819D56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A993CAB02093134300819D56 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A993CAB82093151300819D56 /* StreamInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamInfoTableViewController.h; sourceTree = "<group>"; };
+		A993CAB92093151300819D56 /* StreamInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamInfoTableViewController.m; sourceTree = "<group>"; };
+		A993CABA2093151300819D56 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A993CABF2093151300819D56 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
+		A993CAC12093151300819D56 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = CreateSubscriber.storyboard; sourceTree = "<group>"; };
+		A993CAC32093151300819D56 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Settings.storyboard; sourceTree = "<group>"; };
+		A993CAC52093151300819D56 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = CreatePublisher.storyboard; sourceTree = "<group>"; };
+		A993CAC72093151300819D56 /* PublisherInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublisherInfoTableViewController.h; sourceTree = "<group>"; };
+		A993CAC82093151300819D56 /* PublisherInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublisherInfoTableViewController.m; sourceTree = "<group>"; };
+		A993CAC92093151300819D56 /* SessionSummaryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionSummaryTableViewController.h; sourceTree = "<group>"; };
+		A993CACA2093151300819D56 /* SessionSummaryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionSummaryTableViewController.m; sourceTree = "<group>"; };
+		A993CACC2093151300819D56 /* VideoQualitySelectionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoQualitySelectionTableViewController.m; sourceTree = "<group>"; };
+		A993CACD2093151300819D56 /* VideoQualitySelectionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoQualitySelectionTableViewController.h; sourceTree = "<group>"; };
+		A993CACF2093151300819D56 /* SampleVideo_640x360_10mb.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = SampleVideo_640x360_10mb.mp4; sourceTree = "<group>"; };
+		A993CAD12093151300819D56 /* SubscriberInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubscriberInfoTableViewController.h; sourceTree = "<group>"; };
+		A993CAD22093151300819D56 /* SubscriberInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubscriberInfoTableViewController.m; sourceTree = "<group>"; };
+		A993CAD42093151400819D56 /* VideoModeSelectionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoModeSelectionTableViewController.m; sourceTree = "<group>"; };
+		A993CAD52093151400819D56 /* VideoModeSelectionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoModeSelectionTableViewController.h; sourceTree = "<group>"; };
+		A993CAD72093151400819D56 /* PublishSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishSettings.m; sourceTree = "<group>"; };
+		A993CAD82093151400819D56 /* VideoSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoSettingsTableViewController.m; sourceTree = "<group>"; };
+		A993CAD92093151400819D56 /* RoomSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomSettingsTableViewController.m; sourceTree = "<group>"; };
+		A993CADA2093151400819D56 /* RoomSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomSettings.h; sourceTree = "<group>"; };
+		A993CADB2093151400819D56 /* PublishSettings+BAVPublishOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PublishSettings+BAVPublishOptions.h"; sourceTree = "<group>"; };
+		A993CADC2093151400819D56 /* AudioSessionSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioSessionSettingsTableViewController.h; sourceTree = "<group>"; };
+		A993CADD2093151400819D56 /* CameraPositionPickingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraPositionPickingTableViewCell.m; sourceTree = "<group>"; };
+		A993CADE2093151400819D56 /* SettingsRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsRepository.m; sourceTree = "<group>"; };
+		A993CADF2093151400819D56 /* SubscribeSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubscribeSettings.m; sourceTree = "<group>"; };
+		A993CAE02093151400819D56 /* SettingsRootTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsRootTableViewController.h; sourceTree = "<group>"; };
+		A993CAE12093151400819D56 /* AudioSessionSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioSessionSettings.m; sourceTree = "<group>"; };
+		A993CAE22093151400819D56 /* SessionSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionSettings.m; sourceTree = "<group>"; };
+		A993CAE32093151400819D56 /* PublishSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishSettingsTableViewController.m; sourceTree = "<group>"; };
+		A993CAE42093151400819D56 /* SubscribeSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubscribeSettingsTableViewController.m; sourceTree = "<group>"; };
+		A993CAE52093151400819D56 /* VideoFormatPickingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoFormatPickingTableViewCell.m; sourceTree = "<group>"; };
+		A993CAE62093151400819D56 /* SubscribeSettings+BAVSubscribeOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SubscribeSettings+BAVSubscribeOptions.m"; sourceTree = "<group>"; };
+		A993CAE72093151400819D56 /* PublishSettings+BAVPublishOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PublishSettings+BAVPublishOptions.m"; sourceTree = "<group>"; };
+		A993CAE82093151400819D56 /* RoomSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomSettings.m; sourceTree = "<group>"; };
+		A993CAE92093151400819D56 /* RoomSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomSettingsTableViewController.h; sourceTree = "<group>"; };
+		A993CAEA2093151400819D56 /* VideoSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoSettingsTableViewController.h; sourceTree = "<group>"; };
+		A993CAEB2093151400819D56 /* PublishSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishSettings.h; sourceTree = "<group>"; };
+		A993CAEC2093151400819D56 /* SubscribeSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubscribeSettings.h; sourceTree = "<group>"; };
+		A993CAED2093151400819D56 /* SettingsRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsRepository.h; sourceTree = "<group>"; };
+		A993CAEE2093151400819D56 /* CameraPositionPickingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraPositionPickingTableViewCell.h; sourceTree = "<group>"; };
+		A993CAEF2093151400819D56 /* AudioSessionSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioSessionSettingsTableViewController.m; sourceTree = "<group>"; };
+		A993CAF02093151400819D56 /* AudioSessionSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioSessionSettings.h; sourceTree = "<group>"; };
+		A993CAF12093151400819D56 /* SettingsRootTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsRootTableViewController.m; sourceTree = "<group>"; };
+		A993CAF22093151400819D56 /* VideoFormatPickingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoFormatPickingTableViewCell.h; sourceTree = "<group>"; };
+		A993CAF32093151400819D56 /* SubscribeSettings+BAVSubscribeOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SubscribeSettings+BAVSubscribeOptions.h"; sourceTree = "<group>"; };
+		A993CAF42093151400819D56 /* SubscribeSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubscribeSettingsTableViewController.h; sourceTree = "<group>"; };
+		A993CAF52093151400819D56 /* PublishSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishSettingsTableViewController.h; sourceTree = "<group>"; };
+		A993CAF62093151400819D56 /* SessionSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionSettings.h; sourceTree = "<group>"; };
+		A993CAF82093151400819D56 /* DetailedStreamTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailedStreamTableViewCell.m; sourceTree = "<group>"; };
+		A993CAF92093151400819D56 /* RoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomViewController.h; sourceTree = "<group>"; };
+		A993CAFA2093151400819D56 /* RoomDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomDetailsViewController.h; sourceTree = "<group>"; };
+		A993CAFB2093151400819D56 /* StreamDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamDetailTableViewCell.h; sourceTree = "<group>"; };
+		A993CAFC2093151400819D56 /* SubscribeOptionsSelectionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubscribeOptionsSelectionTableViewController.m; sourceTree = "<group>"; };
+		A993CAFD2093151400819D56 /* ArrayDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrayDataProvider.h; sourceTree = "<group>"; };
+		A993CAFE2093151400819D56 /* StreamSelectionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamSelectionTableViewController.m; sourceTree = "<group>"; };
+		A993CAFF2093151400819D56 /* SubscriberCollectionViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubscriberCollectionViewDataSource.h; sourceTree = "<group>"; };
+		A993CB002093151400819D56 /* PublishOptionsSelectionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishOptionsSelectionTableViewController.m; sourceTree = "<group>"; };
+		A993CB012093151400819D56 /* CreatePublisherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreatePublisherViewController.h; sourceTree = "<group>"; };
+		A993CB022093151400819D56 /* SubscriberCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubscriberCollectionViewCell.h; sourceTree = "<group>"; };
+		A993CB032093151400819D56 /* SubscriberCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SubscriberCollectionViewCell.xib; sourceTree = "<group>"; };
+		A993CB042093151400819D56 /* CreateSubscriberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateSubscriberViewController.m; sourceTree = "<group>"; };
+		A993CB052093151400819D56 /* StreamDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamDetailTableViewCell.m; sourceTree = "<group>"; };
+		A993CB062093151400819D56 /* CollectionDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionDataProvider.h; sourceTree = "<group>"; };
+		A993CB072093151400819D56 /* RoomDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomDetailsViewController.m; sourceTree = "<group>"; };
+		A993CB082093151400819D56 /* RoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomViewController.m; sourceTree = "<group>"; };
+		A993CB092093151400819D56 /* DetailedStreamTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailedStreamTableViewCell.h; sourceTree = "<group>"; };
+		A993CB0A2093151400819D56 /* StreamSelectionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamSelectionTableViewController.h; sourceTree = "<group>"; };
+		A993CB0B2093151400819D56 /* ArrayDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrayDataProvider.m; sourceTree = "<group>"; };
+		A993CB0C2093151400819D56 /* SubscribeOptionsSelectionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubscribeOptionsSelectionTableViewController.h; sourceTree = "<group>"; };
+		A993CB0D2093151400819D56 /* PublishOptionsSelectionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishOptionsSelectionTableViewController.h; sourceTree = "<group>"; };
+		A993CB0E2093151400819D56 /* CreatePublisherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreatePublisherViewController.m; sourceTree = "<group>"; };
+		A993CB0F2093151400819D56 /* SubscriberCollectionViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubscriberCollectionViewDataSource.m; sourceTree = "<group>"; };
+		A993CB102093151400819D56 /* CreateSubscriberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateSubscriberViewController.h; sourceTree = "<group>"; };
+		A993CB112093151400819D56 /* SubscriberCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubscriberCollectionViewCell.m; sourceTree = "<group>"; };
+		CD876A891E2877D636BC09F3 /* Pods-BandyerVideoChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BandyerVideoChat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BandyerVideoChat/Pods-BandyerVideoChat.debug.xcconfig"; sourceTree = "<group>"; };
+		E912EE41C2CFF1CE2B4F9F9E /* Pods-BandyerVideoChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BandyerVideoChat.release.xcconfig"; path = "Pods/Target Support Files/Pods-BandyerVideoChat/Pods-BandyerVideoChat.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A993CA9B2093134100819D56 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A95501C3209353FD00B08F6F /* MediaPlayer.framework in Frameworks */,
+				C3DB76728325A333778EC4C9 /* Pods_BandyerVideoChat.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5B98EBA98F26B0789D3E7B6D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A95501C2209353FD00B08F6F /* MediaPlayer.framework */,
+				9FFB3012D0AF02BBE3996B3E /* Pods_BandyerVideoChat.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A6802E036B08F39B86EE54B2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CD876A891E2877D636BC09F3 /* Pods-BandyerVideoChat.debug.xcconfig */,
+				E912EE41C2CFF1CE2B4F9F9E /* Pods-BandyerVideoChat.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		A993CA952093134100819D56 = {
+			isa = PBXGroup;
+			children = (
+				A993CAA02093134100819D56 /* BandyerVideoChat */,
+				A993CA9F2093134100819D56 /* Products */,
+				A6802E036B08F39B86EE54B2 /* Pods */,
+				5B98EBA98F26B0789D3E7B6D /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		A993CA9F2093134100819D56 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A993CA9E2093134100819D56 /* BandyerVideoChat.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A993CAA02093134100819D56 /* BandyerVideoChat */ = {
+			isa = PBXGroup;
+			children = (
+				A993CABA2093151300819D56 /* Assets.xcassets */,
+				A993CABB2093151300819D56 /* Base.lproj */,
+				A993CAC62093151300819D56 /* Publisher */,
+				A993CACE2093151300819D56 /* Resources */,
+				A993CAF72093151400819D56 /* Room */,
+				A993CAC92093151300819D56 /* SessionSummaryTableViewController.h */,
+				A993CACA2093151300819D56 /* SessionSummaryTableViewController.m */,
+				A993CAD62093151400819D56 /* Settings */,
+				A993CAB72093151300819D56 /* Stream */,
+				A993CAD02093151300819D56 /* Subscriber */,
+				A993CAD32093151400819D56 /* Video Mode */,
+				A993CACB2093151300819D56 /* Video Quality */,
+				A993CAA12093134100819D56 /* AppDelegate.h */,
+				A993CAA22093134100819D56 /* AppDelegate.m */,
+				A993CAAF2093134300819D56 /* Info.plist */,
+				A993CAB02093134300819D56 /* main.m */,
+			);
+			path = BandyerVideoChat;
+			sourceTree = "<group>";
+		};
+		A993CAB72093151300819D56 /* Stream */ = {
+			isa = PBXGroup;
+			children = (
+				A993CAB82093151300819D56 /* StreamInfoTableViewController.h */,
+				A993CAB92093151300819D56 /* StreamInfoTableViewController.m */,
+			);
+			path = Stream;
+			sourceTree = "<group>";
+		};
+		A993CABB2093151300819D56 /* Base.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				A95501C4209354FD00B08F6F /* LaunchScreen.storyboard */,
+				A993CABE2093151300819D56 /* Main.storyboard */,
+				A993CAC02093151300819D56 /* CreateSubscriber.storyboard */,
+				A993CAC22093151300819D56 /* Settings.storyboard */,
+				A993CAC42093151300819D56 /* CreatePublisher.storyboard */,
+			);
+			path = Base.lproj;
+			sourceTree = "<group>";
+		};
+		A993CAC62093151300819D56 /* Publisher */ = {
+			isa = PBXGroup;
+			children = (
+				A993CAC72093151300819D56 /* PublisherInfoTableViewController.h */,
+				A993CAC82093151300819D56 /* PublisherInfoTableViewController.m */,
+			);
+			path = Publisher;
+			sourceTree = "<group>";
+		};
+		A993CACB2093151300819D56 /* Video Quality */ = {
+			isa = PBXGroup;
+			children = (
+				A993CACC2093151300819D56 /* VideoQualitySelectionTableViewController.m */,
+				A993CACD2093151300819D56 /* VideoQualitySelectionTableViewController.h */,
+			);
+			path = "Video Quality";
+			sourceTree = "<group>";
+		};
+		A993CACE2093151300819D56 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A993CACF2093151300819D56 /* SampleVideo_640x360_10mb.mp4 */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		A993CAD02093151300819D56 /* Subscriber */ = {
+			isa = PBXGroup;
+			children = (
+				A993CAD12093151300819D56 /* SubscriberInfoTableViewController.h */,
+				A993CAD22093151300819D56 /* SubscriberInfoTableViewController.m */,
+			);
+			path = Subscriber;
+			sourceTree = "<group>";
+		};
+		A993CAD32093151400819D56 /* Video Mode */ = {
+			isa = PBXGroup;
+			children = (
+				A993CAD42093151400819D56 /* VideoModeSelectionTableViewController.m */,
+				A993CAD52093151400819D56 /* VideoModeSelectionTableViewController.h */,
+			);
+			path = "Video Mode";
+			sourceTree = "<group>";
+		};
+		A993CAD62093151400819D56 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				A993CAD72093151400819D56 /* PublishSettings.m */,
+				A993CAD82093151400819D56 /* VideoSettingsTableViewController.m */,
+				A993CAD92093151400819D56 /* RoomSettingsTableViewController.m */,
+				A993CADA2093151400819D56 /* RoomSettings.h */,
+				A993CADB2093151400819D56 /* PublishSettings+BAVPublishOptions.h */,
+				A993CADC2093151400819D56 /* AudioSessionSettingsTableViewController.h */,
+				A993CADD2093151400819D56 /* CameraPositionPickingTableViewCell.m */,
+				A993CADE2093151400819D56 /* SettingsRepository.m */,
+				A993CADF2093151400819D56 /* SubscribeSettings.m */,
+				A993CAE02093151400819D56 /* SettingsRootTableViewController.h */,
+				A993CAE12093151400819D56 /* AudioSessionSettings.m */,
+				A993CAE22093151400819D56 /* SessionSettings.m */,
+				A993CAE32093151400819D56 /* PublishSettingsTableViewController.m */,
+				A993CAE42093151400819D56 /* SubscribeSettingsTableViewController.m */,
+				A993CAE52093151400819D56 /* VideoFormatPickingTableViewCell.m */,
+				A993CAE62093151400819D56 /* SubscribeSettings+BAVSubscribeOptions.m */,
+				A993CAE72093151400819D56 /* PublishSettings+BAVPublishOptions.m */,
+				A993CAE82093151400819D56 /* RoomSettings.m */,
+				A993CAE92093151400819D56 /* RoomSettingsTableViewController.h */,
+				A993CAEA2093151400819D56 /* VideoSettingsTableViewController.h */,
+				A993CAEB2093151400819D56 /* PublishSettings.h */,
+				A993CAEC2093151400819D56 /* SubscribeSettings.h */,
+				A993CAED2093151400819D56 /* SettingsRepository.h */,
+				A993CAEE2093151400819D56 /* CameraPositionPickingTableViewCell.h */,
+				A993CAEF2093151400819D56 /* AudioSessionSettingsTableViewController.m */,
+				A993CAF02093151400819D56 /* AudioSessionSettings.h */,
+				A993CAF12093151400819D56 /* SettingsRootTableViewController.m */,
+				A993CAF22093151400819D56 /* VideoFormatPickingTableViewCell.h */,
+				A993CAF32093151400819D56 /* SubscribeSettings+BAVSubscribeOptions.h */,
+				A993CAF42093151400819D56 /* SubscribeSettingsTableViewController.h */,
+				A993CAF52093151400819D56 /* PublishSettingsTableViewController.h */,
+				A993CAF62093151400819D56 /* SessionSettings.h */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		A993CAF72093151400819D56 /* Room */ = {
+			isa = PBXGroup;
+			children = (
+				A993CAF82093151400819D56 /* DetailedStreamTableViewCell.m */,
+				A993CAF92093151400819D56 /* RoomViewController.h */,
+				A993CAFA2093151400819D56 /* RoomDetailsViewController.h */,
+				A993CAFB2093151400819D56 /* StreamDetailTableViewCell.h */,
+				A993CAFC2093151400819D56 /* SubscribeOptionsSelectionTableViewController.m */,
+				A993CAFD2093151400819D56 /* ArrayDataProvider.h */,
+				A993CAFE2093151400819D56 /* StreamSelectionTableViewController.m */,
+				A993CAFF2093151400819D56 /* SubscriberCollectionViewDataSource.h */,
+				A993CB002093151400819D56 /* PublishOptionsSelectionTableViewController.m */,
+				A993CB012093151400819D56 /* CreatePublisherViewController.h */,
+				A993CB022093151400819D56 /* SubscriberCollectionViewCell.h */,
+				A993CB032093151400819D56 /* SubscriberCollectionViewCell.xib */,
+				A993CB042093151400819D56 /* CreateSubscriberViewController.m */,
+				A993CB052093151400819D56 /* StreamDetailTableViewCell.m */,
+				A993CB062093151400819D56 /* CollectionDataProvider.h */,
+				A993CB072093151400819D56 /* RoomDetailsViewController.m */,
+				A993CB082093151400819D56 /* RoomViewController.m */,
+				A993CB092093151400819D56 /* DetailedStreamTableViewCell.h */,
+				A993CB0A2093151400819D56 /* StreamSelectionTableViewController.h */,
+				A993CB0B2093151400819D56 /* ArrayDataProvider.m */,
+				A993CB0C2093151400819D56 /* SubscribeOptionsSelectionTableViewController.h */,
+				A993CB0D2093151400819D56 /* PublishOptionsSelectionTableViewController.h */,
+				A993CB0E2093151400819D56 /* CreatePublisherViewController.m */,
+				A993CB0F2093151400819D56 /* SubscriberCollectionViewDataSource.m */,
+				A993CB102093151400819D56 /* CreateSubscriberViewController.h */,
+				A993CB112093151400819D56 /* SubscriberCollectionViewCell.m */,
+			);
+			path = Room;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A993CA9D2093134100819D56 /* BandyerVideoChat */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A993CAB42093134300819D56 /* Build configuration list for PBXNativeTarget "BandyerVideoChat" */;
+			buildPhases = (
+				3A3CE5C2F948447ABE947907 /* [CP] Check Pods Manifest.lock */,
+				A993CA9A2093134100819D56 /* Sources */,
+				A993CA9B2093134100819D56 /* Frameworks */,
+				A993CA9C2093134100819D56 /* Resources */,
+				0C8B5EA459A631B7BDC28D93 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BandyerVideoChat;
+			productName = BandyerVideoChat;
+			productReference = A993CA9E2093134100819D56 /* BandyerVideoChat.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A993CA962093134100819D56 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = YourCompany;
+				TargetAttributes = {
+					A993CA9D2093134100819D56 = {
+						CreatedOnToolsVersion = 9.3;
+					};
+				};
+			};
+			buildConfigurationList = A993CA992093134100819D56 /* Build configuration list for PBXProject "BandyerVideoChat" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A993CA952093134100819D56;
+			productRefGroup = A993CA9F2093134100819D56 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A993CA9D2093134100819D56 /* BandyerVideoChat */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A993CA9C2093134100819D56 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A993CB332093151400819D56 /* SubscriberCollectionViewCell.xib in Resources */,
+				A993CB182093151400819D56 /* CreatePublisher.storyboard in Resources */,
+				A993CB172093151400819D56 /* Settings.storyboard in Resources */,
+				A993CB162093151400819D56 /* CreateSubscriber.storyboard in Resources */,
+				A95501C6209354FD00B08F6F /* LaunchScreen.storyboard in Resources */,
+				A993CB152093151400819D56 /* Main.storyboard in Resources */,
+				A993CB1C2093151400819D56 /* SampleVideo_640x360_10mb.mp4 in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0C8B5EA459A631B7BDC28D93 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-BandyerVideoChat/Pods-BandyerVideoChat-frameworks.sh",
+				"${PODS_ROOT}/BandyerSDK/BandyerCoreAV.framework",
+				"${PODS_ROOT}/BandyerSDK/BandyerFoundation.framework",
+				"${PODS_ROOT}/BandyerSDK/WebRTC.framework",
+				"${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework",
+				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BandyerCoreAV.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BandyerFoundation.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WebRTC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketIO.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BandyerVideoChat/Pods-BandyerVideoChat-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3A3CE5C2F948447ABE947907 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BandyerVideoChat-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A993CA9A2093134100819D56 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A993CB382093151400819D56 /* ArrayDataProvider.m in Sources */,
+				A993CB1B2093151400819D56 /* VideoQualitySelectionTableViewController.m in Sources */,
+				A993CB2D2093151400819D56 /* AudioSessionSettingsTableViewController.m in Sources */,
+				A993CB302093151400819D56 /* SubscribeOptionsSelectionTableViewController.m in Sources */,
+				A993CB322093151400819D56 /* PublishOptionsSelectionTableViewController.m in Sources */,
+				A993CB1A2093151400819D56 /* SessionSummaryTableViewController.m in Sources */,
+				A993CB212093151400819D56 /* RoomSettingsTableViewController.m in Sources */,
+				A993CB372093151400819D56 /* RoomViewController.m in Sources */,
+				A993CB122093151400819D56 /* StreamInfoTableViewController.m in Sources */,
+				A993CB352093151400819D56 /* StreamDetailTableViewCell.m in Sources */,
+				A993CB342093151400819D56 /* CreateSubscriberViewController.m in Sources */,
+				A993CB262093151400819D56 /* SessionSettings.m in Sources */,
+				A993CB2A2093151400819D56 /* SubscribeSettings+BAVSubscribeOptions.m in Sources */,
+				A993CB192093151400819D56 /* PublisherInfoTableViewController.m in Sources */,
+				A993CB392093151400819D56 /* CreatePublisherViewController.m in Sources */,
+				A993CB232093151400819D56 /* SettingsRepository.m in Sources */,
+				A993CB292093151400819D56 /* VideoFormatPickingTableViewCell.m in Sources */,
+				A993CB222093151400819D56 /* CameraPositionPickingTableViewCell.m in Sources */,
+				A993CB3B2093151400819D56 /* SubscriberCollectionViewCell.m in Sources */,
+				A993CB2E2093151400819D56 /* SettingsRootTableViewController.m in Sources */,
+				A993CB252093151400819D56 /* AudioSessionSettings.m in Sources */,
+				A993CB272093151400819D56 /* PublishSettingsTableViewController.m in Sources */,
+				A993CB2B2093151400819D56 /* PublishSettings+BAVPublishOptions.m in Sources */,
+				A993CB282093151400819D56 /* SubscribeSettingsTableViewController.m in Sources */,
+				A993CB1E2093151400819D56 /* VideoModeSelectionTableViewController.m in Sources */,
+				A993CB242093151400819D56 /* SubscribeSettings.m in Sources */,
+				A993CB1F2093151400819D56 /* PublishSettings.m in Sources */,
+				A993CB362093151400819D56 /* RoomDetailsViewController.m in Sources */,
+				A993CB2C2093151400819D56 /* RoomSettings.m in Sources */,
+				A993CB202093151400819D56 /* VideoSettingsTableViewController.m in Sources */,
+				A993CB1D2093151400819D56 /* SubscriberInfoTableViewController.m in Sources */,
+				A993CB312093151400819D56 /* StreamSelectionTableViewController.m in Sources */,
+				A993CAB12093134300819D56 /* main.m in Sources */,
+				A993CB3A2093151400819D56 /* SubscriberCollectionViewDataSource.m in Sources */,
+				A993CAA32093134100819D56 /* AppDelegate.m in Sources */,
+				A993CB2F2093151400819D56 /* DetailedStreamTableViewCell.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		A95501C4209354FD00B08F6F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A95501C5209354FD00B08F6F /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		A993CABE2093151300819D56 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A993CABF2093151300819D56 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		A993CAC02093151300819D56 /* CreateSubscriber.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A993CAC12093151300819D56 /* Base */,
+			);
+			name = CreateSubscriber.storyboard;
+			sourceTree = "<group>";
+		};
+		A993CAC22093151300819D56 /* Settings.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A993CAC32093151300819D56 /* Base */,
+			);
+			name = Settings.storyboard;
+			sourceTree = "<group>";
+		};
+		A993CAC42093151300819D56 /* CreatePublisher.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A993CAC52093151300819D56 /* Base */,
+			);
+			name = CreatePublisher.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A993CAB22093134300819D56 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		A993CAB32093134300819D56 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 4.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A993CAB52093134300819D56 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CD876A891E2877D636BC09F3 /* Pods-BandyerVideoChat.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = BandyerVideoChat/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.BandyerVideoChat;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A993CAB62093134300819D56 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E912EE41C2CFF1CE2B4F9F9E /* Pods-BandyerVideoChat.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = BandyerVideoChat/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.BandyerVideoChat;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A993CA992093134100819D56 /* Build configuration list for PBXProject "BandyerVideoChat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A993CAB22093134300819D56 /* Debug */,
+				A993CAB32093134300819D56 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A993CAB42093134300819D56 /* Build configuration list for PBXNativeTarget "BandyerVideoChat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A993CAB52093134300819D56 /* Debug */,
+				A993CAB62093134300819D56 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A993CA962093134100819D56 /* Project object */;
+}
