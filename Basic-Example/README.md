@@ -2,7 +2,7 @@
 
 This sample app is going to show you how the Bandyer SDK should be configured, initialized, and how you can interact with it.
 
-## Quickstart
+## Quickstart
 
 1. Obtain a Mobile API key
 2. Install [CocoaPods](https://guides.cocoapods.org/using/getting-started.html#getting-started) .
