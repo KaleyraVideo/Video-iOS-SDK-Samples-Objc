@@ -4,9 +4,8 @@ This repository is meant to provide some examples for you to better understand h
 
 ## What's inside
 
-- **Advanced-Video-Chat**: This application is an advanced example of the core audio and video functionality provided in the sdk.
-
-- **Bandyer-SDK-Basic-Example**:  This application is a basic example demonstrating the SDK capabilities and the features it provides.
+- **Basic-Example**:  This application is a basic example demonstrating the SDK capabilities and the features it provides.
+- **More coming soon**
 
 ## Quick Start
 
