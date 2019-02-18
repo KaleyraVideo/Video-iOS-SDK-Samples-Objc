@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Tz9-fV-1XP">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="2dA-IB-4GY">
+            <objects>
+                <viewController id="Tz9-fV-1XP" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="knw-XY-5Zs">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bandyer CallKit Voip Sample" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ahy-16-oQb">
+                                <rect key="frame" x="79.5" y="323.5" width="216.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                </variation>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bandyer_logo" translatesAutoresizingMaskIntoConstraints="NO" id="4MK-uW-tQ1">
+                                <rect key="frame" x="123.5" y="165.5" width="128" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="128" id="3Ve-4A-acF">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="256"/>
+                                    </constraint>
+                                    <constraint firstAttribute="width" secondItem="4MK-uW-tQ1" secondAttribute="height" multiplier="1:1" id="6fv-69-76i"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright © 2018 - Present Bandyer S.r.l. All Rights Reserved." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="V80-BO-fz0">
+                                <rect key="frame" x="50.5" y="636" width="274" height="11"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                </variation>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="V80-BO-fz0" firstAttribute="centerX" secondItem="knw-XY-5Zs" secondAttribute="centerX" id="7aa-V4-JuO"/>
+                            <constraint firstItem="ggY-CI-fwD" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Ahy-16-oQb" secondAttribute="trailing" constant="20" id="9Hl-Lv-qat"/>
+                            <constraint firstItem="Ahy-16-oQb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ggY-CI-fwD" secondAttribute="leading" constant="20" id="AzW-Zo-luU"/>
+                            <constraint firstItem="ggY-CI-fwD" firstAttribute="bottom" secondItem="V80-BO-fz0" secondAttribute="bottom" constant="20" id="B2T-KB-XGQ"/>
+                            <constraint firstItem="Ahy-16-oQb" firstAttribute="top" secondItem="4MK-uW-tQ1" secondAttribute="bottom" constant="30" id="HIE-za-Pni"/>
+                            <constraint firstItem="ggY-CI-fwD" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="V80-BO-fz0" secondAttribute="trailing" constant="20" id="Uae-Ae-Rx5"/>
+                            <constraint firstItem="Ahy-16-oQb" firstAttribute="centerX" secondItem="knw-XY-5Zs" secondAttribute="centerX" id="d9b-Pe-YgU"/>
+                            <constraint firstItem="V80-BO-fz0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ggY-CI-fwD" secondAttribute="leading" constant="20" id="eWd-Qs-Jas"/>
+                            <constraint firstItem="4MK-uW-tQ1" firstAttribute="centerX" secondItem="knw-XY-5Zs" secondAttribute="centerX" id="fbB-lr-dUs"/>
+                            <constraint firstItem="Ahy-16-oQb" firstAttribute="centerY" secondItem="knw-XY-5Zs" secondAttribute="centerY" id="pCl-hi-SEX"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ggY-CI-fwD"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YG8-zt-on6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="53" y="375"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="bandyer_logo" width="600" height="600"/>
+    </resources>
+</document>

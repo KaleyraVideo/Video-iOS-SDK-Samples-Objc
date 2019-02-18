@@ -1,0 +1,446 @@
+//
+//  Copyright © 2019 Bandyer. All rights reserved.
+//
+
+#import <BandyerFoundation/BandyerFoundation.h>
+#import <BandyerSDK/BandyerSDK.h>
+
+#import "ContactsViewController.h"
+#import "CallOptionsTableViewController.h"
+#import "AddressBook.h"
+#import "CallOptionsItem.h"
+#import "Contact.h"
+#import "UserInfoFetcher.h"
+#import "UserSession.h"
+
+NSString *const kShowOptionsSegueIdentifier = @"showOptionsSegue";
+NSString *const kShowCallSegueIdentifier = @"showCallSegue";
+NSString *const kContactCellIdentifier = @"userCellId";
+
+@interface ContactsViewController () <CallOptionsTableViewControllerDelegate, BDKCallViewControllerDelegate, BCXCallClientObserver>
+
+@property (nonatomic, weak) IBOutlet UISegmentedControl *callTypeSegmentedControl;
+@property (nonatomic, weak) IBOutlet UIBarButtonItem *callOptionsBarButtonItem;
+@property (nonatomic, weak) IBOutlet UIBarButtonItem *callBarButtonItem;
+@property (nonatomic, weak) IBOutlet UIBarButtonItem *logoutBarButtonItem;
+@property (nonatomic, weak) IBOutlet UIBarButtonItem *userBarButtonItem;
+@property (nonatomic, weak) UIBarButtonItem *activityBarButtonItem;
+@property (nonatomic, weak) UIView *toastView;
+
+@property (nonatomic, strong) NSMutableArray<NSIndexPath *> *selectedContacts;
+@property (nonatomic, copy) CallOptionsItem *options;
+@property (nonatomic, strong) id<BDKIntent> intent;
+
+@end
+
+@implementation ContactsViewController
+
+//-------------------------------------------------------------------------------------------
+#pragma mark - Init
+//-------------------------------------------------------------------------------------------
+
+- (instancetype)initWithNibName:(nullable NSString *)nibNameOrNil bundle:(nullable NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self)
+    {
+        [self commonInit];
+    }
+
+    return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self)
+    {
+        [self commonInit];
+    }
+
+    return self;
+}
+
+- (void)commonInit
+{
+    _selectedContacts = [NSMutableArray new];
+    _options = [CallOptionsItem new];
+}
+
+//-------------------------------------------------------------------------------------------
+#pragma mark - View
+//-------------------------------------------------------------------------------------------
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+
+    self.userBarButtonItem.title = [UserSession currentUser];
+    [self disableMultipleSelection:NO];
+
+    //When view loads we register as a client observer, in order to receive notifications about incoming calls received and client state changes.
+    [BandyerSDK.instance.callClient addObserver:self queue:dispatch_get_main_queue()];
+}
+
+//-------------------------------------------------------------------------------------------
+#pragma mark - Making an Outgoing call
+//-------------------------------------------------------------------------------------------
+
+- (void)startOutgoingCall
+{
+    //To start an outgoing call we must create a `BDKMakeCallIntent` object specifying who we want to call, the type of call
+    //we want to be performed, along with any call option.
+
+    //Here we create the array containing the "user aliases" we want to contact.
+    NSMutableArray *aliases = [NSMutableArray arrayWithCapacity:self.selectedContacts.count];
+    for (NSIndexPath *indexPath in self.selectedContacts)
+    {
+        [aliases addObject:self.addressBook.contacts[(NSUInteger) indexPath.row].alias];
+    }
+
+    //Then we create the intent providing the aliases array (which is a required parameter) along with the type of call we want perform.
+    //The record flag specifies whether we want the call to be recorded or not.
+    //The maximumDuration parameter specifies how long the call can last.
+    //If you provide 0, the call will be created without a maximum duration value.
+    //We store the intent for later use, because we are using storyboards. When this view controller is asked to prepare for segue
+    //we are going to hand the intent to the `BDKCallViewController` created by the storyboard
+    self.intent = [BDKMakeCallIntent intentWithCallee:aliases type:self.options.type record:self.options.record maximumDuration:self.options.maximumDuration];
+
+    //Then we trigger a segue to a BDKCallViewController.
+    [self performSegueWithIdentifier:kShowCallSegueIdentifier sender:self];
+}
+
+//-------------------------------------------------------------------------------------------
+#pragma mark - Receiving an incoming call
+//-------------------------------------------------------------------------------------------
+
+- (void)receiveIncomingCall
+{
+    //When the client detects an incoming call it will notify its observers through this method.
+    //Here we are creating an `BDKIncomingCallHandlingIntent` object, storing it for later use,
+    //then we trigger a segue to a BDKCallViewController.
+    self.intent = [[BDKIncomingCallHandlingIntent alloc] init];
+    [self performSegueWithIdentifier:kShowCallSegueIdentifier sender:self];
+
+    //If you don't use a storyboard you should create a BDKCallViewController instance, configure it, hand it the intent object created
+    //Finally you can present it.
+}
+
+//-------------------------------------------------------------------------------------------
+#pragma mark - Call client state changes
+//-------------------------------------------------------------------------------------------
+
+- (void)callClient:(id <BCXCallClient>)client didReceiveIncomingCall:(id <BCXCall>)call
+{
+    [self receiveIncomingCall];
+}
+
+- (void)callClientDidStart:(id <BCXCallClient>)client
+{
+    self.view.userInteractionEnabled = YES;
+    [self hideActivityIndicatorFromNavigationBar:YES];
+    [self hideToast];
+}
+
+- (void)callClientDidStartReconnecting:(id <BCXCallClient>)client
+{
+    self.view.userInteractionEnabled = NO;
+    self.callBarButtonItem.enabled = NO;
+    [self showActivityIndicatorInNavigationBar:YES];
+    [self showToastWithMessage:@"Client is reconnecting, please wait" color:UIColor.orangeColor];
+}
+
+- (void)callClientWillResume:(id <BCXCallClient>)client
+{
+    self.view.userInteractionEnabled = NO;
+    [self showActivityIndicatorInNavigationBar:YES];
+    [self showToastWithMessage:@"Client is resuming, please wait" color:UIColor.orangeColor];
+}
+
+- (void)callClientDidResume:(id <BCXCallClient>)client
+{
+    self.view.userInteractionEnabled = YES;
+    self.callBarButtonItem.enabled = YES;
+    [self hideActivityIndicatorFromNavigationBar:YES];
+    [self hideToast];
+}
+
+//-------------------------------------------------------------------------------------------
+#pragma mark - Segue
+//-------------------------------------------------------------------------------------------
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(nullable id)sender
+{
+    if ([segue.identifier isEqualToString:kShowOptionsSegueIdentifier])
+    {
+        CallOptionsTableViewController *controller = segue.destinationViewController;
+        controller.options = self.options;
+        controller.delegate = self;
+    } else if ([segue.identifier isEqualToString:kShowCallSegueIdentifier])
+    {
+        //Here we are configuring the BDKCallViewController instance created from the storyboard.
+        //A `BDKCallViewControllerConfiguration` object instance is needed to customize the behaviour and appearance of the view controller.
+        BDKCallViewControllerConfiguration *config = [[BDKCallViewControllerConfiguration alloc] init];
+
+        //This url points to a sample mp4 video in the app bundle used only if the application is run in the simulator.
+        NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle]
+                                             pathForResource:@"SampleVideo_640x360_10mb" ofType:@"mp4"]];
+        config.fakeCapturerFileURL = url;
+
+        //This statement tells the view controller which object, conforming to `BDKUserInfoFetcher` protocol, should use to present contact
+        //information in its views.
+        //The backend system does not send any user information to its clients, the SDK and the backend system identify the users in a call
+        //using their user aliases, it is your responsibility to match "user aliases" with the corresponding user object in your system
+        //and provide those information to the view controller
+        config.userInfoFetcher = [[UserInfoFetcher alloc] initWithAddressBook:self.addressBook];
+        
+        BDKCallViewController *controller = segue.destinationViewController;
+
+        //Remember to subscribe as the delegate of the view controller. The view controller will notify its delegate when it has finished its
+        //job
+        controller.delegate = self;
+
+        //Here, we set the configuration object created. You must set the view controller configuration object before the view controller
+        //view is loaded, otherwise an exception is thrown.
+        [controller setConfiguration:config];
+
+        //Then we tell the view controller what it should do.
+        [controller handleIntent:self.intent];
+    }
+}
+
+//-------------------------------------------------------------------------------------------
+#pragma mark - Actions
+//-------------------------------------------------------------------------------------------
+
+- (IBAction)callTypeValueChanged:(UISegmentedControl *)sender
+{
+    if ([sender selectedSegmentIndex] == 0)
+    {
+        [self.selectedContacts removeAllObjects];
+        [self disableMultipleSelection:YES];
+        [self hideCallButtonInNavigationBar:YES];
+    } else
+    {
+        [self enableMultipleSelection:YES];
+        [self showCallButtonInNavigationBar:YES];
+    }
+}
+
+- (IBAction)callBarButtonItemTouched:(UIBarButtonItem *)sender
+{
+    [self startOutgoingCall];
+}
+
+- (IBAction)callOptionsBarButtonTouched:(UIBarButtonItem *)sender
+{
+    [self performSegueWithIdentifier:kShowOptionsSegueIdentifier sender:self];
+}
+
+- (IBAction)logoutBarButtonTouched:(UIBarButtonItem *)sender
+{
+    //When the user sign off, we also stop the client.
+    //We highly recommend to stop the client when the end user signs off
+    //Failing to do so, will result in incoming calls being processed by the SDK.
+    //Moreover the previously logged user will appear to the Bandyer platform as she/he is available and ready to receive calls.
+    [UserSession setCurrentUser:nil];
+    [BandyerSDK.instance.callClient stop];
+
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+//-------------------------------------------------------------------------------------------
+#pragma mark - Call options controller delegate
+//-------------------------------------------------------------------------------------------
+
+- (void)controllerDidUpdateOptions:(CallOptionsTableViewController *)controller
+{
+    self.options = controller.options;
+}
+
+//-------------------------------------------------------------------------------------------
+#pragma mark - Call view controller delegate
+//-------------------------------------------------------------------------------------------
+
+- (void)callViewControllerDidFinish:(BDKCallViewController *)controller
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+//-------------------------------------------------------------------------------------------
+#pragma mark - Enabling / Disabling multiple selection
+//-------------------------------------------------------------------------------------------
+
+- (void)enableMultipleSelection:(BOOL)animated
+{
+    self.tableView.allowsMultipleSelection = YES;
+    self.tableView.allowsMultipleSelectionDuringEditing = YES;
+
+    [self.tableView setEditing:YES animated:animated];
+}
+
+- (void)disableMultipleSelection:(BOOL)animated
+{
+    self.tableView.allowsMultipleSelection = NO;
+    self.tableView.allowsMultipleSelectionDuringEditing = NO;
+
+    [self.tableView setEditing:NO animated:animated];
+}
+
+//-------------------------------------------------------------------------------------------
+#pragma mark - Table view data source
+//-------------------------------------------------------------------------------------------
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.addressBook.contacts.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kContactCellIdentifier forIndexPath:indexPath];
+
+    Contact *contact = self.addressBook.contacts[(NSUInteger) indexPath.row];
+    cell.textLabel.text = [contact fullName];
+    cell.detailTextLabel.text = [contact alias];
+
+    UIImage *image = [[UIImage imageNamed:@"phone"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+    imageView.contentMode = UIViewContentModeScaleAspectFit;
+    cell.accessoryView = imageView;
+
+    return cell;
+}
+
+//-------------------------------------------------------------------------------------------
+#pragma mark - Table view delegate
+//-------------------------------------------------------------------------------------------
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([self.selectedContacts containsObject:indexPath])
+    {
+        [self.selectedContacts removeObject:indexPath];
+    } else
+    {
+        [self.selectedContacts addObject:indexPath];
+    }
+
+    self.callBarButtonItem.enabled = self.selectedContacts.count > 1;
+
+    if (!self.tableView.allowsMultipleSelection)
+    {
+        [self startOutgoingCall];
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        [self.selectedContacts removeAllObjects];
+    }
+}
+
+//-------------------------------------------------------------------------------------------
+#pragma mark - Call button in navbar
+//-------------------------------------------------------------------------------------------
+
+- (void)showCallButtonInNavigationBar:(BOOL)animated
+{
+    if (self.callBarButtonItem)
+        return;
+
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"phone"] style:UIBarButtonItemStylePlain target:self action:@selector(callBarButtonItemTouched:)];
+
+    NSMutableArray<UIBarButtonItem *> *items = [self.navigationItem.rightBarButtonItems mutableCopy];
+    [items addObject:item];
+
+    [self.navigationItem setRightBarButtonItems:items animated:animated];
+    self.callBarButtonItem = item;
+}
+
+- (void)hideCallButtonInNavigationBar:(BOOL)animated
+{
+    if (!self.callBarButtonItem)
+        return;
+
+    NSMutableArray<UIBarButtonItem *> *items = [self.navigationItem.rightBarButtonItems mutableCopy];
+    if ([items containsObject:self.callBarButtonItem])
+    {
+        [items removeObject:self.callBarButtonItem];
+        [self.navigationItem setRightBarButtonItems:items animated:animated];
+        self.callBarButtonItem = nil;
+    }
+}
+
+//-------------------------------------------------------------------------------------------
+#pragma mark - Activity Indicator
+//-------------------------------------------------------------------------------------------
+
+- (void)showActivityIndicatorInNavigationBar:(BOOL)animated
+{
+    if (self.activityBarButtonItem)
+        return;
+
+    UIActivityIndicatorView *indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [indicatorView startAnimating];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:indicatorView];
+
+    NSMutableArray<UIBarButtonItem *> *items = [self.navigationItem.rightBarButtonItems mutableCopy];
+    [items insertObject:item atIndex:0];
+    [self.navigationItem setRightBarButtonItems:items animated:animated];
+    self.activityBarButtonItem = item;
+}
+
+- (void)hideActivityIndicatorFromNavigationBar:(BOOL)animated
+{
+    if (!self.activityBarButtonItem)
+        return;
+
+    NSMutableArray<UIBarButtonItem *> *items = [self.navigationItem.rightBarButtonItems mutableCopy];
+
+    if ([items containsObject:self.activityBarButtonItem])
+    {
+        [items removeObject:self.activityBarButtonItem];
+        [self.navigationItem setRightBarButtonItems:items animated:animated];
+        self.activityBarButtonItem = nil;
+    }
+}
+
+//-------------------------------------------------------------------------------------------
+#pragma mark - Toast Notification
+//-------------------------------------------------------------------------------------------
+
+- (void)showToastWithMessage:(NSString *)message color:(UIColor *)color
+{
+    [self hideToast];
+
+    UIView *view = [[UIView alloc] initWithFrame:CGRectZero];
+    view.translatesAutoresizingMaskIntoConstraints = NO;
+    view.backgroundColor = color;
+
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
+    label.translatesAutoresizingMaskIntoConstraints = NO;
+    label.textColor = UIColor.blackColor;
+    label.font = [UIFont boldSystemFontOfSize:7];
+    label.text = message;
+
+    [view addSubview:label];
+    [self.view addSubview:view];
+    self.toastView = view;
+
+    [label.centerXAnchor constraintEqualToAnchor:view.centerXAnchor].active = YES;
+    [label.centerYAnchor constraintEqualToAnchor:view.centerYAnchor].active = YES;
+
+    [view.topAnchor constraintEqualToAnchor:self.tableView.topAnchor].active = YES;
+    [view.leftAnchor constraintEqualToAnchor:self.view.leftAnchor].active = YES;
+    [view.rightAnchor constraintEqualToAnchor:self.view.rightAnchor].active = YES;
+    [view.heightAnchor constraintEqualToConstant:16].active = YES;
+}
+
+- (void)hideToast
+{
+    [self.toastView removeFromSuperview];
+}
+
+@end
