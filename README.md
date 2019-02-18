@@ -5,6 +5,7 @@ This repository is meant to provide some examples for you to better understand h
 ## What's inside
 
 - **Basic-Example**:  This application is a basic example demonstrating the SDK capabilities and the features it provides.
+- **CallKit-Voip-Example**: This application shows you how it's easy and simple to integrate CallKit and Voip notifications capabilities with Bandyer in your app.
 - **More coming soon**
 
 ## Quick Start
