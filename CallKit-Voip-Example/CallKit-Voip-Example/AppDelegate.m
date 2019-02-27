@@ -36,8 +36,14 @@
     //It is going to be launched, but the system is going to suspend it after few milliseconds.
     //In this example app, the CallKit framework has been already added for you.
 
-    BDKEnvironment *env = BDKEnvironment.sandbox;
+    //Here we are going to initialize the Bandyer SDK
+    //The sdk needs a configuration object where it is specified which environment the sdk should work in
+
     BDKConfig *config = [BDKConfig new];
+
+    //Here we are telling the SDK we want to work in a sandbox environment.
+    //Beware the default environment is production, we strongly recommend to test your app in a sandbox environment.
+    BDKEnvironment *env = BDKEnvironment.sandbox;
     config.environment = env;
 
     //On iOS 10 and above this statement is not needed, the default configuration object
@@ -48,7 +54,7 @@
     //If you don't set this value during the configuration, the SDK will look for to the value of the
     //CFBundleDisplayName key (or the CFBundleName, if the former is not available) found in your App Info.plist
 
-    //config.nativeUILocalizedName = @"My wonderful app";
+    config.nativeUILocalizedName = @"My wonderful app";
 
     //The following statement is going to change the ringtone used by the system call UI when an incoming call
     //is received. You should provide the name of the sound resource in the app bundle that is going to be used as
@@ -64,57 +70,23 @@
     //length 40 points square png image.
     //It is highly recommended to set this property, otherwise a "question mark" icon placeholder is used instead.
 
-    //UIImage *callKitIconImage = [UIImage imageNamed:@"IMAGE FROM APP BUNDLE OR XCAsset"];
-    //config.nativeUITemplateIconImageData = UIImagePNGRepresentation(callKitIconImage);
+    UIImage *callKitIconImage = [UIImage imageNamed:@"callkit-icon"];
+    config.nativeUITemplateIconImageData = UIImagePNGRepresentation(callKitIconImage);
 
+    //Now we are ready to initialize the SDK providing the app id token identifying your app in Bandyer platform.
     [BandyerSDK.instance initializeWithApplicationId:@"YOUR_APP_ID" config:config];
+
+    //We subscribe to the call client in order to be informed when the client is ready to handle notifications payload
     [BandyerSDK.instance.callClient addObserver:self queue:dispatch_get_main_queue()];
     
 #if !TARGET_IPHONE_SIMULATOR
+    //Here we are initializing the push kit registry
     self.registry = [[PKPushRegistry alloc] initWithQueue:dispatch_get_main_queue()];
     self.registry.delegate = self;
     self.registry.desiredPushTypes = [NSSet setWithObject:PKPushTypeVoIP];
 #endif
 
     return YES;
-}
-
-- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray<id <UIUserActivityRestoring>> *__nullable restorableObjects))restorationHandler
-{
-    if (@available (iOS 10.0, *))
-    {
-        if ([userActivity.interaction.intent isKindOfClass:INStartVideoCallIntent.class])
-        {
-            UIViewController *visibleController = [self visibleController:self.window.rootViewController];
-
-            if ([visibleController isKindOfClass:BDKCallViewController.class])
-            {
-                BDKCallViewController *callController = (BDKCallViewController *) visibleController;
-                [callController handleINStartVideoCallIntent:(INStartVideoCallIntent *) userActivity.interaction.intent];
-                return YES;
-            }
-        }
-    }
-
-    return NO;
-}
-
-- (UIViewController *)visibleController:(UIViewController *)rootController
-{
-    UIViewController *visibleVC = rootController;
-
-    if (visibleVC.presentedViewController != nil)
-    {
-        if ([visibleVC.presentedViewController isKindOfClass:UINavigationController.class])
-        {
-            UINavigationController *navController = (UINavigationController *) visibleVC.presentedViewController;
-            return [self visibleController:navController.viewControllers.lastObject];
-        }
-
-        return [self visibleController:visibleVC.presentedViewController];
-    }
-
-    return visibleVC;
 }
 
 //-------------------------------------------------------------------------------------------
@@ -127,6 +99,10 @@
     NSLog(@"Updated push credentials %@", pushCredentials.token);
 }
 
+//Beware! starting from iOS 12 this method is being deprecated. However, you should not implement the new method
+//(the one with the completion block... https://developer.apple.com/documentation/pushkit/pkpushregistrydelegate/2875784-pushregistry?language=objc)
+//otherwise you are not going to be able to receive incoming calls when the app is started
+//from background or has moved to background. This issue will be resolved in an upcoming SDK release.
 - (void)pushRegistry:(PKPushRegistry *)registry didReceiveIncomingPushWithPayload:(PKPushPayload *)payload forType:(PKPushType)type
 {
     //When a notification is received, we check whether the call client is up and running.
@@ -140,6 +116,10 @@
         self.pendingPayload = payload;
         //Then we resume the client (here we are assuming the client has been already started, and subsequently paused)
         [BandyerSDK.instance.callClient resume];
+
+        //Beware, if the client is stopped you must first start it and then only when it notifies it has started
+        //you can hand it the notification payload. In this sample app we are going to start the client in the
+        //Login view controller. The login view controller will be presented even if the app is started in background
     }
 }
 
@@ -182,5 +162,50 @@
     //If everything went fine, client observers `callClient:didReceiveIncomingCall:` method will get invoked
 }
 
+//-------------------------------------------------------------------------------------------
+#pragma mark - Handling SiriKit Intent
+//-------------------------------------------------------------------------------------------
+
+- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray<id <UIUserActivityRestoring>> *__nullable restorableObjects))restorationHandler
+{
+    //When System call ui is shown to the user, it will show a "video" button if the call supports it.
+    //The code below will handle the siri intent received from the system and it will hand it to the call view controller
+    //if the controller is presented
+
+    if (@available (iOS 10.0, *))
+    {
+        if ([userActivity.interaction.intent isKindOfClass:INStartVideoCallIntent.class])
+        {
+            UIViewController *visibleController = [self visibleController:self.window.rootViewController];
+
+            if ([visibleController isKindOfClass:BDKCallViewController.class])
+            {
+                BDKCallViewController *callController = (BDKCallViewController *) visibleController;
+                [callController handleINStartVideoCallIntent:(INStartVideoCallIntent *) userActivity.interaction.intent];
+                return YES;
+            }
+        }
+    }
+
+    return NO;
+}
+
+- (UIViewController *)visibleController:(UIViewController *)rootController
+{
+    UIViewController *visibleVC = rootController;
+
+    if (visibleVC.presentedViewController != nil)
+    {
+        if ([visibleVC.presentedViewController isKindOfClass:UINavigationController.class])
+        {
+            UINavigationController *navController = (UINavigationController *) visibleVC.presentedViewController;
+            return [self visibleController:navController.viewControllers.lastObject];
+        }
+
+        return [self visibleController:visibleVC.presentedViewController];
+    }
+
+    return visibleVC;
+}
 
 @end
