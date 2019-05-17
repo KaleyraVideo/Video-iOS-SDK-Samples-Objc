@@ -2,7 +2,6 @@
 //  Copyright © 2019 Bandyer. All rights reserved.
 //
 
-#import <BandyerFoundation/BandyerFoundation.h>
 #import <BandyerSDK/BandyerSDK.h>
 
 #import "LoginViewController.h"

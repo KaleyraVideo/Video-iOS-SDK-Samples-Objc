@@ -12,7 +12,7 @@
     self = [super init];
     if (self)
     {
-        _type = BDKAudioVideoCallType;
+        _type = BDKCallTypeAudioVideo;
         _record = NO;
         _maximumDuration = 0;
     }
