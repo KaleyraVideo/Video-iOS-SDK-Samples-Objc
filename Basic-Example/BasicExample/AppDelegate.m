@@ -27,6 +27,9 @@
     //Beware the default environment is production, we strongly recommend to test your app in a sandbox environment.
     config.environment = BDKEnvironment.sandbox;
 
+    //Here we are disabling CallKit support
+    config.callKitEnabled = NO;
+
     //Now we are ready to initialize the SDK providing the app id token identifying your app in Bandyer platform.
     [BandyerSDK.instance initializeWithApplicationId:@"PUT YOUR APP ID HERE" config:config];
 
