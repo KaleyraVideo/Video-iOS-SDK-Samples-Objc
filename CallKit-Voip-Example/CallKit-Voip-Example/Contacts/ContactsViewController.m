@@ -266,6 +266,11 @@ NSString *const kContactCellIdentifier = @"userCellId";
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)callViewController:(BDKCallViewController *)controller openChatWith:(NSString *)participantId
+{
+
+}
+
 //-------------------------------------------------------------------------------------------
 #pragma mark - Enabling / Disabling multiple selection
 //-------------------------------------------------------------------------------------------

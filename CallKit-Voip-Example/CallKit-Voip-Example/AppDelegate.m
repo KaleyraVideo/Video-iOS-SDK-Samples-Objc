@@ -3,14 +3,12 @@
 //
 
 #import <PushKit/PushKit.h>
+#import <Intents/Intents.h>
 #import <BandyerSDK/BandyerSDK.h>
 
 #import "AppDelegate.h"
 
-@interface AppDelegate () <PKPushRegistryDelegate, BCXCallClientObserver>
-
-@property (nonatomic, strong, nullable) PKPushRegistry *registry;
-@property (nonatomic, strong, nullable) PKPushPayload *pendingPayload;
+@interface AppDelegate () <PKPushRegistryDelegate>
 
 @end
 
@@ -43,8 +41,7 @@
 
     //Here we are telling the SDK we want to work in a sandbox environment.
     //Beware the default environment is production, we strongly recommend to test your app in a sandbox environment.
-    BDKEnvironment *env = BDKEnvironment.sandbox;
-    config.environment = env;
+    config.environment = BDKEnvironment.sandbox;
 
     //On iOS 10 and above this statement is not needed, the default configuration object
     //enables CallKit by default, it is here for completeness sake
@@ -73,18 +70,14 @@
     UIImage *callKitIconImage = [UIImage imageNamed:@"callkit-icon"];
     config.nativeUITemplateIconImageData = UIImagePNGRepresentation(callKitIconImage);
 
+    //The following statement is going to tell the BandyerSDK which object it must forward device push tokens to when one is received.
+    config.pushRegistryDelegate = self;
+
+    //This statement is going to tell the BandyerSDK where to look for incoming call information within the VoIP push notifications it receives
+    config.notificationPayloadKeyPath = @"SET YOUR PAYLOAD KEY PATH HERE";
+
     //Now we are ready to initialize the SDK providing the app id token identifying your app in Bandyer platform.
     [BandyerSDK.instance initializeWithApplicationId:@"YOUR_APP_ID" config:config];
-
-    //We subscribe to the call client in order to be informed when the client is ready to handle notifications payload
-    [BandyerSDK.instance.callClient addObserver:self queue:dispatch_get_main_queue()];
-    
-#if !TARGET_IPHONE_SIMULATOR
-    //Here we are initializing the push kit registry
-    self.registry = [[PKPushRegistry alloc] initWithQueue:dispatch_get_main_queue()];
-    self.registry.delegate = self;
-    self.registry.desiredPushTypes = [NSSet setWithObject:PKPushTypeVoIP];
-#endif
 
     return YES;
 }
@@ -99,69 +92,6 @@
     NSLog(@"Updated push credentials %@", pushCredentials.token);
 }
 
-//Beware! starting from iOS 12 this method is being deprecated. However, you should not implement the new method
-//(the one with the completion block... https://developer.apple.com/documentation/pushkit/pkpushregistrydelegate/2875784-pushregistry?language=objc)
-//otherwise you are not going to be able to receive incoming calls when the app is started
-//from background or has moved to background. This issue will be resolved in an upcoming SDK release.
-- (void)pushRegistry:(PKPushRegistry *)registry didReceiveIncomingPushWithPayload:(PKPushPayload *)payload forType:(PKPushType)type
-{
-    //When a notification is received, we check whether the call client is up and running.
-    if (BandyerSDK.instance.callClient.state == BCXCallClientStateRunning)
-    {
-        //If the client is up and running we hand it the notification payload received
-        [self handlePushPayload:payload];
-    } else
-    {
-        //Otherwise we temporarily store the payload
-        self.pendingPayload = payload;
-        //Then we resume the client (here we are assuming the client has been already started, and subsequently paused)
-        [BandyerSDK.instance.callClient resume];
-
-        //Beware, if the client is stopped you must first start it and then only when it notifies it has started
-        //you can hand it the notification payload. In this sample app we are going to start the client in the
-        //Login view controller. The login view controller will be presented even if the app is started in background
-    }
-}
-
-//-------------------------------------------------------------------------------------------
-#pragma mark - Call client observer
-//-------------------------------------------------------------------------------------------
-
-- (void)callClientDidStart:(id <BCXCallClient>)client
-{
-    if (self.pendingPayload)
-    {
-        [self handlePushPayload:self.pendingPayload];
-        self.pendingPayload = nil;
-    }
-}
-
-- (void)callClientDidResume:(id<BCXCallClient>)client
-{
-    if (self.pendingPayload)
-    {
-        [self handlePushPayload:self.pendingPayload];
-        self.pendingPayload = nil;
-    }
-}
-
-//-------------------------------------------------------------------------------------------
-#pragma mark - Push Payload Handling
-//-------------------------------------------------------------------------------------------
-
-- (void)handlePushPayload:(PKPushPayload *)payload
-{
-    NSDictionary *dictionaryPayload = payload.dictionaryPayload;
-
-    //You must change the keypath otherwise notifications won't be handled by the sdk
-    NSDictionary *incomingCallPayload = [dictionaryPayload valueForKeyPath:@"KEYPATH_TO_DATA_DICTIONARY"];
-
-    //We ask the client to handle the notification payload
-    [BandyerSDK.instance.callClient handleNotification:incomingCallPayload];
-
-    //If everything went fine, client observers `callClient:didReceiveIncomingCall:` method will get invoked
-}
-
 //-------------------------------------------------------------------------------------------
 #pragma mark - Handling SiriKit Intent
 //-------------------------------------------------------------------------------------------
@@ -172,17 +102,33 @@
     //The code below will handle the siri intent received from the system and it will hand it to the call view controller
     //if the controller is presented
 
-    if (@available (iOS 10.0, *))
+    if (@available(iOS 13.0, *))
     {
-        if ([userActivity.interaction.intent isKindOfClass:INStartVideoCallIntent.class])
+        if ([userActivity.interaction.intent isKindOfClass:INStartCallIntent.class])
         {
             UIViewController *visibleController = [self visibleController:self.window.rootViewController];
 
             if ([visibleController isKindOfClass:BDKCallViewController.class])
             {
                 BDKCallViewController *callController = (BDKCallViewController *) visibleController;
-                [callController handleINStartVideoCallIntent:(INStartVideoCallIntent *) userActivity.interaction.intent];
+                [callController handleINStartCallIntent:(INStartCallIntent *) userActivity.interaction.intent];
                 return YES;
+            }
+        }
+    } else
+    {
+        if (@available (iOS 10.0, *))
+        {
+            if ([userActivity.interaction.intent isKindOfClass:INStartVideoCallIntent.class])
+            {
+                UIViewController *visibleController = [self visibleController:self.window.rootViewController];
+
+                if ([visibleController isKindOfClass:BDKCallViewController.class])
+                {
+                    BDKCallViewController *callController = (BDKCallViewController *) visibleController;
+                    [callController handleINStartVideoCallIntent:(INStartVideoCallIntent *) userActivity.interaction.intent];
+                    return YES;
+                }
             }
         }
     }
