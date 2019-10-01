@@ -29,18 +29,18 @@ static NSArray *lastNames;
     if (female)
     {
         contact.gender = GenderFemale;
-        contact.firstName = femaleNames[arc4random_uniform(femaleNames.count)];
+        contact.firstName = femaleNames[arc4random_uniform((int)femaleNames.count)];
         NSString *resourceName = [NSString stringWithFormat:@"woman_%u", arc4random_uniform(100)];
         contact.profileImageURL = [[NSBundle mainBundle] URLForResource:resourceName withExtension:@".jpg"];
     } else
     {
         contact.gender = GenderMale;
-        contact.firstName = maleNames[arc4random_uniform(maleNames.count)];
+        contact.firstName = maleNames[arc4random_uniform((int)maleNames.count)];
         NSString *resourceName = [NSString stringWithFormat:@"man_%u", arc4random_uniform(100)];
         contact.profileImageURL = [[NSBundle mainBundle] URLForResource:resourceName withExtension:@".jpg" ];
     }
 
-    contact.lastName = lastNames[arc4random_uniform(lastNames.count)];
+    contact.lastName = lastNames[arc4random_uniform((int)lastNames.count)];
     contact.email = [NSString stringWithFormat:@"%@.%@@example.com", contact.firstName, contact.lastName];
     contact.age = @(18 + arc4random_uniform(63));
 

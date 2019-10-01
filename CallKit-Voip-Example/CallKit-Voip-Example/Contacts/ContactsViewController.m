@@ -11,12 +11,12 @@
 #import "Contact.h"
 #import "UserInfoFetcher.h"
 #import "UserSession.h"
+#import "ContactsNavigationController.h"
 
 NSString *const kShowOptionsSegueIdentifier = @"showOptionsSegue";
-NSString *const kShowCallSegueIdentifier = @"showCallSegue";
 NSString *const kContactCellIdentifier = @"userCellId";
 
-@interface ContactsViewController () <CallOptionsTableViewControllerDelegate, BDKCallViewControllerDelegate, BCXCallClientObserver>
+@interface ContactsViewController () <CallOptionsTableViewControllerDelegate, BCXCallClientObserver, BDKCallWindowDelegate, BCHChannelViewControllerDelegate, BCHMessageNotificationControllerDelegate, BCKCallBannerControllerDelegate>
 
 @property (nonatomic, weak) IBOutlet UISegmentedControl *callTypeSegmentedControl;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *callOptionsBarButtonItem;
@@ -26,9 +26,13 @@ NSString *const kContactCellIdentifier = @"userCellId";
 @property (nonatomic, weak) UIBarButtonItem *activityBarButtonItem;
 @property (nonatomic, weak) UIView *toastView;
 
+@property (nonatomic, strong) BDKCallWindow *callWindow;
+
 @property (nonatomic, strong) NSMutableArray<NSIndexPath *> *selectedContacts;
 @property (nonatomic, copy) CallOptionsItem *options;
 @property (nonatomic, strong) id<BDKIntent> intent;
+@property (nonatomic, strong) BCKCallBannerController *callBannerController;
+@property (nonatomic, strong) BCHMessageNotificationController *messageNotificationController;
 
 @end
 
@@ -64,6 +68,8 @@ NSString *const kContactCellIdentifier = @"userCellId";
 {
     _selectedContacts = [NSMutableArray new];
     _options = [CallOptionsItem new];
+    _callBannerController = [BCKCallBannerController new];
+    _messageNotificationController = [BCHMessageNotificationController new];
 }
 
 //-------------------------------------------------------------------------------------------
@@ -74,11 +80,51 @@ NSString *const kContactCellIdentifier = @"userCellId";
 {
     [super viewDidLoad];
 
+    //When view loads we have to setup custom view controllers.
+    [self setupCallBannerView];
+    [self setupNotificationView];
+
     self.userBarButtonItem.title = [UserSession currentUser];
     [self disableMultipleSelection:NO];
 
     //When view loads we register as a client observer, in order to receive notifications about incoming calls received and client state changes.
     [BandyerSDK.instance.callClient addObserver:self queue:dispatch_get_main_queue()];
+}
+
+- (void)setupCallBannerView
+{
+    self.callBannerController.delegate = self;
+    self.callBannerController.parentViewController = self;
+}
+
+- (void)setupNotificationView
+{
+    self.messageNotificationController.delegate = self;
+    self.messageNotificationController.parentViewController = self;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+    [self.callBannerController show];
+    [self.messageNotificationController show];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+
+    [self.callBannerController hide];
+    [self.messageNotificationController hide];
+}
+
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id <UIViewControllerTransitionCoordinator>)coordinator
+{
+    //Remember to call viewWillTransitionTo on custom view controller to update UI while rotating
+    [self.callBannerController viewWillTransitionTo:size withTransitionCoordinator:coordinator];
+
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
 }
 
 //-------------------------------------------------------------------------------------------
@@ -106,7 +152,7 @@ NSString *const kContactCellIdentifier = @"userCellId";
     self.intent = [BDKMakeCallIntent intentWithCallee:aliases type:self.options.type record:self.options.record maximumDuration:self.options.maximumDuration];
 
     //Then we trigger a segue to a BDKCallViewController.
-    [self performSegueWithIdentifier:kShowCallSegueIdentifier sender:self];
+    [self performCallViewControllerPresentation];
 }
 
 //-------------------------------------------------------------------------------------------
@@ -117,12 +163,9 @@ NSString *const kContactCellIdentifier = @"userCellId";
 {
     //When the client detects an incoming call it will notify its observers through this method.
     //Here we are creating an `BDKIncomingCallHandlingIntent` object, storing it for later use,
-    //then we trigger a segue to a BDKCallViewController.
+    //then we trigger a presentation of BDKCallViewController.
     self.intent = [[BDKIncomingCallHandlingIntent alloc] init];
-    [self performSegueWithIdentifier:kShowCallSegueIdentifier sender:self];
-
-    //If you don't use a storyboard you should create a BDKCallViewController instance, configure it, hand it the intent object created
-    //Finally you can present it.
+    [self performCallViewControllerPresentation];
 }
 
 //-------------------------------------------------------------------------------------------
@@ -175,37 +218,126 @@ NSString *const kContactCellIdentifier = @"userCellId";
         CallOptionsTableViewController *controller = segue.destinationViewController;
         controller.options = self.options;
         controller.delegate = self;
-    } else if ([segue.identifier isEqualToString:kShowCallSegueIdentifier])
-    {
-        //Here we are configuring the BDKCallViewController instance created from the storyboard.
-        //A `BDKCallViewControllerConfiguration` object instance is needed to customize the behaviour and appearance of the view controller.
-        BDKCallViewControllerConfiguration *config = [[BDKCallViewControllerConfiguration alloc] init];
-
-        //This url points to a sample mp4 video in the app bundle used only if the application is run in the simulator.
-        NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle]
-                                             pathForResource:@"SampleVideo_640x360_10mb" ofType:@"mp4"]];
-        config.fakeCapturerFileURL = url;
-
-        //This statement tells the view controller which object, conforming to `BDKUserInfoFetcher` protocol, should use to present contact
-        //information in its views.
-        //The backend system does not send any user information to its clients, the SDK and the backend system identify the users in a call
-        //using their user aliases, it is your responsibility to match "user aliases" with the corresponding user object in your system
-        //and provide those information to the view controller
-        config.userInfoFetcher = [[UserInfoFetcher alloc] initWithAddressBook:self.addressBook];
-        
-        BDKCallViewController *controller = segue.destinationViewController;
-
-        //Remember to subscribe as the delegate of the view controller. The view controller will notify its delegate when it has finished its
-        //job
-        controller.delegate = self;
-
-        //Here, we set the configuration object created. You must set the view controller configuration object before the view controller
-        //view is loaded, otherwise an exception is thrown.
-        [controller setConfiguration:config];
-
-        //Then we tell the view controller what it should do.
-        [controller handleIntent:self.intent];
     }
+}
+
+//-------------------------------------------------------------------------------------------
+#pragma mark - Present Chat ViewController
+//-------------------------------------------------------------------------------------------
+
+- (void)presentChatFrom:(BCHChatNotification *)notification
+{
+    if (!self.presentedViewController)
+    {
+        [self presentChatFrom:self notification:notification];
+    }
+}
+
+- (void)presentChatFrom:(UIViewController *)controller notification:(BCHChatNotification *)notification
+{
+    BCHOpenChatIntent *intent = [BCHOpenChatIntent openChatFrom:notification];
+
+    [self presentChatFrom:controller intent:intent];
+}
+
+- (void)presentChatFrom:(UIViewController *)controller intent:(BCHOpenChatIntent *)intent
+{
+    BCHChannelViewController *channelViewController = [[BCHChannelViewController alloc] init];
+    channelViewController.delegate = self;
+
+    channelViewController.intent = intent;
+
+    [controller presentViewController:channelViewController animated:YES completion:nil];
+}
+
+//-------------------------------------------------------------------------------------------
+#pragma mark - Present Call ViewController
+//-------------------------------------------------------------------------------------------
+
+- (void)performCallViewControllerPresentation
+{
+    [self prepareForCallViewControllerPresentation];
+
+    //Here we tell the call window what it should do and we present the BDKCallViewController if there is no another call in progress.
+    //Otherwise you should manage the behaviour, for example with a UIAlert warning.
+
+    [self.callWindow shouldPresentCallViewControllerWithIntent:self.intent completion:^(BOOL succeeded) {
+
+        if (!succeeded)
+        {
+
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Warning" message:@"Another call ongoing." preferredStyle:UIAlertControllerStyleAlert];
+
+            UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                [alert dismissViewControllerAnimated:YES completion:nil];
+            }];
+
+            [alert addAction:defaultAction];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
+    }];
+}
+
+- (void)prepareForCallViewControllerPresentation
+{
+    [self initCallWindowIfNeeded];
+
+    //Here we are configuring the BDKCallWindow instance
+    //A `BDKCallViewControllerConfiguration` object instance is needed to customize the behaviour and appearance of the view controller.
+    BDKCallViewControllerConfiguration *config = [[BDKCallViewControllerConfiguration alloc] init];
+
+    //This url points to a sample mp4 video in the app bundle used only if the application is run in the simulator.
+    NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"SampleVideo_640x360_10mb" ofType:@"mp4"]];
+    config.fakeCapturerFileURL = url;
+
+    //This statement tells the view controller which object, conforming to `BDKUserInfoFetcher` protocol, should use to present contact
+    //information in its views.
+    //The backend system does not send any user information to its clients, the SDK and the backend system identify the users in a call
+    //using their user aliases, it is your responsibility to match "user aliases" with the corresponding user object in your system
+    //and provide those information to the view controller
+    config.userInfoFetcher = [[UserInfoFetcher alloc] initWithAddressBook:self.addressBook];
+
+    //Here, we set the configuration object created. You must set the view controller configuration object before the view controller
+    //view is loaded, otherwise an exception is thrown.
+    //If a call is already ongoing, the new configuration is skipped.
+    [self.callWindow setConfiguration:config];
+}
+
+- (void)initCallWindowIfNeeded
+{
+    //Please remember to reference the call window only once in order to avoid the reset of BDKCallViewController.
+    if (self.callWindow)
+    {
+        return;
+    }
+
+    //Please be sure to have in memory only one instance of BDKCallWindow, otherwise an exception will be thrown.
+
+    BDKCallWindow *window;
+
+    if (BDKCallWindow.instance)
+    {
+        window = BDKCallWindow.instance;
+    } else
+    {
+        //This will automatically save the new instance inside BDKCallWindow.instance.
+        window = [[BDKCallWindow alloc] init];
+    }
+
+    //Remember to subscribe as the delegate of the window. The window  will notify its delegate when it has finished its
+    //job
+    window.callDelegate = self;
+
+    self.callWindow = window;
+}
+
+//-------------------------------------------------------------------------------------------
+#pragma mark - Hide Call ViewController
+//-------------------------------------------------------------------------------------------
+
+- (void)hideCallViewController
+{
+    self.callWindow.hidden = YES;
 }
 
 //-------------------------------------------------------------------------------------------
@@ -249,6 +381,30 @@ NSString *const kContactCellIdentifier = @"userCellId";
 }
 
 //-------------------------------------------------------------------------------------------
+#pragma mark - StatusBar appearance
+//-------------------------------------------------------------------------------------------
+
+- (void)restoreStatusBarAppearance
+{
+    ContactsNavigationController *rootNavigationController = (ContactsNavigationController *) self.navigationController;
+
+    if (rootNavigationController)
+    {
+        [rootNavigationController restoreStatusBarAppearance];
+    }
+}
+
+- (void)setStatusBarAppearanceToLight
+{
+    ContactsNavigationController *rootNavigationController = (ContactsNavigationController *) self.navigationController;
+
+    if (rootNavigationController)
+    {
+        [rootNavigationController setStatusBarAppearance:UIStatusBarStyleLightContent];
+    }
+}
+
+//-------------------------------------------------------------------------------------------
 #pragma mark - Call options controller delegate
 //-------------------------------------------------------------------------------------------
 
@@ -258,17 +414,102 @@ NSString *const kContactCellIdentifier = @"userCellId";
 }
 
 //-------------------------------------------------------------------------------------------
-#pragma mark - Call view controller delegate
+#pragma mark - Call window delegate
 //-------------------------------------------------------------------------------------------
 
-- (void)callViewControllerDidFinish:(BDKCallViewController *)controller
+- (void)callWindowDidFinish:(BDKCallWindow *)window
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self hideCallViewController];
 }
 
-- (void)callViewController:(BDKCallViewController *)controller openChatWith:(NSString *)participantId
+- (void)callWindow:(BDKCallWindow *)window openChatWith:(BCHOpenChatIntent *)intent
 {
+    [self hideCallViewController];
+    [self presentChatFrom:self intent:intent];
+}
 
+//-------------------------------------------------------------------------------------------
+#pragma mark - Channel view controller delegate
+//-------------------------------------------------------------------------------------------
+
+- (void)channelViewControllerDidFinish:(BCHChannelViewController *)controller
+{
+    [controller dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)channelViewController:(BCHChannelViewController *)controller didTapAudioCallWith:(NSArray *)users
+{
+    self.intent = [BDKMakeCallIntent intentWithCallee:users type:BDKCallTypeAudioUpgradable];
+
+    [self performCallViewControllerPresentation];
+}
+
+- (void)channelViewController:(BCHChannelViewController *)controller didTapVideoCallWith:(NSArray *)users
+{
+    self.intent = [BDKMakeCallIntent intentWithCallee:users type:BDKCallTypeAudioVideo];
+
+    [self performCallViewControllerPresentation];
+}
+
+- (void)channelViewController:(BCHChannelViewController *)controller didTouchNotification:(BCHChatNotification *)notification
+{
+    if ([self.presentedViewController isKindOfClass:BCHChannelViewController.class])
+    {
+
+        [controller dismissViewControllerAnimated:YES completion:^{
+            [self presentChatFrom:notification];
+        }];
+        return;
+    }
+
+    [self presentChatFrom:notification];
+}
+
+- (void)channelViewController:(BCHChannelViewController *)controller willHide:(BCKCallBannerView *)banner
+{
+    [self restoreStatusBarAppearance];
+}
+
+- (void)channelViewController:(BCHChannelViewController *)controller willShow:(BCKCallBannerView *)banner
+{
+    [self setStatusBarAppearanceToLight];
+}
+
+- (void)channelViewController:(BCHChannelViewController *)controller didTouchBanner:(BCKCallBannerView *)banner
+{
+    [controller dismissViewControllerAnimated:YES completion:^{
+        [self performCallViewControllerPresentation];
+    }];
+}
+
+//-------------------------------------------------------------------------------------------
+#pragma mark - Message Notification Controller delegate
+//-------------------------------------------------------------------------------------------
+
+- (void)messageNotificationController:(BCHMessageNotificationController *)controller didTouch:(BCHChatNotification *)notification
+{
+    [self presentChatFrom:notification];
+}
+
+//-------------------------------------------------------------------------------------------
+#pragma mark - Call Banner Controller delegate
+//-------------------------------------------------------------------------------------------
+
+- (void)callBannerController:(BCKCallBannerController *_Nonnull)controller willHide:(BCKCallBannerView *_Nonnull)banner
+{
+    [self restoreStatusBarAppearance];
+}
+
+- (void)callBannerController:(BCKCallBannerController *_Nonnull)controller willShow:(BCKCallBannerView *_Nonnull)banner
+{
+    [self setStatusBarAppearanceToLight];
+}
+
+- (void)callBannerController:(BCKCallBannerController *_Nonnull)controller didTouch:(BCKCallBannerView *_Nonnull)banner
+{
+    //Please remember to override the current call intent with the one saved inside call window.
+    self.intent = self.callWindow.intent;
+    [self performCallViewControllerPresentation];
 }
 
 //-------------------------------------------------------------------------------------------

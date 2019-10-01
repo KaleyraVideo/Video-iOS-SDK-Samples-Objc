@@ -148,6 +148,9 @@ NSString *const kUserCellIdentifier = @"userCellId";
 
     //Then we start the call client providing the "user alias" of the user selected.
     [BandyerSDK.instance.callClient start:self.selectedUserId];
+
+    //Here we start the chat client, providing the "user alias" of the user selected.
+    [BandyerSDK.instance.chatClient start:self.selectedUserId];
 }
 
 //-------------------------------------------------------------------------------------------
