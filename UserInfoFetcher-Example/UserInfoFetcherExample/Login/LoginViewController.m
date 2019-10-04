@@ -234,7 +234,15 @@ NSString *const kUserCellIdentifier = @"userCellId";
 
 - (void)showActivityIndicatorInNavigationBar
 {
-    UIActivityIndicatorView *indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+   UIActivityIndicatorViewStyle style;
+   
+   if (@available(iOS 13.0, *)) {
+       style = UIActivityIndicatorViewStyleMedium;
+   } else {
+       style = UIActivityIndicatorViewStyleGray;
+   }
+   
+   UIActivityIndicatorView *indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:style];
     [indicatorView startAnimating];
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:indicatorView];
     [self.navigationItem setRightBarButtonItem:item animated:YES];
