@@ -3,12 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		32DC9C50C404D9CFC947E13F /* ContactsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DC97DE23DF7BAD2DAF543B /* ContactsNavigationController.m */; };
 		6951348CF003D7B963A2B4FF /* Pods_CallKit_Voip_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC3C18C8CCAE372788EBC051 /* Pods_CallKit_Voip_Example.framework */; };
+		A1F7EE5623436B1400A09D3C /* PushKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F7EE5523436B1400A09D3C /* PushKit.framework */; };
 		A94A5305221C0563006B7DC6 /* CallKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A94A5304221C0563006B7DC6 /* CallKit.framework */; };
 		A960CAD9221AE7C600C8FAB2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A960CAD8221AE7C600C8FAB2 /* AppDelegate.m */; };
 		A960CAE4221AE7C800C8FAB2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A960CAE2221AE7C800C8FAB2 /* LaunchScreen.storyboard */; };
@@ -233,6 +234,8 @@
 		32DC9503773ADE015DBEA28E /* ContactsNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsNavigationController.h; sourceTree = "<group>"; };
 		32DC97DE23DF7BAD2DAF543B /* ContactsNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsNavigationController.m; sourceTree = "<group>"; };
 		3A1AE4A2ACC17F207A5BA55D /* Pods-CallKit-Voip-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CallKit-Voip-Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CallKit-Voip-Example/Pods-CallKit-Voip-Example.debug.xcconfig"; sourceTree = "<group>"; };
+		A1F7EE5523436B1400A09D3C /* PushKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PushKit.framework; path = System/Library/Frameworks/PushKit.framework; sourceTree = SDKROOT; };
+		A1F7EE5723436BA700A09D3C /* CallKit-Voip-Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "CallKit-Voip-Example.entitlements"; sourceTree = "<group>"; };
 		A94A5304221C0563006B7DC6 /* CallKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CallKit.framework; path = System/Library/Frameworks/CallKit.framework; sourceTree = SDKROOT; };
 		A960CAD4221AE7C600C8FAB2 /* CallKit-Voip-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CallKit-Voip-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A960CAD7221AE7C600C8FAB2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -473,6 +476,7 @@
 			files = (
 				A94A5305221C0563006B7DC6 /* CallKit.framework in Frameworks */,
 				6951348CF003D7B963A2B4FF /* Pods_CallKit_Voip_Example.framework in Frameworks */,
+				A1F7EE5623436B1400A09D3C /* PushKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -500,6 +504,7 @@
 		A960CAD6221AE7C600C8FAB2 /* CallKit-Voip-Example */ = {
 			isa = PBXGroup;
 			children = (
+				A1F7EE5723436BA700A09D3C /* CallKit-Voip-Example.entitlements */,
 				A960CF33221AEE0D00C8FAB2 /* Call Options */,
 				A960CE61221AEE0C00C8FAB2 /* Contacts */,
 				A960CE64221AEE0D00C8FAB2 /* Login */,
@@ -801,6 +806,7 @@
 		BF6977CAA943E60F45770D8D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A1F7EE5523436B1400A09D3C /* PushKit.framework */,
 				A94A5304221C0563006B7DC6 /* CallKit.framework */,
 				AC3C18C8CCAE372788EBC051 /* Pods_CallKit_Voip_Example.framework */,
 			);
@@ -1283,7 +1289,9 @@
 			baseConfigurationReference = 3A1AE4A2ACC17F207A5BA55D /* Pods-CallKit-Voip-Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "CallKit-Voip-Example/CallKit-Voip-Example.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TQ49746752;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "CallKit-Voip-Example/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1315,7 +1323,7 @@
 					"-framework",
 					"\"CallKit\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.acme.CallKit-Voip-Example";
+				PRODUCT_BUNDLE_IDENTIFIER = it.bandyer.BandyerSDKSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1326,7 +1334,9 @@
 			baseConfigurationReference = 1644623D399AFB5BDC5ACDE9 /* Pods-CallKit-Voip-Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "CallKit-Voip-Example/CallKit-Voip-Example.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TQ49746752;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "CallKit-Voip-Example/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1358,7 +1368,7 @@
 					"-framework",
 					"\"CallKit\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.acme.CallKit-Voip-Example";
+				PRODUCT_BUNDLE_IDENTIFIER = it.bandyer.BandyerSDKSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
