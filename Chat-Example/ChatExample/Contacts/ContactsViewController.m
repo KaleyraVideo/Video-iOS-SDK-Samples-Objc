@@ -16,7 +16,7 @@
 NSString *const kShowOptionsSegueIdentifier = @"showOptionsSegue";
 NSString *const kContactCellIdentifier = @"userCellId";
 
-@interface ContactsViewController () <CallOptionsTableViewControllerDelegate, BCXCallClientObserver, BDKCallWindowDelegate, BCHChannelViewControllerDelegate, BCHMessageNotificationControllerDelegate, BCKCallBannerControllerDelegate>
+@interface ContactsViewController () <CallOptionsTableViewControllerDelegate, BCXCallClientObserver, BDKCallWindowDelegate, BCHChannelViewControllerDelegate, BCHMessageNotificationControllerDelegate, BDKCallBannerControllerDelegate>
 
 @property (nonatomic, weak) IBOutlet UISegmentedControl *callTypeSegmentedControl;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *callOptionsBarButtonItem;
@@ -30,7 +30,7 @@ NSString *const kContactCellIdentifier = @"userCellId";
 @property (nonatomic, strong) NSMutableArray<NSIndexPath *> *selectedContacts;
 @property (nonatomic, copy) CallOptionsItem *options;
 @property (nonatomic, strong) id<BDKIntent> intent;
-@property (nonatomic, strong) BCKCallBannerController *callBannerController;
+@property (nonatomic, strong) BDKCallBannerController *callBannerController;
 @property (nonatomic, strong) BCHMessageNotificationController *messageNotificationController;
 
 @end
@@ -67,7 +67,7 @@ NSString *const kContactCellIdentifier = @"userCellId";
 {
     _selectedContacts = [NSMutableArray new];
     _options = [CallOptionsItem new];
-    _callBannerController = [BCKCallBannerController new];
+    _callBannerController = [BDKCallBannerController new];
     _messageNotificationController = [BCHMessageNotificationController new];
 }
 
@@ -120,8 +120,9 @@ NSString *const kContactCellIdentifier = @"userCellId";
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id <UIViewControllerTransitionCoordinator>)coordinator
 {
-    //Remember to call viewWillTransitionTo on custom view controller to update UI while rotating
+    //Remember to call viewWillTransitionTo on custom view controllers to update UI while rotating.
     [self.callBannerController viewWillTransitionTo:size withTransitionCoordinator:coordinator];
+    [self.messageNotificationController viewWillTransitionTo:size withTransitionCoordinator:coordinator];
     
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
 }
@@ -462,17 +463,17 @@ NSString *const kContactCellIdentifier = @"userCellId";
     [self presentChatFrom:notification];
 }
 
-- (void)channelViewController:(BCHChannelViewController *)controller willHide:(BCKCallBannerView *)banner
+- (void)channelViewController:(BCHChannelViewController *)controller willHide:(BDKCallBannerView *)banner
 {
     [self restoreStatusBarAppearance];
 }
 
-- (void)channelViewController:(BCHChannelViewController *)controller willShow:(BCKCallBannerView *)banner
+- (void)channelViewController:(BCHChannelViewController *)controller willShow:(BDKCallBannerView *)banner
 {
     [self setStatusBarAppearanceToLight];
 }
 
-- (void)channelViewController:(BCHChannelViewController *)controller didTouchBanner:(BCKCallBannerView *)banner
+- (void)channelViewController:(BCHChannelViewController *)controller didTouchBanner:(BDKCallBannerView *)banner
 {
     [controller dismissViewControllerAnimated:YES completion:^{
         [self performCallViewControllerPresentation];
@@ -492,17 +493,17 @@ NSString *const kContactCellIdentifier = @"userCellId";
 #pragma mark - Call Banner Controller delegate
 //-------------------------------------------------------------------------------------------
 
-- (void)callBannerController:(BCKCallBannerController *_Nonnull)controller willHide:(BCKCallBannerView *_Nonnull)banner
+- (void)callBannerController:(BDKCallBannerController *_Nonnull)controller willHide:(BDKCallBannerView *_Nonnull)banner
 {
     [self restoreStatusBarAppearance];
 }
 
-- (void)callBannerController:(BCKCallBannerController *_Nonnull)controller willShow:(BCKCallBannerView *_Nonnull)banner
+- (void)callBannerController:(BDKCallBannerController *_Nonnull)controller willShow:(BDKCallBannerView *_Nonnull)banner
 {
     [self setStatusBarAppearanceToLight];
 }
 
-- (void)callBannerController:(BCKCallBannerController *_Nonnull)controller didTouch:(BCKCallBannerView *_Nonnull)banner
+- (void)callBannerController:(BDKCallBannerController *_Nonnull)controller didTouch:(BDKCallBannerView *_Nonnull)banner
 {
     //Please remember to override the current call intent with the one saved inside call window.
     self.intent = self.callWindow.intent;
