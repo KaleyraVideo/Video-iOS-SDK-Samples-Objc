@@ -1,4 +1,4 @@
-# Bandyer SDK Chat Example
+# Bandyer SDK User Info Fetcher Example
 
 This sample app is going to show you how the Bandyer SDK should be configured, initialized, and how you can interact with it.
 
