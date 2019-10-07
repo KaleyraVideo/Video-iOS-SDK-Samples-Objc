@@ -9,6 +9,8 @@
 #import "AddressBook.h"
 #import "UserRepository.h"
 #import "UserSession.h"
+#import "AddressBook.h"
+#import "GlobalUserInfoFetcher.h"
 
 NSString *const kContactsSegueIdentifier = @"showContactsSegue";
 NSString *const kUserCellIdentifier = @"userCellId";
@@ -126,7 +128,11 @@ NSString *const kUserCellIdentifier = @"userCellId";
         if (!error)
         {
             self.userIds = userIds;
-
+            
+            AddressBook *addressBook = [AddressBook createFromUserArray:userIds currentUser:nil];
+            
+            [GlobalUserInfoFetcher instance].addressBook = addressBook;
+            
             if (self.selectedUserId)
                 [self loginUser];
         }

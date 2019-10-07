@@ -1,21 +1,21 @@
 //
+//  Created by Luca Tagliabue on 07/10/2019.
 //  Copyright © 2019 Bandyer. All rights reserved.
 //
 
-#import <BandyerSDK/BandyerSDK.h>
-
-#import "UserInfoFetcher.h"
-#import "Contact.h"
+#import "CallUserInfoFetcher.h"
 #import "AddressBook.h"
+#import "Contact.h"
+#import "ContactsMapGenerator.h"
 
-@interface UserInfoFetcher()
+@interface CallUserInfoFetcher()
 
+@property (nonatomic, strong, readonly) AddressBook *addressBook;
 @property (nonatomic, strong, readonly) NSDictionary<NSString*, Contact*> *aliasMap;
 
 @end
 
-@implementation UserInfoFetcher
-
+@implementation CallUserInfoFetcher
 
 - (instancetype)initWithAddressBook:(AddressBook *)addressBook
 {
@@ -24,7 +24,7 @@
     if (self)
     {
         _addressBook = addressBook;
-        _aliasMap = [self.class createAliasMap:addressBook];
+        _aliasMap = [[[ContactsMapGenerator alloc] initWithAddressBook:addressBook] createAliasMap];
     }
 
     return self;
@@ -37,10 +37,10 @@
     for (NSString *alias in aliases)
     {
         Contact *contact = self.aliasMap[alias];
+        //Suppose for a call we want to show only first name, last name and the user profile image.
         BDKUserInfoDisplayItem *item = [[BDKUserInfoDisplayItem alloc] initWithAlias:alias];
         item.firstName = contact.firstName;
         item.lastName = contact.lastName;
-        item.email = contact.email;
         item.imageURL = contact.profileImageURL;
         [items addObject:item];
     }
@@ -50,7 +50,7 @@
 
 - (id)copyWithZone:(nullable NSZone *)zone
 {
-    UserInfoFetcher *copy = (UserInfoFetcher *) [[[self class] allocWithZone:zone] init];
+    CallUserInfoFetcher *copy = (CallUserInfoFetcher *) [[[self class] allocWithZone:zone] init];
 
     if (copy != nil)
     {
@@ -59,21 +59,6 @@
     }
 
     return copy;
-}
-
-
-+ (NSDictionary<NSString*, Contact*> *)createAliasMap:(AddressBook *)addressBook
-{
-    NSMutableDictionary *map = [NSMutableDictionary dictionaryWithCapacity:addressBook.contacts.count + 1];
-
-    for (Contact *contact in addressBook.contacts)
-    {
-        map[contact.alias] = contact;
-    }
-
-    map[addressBook.me.alias] = addressBook.me;
-
-    return map;
 }
 
 @end

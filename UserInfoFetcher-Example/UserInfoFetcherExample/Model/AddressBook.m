@@ -21,7 +21,7 @@
     return copy;
 }
 
-+ (instancetype)createFromUserArray:(nullable NSArray<NSString *> *)users currentUser:(NSString *)currentUser
++ (instancetype)createFromUserArray:(nullable NSArray<NSString *> *)users currentUser:(nullable NSString *)currentUser
 {
     NSMutableArray *contacts = [NSMutableArray arrayWithCapacity:users.count];
     AddressBook *addressBook = [AddressBook new];

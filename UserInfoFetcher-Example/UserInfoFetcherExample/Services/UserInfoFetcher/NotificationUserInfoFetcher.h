@@ -1,4 +1,5 @@
 //
+//  Created by Luca Tagliabue on 07/10/2019.
 //  Copyright © 2019 Bandyer. All rights reserved.
 //
 
@@ -9,9 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UserInfoFetcher : NSObject <BDKUserInfoFetcher>
-
-@property (nonatomic, strong, readonly) AddressBook *addressBook;
+@interface NotificationUserInfoFetcher : NSObject <BDKUserInfoFetcher>
 
 - (instancetype)initWithAddressBook:(AddressBook *)addressBook;
 

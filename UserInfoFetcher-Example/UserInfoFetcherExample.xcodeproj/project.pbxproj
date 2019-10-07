@@ -223,8 +223,12 @@
 		A11282DA2347382900F035DC /* AddressBook.m in Sources */ = {isa = PBXBuildFile; fileRef = A11282012347382900F035DC /* AddressBook.m */; };
 		A11282DB2347382900F035DC /* UserRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = A11282042347382900F035DC /* UserRepository.m */; };
 		A11282DC2347382900F035DC /* ContactsGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = A11282052347382900F035DC /* ContactsGenerator.m */; };
-		A11282DD2347382900F035DC /* UserInfoFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = A11282092347382900F035DC /* UserInfoFetcher.m */; };
 		A11282DE2347382900F035DC /* UserSession.m in Sources */ = {isa = PBXBuildFile; fileRef = A112820A2347382900F035DC /* UserSession.m */; };
+		A1E19134234B339300651509 /* CallUserInfoFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E19133234B339300651509 /* CallUserInfoFetcher.m */; };
+		A1E19137234B33A900651509 /* ChatUserInfoFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E19136234B33A900651509 /* ChatUserInfoFetcher.m */; };
+		A1E1913A234B33BB00651509 /* GlobalUserInfoFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E19139234B33BB00651509 /* GlobalUserInfoFetcher.m */; };
+		A1E1913D234B33CB00651509 /* NotificationUserInfoFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E1913C234B33CB00651509 /* NotificationUserInfoFetcher.m */; };
+		A1E19140234B37C700651509 /* ContactsMapGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E1913F234B37C700651509 /* ContactsMapGenerator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -454,14 +458,22 @@
 		A11281FF2347382900F035DC /* AddressBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBook.h; sourceTree = "<group>"; };
 		A11282002347382900F035DC /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
 		A11282012347382900F035DC /* AddressBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBook.m; sourceTree = "<group>"; };
-		A11282032347382900F035DC /* UserInfoFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoFetcher.h; sourceTree = "<group>"; };
 		A11282042347382900F035DC /* UserRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserRepository.m; sourceTree = "<group>"; };
 		A11282052347382900F035DC /* ContactsGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsGenerator.m; sourceTree = "<group>"; };
 		A11282062347382900F035DC /* UserSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSession.h; sourceTree = "<group>"; };
 		A11282072347382900F035DC /* ContactsGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsGenerator.h; sourceTree = "<group>"; };
 		A11282082347382900F035DC /* UserRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserRepository.h; sourceTree = "<group>"; };
-		A11282092347382900F035DC /* UserInfoFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoFetcher.m; sourceTree = "<group>"; };
 		A112820A2347382900F035DC /* UserSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSession.m; sourceTree = "<group>"; };
+		A1E19132234B339300651509 /* CallUserInfoFetcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CallUserInfoFetcher.h; sourceTree = "<group>"; };
+		A1E19133234B339300651509 /* CallUserInfoFetcher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CallUserInfoFetcher.m; sourceTree = "<group>"; };
+		A1E19135234B33A900651509 /* ChatUserInfoFetcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatUserInfoFetcher.h; sourceTree = "<group>"; };
+		A1E19136234B33A900651509 /* ChatUserInfoFetcher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatUserInfoFetcher.m; sourceTree = "<group>"; };
+		A1E19138234B33BB00651509 /* GlobalUserInfoFetcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalUserInfoFetcher.h; sourceTree = "<group>"; };
+		A1E19139234B33BB00651509 /* GlobalUserInfoFetcher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GlobalUserInfoFetcher.m; sourceTree = "<group>"; };
+		A1E1913B234B33CB00651509 /* NotificationUserInfoFetcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationUserInfoFetcher.h; sourceTree = "<group>"; };
+		A1E1913C234B33CB00651509 /* NotificationUserInfoFetcher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationUserInfoFetcher.m; sourceTree = "<group>"; };
+		A1E1913E234B37C700651509 /* ContactsMapGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactsMapGenerator.h; sourceTree = "<group>"; };
+		A1E1913F234B37C700651509 /* ContactsMapGenerator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactsMapGenerator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -780,10 +792,10 @@
 		A11281FD2347382900F035DC /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A11281FE2347382900F035DC /* Contact.m */,
 				A11281FF2347382900F035DC /* AddressBook.h */,
-				A11282002347382900F035DC /* Contact.h */,
 				A11282012347382900F035DC /* AddressBook.m */,
+				A11282002347382900F035DC /* Contact.h */,
+				A11281FE2347382900F035DC /* Contact.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -791,16 +803,32 @@
 		A11282022347382900F035DC /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				A11282032347382900F035DC /* UserInfoFetcher.h */,
-				A11282042347382900F035DC /* UserRepository.m */,
-				A11282052347382900F035DC /* ContactsGenerator.m */,
-				A11282062347382900F035DC /* UserSession.h */,
 				A11282072347382900F035DC /* ContactsGenerator.h */,
+				A11282052347382900F035DC /* ContactsGenerator.m */,
+				A1E1913E234B37C700651509 /* ContactsMapGenerator.h */,
+				A1E1913F234B37C700651509 /* ContactsMapGenerator.m */,
+				A1E19131234B335700651509 /* UserInfoFetcher */,
 				A11282082347382900F035DC /* UserRepository.h */,
-				A11282092347382900F035DC /* UserInfoFetcher.m */,
+				A11282042347382900F035DC /* UserRepository.m */,
+				A11282062347382900F035DC /* UserSession.h */,
 				A112820A2347382900F035DC /* UserSession.m */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		A1E19131234B335700651509 /* UserInfoFetcher */ = {
+			isa = PBXGroup;
+			children = (
+				A1E19132234B339300651509 /* CallUserInfoFetcher.h */,
+				A1E19133234B339300651509 /* CallUserInfoFetcher.m */,
+				A1E19135234B33A900651509 /* ChatUserInfoFetcher.h */,
+				A1E19136234B33A900651509 /* ChatUserInfoFetcher.m */,
+				A1E19138234B33BB00651509 /* GlobalUserInfoFetcher.h */,
+				A1E19139234B33BB00651509 /* GlobalUserInfoFetcher.m */,
+				A1E1913B234B33CB00651509 /* NotificationUserInfoFetcher.h */,
+				A1E1913C234B33CB00651509 /* NotificationUserInfoFetcher.m */,
+			);
+			path = UserInfoFetcher;
 			sourceTree = "<group>";
 		};
 		FED6948ADB57A84F85EC5BAF /* Pods */ = {
@@ -1127,6 +1155,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1E1913D234B33CB00651509 /* NotificationUserInfoFetcher.m in Sources */,
+				A1E19140234B37C700651509 /* ContactsMapGenerator.m in Sources */,
+				A1E19134234B339300651509 /* CallUserInfoFetcher.m in Sources */,
 				A11282DC2347382900F035DC /* ContactsGenerator.m in Sources */,
 				A11282D92347382900F035DC /* Contact.m in Sources */,
 				A112820C2347382900F035DC /* CallOptionsTableViewController.m in Sources */,
@@ -1136,10 +1167,11 @@
 				A11282DE2347382900F035DC /* UserSession.m in Sources */,
 				A112811E234734C100F035DC /* main.m in Sources */,
 				A11282D82347382900F035DC /* LoginViewController.m in Sources */,
-				A11282DD2347382900F035DC /* UserInfoFetcher.m in Sources */,
 				A11282D62347382900F035DC /* ContactsNavigationController.m in Sources */,
 				A11282DB2347382900F035DC /* UserRepository.m in Sources */,
 				A112820B2347382900F035DC /* CallOptionsItem.m in Sources */,
+				A1E19137234B33A900651509 /* ChatUserInfoFetcher.m in Sources */,
+				A1E1913A234B33BB00651509 /* GlobalUserInfoFetcher.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
