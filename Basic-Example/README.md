@@ -29,7 +29,7 @@ In this demo app, all the integration work is already done for you. In this sect
 First of all you have to initialize the SDK using the unique instance of [BandyerSDK](https://docs.bandyer.com/Bandyer-iOS-SDK/BandyerSDK/Classes/BandyerSDK.html) and configure it using [BDKConfig](https://docs.bandyer.com/Bandyer-iOS-SDK/BandyerSDK/Classes/BDKConfig.html) class. Yuo can follow this code snippet:
 
 ```objective-c
-//Here we are going to initialize the Bandyer SDK
+//Here we are going to initialize the Bandyer SDK.
 //The sdk needs a configuration object where it is specified which environment the sdk should work in
 BDKConfig *config = [BDKConfig new];
 
@@ -37,7 +37,8 @@ BDKConfig *config = [BDKConfig new];
 //Beware the default environment is production, we strongly recommend to test your app in a sandbox environment.
 config.environment = BDKEnvironment.sandbox;
 
-//Here we are disabling CallKit support
+//Here we are disabling CallKit support. 
+//Make sure to disable CallKit, otherwise it will be enable by default if the system supports CallKit (i.e iOS >= 10.0).
 config.callKitEnabled = NO;
 
 //Now we are ready to initialize the SDK providing the app id token identifying your app in Bandyer platform.
@@ -47,11 +48,31 @@ In the demo project, we did it inside `AppDelegate` class, but you can do everyw
 
 ###SDK Start
 
+Once the end user has selected which user wants to impersonate, you have to start the SDK client. 
+
+We did it inside the `LoginViewController` class.
+
+```objective-c
+//We are registering as a call client observer in order to be notified when the client changes its state.
+//We are also providing the main queue telling the SDK onto which queue should notify the observer provided,
+//otherwise the SDK will notify the observer onto its background internal queue.
+[BandyerSDK.instance.callClient addObserver:self queue:dispatch_get_main_queue()];
+
+//Then we start the call client providing the "user alias" of the user selected.
+[BandyerSDK.instance.callClient start:@"SELECTED USER ID"];
+```
+Yuor class responsible of starting the client has the possibility to become an observer of the call client lifecycle, implementing the [BCXCallClientObserver](https://docs.bandyer.com/Bandyer-iOS-SDK/BandyerSDK/Protocols/BCXCallClientObserver.html). Once the `callClientDidStart` callback is fired, you can start to interact with our system.
+
+###Make a Call
+
+In order to make a call, we provide you a custom `UIWindow`: the [CallWindow](https://docs.bandyer.com/Bandyer-iOS-SDK/BandyerSDK/Classes/CallWindow.html). 
+
+
 
 
 ## Support
 
-To get basic support please submit an Issue
+To get basic support please submit an Issue. We will help you as soon as possible.
 
 If you prefer commercial support, please contact bandyer.com sending an email at: [info@bandyer.com](mailto:info@bandyer.com.)
 
