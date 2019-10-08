@@ -19,7 +19,7 @@
     //if you haven't done so already, otherwise your app is going to crash anytime it tries to access camera
     //or microphone devices.
     
-    //Here we are going to initialize the Bandyer SDK
+    //Here we are going to initialize the Bandyer SDK.
     //The sdk needs a configuration object where it is specified which environment the sdk should work in
     BDKConfig *config = [BDKConfig new];
 
@@ -27,7 +27,7 @@
     //Beware the default environment is production, we strongly recommend to test your app in a sandbox environment.
     config.environment = BDKEnvironment.sandbox;
 
-    //Here we are disabling CallKit support
+    //Here we are disabling CallKit support. Make sure to disable CallKit, otherwise it will be enable by default if the system supports CallKit (i.e iOS >= 10.0).
     config.callKitEnabled = NO;
 
     //Now we are ready to initialize the SDK providing the app id token identifying your app in Bandyer platform.
