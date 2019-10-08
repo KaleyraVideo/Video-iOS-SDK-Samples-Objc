@@ -4,15 +4,16 @@ This sample application shows you how it's easy and simple to integrate CallKit 
 
 ## Quickstart
 
-1. Obtain a Mobile API key
-2. Install [CocoaPods](https://guides.cocoapods.org/using/getting-started.html#getting-started) .
-3. In terminal, run the `pod install` command
-4. Open the project workspace in Xcode 
-5. Replace the app bundle identifier and set up code signing if you want to run the example on a real device.
-6. Add `NSCameraUsageDescription` and `NSMicrophoneUsageDescription` keys to the app's Info.plist file
-7. Update application capabilities turning on **Background Modes** and **Push Notifications** in your project **Capabilites** tab in Xcode. Flag `Audio, Airplay and Picture in Picture` and `Voice over IP` checkboxes on, under **Background modes** section 
-8. Replace "api key" placeholders in the code 
-9. Replace "KEYPATH_TO_DATA_DICTIONARY" keypath placeholder in handleNotificationPayload method
+1. Obtain a Mobile API key.
+2. Install [CocoaPods](https://guides.cocoapods.org/using/getting-started.html#getting-started).
+3. In terminal, run the `pod install` command.
+4. Open the project workspace in Xcode.
+5. Add `NSCameraUsageDescription` and `NSMicrophoneUsageDescription` keys to the app's Info.plist file.
+6. Replace "PUT YOUR APP ID HERE" placeholder inside `AppDelegate` class with the app id provided. 
+7. Replace the app bundle identifier and set up code signing if you want to run the example on a real device.
+8. Update application capabilities turning on **Background Modes** and **Push Notifications** in your project **Capabilites** tab in Xcode. Flag `Audio, Airplay and Picture in Picture` and `Voice over IP` checkboxes on, under **Background modes** section 
+9. Replace "api key" placeholders in the code 
+10. Replace "KEYPATH_TO_DATA_DICTIONARY" keypath placeholder in handleNotificationPayload method
 
 ## Caveats
 
