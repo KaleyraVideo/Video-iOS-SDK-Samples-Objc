@@ -18,11 +18,11 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     //Before we can get started, you must review your project configuration, and enable the required
-    //app capabilities for CallKit and Voip notifications.
+    //app capabilities for CallKit and VoIP notifications.
     //
     //Namely, you must enable "Background modes" capability
     //checking "Audio, AirPlay and Picture in Picture" and "Voice over IP" checkboxes on.
-    //You must also enable "Push notifications" capability even if you use VOIP notifications only.
+    //You must also enable "Push notifications" capability even if you use VoIP notifications only.
     //
     //Privacy usage descriptions:
     //You must add NSCameraUsageDescription and NSMicrophoneUsageDescription to your app Info.plist file.
@@ -30,12 +30,12 @@
     //
     //CallKit:
     //CallKit framework must be linked to your app and it must linked as a required framework,
-    //otherwise the app will have a weird behaviour when it is launched upon receiving a voip notification.
+    //otherwise the app will have a weird behaviour when it is launched upon receiving a VoIP notification.
     //It is going to be launched, but the system is going to suspend it after few milliseconds.
     //In this example app, the CallKit framework has been already added for you.
 
-    //Here we are going to initialize the Bandyer SDK
-    //The sdk needs a configuration object where it is specified which environment the sdk should work in
+    //Here we are going to initialize the Bandyer SDK.
+    //The sdk needs a configuration object where it is specified which environment the sdk should work in.
 
     BDKConfig *config = [BDKConfig new];
 
@@ -49,7 +49,7 @@
 
     //The following statement is going to change the name of the app that is going to be shown by the system call UI.
     //If you don't set this value during the configuration, the SDK will look for to the value of the
-    //CFBundleDisplayName key (or the CFBundleName, if the former is not available) found in your App Info.plist
+    //CFBundleDisplayName key (or the CFBundleName, if the former is not available) found in your App 'Info.plist'.
 
     config.nativeUILocalizedName = @"My wonderful app";
 
@@ -73,7 +73,7 @@
     //The following statement is going to tell the BandyerSDK which object it must forward device push tokens to when one is received.
     config.pushRegistryDelegate = self;
 
-    //This statement is going to tell the BandyerSDK where to look for incoming call information within the VoIP push notifications it receives
+    //This statement is going to tell the BandyerSDK where to look for incoming call information within the VoIP push notifications it receives.
     config.notificationPayloadKeyPath = @"SET YOUR PAYLOAD KEY PATH HERE";
 
     //Now we are ready to initialize the SDK providing the app id token identifying your app in Bandyer platform.
@@ -88,7 +88,7 @@
 
 - (void)pushRegistry:(PKPushRegistry *)registry didUpdatePushCredentials:(PKPushCredentials *)pushCredentials forType:(PKPushType)type
 {
-    //Update push token credential in your back-end system
+    //Update push token credential in your back-end system.
     NSLog(@"Updated push credentials %@", pushCredentials.token);
 }
 
@@ -100,7 +100,7 @@
 {
     //When System call ui is shown to the user, it will show a "video" button if the call supports it.
     //The code below will handle the siri intent received from the system and it will hand it to the call view controller
-    //if the controller is presented
+    //if the controller is presented.
 
     if (@available(iOS 13.0, *))
     {
