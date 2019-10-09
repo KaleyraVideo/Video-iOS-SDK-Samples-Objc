@@ -160,7 +160,7 @@ Since there must be only one ongoing call at a time, the CallViewController will
 
         UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
               [alert dismissViewControllerAnimated:YES completion:nil];
-         }];
+        }];
 
         [alert addAction:defaultAction];
         [self presentViewController:alert animated:YES completion:nil];
