@@ -1,6 +1,9 @@
-# Bandyer SDK CallKit - Voip Sample
+# Bandyer SDK CallKit - VoIP Sample
 
-This sample application shows you how it's easy and simple to integrate CallKit and Voip notifications capabilities with Bandyer in your app.
+This sample application shows you how it's easy and simple to integrate CallKit and VoIP notifications capabilities with Bandyer in your app.
+
+This example is only related to manage CallKit and VoIP notifications. For other examples, please visit the [Sample apps index page](https://github.com/Bandyer/Bandyer-iOS-SDK-Samples).
+
 
 ## Quickstart
 
@@ -12,12 +15,11 @@ This sample application shows you how it's easy and simple to integrate CallKit 
 6. Replace "PUT YOUR APP ID HERE" placeholder inside `AppDelegate` class with the app id provided. 
 7. Replace the app bundle identifier and set up code signing if you want to run the example on a real device.
 8. Update application capabilities turning on **Background Modes** and **Push Notifications** in your project **Capabilites** tab in Xcode. Flag `Audio, Airplay and Picture in Picture` and `Voice over IP` checkboxes on, under **Background modes** section 
-9. Replace "api key" placeholders in the code 
-10. Replace "KEYPATH_TO_DATA_DICTIONARY" keypath placeholder in handleNotificationPayload method
+9. Replace "SET YOUR PAYLOAD KEY PATH HERE" keypath placeholder in `notificationPayloadKeyPath` property of configuration class.
 
 ## Caveats
 
-This app uses fake users fetched from our backend system. We provide access to those user through a REST api which requires another set of access keys. If your backend system already provides Bandyer "user alias" for your users, then you should modify the app in order to fetch users information from you backend system instead of ours.
+This app uses fake users fetched from our backend system. We provide access to those user through a REST api which requires another set of access keys. Once obtained, replace "REST API KEY" and "REST URL" placeholders inside `UserRepository` class.
 
 Bandyer back-end system does not deliver notifications to APNS directly, you must setup your own delivery service or use an online service like [OneSignal](https://onesignal.com/). 
 
@@ -73,12 +75,18 @@ You must provide a dictionary to call client `handleNotification:` method format
 
 ## Support
 
-To get basic support please submit an Issue
+From here, please have a look to [Bandyer SDK Wiki](https://github.com/Bandyer/Bandyer-iOS-SDK/wiki). You will easly find guides to all the Bandyer world! 
+
+To get basic support please submit an Issue. We will help you as soon as possible.
 
 If you prefer commercial support, please contact bandyer.com sending an email at: [info@bandyer.com](mailto:info@bandyer.com.)
 
 ## Credits
 
-- Sample video file taken from https://sample-videos.com/
-- Sample user profile images taken from https://randomuser.me/
+- Sample video file taken from [Sample Videos](https://sample-videos.com/).
+- Sample user profile images taken from [RANDOM USER GENERATOR](https://randomuser.me/).
 - Icons are part of the [Feather icon set](https://www.iconfinder.com/iconsets/feather-2) by [Cole Bemis](https://www.iconfinder.com/colebemis) distributed under [Creative Commons Attribution 3.0 Unported License](https://creativecommons.org/licenses/by/3.0/) downloaded from [Iconfinder](https://www.iconfinder.com/) website.
+
+## License
+
+Using this software, you agree to our license. For more details, see [LICENSE](https://github.com/Bandyer/Bandyer-iOS-SDK-Samples/blob/master/LICENSE) file.
