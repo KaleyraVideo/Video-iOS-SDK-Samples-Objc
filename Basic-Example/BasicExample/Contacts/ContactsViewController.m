@@ -83,7 +83,7 @@ NSString *const kContactCellIdentifier = @"userCellId";
     self.userBarButtonItem.title = [UserSession currentUser];
     [self disableMultipleSelection:NO];
 
-    //When view loads we register as a client observer, in order to receive notifications about incoming calls received and client state changes.
+    //When view loads we register as a call client observer, in order to receive notifications about incoming calls received and client state changes.
     [BandyerSDK.instance.callClient addObserver:self queue:dispatch_get_main_queue()];
 }
 
@@ -91,6 +91,20 @@ NSString *const kContactCellIdentifier = @"userCellId";
 {
     self.callBannerController.delegate = self;
     self.callBannerController.parentViewController = self;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self.callBannerController show];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [self.callBannerController hide];
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id <UIViewControllerTransitionCoordinator>)coordinator
@@ -121,11 +135,10 @@ NSString *const kContactCellIdentifier = @"userCellId";
     //The record flag specifies whether we want the call to be recorded or not.
     //The maximumDuration parameter specifies how long the call can last.
     //If you provide 0, the call will be created without a maximum duration value.
-    //We store the intent for later use, because we are using storyboards. When this view controller is asked to prepare for segue
-    //we are going to hand the intent to the `BDKCallViewController` created by the storyboard
+    //We store the intent for later use, because we can present again the BDKCallViewController with the same call.
     self.intent = [BDKMakeCallIntent intentWithCallee:aliases type:self.options.type record:self.options.record maximumDuration:self.options.maximumDuration];
 
-    //Then we trigger a segue to a BDKCallViewController.
+    //Then we trigger a presentation of BDKCallViewController.
     [self performCallViewControllerPresentation];
 }
 
@@ -137,8 +150,8 @@ NSString *const kContactCellIdentifier = @"userCellId";
 {
     //When the client detects an incoming call it will notify its observers through this method.
     //Here we are creating an `BDKIncomingCallHandlingIntent` object, storing it for later use,
-    //then we trigger a segue to a BDKCallViewController.
     self.intent = [[BDKIncomingCallHandlingIntent alloc] init];
+    //then we trigger a presentation of BDKCallViewController.
     [self performCallViewControllerPresentation];
 }
 
@@ -225,7 +238,7 @@ NSString *const kContactCellIdentifier = @"userCellId";
 {
     [self initCallWindowIfNeeded];
 
-    //Here we are configuring the BDKCallWindow instance
+    //Here we are configuring the BDKCallWindow instance.
     //A `BDKCallViewControllerConfiguration` object instance is needed to customize the behaviour and appearance of the view controller.
     BDKCallViewControllerConfiguration *config = [[BDKCallViewControllerConfiguration alloc] init];
 
@@ -267,8 +280,7 @@ NSString *const kContactCellIdentifier = @"userCellId";
         window = [[BDKCallWindow alloc] init];
     }
 
-    //Remember to subscribe as the delegate of the window. The window  will notify its delegate when it has finished its
-    //job
+    //Remember to subscribe as the delegate of the window. The window  will notify its delegate when it has finished its job.
     window.callDelegate = self;
 
     self.callWindow = window;
