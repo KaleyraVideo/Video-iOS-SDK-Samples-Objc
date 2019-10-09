@@ -24,7 +24,7 @@ If your backend system already provides Bandyer "user alias" for your users, the
 
 In this demo app, all the integration work is already done for you. In this section we will explain how to take advantage of the basic feature provided by Bandyer SDK in another app.
 
-###Initialization
+### Initialization
 
 First of all you have to initialize the SDK using the unique instance of [BandyerSDK](https://docs.bandyer.com/Bandyer-iOS-SDK/BandyerSDK/Classes/BandyerSDK.html) and configure it using [BDKConfig](https://docs.bandyer.com/Bandyer-iOS-SDK/BandyerSDK/Classes/BDKConfig.html) class. Yuo can follow this code snippet:
 
@@ -46,7 +46,7 @@ config.callKitEnabled = NO;
 ```
 In the demo project, we did it inside `AppDelegate` class, but you can do everywhere you need, just before using our SDK.
 
-###SDK Start
+### SDK Start
 
 Once the end user has selected which user wants to impersonate, you have to start the SDK client. 
 
@@ -63,7 +63,7 @@ We did it inside the `LoginViewController` class.
 ```
 Yuor class responsible of starting the client has the possibility to become an observer of the [BCXCallClient](https://docs.bandyer.com/Bandyer-iOS-SDK/BandyerSDK/Protocols/BCXCallClient.html) lifecycle, implementing the [BCXCallClientObserver](https://docs.bandyer.com/Bandyer-iOS-SDK/BandyerSDK/Protocols/BCXCallClientObserver.html). Once the `callClientDidStart` callback is fired, you can start to interact with our system.
 
-###Make a Call
+### Make a Call
 
 In order to make a call, we provide you a custom `UIWindow`: the [CallWindow](https://docs.bandyer.com/Bandyer-iOS-SDK/BandyerSDK/Classes/CallWindow.html).
 
@@ -168,7 +168,7 @@ Since there must be only one ongoing call at a time, the CallViewController will
 }];
 ```
 
-###Call Banner View
+### Call Banner View
 
 When there is an ongoing call but the CallViewController is not presented, your view controller can show a green banner view just under the status bar. The custom `UIView` that the SDK will show is the [CallBannerView](https://docs.bandyer.com/Bandyer-iOS-SDK/BandyerSDK/Classes/CallBannerView.html).
 
