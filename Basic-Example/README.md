@@ -73,7 +73,7 @@ Inside the `ContactsViewController` class you can find some code snippet on how 
 //Please remember to reference the call window only once in order to avoid the reset of BDKCallViewController.
 if (self.callWindow)
 {
-	return;
+    return;
 }
 
 //Please be sure to have in memory only one instance of BDKCallWindow, otherwise an exception will be thrown.
@@ -82,11 +82,11 @@ BDKCallWindow *window;
 
 if (BDKCallWindow.instance)
 {
-	window = BDKCallWindow.instance;
+    window = BDKCallWindow.instance;
 } else
 {
 //This will automatically save the new instance inside BDKCallWindow.instance.
-	window = [[BDKCallWindow alloc] init];
+    window = [[BDKCallWindow alloc] init];
 }
 
 //Remember to subscribe as the delegate of the window. The window  will notify its delegate when it has finished its job.
@@ -129,7 +129,7 @@ Once the CalllWindow is inited and the CallViewController is properly configured
 NSMutableArray *aliases = [NSMutableArray arrayWithCapacity:self.selectedContacts.count];
 for (NSIndexPath *indexPath in self.selectedContacts)
 {
-	[aliases addObject:self.addressBook.contacts[(NSUInteger) indexPath.row].alias];
+     [aliases addObject:self.addressBook.contacts[(NSUInteger) indexPath.row].alias];
 }
 
 //Then we create the intent providing the aliases array (which is a required parameter) along with the type of call we want perform.
@@ -154,9 +154,9 @@ Since there must be only one ongoing call at a time, the CallViewController will
 
 [self.callWindow shouldPresentCallViewControllerWithIntent:self.intent completion:^(BOOL succeeded) {
 
-	if (!succeeded)
-	{
-		UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Warning" message:@"Another call ongoing." preferredStyle:UIAlertControllerStyleAlert];
+    if (!succeeded)
+    {
+	UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Warning" message:@"Another call ongoing." preferredStyle:UIAlertControllerStyleAlert];
 
         UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
               [alert dismissViewControllerAnimated:YES completion:nil];
@@ -164,7 +164,7 @@ Since there must be only one ongoing call at a time, the CallViewController will
 
          [alert addAction:defaultAction];
          [self presentViewController:alert animated:YES completion:nil];
- 	}
+    }
 }];
 ```
 
