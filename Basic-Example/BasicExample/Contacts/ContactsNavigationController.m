@@ -3,6 +3,8 @@
 
 #import "ContactsNavigationController.h"
 
+//Here we subclass UINavigationController class in order to change preferredStatusBarStyle when the CallBannerView is showed.
+
 @interface ContactsNavigationController ()
 
 @property (nonatomic, assign) UIStatusBarStyle statusBarStyleBackup;
