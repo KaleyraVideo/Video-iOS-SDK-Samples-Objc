@@ -162,8 +162,8 @@ Since there must be only one ongoing call at a time, the CallViewController will
               [alert dismissViewControllerAnimated:YES completion:nil];
          }];
 
-         [alert addAction:defaultAction];
-         [self presentViewController:alert animated:YES completion:nil];
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
     }
 }];
 ```
