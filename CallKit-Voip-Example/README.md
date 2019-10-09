@@ -23,7 +23,9 @@ This app uses fake users fetched from our backend system. We provide access to t
 
 Bandyer back-end system does not deliver notifications to APNS directly, you must setup your own delivery service or use an online service like [OneSignal](https://onesignal.com/). 
 
-## Notification Payload
+## Usage
+
+#### Notification Payload
 
 The client SDK expects a payload in the following format:
 
