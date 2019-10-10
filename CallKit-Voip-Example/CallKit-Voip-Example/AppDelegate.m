@@ -26,7 +26,8 @@
     //
     //Privacy usage descriptions:
     //You must add NSCameraUsageDescription and NSMicrophoneUsageDescription to your app Info.plist file.
-    //Those values are required to access microphone and camera. In this example app, those values have been already added for you
+    //Those values are required to access microphone and camera.
+    //In this example app, those values have been already added for you.
     //
     //CallKit:
     //CallKit framework must be linked to your app and it must linked as a required framework,
