@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		32DC91CA3AA699670CC5C62D /* ContactsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DC98D4296B0235353AE0F4 /* ContactsNavigationController.m */; };
+		32DC972543CE06B7BF3A5E2E /* ContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DC9F9DD0D9389E3A1A5AF8 /* ContactsViewController.m */; };
+		32DC982297630067A3944E1C /* ContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DC95CE48646957EC89EBEC /* ContactTableViewCell.m */; };
 		A13FE90423424ECB002736BC /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A13FE81E23424ECA002736BC /* LoginViewController.m */; };
-		A13FE90523424ECB002736BC /* ContactsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = A13FE82223424ECB002736BC /* ContactsNavigationController.m */; };
-		A13FE90623424ECB002736BC /* ContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A13FE82323424ECB002736BC /* ContactsViewController.m */; };
 		A13FE90723424ECB002736BC /* CallOptionsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A13FE82823424ECB002736BC /* CallOptionsItem.m */; };
 		A13FE90823424ECB002736BC /* CallOptionsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A13FE82923424ECB002736BC /* CallOptionsTableViewController.m */; };
 		A13FE90923424ECB002736BC /* SampleVideo_640x360_10mb.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = A13FE82B23424ECB002736BC /* SampleVideo_640x360_10mb.mp4 */; };
@@ -228,14 +229,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		32DC91679C3570447A8399E0 /* ContactsNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsNavigationController.h; sourceTree = "<group>"; };
+		32DC95CE48646957EC89EBEC /* ContactTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactTableViewCell.m; sourceTree = "<group>"; };
+		32DC98D4296B0235353AE0F4 /* ContactsNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsNavigationController.m; sourceTree = "<group>"; };
+		32DC9AA1C18D12267C1D5DC0 /* ContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsViewController.h; sourceTree = "<group>"; };
+		32DC9B8C581CE9CBBD82AC8B /* ContactTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactTableViewCell.h; sourceTree = "<group>"; };
+		32DC9F9DD0D9389E3A1A5AF8 /* ContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsViewController.m; sourceTree = "<group>"; };
 		3CDEA7446D7D31AA4A0B0D84 /* Pods_ChatExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChatExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6467B22103887F1F90FF2267 /* Pods-ChatExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatExample.release.xcconfig"; path = "Target Support Files/Pods-ChatExample/Pods-ChatExample.release.xcconfig"; sourceTree = "<group>"; };
 		A13FE81E23424ECA002736BC /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		A13FE81F23424ECA002736BC /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
-		A13FE82123424ECB002736BC /* ContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsViewController.h; sourceTree = "<group>"; };
-		A13FE82223424ECB002736BC /* ContactsNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsNavigationController.m; sourceTree = "<group>"; };
-		A13FE82323424ECB002736BC /* ContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsViewController.m; sourceTree = "<group>"; };
-		A13FE82423424ECB002736BC /* ContactsNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsNavigationController.h; sourceTree = "<group>"; };
 		A13FE82623424ECB002736BC /* CallOptionsItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallOptionsItem.h; sourceTree = "<group>"; };
 		A13FE82723424ECB002736BC /* CallOptionsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallOptionsTableViewController.h; sourceTree = "<group>"; };
 		A13FE82823424ECB002736BC /* CallOptionsItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallOptionsItem.m; sourceTree = "<group>"; };
@@ -476,6 +479,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		32DC948E8742A0F3CFD38EFC /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				32DC9B8C581CE9CBBD82AC8B /* ContactTableViewCell.h */,
+				32DC95CE48646957EC89EBEC /* ContactTableViewCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		32DC9A76A8FE1B4FBD84EAFF /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				32DC9AA1C18D12267C1D5DC0 /* ContactsViewController.h */,
+				32DC9F9DD0D9389E3A1A5AF8 /* ContactsViewController.m */,
+			);
+			path = "View Controller";
+			sourceTree = "<group>";
+		};
+		32DC9BB58F6D617CBACF50E8 /* Navigation Controller */ = {
+			isa = PBXGroup;
+			children = (
+				32DC91679C3570447A8399E0 /* ContactsNavigationController.h */,
+				32DC98D4296B0235353AE0F4 /* ContactsNavigationController.m */,
+			);
+			path = "Navigation Controller";
+			sourceTree = "<group>";
+		};
 		589018FF18E164EC9974F943 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -497,10 +527,9 @@
 		A13FE82023424ECA002736BC /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
-				A13FE82123424ECB002736BC /* ContactsViewController.h */,
-				A13FE82223424ECB002736BC /* ContactsNavigationController.m */,
-				A13FE82323424ECB002736BC /* ContactsViewController.m */,
-				A13FE82423424ECB002736BC /* ContactsNavigationController.h */,
+				32DC9BB58F6D617CBACF50E8 /* Navigation Controller */,
+				32DC9A76A8FE1B4FBD84EAFF /* View Controller */,
+				32DC948E8742A0F3CFD38EFC /* Cell */,
 			);
 			path = Contacts;
 			sourceTree = "<group>";
@@ -1130,16 +1159,17 @@
 				A13FE9D523424ECC002736BC /* ContactsGenerator.m in Sources */,
 				A13FE9D223424ECC002736BC /* Contact.m in Sources */,
 				A13FE90823424ECB002736BC /* CallOptionsTableViewController.m in Sources */,
-				A13FE90523424ECB002736BC /* ContactsNavigationController.m in Sources */,
 				A13FE9D323424ECC002736BC /* AddressBook.m in Sources */,
 				A1EE6145234233770078D13A /* AppDelegate.m in Sources */,
 				A13FE9D723424ECC002736BC /* UserSession.m in Sources */,
-				A13FE90623424ECB002736BC /* ContactsViewController.m in Sources */,
 				A1EE6156234233780078D13A /* main.m in Sources */,
 				A13FE9D623424ECC002736BC /* UserInfoFetcher.m in Sources */,
 				A13FE90423424ECB002736BC /* LoginViewController.m in Sources */,
 				A13FE9D423424ECC002736BC /* UserRepository.m in Sources */,
 				A13FE90723424ECB002736BC /* CallOptionsItem.m in Sources */,
+				32DC91CA3AA699670CC5C62D /* ContactsNavigationController.m in Sources */,
+				32DC972543CE06B7BF3A5E2E /* ContactsViewController.m in Sources */,
+				32DC982297630067A3944E1C /* ContactTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

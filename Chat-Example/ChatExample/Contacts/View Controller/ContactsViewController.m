@@ -12,11 +12,12 @@
 #import "UserInfoFetcher.h"
 #import "UserSession.h"
 #import "ContactsNavigationController.h"
+#import "ContactTableViewCell.h"
 
 NSString *const kShowOptionsSegueIdentifier = @"showOptionsSegue";
 NSString *const kContactCellIdentifier = @"userCellId";
 
-@interface ContactsViewController () <CallOptionsTableViewControllerDelegate, BCXCallClientObserver, BDKCallWindowDelegate, BCHChannelViewControllerDelegate, BCHMessageNotificationControllerDelegate, BDKCallBannerControllerDelegate>
+@interface ContactsViewController () <CallOptionsTableViewControllerDelegate, BCXCallClientObserver, BDKCallWindowDelegate, BCHChannelViewControllerDelegate, BCHMessageNotificationControllerDelegate, BDKCallBannerControllerDelegate, ContactTableViewCellDelegate>
 
 @property (nonatomic, weak) IBOutlet UISegmentedControl *callTypeSegmentedControl;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *callOptionsBarButtonItem;
@@ -29,7 +30,7 @@ NSString *const kContactCellIdentifier = @"userCellId";
 
 @property (nonatomic, strong) NSMutableArray<NSIndexPath *> *selectedContacts;
 @property (nonatomic, copy) CallOptionsItem *options;
-@property (nonatomic, strong) id<BDKIntent> intent;
+@property (nonatomic, strong) id <BDKIntent> intent;
 @property (nonatomic, strong) BDKCallBannerController *callBannerController;
 @property (nonatomic, strong) BCHMessageNotificationController *messageNotificationController;
 
@@ -78,7 +79,7 @@ NSString *const kContactCellIdentifier = @"userCellId";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     //When view loads we have to setup custom view controllers.
     [self setupCallBannerView];
     [self setupNotificationView];
@@ -123,7 +124,7 @@ NSString *const kContactCellIdentifier = @"userCellId";
     //Remember to call viewWillTransitionTo on custom view controllers to update UI while rotating.
     [self.callBannerController viewWillTransitionTo:size withTransitionCoordinator:coordinator];
     [self.messageNotificationController viewWillTransitionTo:size withTransitionCoordinator:coordinator];
-    
+
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
 }
 
@@ -267,8 +268,8 @@ NSString *const kContactCellIdentifier = @"userCellId";
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Warning" message:@"Another call ongoing." preferredStyle:UIAlertControllerStyleAlert];
 
             UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-                        [alert dismissViewControllerAnimated:YES completion:nil];
-                    }];
+                [alert dismissViewControllerAnimated:YES completion:nil];
+            }];
 
             [alert addAction:defaultAction];
             [self presentViewController:alert animated:YES completion:nil];
@@ -349,10 +350,12 @@ NSString *const kContactCellIdentifier = @"userCellId";
         [self.selectedContacts removeAllObjects];
         [self disableMultipleSelection:YES];
         [self hideCallButtonInNavigationBar:YES];
+        [self enableChatButtonOnVisibleCells];
     } else
     {
         [self enableMultipleSelection:YES];
         [self showCallButtonInNavigationBar:YES];
+        [self disableChatButtonOnVisibleCells];
     }
 }
 
@@ -531,6 +534,38 @@ NSString *const kContactCellIdentifier = @"userCellId";
 }
 
 //-------------------------------------------------------------------------------------------
+#pragma mark - Enabling / Disabling chat button
+//-------------------------------------------------------------------------------------------
+
+- (void)enableChatButtonOnVisibleCells
+{
+    NSArray <ContactTableViewCell *> *cells = (NSArray <ContactTableViewCell *> *) self.tableView.visibleCells;
+
+    for (ContactTableViewCell *cell in cells)
+    {
+        [UIView animateWithDuration:0.3 animations:^(void) {
+            cell.chatButton.alpha = 1;
+        } completion:^(BOOL finished) {
+            cell.chatButton.enabled = YES;
+        }];
+    }
+}
+
+- (void)disableChatButtonOnVisibleCells
+{
+    NSArray <ContactTableViewCell *> *cells = (NSArray <ContactTableViewCell *> *) self.tableView.visibleCells;
+
+    for (ContactTableViewCell *cell in cells)
+    {
+        cell.chatButton.enabled = NO;
+
+        [UIView animateWithDuration:0.3 animations:^(void) {
+            cell.chatButton.alpha = 0;
+        }];
+    }
+}
+
+//-------------------------------------------------------------------------------------------
 #pragma mark - Table view data source
 //-------------------------------------------------------------------------------------------
 
@@ -546,16 +581,24 @@ NSString *const kContactCellIdentifier = @"userCellId";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kContactCellIdentifier forIndexPath:indexPath];
+    ContactTableViewCell * cell = (ContactTableViewCell * )
+    [tableView dequeueReusableCellWithIdentifier:kContactCellIdentifier forIndexPath:indexPath];
+
+    cell.delegate = self;
 
     Contact *contact = self.addressBook.contacts[(NSUInteger) indexPath.row];
-    cell.textLabel.text = [contact fullName];
-    cell.detailTextLabel.text = [contact alias];
+    cell.titleLabel.text = [contact fullName];
+    cell.subtitleLabel.text = [contact alias];
 
-    UIImage *image = [[UIImage imageNamed:@"phone"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-    imageView.contentMode = UIViewContentModeScaleAspectFit;
-    cell.accessoryView = imageView;
+    if (tableView.allowsMultipleSelection)
+    {
+        cell.chatButton.enabled = NO;
+        cell.chatButton.alpha = 0;
+    } else
+    {
+        cell.chatButton.enabled = YES;
+        cell.chatButton.alpha = 1;
+    }
 
     return cell;
 }
@@ -652,6 +695,18 @@ NSString *const kContactCellIdentifier = @"userCellId";
 - (void)hideToast
 {
     [self.toastView removeFromSuperview];
+}
+
+//-------------------------------------------------------------------------------------------
+#pragma mark - Contact table view cell delegate
+//-------------------------------------------------------------------------------------------
+
+- (void)contactTableViewCell:(ContactTableViewCell *_Nonnull)cell didTouch:(UIButton *_Nonnull)chatButton withCounterpart:(NSString *_Nonnull)aliasId
+{
+
+    BCHOpenChatIntent *intent = [BCHOpenChatIntent openChatWith:aliasId];
+
+    [self presentChatFrom:self intent:intent];
 }
 
 @end
