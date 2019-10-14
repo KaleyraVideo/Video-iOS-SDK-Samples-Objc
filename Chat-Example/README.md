@@ -90,7 +90,7 @@ BCHChannelViewControllerConfiguration* configuration = [[BCHChannelViewControlle
 channelViewController.configuration = configuration;
 ```
 
-Once the ChannelViewController is properly configured, you have to pass an instance of [OpenChatIntent](https://docs.bandyer.com/Bandyer-iOS-SDK/BandyerSDK/Classes/OpenChatIntent.html) to the it. You can open the chat controller directly with the counterpart id or from a `BCHChatNotification` instance.
+Once the ChannelViewController is properly configured, you have to pass an instance of [OpenChatIntent](https://docs.bandyer.com/Bandyer-iOS-SDK/BandyerSDK/Classes/OpenChatIntent.html) to it. You can open the chat controller directly with the counterpart id or from a `BCHChatNotification` instance.
 
 ```objective-c
 BCHOpenChatIntent *intent = [BCHOpenChatIntent openChatWith:@"Counterpart ID"];
