@@ -13,11 +13,12 @@
 NSString *const kContactsSegueIdentifier = @"showContactsSegue";
 NSString *const kUserCellIdentifier = @"userCellId";
 
-@interface LoginViewController () <BCXCallClientObserver>
+@interface LoginViewController () <BCXCallClientObserver, BCHChatClientObserver>
 
 @property (nonatomic, strong) NSArray<NSString*> *userIds;
 @property (nonatomic, strong) NSString *selectedUserId;
 @property (nonatomic, strong) UserRepository *repository;
+@property(nonatomic) BOOL activityIndicatorShown;
 
 @end
 
@@ -148,7 +149,12 @@ NSString *const kUserCellIdentifier = @"userCellId";
 
     //Then we start the call client providing the "user alias" of the user selected.
     [BandyerSDK.instance.callClient start:self.selectedUserId];
-    
+
+    //We are registering as a chat client observer in order to be notified when the client changes its state.
+    //We are also providing the main queue telling the SDK onto which queue should notify the observer provided,
+    //otherwise the SDK will notify the observer onto its background internal queue.
+    [BandyerSDK.instance.chatClient addObserver:self queue:dispatch_get_main_queue()];
+
     //Here we start the chat client, providing the "user alias" of the user selected.
     [BandyerSDK.instance.chatClient start:self.selectedUserId];
 }
@@ -159,31 +165,78 @@ NSString *const kUserCellIdentifier = @"userCellId";
 
 - (void)callClientWillStart:(id <BCXCallClient>)client
 {
-    self.view.userInteractionEnabled = NO;
-
-    [self showActivityIndicatorInNavigationBar];
+    [self clientsWillStart:BandyerSDK.instance.chatClient callClient:client];
 }
 
 - (void)callClientDidStart:(id <BCXCallClient>)client
 {
-    //Once the call client has started we can proceed to show the end user the contacts screen.
-
-    if (self.presentedViewController != nil)
-        return;
-
-    [UserSession setCurrentUser:self.selectedUserId];
-
-    [self performSegueWithIdentifier:kContactsSegueIdentifier sender:self];
-    [self hideActivityIndicatorFromNavigationBar];
-    self.view.userInteractionEnabled = YES;
+    [self clientsDidStart:BandyerSDK.instance.chatClient callClient:client];
 }
 
 - (void)callClient:(id <BCXCallClient>)client didFailWithError:(NSError *)error
 {
     //If the call client could not start for any reasons, this method will be called and the error occurred will be provided as argument.
 
-    [self.navigationItem setRightBarButtonItem:nil animated:YES];
-    self.view.userInteractionEnabled = YES;
+    [self clients:BandyerSDK.instance.chatClient callClient:client didFailWithError:error];
+}
+
+//-------------------------------------------------------------------------------------------
+#pragma mark - Chat client observer
+//-------------------------------------------------------------------------------------------
+
+- (void)chatClientWillStart:(id <BCHChatClient>)client
+{
+    [self clientsWillStart:client callClient:BandyerSDK.instance.callClient];
+}
+
+- (void)chatClientDidStart:(id <BCHChatClient>)client
+{
+    [self clientsDidStart:client callClient:BandyerSDK.instance.callClient];
+}
+
+- (void)chatClient:(id <BCHChatClient>)client didFailWithError:(NSError *)error
+{
+    //If the chat client could not start for any reasons, this method will be called and the error occurred will be provided as argument.
+
+   [self clients:client callClient:BandyerSDK.instance.callClient didFailWithError:error];
+}
+
+//-------------------------------------------------------------------------------------------
+#pragma mark - Clients observer wrapper
+//-------------------------------------------------------------------------------------------
+
+- (void)clientsWillStart:(id <BCHChatClient>)chatClient callClient:(id <BCXCallClient>)callClient
+{
+    if (callClient.state == BCXCallClientStateStarting ||
+        chatClient.state == BCHChatClientStateStarting) {
+        self.view.userInteractionEnabled = NO;
+
+        [self showActivityIndicatorInNavigationBar];
+    }
+}
+
+- (void)clientsDidStart:(id <BCHChatClient>)chatClient callClient:(id <BCXCallClient>)callClient
+{
+    //Once both clients did start, we can proceed to show the end user the contacts screen.
+
+    if (callClient.state == BCXCallClientStateRunning && chatClient.state == BCHChatClientStateRunning) {
+        if (self.presentedViewController != nil)
+            return;
+
+        [UserSession setCurrentUser:self.selectedUserId];
+
+        [self performSegueWithIdentifier:kContactsSegueIdentifier sender:self];
+        [self hideActivityIndicatorFromNavigationBar];
+        self.view.userInteractionEnabled = YES;
+    }
+}
+
+- (void)clients:(id <BCHChatClient>)chatClient callClient:(id <BCXCallClient>)callClient didFailWithError:(NSError *)error
+{
+    if (callClient.state == BCXCallClientStateStopped || chatClient.state == BCHChatClientStateFailed) {
+        [self hideActivityIndicatorFromNavigationBar];
+        self.view.userInteractionEnabled = YES;
+    }
 }
 
 //-------------------------------------------------------------------------------------------
@@ -234,6 +287,11 @@ NSString *const kUserCellIdentifier = @"userCellId";
 
 - (void)showActivityIndicatorInNavigationBar
 {
+
+    if (self.activityIndicatorShown) {
+        return;
+    }
+
     UIActivityIndicatorViewStyle style;
     
     if (@available(iOS 13.0, *)) {
@@ -246,11 +304,18 @@ NSString *const kUserCellIdentifier = @"userCellId";
     [indicatorView startAnimating];
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:indicatorView];
     [self.navigationItem setRightBarButtonItem:item animated:YES];
+
+    self.activityIndicatorShown = YES;
 }
 
 - (void)hideActivityIndicatorFromNavigationBar
 {
+    if (!self.activityIndicatorShown) {
+        return;
+    }
+
     [self.navigationItem setRightBarButtonItem:nil animated:YES];
+    self.activityIndicatorShown = NO;
 }
 
 //-------------------------------------------------------------------------------------------
