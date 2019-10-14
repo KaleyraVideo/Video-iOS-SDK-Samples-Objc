@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="574"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="userCellId" rowHeight="60" id="ZwR-c5-04s" customClass="ContactTableViewCell" customModule="SDK_Sample" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="userCellId" rowHeight="60" id="ZwR-c5-04s" customClass="ContactTableViewCell">
                                         <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZwR-c5-04s" id="utb-Ai-ZYk">
@@ -57,7 +57,7 @@
                                                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="didTouchChatButton:" destination="ZwR-c5-04s" eventType="touchUpInside" id="96B-LE-Hab"/>
+                                                        <action selector="didTouchChatButton:" destination="ZwR-c5-04s" eventType="touchUpInside" id="aV4-d3-LVD"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -77,9 +77,9 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="chatButton" destination="k2k-M6-GSC" id="m3p-Xs-n2u"/>
-                                            <outlet property="subtitleLabel" destination="0Bv-tl-fIJ" id="8Fh-p1-kOR"/>
-                                            <outlet property="titleLabel" destination="1Yq-dp-Hav" id="XNr-0B-YrF"/>
+                                            <outlet property="chatButton" destination="k2k-M6-GSC" id="Xee-J8-Fj8"/>
+                                            <outlet property="subtitleLabel" destination="0Bv-tl-fIJ" id="lNp-cM-OSL"/>
+                                            <outlet property="titleLabel" destination="1Yq-dp-Hav" id="T0h-P9-1YP"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
