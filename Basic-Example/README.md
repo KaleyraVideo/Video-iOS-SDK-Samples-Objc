@@ -34,7 +34,7 @@ First of all you have to initialize the SDK using the unique instance of [Bandye
 
 ```objective-c
 //Here we are going to initialize the Bandyer SDK.
-//The sdk needs a configuration object where it is specified which environment the sdk should work in
+//The sdk needs a configuration object where it is specified which environment the sdk should work in.
 BDKConfig *config = [BDKConfig new];
 
 //Here we are telling the SDK we want to work in a sandbox environment.
