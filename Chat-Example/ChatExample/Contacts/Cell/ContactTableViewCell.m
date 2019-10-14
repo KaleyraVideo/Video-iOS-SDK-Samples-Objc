@@ -18,4 +18,14 @@
     }
 }
 
+-(void)prepareForReuse
+{
+    [super prepareForReuse];
+
+    self.delegate = nil;
+    self.titleLabel.text = nil;
+    self.subtitleLabel.text = nil;
+}
+
+
 @end
