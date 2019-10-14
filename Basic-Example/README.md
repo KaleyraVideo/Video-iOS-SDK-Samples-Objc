@@ -65,13 +65,13 @@ We did it inside the `LoginViewController` class.
 //Then we start the call client providing the "user alias" of the user selected.
 [BandyerSDK.instance.callClient start:@"SELECTED USER ID"];
 ```
-Yuor class responsible of starting the client has the possibility to become an observer of the [BCXCallClient](https://docs.bandyer.com/Bandyer-iOS-SDK/BandyerSDK/Protocols/BCXCallClient.html) lifecycle, implementing the [BCXCallClientObserver](https://docs.bandyer.com/Bandyer-iOS-SDK/BandyerSDK/Protocols/BCXCallClientObserver.html). Once the `callClientDidStart` callback is fired, you can start to interact with our system.
+Yuor class responsible of starting the client has the possibility to become an observer of the [BCXCallClient](https://docs.bandyer.com/Bandyer-iOS-SDK/BandyerSDK/Protocols/BCXCallClient.html) life cycle, implementing the [BCXCallClientObserver](https://docs.bandyer.com/Bandyer-iOS-SDK/BandyerSDK/Protocols/BCXCallClientObserver.html). Once the `callClientDidStart` callback is fired, you can start to interact with our system.
 
 ### Make a Call
 
 In order to make a call, we provide you a custom `UIWindow`: the [CallWindow](https://docs.bandyer.com/Bandyer-iOS-SDK/BandyerSDK/Classes/CallWindow.html).
 
-Inside the `ContactsViewController` class you can find some code snippet on how to manage initialization of a CallWindow instance. Please make sure to have only one instance of CallWindow in memory at a time, otherwise an exception will be thrown. This rule is desingned in a way that your view controllers can share the same ongoing call. 
+Inside the `ContactsViewController` class you can find some code snippet on how to manage initialization of a CallWindow instance. Please make sure to have only one instance of CallWindow in memory at a time, otherwise an exception will be thrown. This rule is designed in a way that your view controllers can share the same ongoing call. 
 
 ```objective-c
 //Please remember to reference the call window only once in order to avoid the reset of BDKCallViewController.
@@ -123,7 +123,7 @@ config.userInfoFetcher = [[UserInfoFetcher alloc] initWithAddressBook:self.addre
 [self.callWindow setConfiguration:config];
 ```
 
-Once the CalllWindow is inited and the CallViewController is properly configured, you can present it, passing an implementation of [BDKIntent](https://docs.bandyer.com/Bandyer-iOS-SDK/BandyerSDK/Protocols/BDKIntent.html) protocol to the CallWindow. In this sample app, we support two kind of call: outgoing and incoming, so there are two implementations of intent for the same ([BDKMakeCallIntent](https://docs.bandyer.com/Bandyer-iOS-SDK/BandyerSDK/Classes/BDKMakeCallIntent.html) and [BDKIncomingCallHandlingIntent](https://docs.bandyer.com/Bandyer-iOS-SDK/BandyerSDK/Classes/BDKIncomingCallHandlingIntent.html)).
+Once the CallWindow is inited and the CallViewController is properly configured, you can present it, passing an implementation of [BDKIntent](https://docs.bandyer.com/Bandyer-iOS-SDK/BandyerSDK/Protocols/BDKIntent.html) protocol to the CallWindow. In this sample app, we support two kind of call: outgoing and incoming, so there are two implementations of intent for the same ([BDKMakeCallIntent](https://docs.bandyer.com/Bandyer-iOS-SDK/BandyerSDK/Classes/BDKMakeCallIntent.html) and [BDKIncomingCallHandlingIntent](https://docs.bandyer.com/Bandyer-iOS-SDK/BandyerSDK/Classes/BDKIncomingCallHandlingIntent.html)).
 
 ```objective-c
 //To start an outgoing call we must create a `BDKMakeCallIntent` object specifying who we want to call, the type of call
@@ -178,13 +178,13 @@ When there is an ongoing call but the CallViewController is not presented, your 
 
 Yuo don't have to manage by yourself the behaviour of the banner, inside the SDK you can find the [CallBannerController](https://docs.bandyer.com/Bandyer-iOS-SDK/BandyerSDK/Classes/CallBannerController.html) that does the job for you.
 
-You can easly init the controller using this code snippet:
+You can easily init the controller using this code snippet:
 
 ```objective-c
 _callBannerController = [BDKCallBannerController new];
 ```
 
-Once inited, you have to setup the controller, attaching the delegate and the view controller. If you don't pass the parentViewController an exception will be throwed, since the call banner controller needs it to add the banner to your view hierarchy.
+Once inited, you have to setup the controller, attaching the delegate and the view controller. If you don't pass the parentViewController an exception will be thrown, since the call banner controller needs it to add the banner to your view hierarchy.
 
 ```objective-c
 self.callBannerController.delegate = self;
@@ -225,7 +225,7 @@ On `ContactsViewController` class you can find all this code snippets working an
 
 ## Support
 
-From here, please have a look to [Bandyer SDK Wiki](https://github.com/Bandyer/Bandyer-iOS-SDK/wiki). You will easly find guides to all the Bandyer world! 
+From here, please have a look to [Bandyer SDK Wiki](https://github.com/Bandyer/Bandyer-iOS-SDK/wiki). You will easily find guides to all the Bandyer world! 
 
 To get basic support please submit an Issue. We will help you as soon as possible.
 
