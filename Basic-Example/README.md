@@ -65,7 +65,7 @@ We did it inside the `LoginViewController` class.
 //Then we start the call client providing the "user alias" of the user selected.
 [BandyerSDK.instance.callClient start:@"SELECTED USER ID"];
 ```
-Yuor class responsible of starting the client has the possibility to become an observer of the [BCXCallClient](https://docs.bandyer.com/Bandyer-iOS-SDK/BandyerSDK/Protocols/BCXCallClient.html) life cycle, implementing the [BCXCallClientObserver](https://docs.bandyer.com/Bandyer-iOS-SDK/BandyerSDK/Protocols/BCXCallClientObserver.html). Once the `callClientDidStart` callback is fired, you can start to interact with our system.
+Your class responsible of starting the client has the possibility to become an observer of the [BCXCallClient](https://docs.bandyer.com/Bandyer-iOS-SDK/BandyerSDK/Protocols/BCXCallClient.html) life cycle, implementing the [BCXCallClientObserver](https://docs.bandyer.com/Bandyer-iOS-SDK/BandyerSDK/Protocols/BCXCallClientObserver.html). Once the `callClientDidStart` callback is fired, you can start to interact with our system.
 
 ### Make a Call
 
