@@ -148,11 +148,10 @@ NSString *const kContactCellIdentifier = @"userCellId";
     //The record flag specifies whether we want the call to be recorded or not.
     //The maximumDuration parameter specifies how long the call can last.
     //If you provide 0, the call will be created without a maximum duration value.
-    //We store the intent for later use, because we are using storyboards. When this view controller is asked to prepare for segue
-    //we are going to hand the intent to the `BDKCallViewController` created by the storyboard
+    //We store the intent for later use, because we can present again the BDKCallViewController with the same call.
     self.intent = [BDKMakeCallIntent intentWithCallee:aliases type:self.options.type record:self.options.record maximumDuration:self.options.maximumDuration];
 
-    //Then we trigger a segue to a BDKCallViewController.
+    //Then we trigger a presentation of BDKCallViewController.
     [self performCallViewControllerPresentation];
 }
 

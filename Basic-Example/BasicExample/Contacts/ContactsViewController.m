@@ -250,7 +250,7 @@ NSString *const kContactCellIdentifier = @"userCellId";
     //information in its views.
     //The backend system does not send any user information to its clients, the SDK and the backend system identify the users in a call
     //using their user aliases, it is your responsibility to match "user aliases" with the corresponding user object in your system
-    //and provide those information to the view controller
+    //and provide those information to the view controller.
     config.userInfoFetcher = [[UserInfoFetcher alloc] initWithAddressBook:self.addressBook];
 
     //Here, we set the configuration object created. You must set the view controller configuration object before the view controller

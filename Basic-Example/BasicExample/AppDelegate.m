@@ -27,7 +27,8 @@
     //Beware the default environment is production, we strongly recommend to test your app in a sandbox environment.
     config.environment = BDKEnvironment.sandbox;
 
-    //Here we are disabling CallKit support. Make sure to disable CallKit, otherwise it will be enable by default if the system supports CallKit (i.e iOS >= 10.0).
+    //Here we are disabling CallKit support.
+    //Make sure to disable CallKit, otherwise it will be enable by default if the system supports CallKit (i.e iOS >= 10.0).
     config.callKitEnabled = NO;
 
     //Now we are ready to initialize the SDK providing the app id token identifying your app in Bandyer platform.
