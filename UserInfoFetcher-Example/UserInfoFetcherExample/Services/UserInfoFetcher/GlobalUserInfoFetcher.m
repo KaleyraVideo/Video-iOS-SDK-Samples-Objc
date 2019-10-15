@@ -8,7 +8,7 @@
 #import "Contact.h"
 #import "ContactsMapGenerator.h"
 
-static GlobalUserInfoFetcher* DefaultIntance = nil;
+static GlobalUserInfoFetcher* DefaultInstance = nil;
 
 @interface GlobalUserInfoFetcher()
 
@@ -19,15 +19,15 @@ static GlobalUserInfoFetcher* DefaultIntance = nil;
 @implementation GlobalUserInfoFetcher
 
 + (GlobalUserInfoFetcher*)instance {
-    return DefaultIntance;
+    return DefaultInstance;
 }
 
 - (instancetype)init
 {
     self = [super init];
     if (self) {
-        if(!DefaultIntance) {
-            DefaultIntance = self;
+        if(!DefaultInstance) {
+            DefaultInstance = self;
         }
     }
     return self;
