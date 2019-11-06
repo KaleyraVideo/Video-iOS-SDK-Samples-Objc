@@ -791,13 +791,13 @@
 		A960CF3D221AEE0D00C8FAB2 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				A960CF3E221AEE0D00C8FAB2 /* UserInfoFetcher.h */,
-				A960CF3F221AEE0D00C8FAB2 /* UserRepository.m */,
-				A960CF40221AEE0D00C8FAB2 /* ContactsGenerator.m */,
-				A960CF41221AEE0D00C8FAB2 /* UserSession.h */,
 				A960CF42221AEE0D00C8FAB2 /* ContactsGenerator.h */,
-				A960CF43221AEE0D00C8FAB2 /* UserRepository.h */,
+				A960CF40221AEE0D00C8FAB2 /* ContactsGenerator.m */,
+				A960CF3E221AEE0D00C8FAB2 /* UserInfoFetcher.h */,
 				A960CF44221AEE0D00C8FAB2 /* UserInfoFetcher.m */,
+				A960CF43221AEE0D00C8FAB2 /* UserRepository.h */,
+				A960CF3F221AEE0D00C8FAB2 /* UserRepository.m */,
+				A960CF41221AEE0D00C8FAB2 /* UserSession.h */,
 				A960CF45221AEE0D00C8FAB2 /* UserSession.m */,
 			);
 			path = Services;
@@ -1298,31 +1298,6 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-framework",
-					"\"AVFoundation\"",
-					"-framework",
-					"\"BandyerSDK\"",
-					"-framework",
-					"\"Foundation\"",
-					"-framework",
-					"\"MobileCoreServices\"",
-					"-framework",
-					"\"SocketIO\"",
-					"-framework",
-					"\"Starscream\"",
-					"-framework",
-					"\"SystemConfiguration\"",
-					"-framework",
-					"\"UIKit\"",
-					"-framework",
-					"\"WebKit\"",
-					"-framework",
-					"\"WebRTC\"",
-					"-framework",
-					"\"CallKit\"",
-				);
 				PRODUCT_BUNDLE_IDENTIFIER = it.bandyer.BandyerSDKSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1342,31 +1317,6 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
-				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-framework",
-					"\"AVFoundation\"",
-					"-framework",
-					"\"BandyerSDK\"",
-					"-framework",
-					"\"Foundation\"",
-					"-framework",
-					"\"MobileCoreServices\"",
-					"-framework",
-					"\"SocketIO\"",
-					"-framework",
-					"\"Starscream\"",
-					"-framework",
-					"\"SystemConfiguration\"",
-					"-framework",
-					"\"UIKit\"",
-					"-framework",
-					"\"WebKit\"",
-					"-framework",
-					"\"WebRTC\"",
-					"-framework",
-					"\"CallKit\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = it.bandyer.BandyerSDKSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
