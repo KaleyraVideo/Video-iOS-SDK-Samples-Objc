@@ -3,7 +3,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BandyerSDK/BandyerSDK.h>
+#import <Bandyer/Bandyer.h>
 
 @class AddressBook;
 

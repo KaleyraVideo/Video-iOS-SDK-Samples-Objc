@@ -2,7 +2,7 @@
 //  Copyright © 2019 Bandyer. All rights reserved.
 //
 
-#import <BandyerSDK/BandyerSDK.h>
+#import <Bandyer/Bandyer.h>
 
 #import "ContactsViewController.h"
 #import "CallOptionsTableViewController.h"

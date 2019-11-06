@@ -37,6 +37,7 @@
 
     if (self)
     {
+#error "Here we are retrieving user information from the Bandyer servers. In order to retrieve user information you must provide a Bandyer REST Api Key and a REST Endpoint. Beware your app should retrieve user information from YOUR backend system not directly from ours."
         _url = [NSURL URLWithString:@"REST URL"];
         _apiKey = @"REST API KEY";
     }

@@ -2,7 +2,7 @@
 //  Copyright © 2019 Bandyer. All rights reserved.
 //
 
-#import <BandyerSDK/BandyerSDK.h>
+#import <Bandyer/Bandyer.h>
 
 #import "AppDelegate.h"
 
@@ -33,6 +33,7 @@
     //Make sure to disable CallKit, otherwise it will be enable by default if the system supports CallKit (i.e iOS >= 10.0).
     config.callKitEnabled = NO;
 
+#error "Please initialize the Bandyer SDK with your App Id"
     //Now we are ready to initialize the SDK providing the app id token identifying your app in Bandyer platform.
     [BandyerSDK.instance initializeWithApplicationId:@"PUT YOUR APP ID HERE" config:config];
 
