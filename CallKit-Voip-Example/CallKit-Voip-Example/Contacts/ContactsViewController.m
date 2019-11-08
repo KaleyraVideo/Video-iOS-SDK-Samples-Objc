@@ -439,16 +439,12 @@ NSString *const kContactCellIdentifier = @"userCellId";
 
 - (void)channelViewController:(BCHChannelViewController *)controller didTapAudioCallWith:(NSArray *)users
 {
-    self.intent = [BDKMakeCallIntent intentWithCallee:users type:BDKCallTypeAudioUpgradable];
-
-    [self performCallViewControllerPresentation];
+    [self dismissChannelViewController:controller presentCallViewControllerWithCallee:users type:BDKCallTypeAudioUpgradable];
 }
 
 - (void)channelViewController:(BCHChannelViewController *)controller didTapVideoCallWith:(NSArray *)users
 {
-    self.intent = [BDKMakeCallIntent intentWithCallee:users type:BDKCallTypeAudioVideo];
-
-    [self performCallViewControllerPresentation];
+    [self dismissChannelViewController:controller presentCallViewControllerWithCallee:users type:BDKCallTypeAudioVideo];
 }
 
 - (void)channelViewController:(BCHChannelViewController *)controller didTouchNotification:(BCHChatNotification *)notification
@@ -477,9 +473,26 @@ NSString *const kContactCellIdentifier = @"userCellId";
 
 - (void)channelViewController:(BCHChannelViewController *)controller didTouchBanner:(BDKCallBannerView *)banner
 {
+    //Please remember to override the current call intent with the one saved inside call window.
+    self.intent = self.callWindow.intent;
     [controller dismissViewControllerAnimated:YES completion:^{
         [self performCallViewControllerPresentation];
     }];
+}
+
+- (void)dismissChannelViewController:(BCHChannelViewController *)controller presentCallViewControllerWithCallee:(NSArray<NSString *> *)callee type:(BDKCallType)type
+{
+    if ([self.presentedViewController isKindOfClass:BCHChannelViewController.class])
+    {
+        [controller dismissViewControllerAnimated:YES completion:^{
+            self.intent = [BDKMakeCallIntent intentWithCallee:callee type:type];
+            [self performCallViewControllerPresentation];
+        }];
+        return;
+    }
+
+    self.intent = [BDKMakeCallIntent intentWithCallee:callee type:type];
+    [self performCallViewControllerPresentation];
 }
 
 //-------------------------------------------------------------------------------------------
