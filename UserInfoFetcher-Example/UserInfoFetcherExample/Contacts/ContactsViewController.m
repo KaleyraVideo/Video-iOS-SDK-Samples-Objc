@@ -268,7 +268,7 @@ NSString *const kContactCellIdentifier = @"userCellId";
     //Equivalent to BCHChannelViewControllerConfiguration* configuration = [[BCHChannelViewControllerConfiguration alloc] initWithAudioButton:NO videoButton:NO userInfoFetcher:nil];
    
     //If no configuration is provided, the default one will be used, the one with nil user info fetcher and showing both of the buttons
-    //Equivalent to ChannelViewControllerConfiguration(audioButton: true, videoButton: true, userInfoFetcher: nil)
+    //Equivalent to [[BCHChannelViewControllerConfiguration alloc] initWithAudioButton:YES videoButton:YES userInfoFetcher:nil];
     channelViewController.configuration = configuration;
 
     //Please make sure to set intent after configuration, otherwise the configuration will be not taking in charge.
