@@ -32,7 +32,6 @@ NSString *const kContactCellIdentifier = @"userCellId";
 
 @property (nonatomic, strong) NSMutableArray<NSIndexPath *> *selectedContacts;
 @property (nonatomic, copy) CallOptionsItem *options;
-@property (nonatomic, strong) id<BDKIntent> intent;
 @property (nonatomic, strong) BDKCallBannerController *callBannerController;
 @property (nonatomic, strong) BCHMessageNotificationController *messageNotificationController;
 
@@ -160,10 +159,10 @@ NSString *const kContactCellIdentifier = @"userCellId";
     //The maximumDuration parameter specifies how long the call can last.
     //If you provide 0, the call will be created without a maximum duration value.
     //We store the intent for later use, because we can present again the BDKCallViewController with the same call.
-    self.intent = [BDKMakeCallIntent intentWithCallee:aliases type:self.options.type record:self.options.record maximumDuration:self.options.maximumDuration];
+    BDKMakeCallIntent *intent = [BDKMakeCallIntent intentWithCallee:aliases type:self.options.type record:self.options.record maximumDuration:self.options.maximumDuration];
 
     //Then we trigger a presentation of BDKCallViewController.
-    [self performCallViewControllerPresentation];
+    [self presentCallViewControllerForIntent:intent];
 }
 
 //-------------------------------------------------------------------------------------------
@@ -175,8 +174,8 @@ NSString *const kContactCellIdentifier = @"userCellId";
     //When the client detects an incoming call it will notify its observers through this method.
     //Here we are creating an `BDKIncomingCallHandlingIntent` object, storing it for later use,
     //then we trigger a presentation of BDKCallViewController.
-    self.intent = [[BDKIncomingCallHandlingIntent alloc] init];
-    [self performCallViewControllerPresentation];
+    BDKIncomingCallHandlingIntent *intent = [[BDKIncomingCallHandlingIntent alloc] init];
+    [self presentCallViewControllerForIntent: intent];
 }
 
 //-------------------------------------------------------------------------------------------
@@ -281,28 +280,34 @@ NSString *const kContactCellIdentifier = @"userCellId";
 #pragma mark - Present Call ViewController
 //-------------------------------------------------------------------------------------------
 
-- (void)performCallViewControllerPresentation
+- (void)presentCallViewControllerForIntent:(id<BDKIntent>)intent
 {
     [self prepareForCallViewControllerPresentation];
 
     //Here we tell the call window what it should do and we present the BDKCallViewController if there is no another call in progress.
     //Otherwise you should manage the behaviour, for example with a UIAlert warning.
-
-    [self.callWindow shouldPresentCallViewControllerWithIntent:self.intent completion:^(BOOL succeeded) {
-
-        if (!succeeded)
+    [self.callWindow presentCallViewControllerFor:intent completion:^(NSError * error) {
+        if ([error.domain isEqualToString:BDKCallPresentationErrorDomain.value] && error.code == BDKCallPresentationErrorCodeAnotherCallOnGoing)
         {
-
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Warning" message:@"Another call ongoing." preferredStyle:UIAlertControllerStyleAlert];
-
-            UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-                        [alert dismissViewControllerAnimated:YES completion:nil];
-                    }];
-
-            [alert addAction:defaultAction];
-            [self presentViewController:alert animated:YES completion:nil];
+            [self presentAlertControllerWithTitle:@"Warning" message:@"Another call ongoing."];
+        }
+        else if (error)
+        {
+            [self presentAlertControllerWithTitle:@"Error" message:@"Impossible to start a call now. Try again later"];
         }
     }];
+}
+
+-(void)presentAlertControllerWithTitle:title message:(nullable NSString *)message
+{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [alert dismissViewControllerAnimated:YES completion:nil];
+    }];
+
+    [alert addAction:defaultAction];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)prepareForCallViewControllerPresentation
@@ -502,10 +507,13 @@ NSString *const kContactCellIdentifier = @"userCellId";
 - (void)channelViewController:(BCHChannelViewController *)controller didTouchBanner:(BDKCallBannerView *)banner
 {
     //Please remember to override the current call intent with the one saved inside call window.
-    self.intent = self.callWindow.intent;
-    [controller dismissViewControllerAnimated:YES completion:^{
-        [self performCallViewControllerPresentation];
-    }];
+    id <BDKIntent> intent = self.callWindow.intent;
+    if (intent)
+    {
+        [controller dismissViewControllerAnimated:YES completion:^{
+              [self presentCallViewControllerForIntent: intent];
+          }];
+    }
 }
 
 - (void)dismissChannelViewController:(BCHChannelViewController *)controller presentCallViewControllerWithCallee:(NSArray<NSString *> *)callee type:(BDKCallType)type
@@ -513,14 +521,14 @@ NSString *const kContactCellIdentifier = @"userCellId";
     if ([self.presentedViewController isKindOfClass:BCHChannelViewController.class])
     {
         [controller dismissViewControllerAnimated:YES completion:^{
-            self.intent = [BDKMakeCallIntent intentWithCallee:callee type:type];
-            [self performCallViewControllerPresentation];
+            BDKMakeCallIntent *intent = [BDKMakeCallIntent intentWithCallee:callee type:type];
+            [self presentCallViewControllerForIntent: intent];
         }];
         return;
     }
 
-    self.intent = [BDKMakeCallIntent intentWithCallee:callee type:type];
-    [self performCallViewControllerPresentation];
+    BDKMakeCallIntent *intent = [BDKMakeCallIntent intentWithCallee:callee type:type];
+    [self presentCallViewControllerForIntent: intent];
 }
 
 //-------------------------------------------------------------------------------------------
@@ -549,8 +557,11 @@ NSString *const kContactCellIdentifier = @"userCellId";
 - (void)callBannerController:(BDKCallBannerController *_Nonnull)controller didTouch:(BDKCallBannerView *_Nonnull)banner
 {
     //Please remember to override the current call intent with the one saved inside call window.
-    self.intent = self.callWindow.intent;
-    [self performCallViewControllerPresentation];
+    id <BDKIntent> intent = self.callWindow.intent;
+    if (intent)
+    {
+       [self presentCallViewControllerForIntent:intent];
+    }
 }
 
 //-------------------------------------------------------------------------------------------
@@ -683,13 +694,16 @@ NSString *const kContactCellIdentifier = @"userCellId";
     [self.view addSubview:view];
     self.toastView = view;
 
-    [label.centerXAnchor constraintEqualToAnchor:view.centerXAnchor].active = YES;
-    [label.centerYAnchor constraintEqualToAnchor:view.centerYAnchor].active = YES;
-
-    [view.topAnchor constraintEqualToAnchor:self.tableView.topAnchor].active = YES;
-    [view.leftAnchor constraintEqualToAnchor:self.view.leftAnchor].active = YES;
-    [view.rightAnchor constraintEqualToAnchor:self.view.rightAnchor].active = YES;
-    [view.heightAnchor constraintEqualToConstant:16].active = YES;
+    NSArray<NSLayoutConstraint*> *constraints = @[
+        [label.centerXAnchor constraintEqualToAnchor:view.centerXAnchor],
+        [label.centerYAnchor constraintEqualToAnchor:view.centerYAnchor],
+        [view.topAnchor constraintEqualToAnchor:self.tableView.topAnchor],
+        [view.leftAnchor constraintEqualToAnchor:self.view.leftAnchor],
+        [view.rightAnchor constraintEqualToAnchor:self.view.rightAnchor],
+        [view.heightAnchor constraintEqualToConstant:16]
+    ];
+    
+    [NSLayoutConstraint activateConstraints:constraints];
 }
 
 - (void)hideToast
