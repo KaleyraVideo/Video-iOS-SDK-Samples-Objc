@@ -464,6 +464,7 @@
 		A11282072347382900F035DC /* ContactsGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsGenerator.h; sourceTree = "<group>"; };
 		A11282082347382900F035DC /* UserRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserRepository.h; sourceTree = "<group>"; };
 		A112820A2347382900F035DC /* UserSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSession.m; sourceTree = "<group>"; };
+		A12C46662469A7C1001ACB93 /* UserInfoFetcherExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UserInfoFetcherExample.entitlements; sourceTree = "<group>"; };
 		A1E19132234B339300651509 /* CallUserInfoFetcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CallUserInfoFetcher.h; sourceTree = "<group>"; };
 		A1E19133234B339300651509 /* CallUserInfoFetcher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CallUserInfoFetcher.m; sourceTree = "<group>"; };
 		A1E19135234B33A900651509 /* ChatUserInfoFetcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatUserInfoFetcher.h; sourceTree = "<group>"; };
@@ -517,6 +518,7 @@
 		A112810A234734C000F035DC /* UserInfoFetcherExample */ = {
 			isa = PBXGroup;
 			children = (
+				A12C46662469A7C1001ACB93 /* UserInfoFetcherExample.entitlements */,
 				A11281242347382800F035DC /* Call Options */,
 				A11281F52347382900F035DC /* Contacts */,
 				A11281FA2347382900F035DC /* Login */,
@@ -1313,7 +1315,9 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = UserInfoFetcherExample/UserInfoFetcherExample.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = UserInfoFetcherExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1332,6 +1336,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = UserInfoFetcherExample/UserInfoFetcherExample.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = UserInfoFetcherExample/Info.plist;
