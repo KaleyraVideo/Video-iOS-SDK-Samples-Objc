@@ -842,7 +842,7 @@
 		A9060D3C21EF238A000D81A7 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = Bandyer;
 				TargetAttributes = {
 					A9060D4321EF238A000D81A7 = {
@@ -1283,6 +1283,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D0D4F37F10A316380E218A20 /* Pods-BasicExample.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
@@ -1303,6 +1304,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5B0CB19CB7047B6ED5AD540F /* Pods-BasicExample.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
