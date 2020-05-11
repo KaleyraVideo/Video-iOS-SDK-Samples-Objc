@@ -29,7 +29,6 @@ NSString *const kContactCellIdentifier = @"userCellId";
 
 @property (nonatomic, strong) NSMutableArray<NSIndexPath *> *selectedContacts;
 @property (nonatomic, copy) CallOptionsItem *options;
-@property (nonatomic, strong) id<BDKIntent> intent;
 @property (nonatomic, strong) BDKCallBannerController *callBannerController;
 
 @end
