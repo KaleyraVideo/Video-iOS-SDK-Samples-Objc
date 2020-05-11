@@ -19,7 +19,7 @@
 NSString *const kShowOptionsSegueIdentifier = @"showOptionsSegue";
 NSString *const kContactCellIdentifier = @"userCellId";
 
-@interface ContactsViewController () <CallOptionsTableViewControllerDelegate, BCXCallClientObserver, BDKCallWindowDelegate, BCHChannelViewControllerDelegate, BCHMessageNotificationControllerDelegate, BDKCallBannerControllerDelegate>
+@interface ContactsViewController () <CallOptionsTableViewControllerDelegate, BCXCallClientObserver, BDKCallWindowDelegate, BCHChannelViewControllerDelegate, BDKCallBannerControllerDelegate, BDKInAppChatNotificationTouchListener>
 
 @property (nonatomic, weak) IBOutlet UISegmentedControl *callTypeSegmentedControl;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *callOptionsBarButtonItem;
@@ -33,7 +33,6 @@ NSString *const kContactCellIdentifier = @"userCellId";
 @property (nonatomic, strong) NSMutableArray<NSIndexPath *> *selectedContacts;
 @property (nonatomic, copy) CallOptionsItem *options;
 @property (nonatomic, strong) BDKCallBannerController *callBannerController;
-@property (nonatomic, strong) BCHMessageNotificationController *messageNotificationController;
 
 @end
 
@@ -70,7 +69,6 @@ NSString *const kContactCellIdentifier = @"userCellId";
     _selectedContacts = [NSMutableArray new];
     _options = [CallOptionsItem new];
     _callBannerController = [BDKCallBannerController new];
-    _messageNotificationController = [BCHMessageNotificationController new];
 }
 
 //-------------------------------------------------------------------------------------------
@@ -83,8 +81,7 @@ NSString *const kContactCellIdentifier = @"userCellId";
     
     //When view loads we have to setup custom view controllers.
     [self setupCallBannerView];
-    [self setupNotificationView];
-
+    
     self.userBarButtonItem.title = [UserSession currentUser];
     [self disableMultipleSelection:NO];
 
@@ -98,27 +95,12 @@ NSString *const kContactCellIdentifier = @"userCellId";
     self.callBannerController.parentViewController = self;
 }
 
-- (void)setupNotificationView
-{
-    //Here we are configuring the notification view
-    
-    //WARNING!!! If userInfoFetcher is set, the global userInfoFetcher will be overridden.
-    NotificationUserInfoFetcher* notificationUserInfoFetcher = [[NotificationUserInfoFetcher alloc] initWithAddressBook:self.addressBook];
-    
-    //Here if we pass a nil userInfoFetcher, the Bandyer SDK will use the global one if set at initialization time, otherwise a default one. The same result is achieved without setting the configuration property.
-    BCHMessageNotificationControllerConfiguration* configuration = [[BCHMessageNotificationControllerConfiguration alloc] initWithUserInfoFetcher:notificationUserInfoFetcher];
-    self.messageNotificationController.configuration = configuration;
-    
-    self.messageNotificationController.delegate = self;
-    self.messageNotificationController.parentViewController = self;
-}
-
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
 
     [self.callBannerController show];
-    [self.messageNotificationController show];
+    [self setupNotificationCoordinator];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -126,16 +108,31 @@ NSString *const kContactCellIdentifier = @"userCellId";
     [super viewWillDisappear:animated];
 
     [self.callBannerController hide];
-    [self.messageNotificationController hide];
+    [self disableNotificationCoordinator];
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id <UIViewControllerTransitionCoordinator>)coordinator
 {
     //Remember to call viewWillTransitionTo on custom view controllers to update UI while rotating.
     [self.callBannerController viewWillTransitionTo:size withTransitionCoordinator:coordinator];
-    [self.messageNotificationController viewWillTransitionTo:size withTransitionCoordinator:coordinator];
-    
+   
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+}
+
+//-------------------------------------------------------------------------------------------
+#pragma mark -  Notification coordinator
+//-------------------------------------------------------------------------------------------
+
+- (void)setupNotificationCoordinator
+{
+    BandyerSDK.instance.notificationsCoordinator.chatListener = self;
+
+    [BandyerSDK.instance.notificationsCoordinator start];
+}
+
+- (void)disableNotificationCoordinator
+{
+    [BandyerSDK.instance.notificationsCoordinator stop];
 }
 
 //-------------------------------------------------------------------------------------------
@@ -480,20 +477,6 @@ NSString *const kContactCellIdentifier = @"userCellId";
     [self dismissChannelViewController:controller presentCallViewControllerWithCallee:users type:BDKCallTypeAudioVideo];
 }
 
-- (void)channelViewController:(BCHChannelViewController *)controller didTouchNotification:(BCHChatNotification *)notification
-{
-    if ([self.presentedViewController isKindOfClass:BCHChannelViewController.class])
-    {
-
-        [controller dismissViewControllerAnimated:YES completion:^{
-            [self presentChatFrom:notification];
-        }];
-        return;
-    }
-
-    [self presentChatFrom:notification];
-}
-
 - (void)channelViewController:(BCHChannelViewController *)controller willHide:(BDKCallBannerView *)banner
 {
     [self restoreStatusBarAppearance];
@@ -529,15 +512,6 @@ NSString *const kContactCellIdentifier = @"userCellId";
 
     BDKMakeCallIntent *intent = [BDKMakeCallIntent intentWithCallee:callee type:type];
     [self presentCallViewControllerForIntent: intent];
-}
-
-//-------------------------------------------------------------------------------------------
-#pragma mark - Message Notification Controller delegate
-//-------------------------------------------------------------------------------------------
-
-- (void)messageNotificationController:(BCHMessageNotificationController *)controller didTouch:(BCHChatNotification *)notification
-{
-    [self presentChatFrom:notification];
 }
 
 //-------------------------------------------------------------------------------------------
@@ -709,6 +683,23 @@ NSString *const kContactCellIdentifier = @"userCellId";
 - (void)hideToast
 {
     [self.toastView removeFromSuperview];
+}
+
+//-------------------------------------------------------------------------------------------
+#pragma mark - In-app notifications touch listeners
+//-------------------------------------------------------------------------------------------
+
+- (void)didTouchChatNotification:(BCHChatNotification * _Nonnull)notification
+{
+    if ([self.presentedViewController isKindOfClass:BCHChannelViewController.class])
+    {
+        [self.presentedViewController dismissViewControllerAnimated:YES completion:^{
+            [self presentChatFrom:notification];
+        }];
+        return;
+    }
+
+    [self presentChatFrom:notification];
 }
 
 @end
