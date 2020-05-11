@@ -16,7 +16,7 @@
 NSString *const kShowOptionsSegueIdentifier = @"showOptionsSegue";
 NSString *const kContactCellIdentifier = @"userCellId";
 
-@interface ContactsViewController () <CallOptionsTableViewControllerDelegate, BCXCallClientObserver, BDKCallWindowDelegate, BDKCallBannerControllerDelegate>
+@interface ContactsViewController () <CallOptionsTableViewControllerDelegate, BCXCallClientObserver, BDKCallWindowDelegate, BDKCallBannerControllerDelegate, BDKInAppFileShareNotificationTouchListener>
 
 @property (nonatomic, weak) IBOutlet UISegmentedControl *callTypeSegmentedControl;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *callOptionsBarButtonItem;
@@ -98,6 +98,7 @@ NSString *const kContactCellIdentifier = @"userCellId";
     [super viewWillAppear:animated];
     
     [self.callBannerController show];
+    [self setupNotificationCoordinator];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -105,6 +106,7 @@ NSString *const kContactCellIdentifier = @"userCellId";
     [super viewWillDisappear:animated];
     
     [self.callBannerController hide];
+    [self disableNotificationCoordinator];
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id <UIViewControllerTransitionCoordinator>)coordinator
@@ -114,6 +116,22 @@ NSString *const kContactCellIdentifier = @"userCellId";
     
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
 }
+
+//-------------------------------------------------------------------------------------------
+#pragma mark -  Notification coordinator
+//-------------------------------------------------------------------------------------------
+
+- (void)setupNotificationCoordinator
+{
+    BandyerSDK.instance.notificationsCoordinator.fileShareListener = self;
+    [BandyerSDK.instance.notificationsCoordinator start];
+}
+
+- (void)disableNotificationCoordinator
+{
+    [BandyerSDK.instance.notificationsCoordinator stop];
+}
+
 
 //-------------------------------------------------------------------------------------------
 #pragma mark - Making an Outgoing call
@@ -556,6 +574,18 @@ NSString *const kContactCellIdentifier = @"userCellId";
 - (void)hideToast
 {
     [self.toastView removeFromSuperview];
+}
+
+//-------------------------------------------------------------------------------------------
+#pragma mark - In-app notifications touch listeners
+//-------------------------------------------------------------------------------------------
+
+- (void)didTouchFileShareNotification:(BCHFileShareNotification *)notification
+{
+    if (_callWindow)
+    {
+        [self.callWindow presentCallViewControllerFor:[BDKOpenDownloadsIntent new] completion:^(NSError *_Nullable error) {}];
+    }
 }
 
 @end
