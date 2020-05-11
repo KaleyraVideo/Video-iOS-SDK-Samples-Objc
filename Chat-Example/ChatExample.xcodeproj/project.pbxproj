@@ -237,6 +237,7 @@
 		32DC9F9DD0D9389E3A1A5AF8 /* ContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsViewController.m; sourceTree = "<group>"; };
 		3CDEA7446D7D31AA4A0B0D84 /* Pods_ChatExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChatExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6467B22103887F1F90FF2267 /* Pods-ChatExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatExample.release.xcconfig"; path = "Target Support Files/Pods-ChatExample/Pods-ChatExample.release.xcconfig"; sourceTree = "<group>"; };
+		A12C466224697545001ACB93 /* ChatExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ChatExample.entitlements; sourceTree = "<group>"; };
 		A13FE81E23424ECA002736BC /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		A13FE81F23424ECA002736BC /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		A13FE82623424ECB002736BC /* CallOptionsItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallOptionsItem.h; sourceTree = "<group>"; };
@@ -816,6 +817,7 @@
 		A1EE6142234233770078D13A /* ChatExample */ = {
 			isa = PBXGroup;
 			children = (
+				A12C466224697545001ACB93 /* ChatExample.entitlements */,
 				A13FE82523424ECB002736BC /* Call Options */,
 				A13FE82023424ECA002736BC /* Contacts */,
 				A13FE81D23424ECA002736BC /* Login */,
@@ -1311,6 +1313,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ChatExample/ChatExample.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
@@ -1332,6 +1335,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ChatExample/ChatExample.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
