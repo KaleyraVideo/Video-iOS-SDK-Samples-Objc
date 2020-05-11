@@ -16,7 +16,7 @@
 NSString *const kShowOptionsSegueIdentifier = @"showOptionsSegue";
 NSString *const kContactCellIdentifier = @"userCellId";
 
-@interface ContactsViewController () <CallOptionsTableViewControllerDelegate, BCXCallClientObserver, BDKCallWindowDelegate, BCHChannelViewControllerDelegate, BDKCallBannerControllerDelegate, BDKInAppChatNotificationTouchListener>
+@interface ContactsViewController () <CallOptionsTableViewControllerDelegate, BCXCallClientObserver, BDKCallWindowDelegate, BCHChannelViewControllerDelegate, BDKCallBannerControllerDelegate, BDKInAppChatNotificationTouchListener, BDKInAppFileShareNotificationTouchListener>
 
 @property (nonatomic, weak) IBOutlet UISegmentedControl *callTypeSegmentedControl;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *callOptionsBarButtonItem;
@@ -124,6 +124,7 @@ NSString *const kContactCellIdentifier = @"userCellId";
 - (void)setupNotificationCoordinator
 {
     BandyerSDK.instance.notificationsCoordinator.chatListener = self;
+    BandyerSDK.instance.notificationsCoordinator.fileShareListener = self;
     [BandyerSDK.instance.notificationsCoordinator start];
 }
 
@@ -694,6 +695,14 @@ NSString *const kContactCellIdentifier = @"userCellId";
 //-------------------------------------------------------------------------------------------
 #pragma mark - In-app notifications touch listeners
 //-------------------------------------------------------------------------------------------
+
+- (void)didTouchFileShareNotification:(BCHFileShareNotification *)notification
+{
+    if (_callWindow)
+    {
+        [self.callWindow presentCallViewControllerFor:[BDKOpenDownloadsIntent new] completion:^(NSError *_Nullable error) {}];
+    }
+}
 
 - (void)didTouchChatNotification:(BCHChatNotification * _Nonnull)notification
 {
