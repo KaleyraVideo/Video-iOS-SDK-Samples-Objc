@@ -10,6 +10,7 @@
 		32DC91CA3AA699670CC5C62D /* ContactsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DC98D4296B0235353AE0F4 /* ContactsNavigationController.m */; };
 		32DC972543CE06B7BF3A5E2E /* ContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DC9F9DD0D9389E3A1A5AF8 /* ContactsViewController.m */; };
 		32DC982297630067A3944E1C /* ContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DC95CE48646957EC89EBEC /* ContactTableViewCell.m */; };
+		A12C4665246976D7001ACB93 /* AsteriskFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A12C4664246976D7001ACB93 /* AsteriskFormatter.m */; };
 		A13FE90423424ECB002736BC /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A13FE81E23424ECA002736BC /* LoginViewController.m */; };
 		A13FE90723424ECB002736BC /* CallOptionsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A13FE82823424ECB002736BC /* CallOptionsItem.m */; };
 		A13FE90823424ECB002736BC /* CallOptionsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A13FE82923424ECB002736BC /* CallOptionsTableViewController.m */; };
@@ -238,6 +239,8 @@
 		3CDEA7446D7D31AA4A0B0D84 /* Pods_ChatExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChatExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6467B22103887F1F90FF2267 /* Pods-ChatExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatExample.release.xcconfig"; path = "Target Support Files/Pods-ChatExample/Pods-ChatExample.release.xcconfig"; sourceTree = "<group>"; };
 		A12C466224697545001ACB93 /* ChatExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ChatExample.entitlements; sourceTree = "<group>"; };
+		A12C4663246976D7001ACB93 /* AsteriskFormatter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AsteriskFormatter.h; sourceTree = "<group>"; };
+		A12C4664246976D7001ACB93 /* AsteriskFormatter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AsteriskFormatter.m; sourceTree = "<group>"; };
 		A13FE81E23424ECA002736BC /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		A13FE81F23424ECA002736BC /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		A13FE82623424ECB002736BC /* CallOptionsItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallOptionsItem.h; sourceTree = "<group>"; };
@@ -792,6 +795,8 @@
 				A13FE8FD23424ECB002736BC /* UserRepository.m */,
 				A13FE8FF23424ECB002736BC /* UserSession.h */,
 				A13FE90323424ECB002736BC /* UserSession.m */,
+				A12C4663246976D7001ACB93 /* AsteriskFormatter.h */,
+				A12C4664246976D7001ACB93 /* AsteriskFormatter.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1166,6 +1171,7 @@
 				A13FE9D723424ECC002736BC /* UserSession.m in Sources */,
 				A1EE6156234233780078D13A /* main.m in Sources */,
 				A13FE9D623424ECC002736BC /* UserInfoFetcher.m in Sources */,
+				A12C4665246976D7001ACB93 /* AsteriskFormatter.m in Sources */,
 				A13FE90423424ECB002736BC /* LoginViewController.m in Sources */,
 				A13FE9D423424ECC002736BC /* UserRepository.m in Sources */,
 				A13FE90723424ECB002736BC /* CallOptionsItem.m in Sources */,

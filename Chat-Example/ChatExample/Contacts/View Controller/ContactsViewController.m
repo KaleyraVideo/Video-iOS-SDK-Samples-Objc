@@ -13,6 +13,7 @@
 #import "UserSession.h"
 #import "ContactsNavigationController.h"
 #import "ContactTableViewCell.h"
+#import "AsteriskFormatter.h"
 
 NSString *const kShowOptionsSegueIdentifier = @"showOptionsSegue";
 NSString *const kContactCellIdentifier = @"userCellId";
@@ -252,15 +253,19 @@ NSString *const kContactCellIdentifier = @"userCellId";
     // if audioButton is true, the channel view controller will show audio button on nav bar;
     // if videoButton is true, the channel view controller will show video button on nav bar;
     // if userInfoFetcher is set, the global userInfoFetcher will be overridden. WARNING!!!
+    // if formatter is set, the default formatter will be overridden.
+
     UserInfoFetcher* userInfoFetcher = [[UserInfoFetcher alloc] initWithAddressBook:self.addressBook];
 
     //Here if we pass a nil userInfoFetcher, the Bandyer SDK will use the global one if set at initialization time, otherwise a default one. The same result is achieved without setting the configuration property.
-    BCHChannelViewControllerConfiguration* configuration = [[BCHChannelViewControllerConfiguration alloc] initWithAudioButton:YES videoButton:YES userInfoFetcher:userInfoFetcher];
-
+    //Here if we pass a nil userInfoFetcher, the Bandyer SDK will use the global one if set at initialization time, otherwise a default one.
+    //If we pass a nil formatter, the Bandyer SDK will use a default one.
+    BCHChannelViewControllerConfiguration* configuration = [[BCHChannelViewControllerConfiguration alloc] initWithAudioButton:YES videoButton:YES userInfoFetcher:userInfoFetcher formatter:[AsteriskFormatter new]];
+    
     //Otherwise you can use other initializer.
-    //BCHChannelViewControllerConfiguration* configuration = [[BCHChannelViewControllerConfiguration alloc] init]; //Equivalent to BCHChannelViewControllerConfiguration* configuration = [[BCHChannelViewControllerConfiguration alloc] initWithAudioButton:NO videoButton:NO userInfoFetcher:nil];
+    //BCHChannelViewControllerConfiguration* configuration = [[BCHChannelViewControllerConfiguration alloc] init]; //Equivalent to BCHChannelViewControllerConfiguration* configuration = [[BCHChannelViewControllerConfiguration alloc] initWithAudioButton:NO videoButton:NO userInfoFetcher:nil, formatter: nil];
 
-    //If no configuration is provided, the default one will be used, the one with nil user info fetcher and showing both of the buttons -> ChannelViewControllerConfiguration(audioButton: true, videoButton: true, userInfoFetcher: nil)
+    //If no configuration is provided, the default one will be used, the one with nil user info fetcher and showing both of the buttons -> BCHChannelViewControllerConfiguration* configuration = [[BCHChannelViewControllerConfiguration alloc] initWithAudioButton:YES videoButton:YES userInfoFetcher:nil, formatter: nil];
     channelViewController.configuration = configuration;
 
     //Please make sure to set intent after configuration, otherwise the configuration will be not taking in charge.
