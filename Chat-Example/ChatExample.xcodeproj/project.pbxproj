@@ -869,7 +869,7 @@
 		A1EE6138234233770078D13A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1100;
+				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = Acme;
 				TargetAttributes = {
 					A1EE613F234233770078D13A = {
@@ -1309,6 +1309,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A94C400A4922305EFCA1605D /* Pods-ChatExample.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -1329,6 +1330,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6467B22103887F1F90FF2267 /* Pods-ChatExample.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
