@@ -245,7 +245,7 @@ NSString *const kContactCellIdentifier = @"userCellId";
     }];
 }
 
--(void)presentAlertControllerWithTitle:title message:(nullable NSString *)message
+-(void)presentAlertControllerWithTitle:(NSString *)title message:(NSString *)message
 {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
 
