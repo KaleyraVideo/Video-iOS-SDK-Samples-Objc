@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F4D0A4E246D3FD800A2CFAD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F4D0A4C246D3FD800A2CFAD /* Main.storyboard */; };
 		32DC9C50C404D9CFC947E13F /* ContactsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DC97DE23DF7BAD2DAF543B /* ContactsNavigationController.m */; };
 		6951348CF003D7B963A2B4FF /* Pods_CallKit_Voip_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC3C18C8CCAE372788EBC051 /* Pods_CallKit_Voip_Example.framework */; };
 		A1F7EE5623436B1400A09D3C /* PushKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F7EE5523436B1400A09D3C /* PushKit.framework */; };
@@ -15,7 +16,6 @@
 		A960CAE4221AE7C800C8FAB2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A960CAE2221AE7C800C8FAB2 /* LaunchScreen.storyboard */; };
 		A960CAE7221AE7C800C8FAB2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A960CAE6221AE7C800C8FAB2 /* main.m */; };
 		A960CAEE221AEAF200C8FAB2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A960CAED221AEAF200C8FAB2 /* Assets.xcassets */; };
-		A960CAF0221AEB2900C8FAB2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A960CAEF221AEB2900C8FAB2 /* Main.storyboard */; };
 		A960CF46221AEE0D00C8FAB2 /* ContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A960CE63221AEE0C00C8FAB2 /* ContactsViewController.m */; };
 		A960CF47221AEE0D00C8FAB2 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A960CE65221AEE0D00C8FAB2 /* LoginViewController.m */; };
 		A960CF48221AEE0D00C8FAB2 /* SampleVideo_640x360_10mb.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = A960CE68221AEE0D00C8FAB2 /* SampleVideo_640x360_10mb.mp4 */; };
@@ -231,6 +231,7 @@
 
 /* Begin PBXFileReference section */
 		1644623D399AFB5BDC5ACDE9 /* Pods-CallKit-Voip-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CallKit-Voip-Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-CallKit-Voip-Example/Pods-CallKit-Voip-Example.release.xcconfig"; sourceTree = "<group>"; };
+		2F4D0A4D246D3FD800A2CFAD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		32DC9503773ADE015DBEA28E /* ContactsNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsNavigationController.h; sourceTree = "<group>"; };
 		32DC97DE23DF7BAD2DAF543B /* ContactsNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsNavigationController.m; sourceTree = "<group>"; };
 		3A1AE4A2ACC17F207A5BA55D /* Pods-CallKit-Voip-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CallKit-Voip-Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CallKit-Voip-Example/Pods-CallKit-Voip-Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -244,7 +245,6 @@
 		A960CAE5221AE7C800C8FAB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A960CAE6221AE7C800C8FAB2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A960CAED221AEAF200C8FAB2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		A960CAEF221AEB2900C8FAB2 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		A960CE62221AEE0C00C8FAB2 /* ContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsViewController.h; sourceTree = "<group>"; };
 		A960CE63221AEE0C00C8FAB2 /* ContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsViewController.m; sourceTree = "<group>"; };
 		A960CE65221AEE0D00C8FAB2 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
@@ -504,20 +504,20 @@
 		A960CAD6221AE7C600C8FAB2 /* CallKit-Voip-Example */ = {
 			isa = PBXGroup;
 			children = (
-				A1F7EE5723436BA700A09D3C /* CallKit-Voip-Example.entitlements */,
+				A960CAD7221AE7C600C8FAB2 /* AppDelegate.h */,
+				A960CAD8221AE7C600C8FAB2 /* AppDelegate.m */,
+				A960CAED221AEAF200C8FAB2 /* Assets.xcassets */,
 				A960CF33221AEE0D00C8FAB2 /* Call Options */,
+				A1F7EE5723436BA700A09D3C /* CallKit-Voip-Example.entitlements */,
 				A960CE61221AEE0C00C8FAB2 /* Contacts */,
+				A960CAE5221AE7C800C8FAB2 /* Info.plist */,
+				A960CAE2221AE7C800C8FAB2 /* LaunchScreen.storyboard */,
 				A960CE64221AEE0D00C8FAB2 /* Login */,
+				A960CAE6221AE7C800C8FAB2 /* main.m */,
+				2F4D0A4C246D3FD800A2CFAD /* Main.storyboard */,
 				A960CF38221AEE0D00C8FAB2 /* Model */,
 				A960CE67221AEE0D00C8FAB2 /* Resources */,
 				A960CF3D221AEE0D00C8FAB2 /* Services */,
-				A960CAEF221AEB2900C8FAB2 /* Main.storyboard */,
-				A960CAED221AEAF200C8FAB2 /* Assets.xcassets */,
-				A960CAD7221AE7C600C8FAB2 /* AppDelegate.h */,
-				A960CAD8221AE7C600C8FAB2 /* AppDelegate.m */,
-				A960CAE2221AE7C800C8FAB2 /* LaunchScreen.storyboard */,
-				A960CAE5221AE7C800C8FAB2 /* Info.plist */,
-				A960CAE6221AE7C800C8FAB2 /* main.m */,
 			);
 			path = "CallKit-Voip-Example";
 			sourceTree = "<group>";
@@ -914,7 +914,6 @@
 				A960CF4E221AEE0D00C8FAB2 /* man_25.jpg in Resources */,
 				A960CF7C221AEE0D00C8FAB2 /* man_68.jpg in Resources */,
 				A960CF96221AEE0D00C8FAB2 /* man_74.jpg in Resources */,
-				A960CAF0221AEB2900C8FAB2 /* Main.storyboard in Resources */,
 				A960CFBC221AEE0D00C8FAB2 /* woman_56.jpg in Resources */,
 				A960CF8F221AEE0D00C8FAB2 /* man_59.jpg in Resources */,
 				A960CFA4221AEE0D00C8FAB2 /* man_10.jpg in Resources */,
@@ -1046,6 +1045,7 @@
 				A960CFA1221AEE0D00C8FAB2 /* man_11.jpg in Resources */,
 				A960CF50221AEE0D00C8FAB2 /* man_27.jpg in Resources */,
 				A960CFCA221AEE0D00C8FAB2 /* woman_46.jpg in Resources */,
+				2F4D0A4E246D3FD800A2CFAD /* Main.storyboard in Resources */,
 				A960CFF8221AEE0D00C8FAB2 /* woman_74.jpg in Resources */,
 				A960CF7A221AEE0D00C8FAB2 /* man_40.jpg in Resources */,
 				A960CFC4221AEE0D00C8FAB2 /* woman_90.jpg in Resources */,
@@ -1161,6 +1161,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		2F4D0A4C246D3FD800A2CFAD /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2F4D0A4D246D3FD800A2CFAD /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
 		A960CAE2221AE7C800C8FAB2 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
