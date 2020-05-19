@@ -6,25 +6,28 @@
 #import "Contact.h"
 #import "ContactsGenerator.h"
 
+@interface AddressBook()
+
+@property (nonatomic, strong, readwrite) Contact *me;
+@property (nonatomic, strong, readwrite) NSArray<Contact *> *contacts;
+
+@end
+
 @implementation AddressBook
 
-- (id)copyWithZone:(nullable NSZone *)zone
+- (Contact *)contactForAlias:(NSString *)alias
 {
-    AddressBook *copy = (AddressBook *) [[[self class] allocWithZone:zone] init];
-
-    if (copy != nil)
-    {
-        copy.me = [self.me copyWithZone:zone];
-        copy.contacts = [self.contacts copyWithZone:zone];
+    for (Contact *contact in self.contacts) {
+        if ([contact.alias isEqualToString:alias])
+            return contact;
     }
 
-    return copy;
+    return nil;
 }
 
-+ (instancetype)createFromUserArray:(nullable NSArray<NSString *> *)users currentUser:(NSString *)currentUser
+- (void)updateFromArray:(nullable NSArray<NSString *> *)users currentUser:(NSString *)currentUser
 {
     NSMutableArray *contacts = [NSMutableArray arrayWithCapacity:users.count];
-    AddressBook *addressBook = [AddressBook new];
 
     [users enumerateObjectsUsingBlock:^(NSString *userId, NSUInteger idx, BOOL *stop) {
 
@@ -33,17 +36,24 @@
 
         if ([userId isEqualToString:currentUser])
         {
-            addressBook.me = contact;
+            self.me = contact;
         } else
         {
             [contacts addObject:contact];
         }
     }];
 
-    addressBook.contacts = [contacts copy];
-
-    return addressBook;
+    self.contacts = [contacts copy];
 }
 
++ (instancetype)sharedInstance
+{
+    static dispatch_once_t onceToken;
+    static AddressBook *instance;
+    dispatch_once(&onceToken, ^{
+        instance = [self new];
+    });
+    return instance;
+}
 
 @end

@@ -54,7 +54,7 @@
 
     if (copy != nil)
     {
-        copy->_addressBook = [_addressBook copyWithZone:zone];
+        copy->_addressBook = _addressBook;
         copy->_aliasMap = [_aliasMap copyWithZone:zone];
     }
 

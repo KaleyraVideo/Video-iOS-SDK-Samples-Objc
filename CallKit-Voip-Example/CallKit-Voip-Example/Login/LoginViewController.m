@@ -264,9 +264,8 @@ NSString *const kUserCellIdentifier = @"userCellId";
         UINavigationController *navController = segue.destinationViewController;
         ContactsViewController *controller = (ContactsViewController *) navController.topViewController;
 
-        AddressBook *addressBook = [AddressBook createFromUserArray:self.userIds currentUser:self.selectedUserId];
-
-        controller.addressBook = addressBook;
+        [[AddressBook sharedInstance] updateFromArray:self.userIds currentUser:self.selectedUserId];
+        controller.addressBook = [AddressBook sharedInstance];
     }
 }
 

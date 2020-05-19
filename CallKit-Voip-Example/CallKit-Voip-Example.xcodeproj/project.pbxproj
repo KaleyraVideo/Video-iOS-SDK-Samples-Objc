@@ -227,6 +227,7 @@
 		A960D016221AEE0D00C8FAB2 /* ContactsGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = A960CF40221AEE0D00C8FAB2 /* ContactsGenerator.m */; };
 		A960D017221AEE0D00C8FAB2 /* UserInfoFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = A960CF44221AEE0D00C8FAB2 /* UserInfoFetcher.m */; };
 		A960D018221AEE0D00C8FAB2 /* UserSession.m in Sources */ = {isa = PBXBuildFile; fileRef = A960CF45221AEE0D00C8FAB2 /* UserSession.m */; };
+		A977E3EC247409B80000A0C2 /* HandleProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = A977E3EA247409B80000A0C2 /* HandleProvider.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -466,6 +467,8 @@
 		A960CF43221AEE0D00C8FAB2 /* UserRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserRepository.h; sourceTree = "<group>"; };
 		A960CF44221AEE0D00C8FAB2 /* UserInfoFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoFetcher.m; sourceTree = "<group>"; };
 		A960CF45221AEE0D00C8FAB2 /* UserSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSession.m; sourceTree = "<group>"; };
+		A977E3EA247409B80000A0C2 /* HandleProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HandleProvider.m; sourceTree = "<group>"; };
+		A977E3EB247409B80000A0C2 /* HandleProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HandleProvider.h; sourceTree = "<group>"; };
 		AC3C18C8CCAE372788EBC051 /* Pods_CallKit_Voip_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CallKit_Voip_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -788,6 +791,8 @@
 		A960CF3D221AEE0D00C8FAB2 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				A977E3EB247409B80000A0C2 /* HandleProvider.h */,
+				A977E3EA247409B80000A0C2 /* HandleProvider.m */,
 				A960CF42221AEE0D00C8FAB2 /* ContactsGenerator.h */,
 				A960CF40221AEE0D00C8FAB2 /* ContactsGenerator.m */,
 				A960CF3E221AEE0D00C8FAB2 /* UserInfoFetcher.h */,
@@ -1162,6 +1167,7 @@
 				A960D014221AEE0D00C8FAB2 /* AddressBook.m in Sources */,
 				A960CF47221AEE0D00C8FAB2 /* LoginViewController.m in Sources */,
 				A960CAE7221AE7C800C8FAB2 /* main.m in Sources */,
+				A977E3EC247409B80000A0C2 /* HandleProvider.m in Sources */,
 				A960CF46221AEE0D00C8FAB2 /* ContactsViewController.m in Sources */,
 				A960D013221AEE0D00C8FAB2 /* Contact.m in Sources */,
 				A960D017221AEE0D00C8FAB2 /* UserInfoFetcher.m in Sources */,
@@ -1323,7 +1329,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = it.bandyer.BandyerSDKSample;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.acme.CallKit-Voip-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1344,7 +1350,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = it.bandyer.BandyerSDKSample;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.acme.CallKit-Voip-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
