@@ -506,18 +506,14 @@
 			children = (
 				A960CAD7221AE7C600C8FAB2 /* AppDelegate.h */,
 				A960CAD8221AE7C600C8FAB2 /* AppDelegate.m */,
-				A960CAED221AEAF200C8FAB2 /* Assets.xcassets */,
 				A960CF33221AEE0D00C8FAB2 /* Call Options */,
-				A1F7EE5723436BA700A09D3C /* CallKit-Voip-Example.entitlements */,
 				A960CE61221AEE0C00C8FAB2 /* Contacts */,
-				A960CAE5221AE7C800C8FAB2 /* Info.plist */,
-				A960CAE2221AE7C800C8FAB2 /* LaunchScreen.storyboard */,
 				A960CE64221AEE0D00C8FAB2 /* Login */,
-				A960CAE6221AE7C800C8FAB2 /* main.m */,
-				2F4D0A4C246D3FD800A2CFAD /* Main.storyboard */,
 				A960CF38221AEE0D00C8FAB2 /* Model */,
 				A960CE67221AEE0D00C8FAB2 /* Resources */,
 				A960CF3D221AEE0D00C8FAB2 /* Services */,
+				A977E3E62473F7450000A0C2 /* Storyboards */,
+				A977E3E52473F7060000A0C2 /* Support */,
 			);
 			path = "CallKit-Voip-Example";
 			sourceTree = "<group>";
@@ -536,8 +532,8 @@
 		A960CE64221AEE0D00C8FAB2 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				A960CE65221AEE0D00C8FAB2 /* LoginViewController.m */,
 				A960CE66221AEE0D00C8FAB2 /* LoginViewController.h */,
+				A960CE65221AEE0D00C8FAB2 /* LoginViewController.m */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -545,6 +541,7 @@
 		A960CE67221AEE0D00C8FAB2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A960CAED221AEAF200C8FAB2 /* Assets.xcassets */,
 				A960CE68221AEE0D00C8FAB2 /* SampleVideo_640x360_10mb.mp4 */,
 				A960CE69221AEE0D00C8FAB2 /* Men */,
 				A960CECE221AEE0D00C8FAB2 /* Women */,
@@ -770,8 +767,8 @@
 			isa = PBXGroup;
 			children = (
 				A960CF34221AEE0D00C8FAB2 /* CallOptionsItem.h */,
-				A960CF35221AEE0D00C8FAB2 /* CallOptionsTableViewController.h */,
 				A960CF36221AEE0D00C8FAB2 /* CallOptionsItem.m */,
+				A960CF35221AEE0D00C8FAB2 /* CallOptionsTableViewController.h */,
 				A960CF37221AEE0D00C8FAB2 /* CallOptionsTableViewController.m */,
 			);
 			path = "Call Options";
@@ -780,10 +777,10 @@
 		A960CF38221AEE0D00C8FAB2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A960CF39221AEE0D00C8FAB2 /* Contact.m */,
 				A960CF3A221AEE0D00C8FAB2 /* AddressBook.h */,
-				A960CF3B221AEE0D00C8FAB2 /* Contact.h */,
 				A960CF3C221AEE0D00C8FAB2 /* AddressBook.m */,
+				A960CF3B221AEE0D00C8FAB2 /* Contact.h */,
+				A960CF39221AEE0D00C8FAB2 /* Contact.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -801,6 +798,25 @@
 				A960CF45221AEE0D00C8FAB2 /* UserSession.m */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		A977E3E52473F7060000A0C2 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				A1F7EE5723436BA700A09D3C /* CallKit-Voip-Example.entitlements */,
+				A960CAE5221AE7C800C8FAB2 /* Info.plist */,
+				A960CAE6221AE7C800C8FAB2 /* main.m */,
+			);
+			name = Support;
+			sourceTree = "<group>";
+		};
+		A977E3E62473F7450000A0C2 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				A960CAE2221AE7C800C8FAB2 /* LaunchScreen.storyboard */,
+				2F4D0A4C246D3FD800A2CFAD /* Main.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		BF6977CAA943E60F45770D8D /* Frameworks */ = {
