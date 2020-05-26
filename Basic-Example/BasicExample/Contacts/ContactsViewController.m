@@ -579,7 +579,7 @@ NSString *const kContactCellIdentifier = @"userCellId";
 #pragma mark - In-app notifications touch listeners
 //-------------------------------------------------------------------------------------------
 
-- (void)didTouchFileShareNotification:(BCHFileShareNotification *)notification
+- (void)didTouchFileShareNotification:(BDKFileShareNotification *)notification
 {
     if (_callWindow)
     {

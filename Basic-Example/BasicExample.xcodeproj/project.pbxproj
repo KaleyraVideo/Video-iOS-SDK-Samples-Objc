@@ -844,7 +844,7 @@
 		A9060D3C21EF238A000D81A7 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1140;
+				LastUpgradeCheck = 1150;
 				ORGANIZATIONNAME = Bandyer;
 				TargetAttributes = {
 					A9060D4321EF238A000D81A7 = {
