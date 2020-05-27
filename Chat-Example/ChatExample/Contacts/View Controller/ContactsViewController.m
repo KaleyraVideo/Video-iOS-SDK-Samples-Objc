@@ -229,7 +229,7 @@ NSString *const kContactCellIdentifier = @"userCellId";
 #pragma mark - Present Chat ViewController
 //-------------------------------------------------------------------------------------------
 
-- (void)presentChatFrom:(BCHChatNotification *)notification
+- (void)presentChatFrom:(BDKChatNotification *)notification
 {
     if (!self.presentedViewController)
     {
@@ -237,7 +237,7 @@ NSString *const kContactCellIdentifier = @"userCellId";
     }
 }
 
-- (void)presentChatFrom:(UIViewController *)controller notification:(BCHChatNotification *)notification
+- (void)presentChatFrom:(UIViewController *)controller notification:(BDKChatNotification *)notification
 {
     BCHOpenChatIntent *intent = [BCHOpenChatIntent openChatFrom:notification];
 
@@ -747,7 +747,7 @@ NSString *const kContactCellIdentifier = @"userCellId";
     }
 }
 
-- (void)didTouchChatNotification:(BCHChatNotification * _Nonnull)notification
+- (void)didTouchChatNotification:(BDKChatNotification * _Nonnull)notification
 {
     if ([self.presentedViewController isKindOfClass:BCHChannelViewController.class])
     {
