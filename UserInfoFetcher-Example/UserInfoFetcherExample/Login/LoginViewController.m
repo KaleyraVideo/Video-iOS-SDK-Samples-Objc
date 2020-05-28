@@ -129,7 +129,7 @@ NSString *const kUserCellIdentifier = @"userCellId";
         {
             self.userIds = userIds;
             
-            AddressBook *addressBook = [AddressBook createFromUserArray:userIds currentUser:nil];
+            AddressBook *addressBook = [AddressBook createFromUserArray:userIds currentUser:self.selectedUserId];
             
             [GlobalUserInfoFetcher instance].addressBook = addressBook;
             
