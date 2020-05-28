@@ -613,7 +613,7 @@ NSString *const kContactCellIdentifier = @"userCellId";
 }
 
 //-------------------------------------------------------------------------------------------
-#pragma mark - Call button in navbar
+#pragma mark - Call button in Nav Bar
 //-------------------------------------------------------------------------------------------
 
 - (void)showCallButtonInNavigationBar:(BOOL)animated
