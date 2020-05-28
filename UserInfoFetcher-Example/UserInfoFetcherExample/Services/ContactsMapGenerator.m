@@ -35,8 +35,10 @@
     {
         map[contact.alias] = contact;
     }
-
-    map[self.addressBook.me.alias] = self.addressBook.me;
+    
+    if (self.addressBook.me.alias) {
+        map[self.addressBook.me.alias] = self.addressBook.me;
+    }
 
     return map;
 }
