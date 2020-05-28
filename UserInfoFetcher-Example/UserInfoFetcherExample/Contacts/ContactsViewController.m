@@ -697,7 +697,7 @@ NSString *const kContactCellIdentifier = @"userCellId";
     }
 }
 
-- (void)didTouchChatNotification:(BCHChatNotification * _Nonnull)notification
+- (void)didTouchChatNotification:(BDKChatNotification * _Nonnull)notification
 {
     if ([self.presentedViewController isKindOfClass:BCHChannelViewController.class])
     {
