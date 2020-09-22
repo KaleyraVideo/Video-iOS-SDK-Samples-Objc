@@ -213,7 +213,15 @@ NSString *const kUserCellIdentifier = @"userCellId";
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kUserCellIdentifier forIndexPath:indexPath];
 
-    cell.textLabel.text = self.userIds[(NSUInteger) indexPath.row];
+    if (@available(iOS 14.0, *))
+    {
+        UIListContentConfiguration *config = [cell defaultContentConfiguration];
+        config.text = self.userIds[(NSUInteger) indexPath.row];
+        [cell setContentConfiguration:config];
+    } else
+    {
+        cell.textLabel.text = self.userIds[(NSUInteger) indexPath.row];
+    }
 
     return cell;
 }

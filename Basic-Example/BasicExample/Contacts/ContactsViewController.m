@@ -423,7 +423,8 @@ NSString *const kContactCellIdentifier = @"userCellId";
 {
     //Please remember to override the current call intent with the one saved inside call window.
     id <BDKIntent> intent = self.callWindow.intent;
-    if (intent) {
+    if (intent)
+    {
         [self presentCallViewControllerForIntent:intent];
     }
 }
@@ -467,8 +468,17 @@ NSString *const kContactCellIdentifier = @"userCellId";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kContactCellIdentifier forIndexPath:indexPath];
 
     Contact *contact = self.addressBook.contacts[(NSUInteger) indexPath.row];
-    cell.textLabel.text = [contact fullName];
-    cell.detailTextLabel.text = [contact alias];
+    if (@available(iOS 14.0, *))
+    {
+        UIListContentConfiguration *config = [cell defaultContentConfiguration];
+        config.text = [contact fullName];
+        config.secondaryText = [contact alias];
+        [cell setContentConfiguration:config];
+    } else
+    {
+        cell.textLabel.text = [contact fullName];
+        cell.detailTextLabel.text = [contact alias];
+    }
 
     UIImage *image = [[UIImage imageNamed:@"phone"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     UIImageView *imageView = [[UIImageView alloc] initWithImage:image];

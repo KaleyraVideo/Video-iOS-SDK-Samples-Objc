@@ -531,7 +531,8 @@ NSString *const kContactCellIdentifier = @"userCellId";
 {
     //Please remember to override the current call intent with the one saved inside call window.
     id <BDKIntent> intent = self.callWindow.intent;
-    if (intent) {
+    if (intent)
+    {
         [self presentCallViewControllerForIntent:intent];
     }
 }
