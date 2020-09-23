@@ -9,6 +9,7 @@
 #import "AddressBook.h"
 #import "UserRepository.h"
 #import "UserSession.h"
+#import "UserInfoFetcher.h"
 
 NSString *const kContactsSegueIdentifier = @"showContactsSegue";
 NSString *const kUserCellIdentifier = @"userCellId";
@@ -18,6 +19,7 @@ NSString *const kUserCellIdentifier = @"userCellId";
 @property (nonatomic, strong) NSArray<NSString*> *userIds;
 @property (nonatomic, strong) NSString *selectedUserId;
 @property (nonatomic, strong) UserRepository *repository;
+@property (nonatomic, strong) AddressBook *addressBook;
 
 @end
 
@@ -107,7 +109,13 @@ NSString *const kUserCellIdentifier = @"userCellId";
 {
     [super viewDidDisappear:animated];
 
+    [self cleanup];
+}
+
+- (void)cleanup
+{
     self.selectedUserId = nil;
+    self.addressBook = nil;
 }
 
 //-------------------------------------------------------------------------------------------
@@ -127,8 +135,7 @@ NSString *const kUserCellIdentifier = @"userCellId";
         {
             self.userIds = userIds;
 
-            if (self.selectedUserId)
-                [self loginUser];
+            [self loginUser];
         }
     }];
 }
@@ -139,6 +146,8 @@ NSString *const kUserCellIdentifier = @"userCellId";
 
 - (void)loginUser
 {
+    if (!self.selectedUserId)
+        return;
     //Once the end user has selected which user wants to impersonate, we start the SDK client.
 
     //We are registering as a call client observer in order to be notified when the client changes its state.
@@ -148,6 +157,16 @@ NSString *const kUserCellIdentifier = @"userCellId";
 
     //Then we start the call client providing the "user alias" of the user selected.
     [BandyerSDK.instance.callClient start:self.selectedUserId];
+    
+    AddressBook *addressBook = [AddressBook createFromUserArray:self.userIds currentUser:self.selectedUserId];
+    //This statement tells the Bandyer SDK which object, conforming to `UserInfoFetcher` protocol, should use to present contact
+    //information in its views.
+    //The backend system does not send any user information to its clients, the SDK and the backend system identify the users in any view
+    //using their user aliases, it is your responsibility to match "user aliases" with the corresponding user object in your system
+    //and provide those information to the Bandyer SDK.
+    BandyerSDK.instance.userInfoFetcher = [[UserInfoFetcher alloc] initWithAddressBook:addressBook];
+    
+    self.addressBook = addressBook;
 }
 
 //-------------------------------------------------------------------------------------------
@@ -271,9 +290,7 @@ NSString *const kUserCellIdentifier = @"userCellId";
         UINavigationController *navController = segue.destinationViewController;
         ContactsViewController *controller = (ContactsViewController *) navController.topViewController;
 
-        AddressBook *addressBook = [AddressBook createFromUserArray:self.userIds currentUser:self.selectedUserId];
-
-        controller.addressBook = addressBook;
+        controller.addressBook = self.addressBook;
     }
 }
 

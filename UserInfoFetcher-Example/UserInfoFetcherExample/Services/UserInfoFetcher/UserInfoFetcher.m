@@ -3,19 +3,20 @@
 //  Copyright © 2019 Bandyer. All rights reserved.
 //
 
-#import "CallUserInfoFetcher.h"
+#import "UserInfoFetcher.h"
 #import "AddressBook.h"
 #import "Contact.h"
 #import "ContactsMapGenerator.h"
 
-@interface CallUserInfoFetcher()
+@interface UserInfoFetcher()
 
 @property (nonatomic, strong, readonly) AddressBook *addressBook;
 @property (nonatomic, strong, readonly) NSDictionary<NSString*, Contact*> *aliasMap;
 
 @end
 
-@implementation CallUserInfoFetcher
+@implementation UserInfoFetcher
+
 
 - (instancetype)initWithAddressBook:(AddressBook *)addressBook
 {
@@ -37,10 +38,11 @@
     for (NSString *alias in aliases)
     {
         Contact *contact = self.aliasMap[alias];
-        //Suppose for a call we want to show only first name, last name and the user profile image.
+        //Suppose we want to have all the fields available.
         BDKUserInfoDisplayItem *item = [[BDKUserInfoDisplayItem alloc] initWithAlias:alias];
         item.firstName = contact.firstName;
         item.lastName = contact.lastName;
+        item.email = contact.email;
         item.imageURL = contact.profileImageURL;
         [items addObject:item];
     }
@@ -50,7 +52,7 @@
 
 - (id)copyWithZone:(nullable NSZone *)zone
 {
-    CallUserInfoFetcher *copy = (CallUserInfoFetcher *) [[[self class] allocWithZone:zone] init];
+    UserInfoFetcher *copy = (UserInfoFetcher *) [[[self class] allocWithZone:zone] init];
 
     if (copy != nil)
     {

@@ -252,20 +252,14 @@ NSString *const kContactCellIdentifier = @"userCellId";
     //Here we are configuring the channel view controller:
     // if audioButton is true, the channel view controller will show audio button on nav bar;
     // if videoButton is true, the channel view controller will show video button on nav bar;
-    // if userInfoFetcher is set, the global userInfoFetcher will be overridden. WARNING!!!
     // if formatter is set, the default formatter will be overridden.
 
-    UserInfoFetcher* userInfoFetcher = [[UserInfoFetcher alloc] initWithAddressBook:self.addressBook];
-
-    //Here if we pass a nil userInfoFetcher, the Bandyer SDK will use the global one if set at initialization time, otherwise a default one. The same result is achieved without setting the configuration property.
-    //Here if we pass a nil userInfoFetcher, the Bandyer SDK will use the global one if set at initialization time, otherwise a default one.
-    //If we pass a nil formatter, the Bandyer SDK will use a default one.
-    BCHChannelViewControllerConfiguration* configuration = [[BCHChannelViewControllerConfiguration alloc] initWithAudioButton:YES videoButton:YES userInfoFetcher:userInfoFetcher formatter:[AsteriskFormatter new]];
+    BCHChannelViewControllerConfiguration* configuration = [[BCHChannelViewControllerConfiguration alloc] initWithAudioButton:YES videoButton:YES formatter:[AsteriskFormatter new]];
     
     //Otherwise you can use other initializer.
-    //BCHChannelViewControllerConfiguration* configuration = [[BCHChannelViewControllerConfiguration alloc] init]; //Equivalent to BCHChannelViewControllerConfiguration* configuration = [[BCHChannelViewControllerConfiguration alloc] initWithAudioButton:NO videoButton:NO userInfoFetcher:nil, formatter: nil];
+    //BCHChannelViewControllerConfiguration* configuration = [[BCHChannelViewControllerConfiguration alloc] init]; //Equivalent to BCHChannelViewControllerConfiguration* configuration = [[BCHChannelViewControllerConfiguration alloc] initWithAudioButton:NO videoButton:NO formatter: nil];
 
-    //If no configuration is provided, the default one will be used, the one with nil user info fetcher and showing both of the buttons -> BCHChannelViewControllerConfiguration* configuration = [[BCHChannelViewControllerConfiguration alloc] initWithAudioButton:YES videoButton:YES userInfoFetcher:nil, formatter: nil];
+    //If no configuration is provided, the default one will be used, the one with nil user info fetcher and showing both of the buttons -> BCHChannelViewControllerConfiguration* configuration = [[BCHChannelViewControllerConfiguration alloc] initWithAudioButton:YES videoButton:YES, formatter: nil];
     channelViewController.configuration = configuration;
 
     //Please make sure to set intent after configuration, otherwise the configuration will be not taking in charge.
@@ -319,13 +313,6 @@ NSString *const kContactCellIdentifier = @"userCellId";
     //This url points to a sample mp4 video in the app bundle used only if the application is run in the simulator.
     NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"SampleVideo_640x360_10mb" ofType:@"mp4"]];
     config.fakeCapturerFileURL = url;
-
-    //This statement tells the view controller which object, conforming to `BDKUserInfoFetcher` protocol, should use to present contact
-    //information in its views.
-    //The backend system does not send any user information to its clients, the SDK and the backend system identify the users in a call
-    //using their user aliases, it is your responsibility to match "user aliases" with the corresponding user object in your system
-    //and provide those information to the view controller
-    config.userInfoFetcher = [[UserInfoFetcher alloc] initWithAddressBook:self.addressBook];
 
     //Here, we set the configuration object created. You must set the view controller configuration object before the view controller
     //view is loaded, otherwise an exception is thrown.

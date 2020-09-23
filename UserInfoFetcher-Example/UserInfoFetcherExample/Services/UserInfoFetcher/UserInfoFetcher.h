@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CallUserInfoFetcher : NSObject <BDKUserInfoFetcher>
+@interface UserInfoFetcher : NSObject <BDKUserInfoFetcher>
 
 - (instancetype)initWithAddressBook:(AddressBook *)addressBook;
 

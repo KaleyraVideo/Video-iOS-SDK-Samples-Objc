@@ -269,13 +269,6 @@ NSString *const kContactCellIdentifier = @"userCellId";
     NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"SampleVideo_640x360_10mb" ofType:@"mp4"]];
     config.fakeCapturerFileURL = url;
 
-    //This statement tells the view controller which object, conforming to `BDKUserInfoFetcher` protocol, should use to present contact
-    //information in its views.
-    //The backend system does not send any user information to its clients, the SDK and the backend system identify the users in a call
-    //using their user aliases, it is your responsibility to match "user aliases" with the corresponding user object in your system
-    //and provide those information to the view controller.
-    config.userInfoFetcher = [[UserInfoFetcher alloc] initWithAddressBook:self.addressBook];
-
     //Here, we set the configuration object created. You must set the view controller configuration object before the view controller
     //view is loaded, otherwise an exception is thrown.
     //If a call is already ongoing, the new configuration is skipped.
