@@ -20,6 +20,7 @@ NSString *const kUserCellIdentifier = @"userCellId";
 @property (nonatomic, strong) NSArray<NSString*> *userIds;
 @property (nonatomic, strong) NSString *selectedUserId;
 @property (nonatomic, strong) UserRepository *repository;
+@property (nonatomic, strong) AddressBook *addressBook;
 
 @end
 
@@ -132,6 +133,8 @@ NSString *const kUserCellIdentifier = @"userCellId";
             AddressBook *addressBook = [AddressBook createFromUserArray:userIds currentUser:self.selectedUserId];
             
             [GlobalUserInfoFetcher instance].addressBook = addressBook;
+
+            self.addressBook = addressBook;
             
             if (self.selectedUserId)
                 [self loginUser];
@@ -270,9 +273,7 @@ NSString *const kUserCellIdentifier = @"userCellId";
         UINavigationController *navController = segue.destinationViewController;
         ContactsViewController *controller = (ContactsViewController *) navController.topViewController;
 
-        AddressBook *addressBook = [AddressBook createFromUserArray:self.userIds currentUser:self.selectedUserId];
-
-        controller.addressBook = addressBook;
+        controller.addressBook = self.addressBook;
     }
 }
 
