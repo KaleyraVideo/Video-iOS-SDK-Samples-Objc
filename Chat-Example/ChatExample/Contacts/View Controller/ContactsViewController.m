@@ -389,12 +389,13 @@ NSString *const kContactCellIdentifier = @"userCellId";
 
 - (IBAction)logoutBarButtonTouched:(UIBarButtonItem *)sender
 {
-    //When the user sign off, we also stop the client.
-    //We highly recommend to stop the client when the end user signs off
-    //Failing to do so, will result in incoming calls being processed by the SDK.
-    //Moreover the previously logged user will appear to the Bandyer platform as she/he is available and ready to receive calls.
+    //When the user sign off, we also stop the clients.
+    //We highly recommend to stop the clients when the end user signs off
+    //Failing to do so, will result in incoming calls and chat messages being processed by the SDK.
+    //Moreover the previously logged user will appear to the Bandyer platform as she/he is available and ready to receive calls and chat messages.
     [UserSession setCurrentUser:nil];
     [BandyerSDK.instance.callClient stop];
+    [BandyerSDK.instance.chatClient stop];
 
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
