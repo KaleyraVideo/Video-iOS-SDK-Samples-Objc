@@ -1,0 +1,549 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2FE9A29A2524E91A00665F89 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE9A2992524E91A00665F89 /* AppDelegate.m */; };
+		2FE9A2A32524E91A00665F89 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FE9A2A12524E91A00665F89 /* Main.storyboard */; };
+		2FE9A2A52524E91B00665F89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FE9A2A42524E91B00665F89 /* Assets.xcassets */; };
+		2FE9A2A82524E91B00665F89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FE9A2A62524E91B00665F89 /* LaunchScreen.storyboard */; };
+		2FE9A2AB2524E91B00665F89 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE9A2AA2524E91B00665F89 /* main.m */; };
+		2FE9A2C42524EB3100665F89 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE9A2C22524EB3100665F89 /* LoginViewController.m */; };
+		2FE9A2D02524EC1800665F89 /* ContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE9A2C82524EC1800665F89 /* ContactTableViewCell.m */; };
+		2FE9A2D12524EC1800665F89 /* ContactsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE9A2CB2524EC1800665F89 /* ContactsNavigationController.m */; };
+		2FE9A2D22524EC1800665F89 /* ContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE9A2CF2524EC1800665F89 /* ContactsViewController.m */; };
+		2FE9A2D92524EC4400665F89 /* CallOptionsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE9A2D72524EC4400665F89 /* CallOptionsItem.m */; };
+		2FE9A2DA2524EC4400665F89 /* CallOptionsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE9A2D82524EC4400665F89 /* CallOptionsTableViewController.m */; };
+		2FE9A2E12524EC9A00665F89 /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE9A2DD2524EC9A00665F89 /* Contact.m */; };
+		2FE9A2E22524EC9A00665F89 /* AddressBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE9A2E02524EC9A00665F89 /* AddressBook.m */; };
+		2FE9A2EF2524ECC200665F89 /* AsteriskFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE9A2E52524ECC200665F89 /* AsteriskFormatter.m */; };
+		2FE9A2F02524ECC200665F89 /* UserRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE9A2E72524ECC200665F89 /* UserRepository.m */; };
+		2FE9A2F12524ECC200665F89 /* ContactsGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE9A2E82524ECC200665F89 /* ContactsGenerator.m */; };
+		2FE9A2F22524ECC200665F89 /* UserInfoFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE9A2ED2524ECC200665F89 /* UserInfoFetcher.m */; };
+		2FE9A2F32524ECC200665F89 /* UserSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE9A2EE2524ECC200665F89 /* UserSession.m */; };
+		830B1E259D32C38DC6ECA89C /* Pods_UI_Customization_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8F4AD9350F33A7AAF96049C /* Pods_UI_Customization_Example.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1C79A9305EC70733CFB2E1D5 /* Pods-UI-Customization-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UI-Customization-Example.debug.xcconfig"; path = "Target Support Files/Pods-UI-Customization-Example/Pods-UI-Customization-Example.debug.xcconfig"; sourceTree = "<group>"; };
+		2A27279E702B6A9821FAE77E /* Pods-UI-Customization-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UI-Customization-Example.release.xcconfig"; path = "Target Support Files/Pods-UI-Customization-Example/Pods-UI-Customization-Example.release.xcconfig"; sourceTree = "<group>"; };
+		2FE9A2952524E91A00665F89 /* UI-Customization-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UI-Customization-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2FE9A2982524E91A00665F89 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		2FE9A2992524E91A00665F89 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		2FE9A2A22524E91A00665F89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2FE9A2A42524E91B00665F89 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2FE9A2A72524E91B00665F89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2FE9A2A92524E91B00665F89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2FE9A2AA2524E91B00665F89 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2FE9A2C22524EB3100665F89 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		2FE9A2C32524EB3100665F89 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		2FE9A2C82524EC1800665F89 /* ContactTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactTableViewCell.m; sourceTree = "<group>"; };
+		2FE9A2C92524EC1800665F89 /* ContactTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactTableViewCell.h; sourceTree = "<group>"; };
+		2FE9A2CB2524EC1800665F89 /* ContactsNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsNavigationController.m; sourceTree = "<group>"; };
+		2FE9A2CC2524EC1800665F89 /* ContactsNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsNavigationController.h; sourceTree = "<group>"; };
+		2FE9A2CE2524EC1800665F89 /* ContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsViewController.h; sourceTree = "<group>"; };
+		2FE9A2CF2524EC1800665F89 /* ContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsViewController.m; sourceTree = "<group>"; };
+		2FE9A2D52524EC4400665F89 /* CallOptionsItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallOptionsItem.h; sourceTree = "<group>"; };
+		2FE9A2D62524EC4400665F89 /* CallOptionsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallOptionsTableViewController.h; sourceTree = "<group>"; };
+		2FE9A2D72524EC4400665F89 /* CallOptionsItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallOptionsItem.m; sourceTree = "<group>"; };
+		2FE9A2D82524EC4400665F89 /* CallOptionsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallOptionsTableViewController.m; sourceTree = "<group>"; };
+		2FE9A2DD2524EC9A00665F89 /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
+		2FE9A2DE2524EC9A00665F89 /* AddressBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBook.h; sourceTree = "<group>"; };
+		2FE9A2DF2524EC9A00665F89 /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
+		2FE9A2E02524EC9A00665F89 /* AddressBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBook.m; sourceTree = "<group>"; };
+		2FE9A2E52524ECC200665F89 /* AsteriskFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsteriskFormatter.m; sourceTree = "<group>"; };
+		2FE9A2E62524ECC200665F89 /* UserInfoFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoFetcher.h; sourceTree = "<group>"; };
+		2FE9A2E72524ECC200665F89 /* UserRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserRepository.m; sourceTree = "<group>"; };
+		2FE9A2E82524ECC200665F89 /* ContactsGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsGenerator.m; sourceTree = "<group>"; };
+		2FE9A2E92524ECC200665F89 /* UserSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSession.h; sourceTree = "<group>"; };
+		2FE9A2EA2524ECC200665F89 /* AsteriskFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsteriskFormatter.h; sourceTree = "<group>"; };
+		2FE9A2EB2524ECC200665F89 /* ContactsGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsGenerator.h; sourceTree = "<group>"; };
+		2FE9A2EC2524ECC200665F89 /* UserRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserRepository.h; sourceTree = "<group>"; };
+		2FE9A2ED2524ECC200665F89 /* UserInfoFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoFetcher.m; sourceTree = "<group>"; };
+		2FE9A2EE2524ECC200665F89 /* UserSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSession.m; sourceTree = "<group>"; };
+		B8F4AD9350F33A7AAF96049C /* Pods_UI_Customization_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UI_Customization_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2FE9A2922524E91A00665F89 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				830B1E259D32C38DC6ECA89C /* Pods_UI_Customization_Example.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0A8DCB6AC8B1D8FC9EC1C232 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1C79A9305EC70733CFB2E1D5 /* Pods-UI-Customization-Example.debug.xcconfig */,
+				2A27279E702B6A9821FAE77E /* Pods-UI-Customization-Example.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		2FE9A28C2524E91A00665F89 = {
+			isa = PBXGroup;
+			children = (
+				2FE9A2972524E91A00665F89 /* UI-Customization-Example */,
+				2FE9A2962524E91A00665F89 /* Products */,
+				0A8DCB6AC8B1D8FC9EC1C232 /* Pods */,
+				C6108FBBA370333F90FBB83B /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		2FE9A2962524E91A00665F89 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2FE9A2952524E91A00665F89 /* UI-Customization-Example.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2FE9A2972524E91A00665F89 /* UI-Customization-Example */ = {
+			isa = PBXGroup;
+			children = (
+				2FE9A2E42524ECC200665F89 /* Services */,
+				2FE9A2DC2524EC9A00665F89 /* Model */,
+				2FE9A2D42524EC4400665F89 /* Call Options */,
+				2FE9A2C62524EC1800665F89 /* Contacts */,
+				2FE9A2C12524EB3100665F89 /* Login */,
+				2FE9A2982524E91A00665F89 /* AppDelegate.h */,
+				2FE9A2992524E91A00665F89 /* AppDelegate.m */,
+				2FE9A2A12524E91A00665F89 /* Main.storyboard */,
+				2FE9A2A42524E91B00665F89 /* Assets.xcassets */,
+				2FE9A2A62524E91B00665F89 /* LaunchScreen.storyboard */,
+				2FE9A2A92524E91B00665F89 /* Info.plist */,
+				2FE9A2AA2524E91B00665F89 /* main.m */,
+			);
+			path = "UI-Customization-Example";
+			sourceTree = "<group>";
+		};
+		2FE9A2C12524EB3100665F89 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				2FE9A2C22524EB3100665F89 /* LoginViewController.m */,
+				2FE9A2C32524EB3100665F89 /* LoginViewController.h */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		2FE9A2C62524EC1800665F89 /* Contacts */ = {
+			isa = PBXGroup;
+			children = (
+				2FE9A2C72524EC1800665F89 /* Cell */,
+				2FE9A2CA2524EC1800665F89 /* Navigation Controller */,
+				2FE9A2CD2524EC1800665F89 /* View Controller */,
+			);
+			path = Contacts;
+			sourceTree = "<group>";
+		};
+		2FE9A2C72524EC1800665F89 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				2FE9A2C82524EC1800665F89 /* ContactTableViewCell.m */,
+				2FE9A2C92524EC1800665F89 /* ContactTableViewCell.h */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		2FE9A2CA2524EC1800665F89 /* Navigation Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2FE9A2CB2524EC1800665F89 /* ContactsNavigationController.m */,
+				2FE9A2CC2524EC1800665F89 /* ContactsNavigationController.h */,
+			);
+			path = "Navigation Controller";
+			sourceTree = "<group>";
+		};
+		2FE9A2CD2524EC1800665F89 /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2FE9A2CE2524EC1800665F89 /* ContactsViewController.h */,
+				2FE9A2CF2524EC1800665F89 /* ContactsViewController.m */,
+			);
+			path = "View Controller";
+			sourceTree = "<group>";
+		};
+		2FE9A2D42524EC4400665F89 /* Call Options */ = {
+			isa = PBXGroup;
+			children = (
+				2FE9A2D52524EC4400665F89 /* CallOptionsItem.h */,
+				2FE9A2D62524EC4400665F89 /* CallOptionsTableViewController.h */,
+				2FE9A2D72524EC4400665F89 /* CallOptionsItem.m */,
+				2FE9A2D82524EC4400665F89 /* CallOptionsTableViewController.m */,
+			);
+			path = "Call Options";
+			sourceTree = "<group>";
+		};
+		2FE9A2DC2524EC9A00665F89 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2FE9A2DD2524EC9A00665F89 /* Contact.m */,
+				2FE9A2DE2524EC9A00665F89 /* AddressBook.h */,
+				2FE9A2DF2524EC9A00665F89 /* Contact.h */,
+				2FE9A2E02524EC9A00665F89 /* AddressBook.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2FE9A2E42524ECC200665F89 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				2FE9A2E52524ECC200665F89 /* AsteriskFormatter.m */,
+				2FE9A2E62524ECC200665F89 /* UserInfoFetcher.h */,
+				2FE9A2E72524ECC200665F89 /* UserRepository.m */,
+				2FE9A2E82524ECC200665F89 /* ContactsGenerator.m */,
+				2FE9A2E92524ECC200665F89 /* UserSession.h */,
+				2FE9A2EA2524ECC200665F89 /* AsteriskFormatter.h */,
+				2FE9A2EB2524ECC200665F89 /* ContactsGenerator.h */,
+				2FE9A2EC2524ECC200665F89 /* UserRepository.h */,
+				2FE9A2ED2524ECC200665F89 /* UserInfoFetcher.m */,
+				2FE9A2EE2524ECC200665F89 /* UserSession.m */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		C6108FBBA370333F90FBB83B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B8F4AD9350F33A7AAF96049C /* Pods_UI_Customization_Example.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2FE9A2942524E91A00665F89 /* UI-Customization-Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2FE9A2AE2524E91B00665F89 /* Build configuration list for PBXNativeTarget "UI-Customization-Example" */;
+			buildPhases = (
+				305F7139BAA01E3A44182F6B /* [CP] Check Pods Manifest.lock */,
+				2FE9A2912524E91A00665F89 /* Sources */,
+				2FE9A2922524E91A00665F89 /* Frameworks */,
+				2FE9A2932524E91A00665F89 /* Resources */,
+				916C2A7643D4282B0ADF2D60 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "UI-Customization-Example";
+			productName = "UI-Customization-Example";
+			productReference = 2FE9A2952524E91A00665F89 /* UI-Customization-Example.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2FE9A28D2524E91A00665F89 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1200;
+				TargetAttributes = {
+					2FE9A2942524E91A00665F89 = {
+						CreatedOnToolsVersion = 12.0.1;
+					};
+				};
+			};
+			buildConfigurationList = 2FE9A2902524E91A00665F89 /* Build configuration list for PBXProject "UI-Customization-Example" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2FE9A28C2524E91A00665F89;
+			productRefGroup = 2FE9A2962524E91A00665F89 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2FE9A2942524E91A00665F89 /* UI-Customization-Example */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2FE9A2932524E91A00665F89 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2FE9A2A82524E91B00665F89 /* LaunchScreen.storyboard in Resources */,
+				2FE9A2A52524E91B00665F89 /* Assets.xcassets in Resources */,
+				2FE9A2A32524E91A00665F89 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		305F7139BAA01E3A44182F6B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-UI-Customization-Example-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		916C2A7643D4282B0ADF2D60 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-UI-Customization-Example/Pods-UI-Customization-Example-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-UI-Customization-Example/Pods-UI-Customization-Example-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-UI-Customization-Example/Pods-UI-Customization-Example-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2FE9A2912524E91A00665F89 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2FE9A2D02524EC1800665F89 /* ContactTableViewCell.m in Sources */,
+				2FE9A2D22524EC1800665F89 /* ContactsViewController.m in Sources */,
+				2FE9A2F02524ECC200665F89 /* UserRepository.m in Sources */,
+				2FE9A29A2524E91A00665F89 /* AppDelegate.m in Sources */,
+				2FE9A2F32524ECC200665F89 /* UserSession.m in Sources */,
+				2FE9A2F22524ECC200665F89 /* UserInfoFetcher.m in Sources */,
+				2FE9A2EF2524ECC200665F89 /* AsteriskFormatter.m in Sources */,
+				2FE9A2D92524EC4400665F89 /* CallOptionsItem.m in Sources */,
+				2FE9A2F12524ECC200665F89 /* ContactsGenerator.m in Sources */,
+				2FE9A2DA2524EC4400665F89 /* CallOptionsTableViewController.m in Sources */,
+				2FE9A2AB2524E91B00665F89 /* main.m in Sources */,
+				2FE9A2D12524EC1800665F89 /* ContactsNavigationController.m in Sources */,
+				2FE9A2E22524EC9A00665F89 /* AddressBook.m in Sources */,
+				2FE9A2E12524EC9A00665F89 /* Contact.m in Sources */,
+				2FE9A2C42524EB3100665F89 /* LoginViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		2FE9A2A12524E91A00665F89 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2FE9A2A22524E91A00665F89 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		2FE9A2A62524E91B00665F89 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2FE9A2A72524E91B00665F89 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2FE9A2AC2524E91B00665F89 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		2FE9A2AD2524E91B00665F89 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2FE9A2AF2524E91B00665F89 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1C79A9305EC70733CFB2E1D5 /* Pods-UI-Customization-Example.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "UI-Customization-Example/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.acme.UI-Customization-Example";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2FE9A2B02524E91B00665F89 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2A27279E702B6A9821FAE77E /* Pods-UI-Customization-Example.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "UI-Customization-Example/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.acme.UI-Customization-Example";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2FE9A2902524E91A00665F89 /* Build configuration list for PBXProject "UI-Customization-Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2FE9A2AC2524E91B00665F89 /* Debug */,
+				2FE9A2AD2524E91B00665F89 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2FE9A2AE2524E91B00665F89 /* Build configuration list for PBXNativeTarget "UI-Customization-Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2FE9A2AF2524E91B00665F89 /* Debug */,
+				2FE9A2B02524E91B00665F89 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2FE9A28D2524E91A00665F89 /* Project object */;
+}
