@@ -326,6 +326,7 @@ NSString *const kContactCellIdentifier = @"userCellId";
     {
         [self enableMultipleSelection:YES];
         [self showCallButtonInNavigationBar:YES];
+        self.callBarButtonItem.enabled = FALSE;
     }
 }
 
@@ -487,6 +488,28 @@ NSString *const kContactCellIdentifier = @"userCellId";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [self bindSelectionOfContactFromRowAtIndexPath:indexPath];
+
+    if (!self.tableView.allowsMultipleSelection)
+    {
+        [self startOutgoingCall];
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        [self.selectedContacts removeAllObjects];
+    }
+}
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (!self.tableView.allowsMultipleSelection)
+        return indexPath;
+
+    [self bindSelectionOfContactFromRowAtIndexPath:indexPath];
+
+    return indexPath;
+}
+
+- (void)bindSelectionOfContactFromRowAtIndexPath:(NSIndexPath *)indexPath
+{
     if ([self.selectedContacts containsObject:indexPath])
     {
         [self.selectedContacts removeObject:indexPath];
@@ -496,13 +519,6 @@ NSString *const kContactCellIdentifier = @"userCellId";
     }
 
     self.callBarButtonItem.enabled = self.selectedContacts.count > 1;
-
-    if (!self.tableView.allowsMultipleSelection)
-    {
-        [self startOutgoingCall];
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
-        [self.selectedContacts removeAllObjects];
-    }
 }
 
 //-------------------------------------------------------------------------------------------
