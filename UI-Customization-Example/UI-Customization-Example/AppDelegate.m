@@ -49,6 +49,13 @@
 
     [self applyTheme];
 
+    //Only after that the BandyerSDK is initialized, you can change the In-app notification theme.
+
+    BDKTheme *theme = [BDKTheme new];
+    theme.emphasisFont = [UIFont.robotoRegular fontWithSize:5];
+
+    BandyerSDK.instance.notificationsCoordinator.theme = theme;
+
     return YES;
 }
 
