@@ -8,6 +8,7 @@
 #import "AppDelegate.h"
 #import "UIColor+Custom.h"
 #import "UIFont+Custom.h"
+#import "HashtagFormatter.h"
 
 @interface AppDelegate ()
 
@@ -49,12 +50,7 @@
 
     [self applyTheme];
 
-    //Only after that the BandyerSDK is initialized, you can change the In-app notification theme.
-
-    BDKTheme *theme = [BDKTheme new];
-    theme.emphasisFont = [UIFont.robotoRegular fontWithSize:5];
-
-    BandyerSDK.instance.notificationsCoordinator.theme = theme;
+    [self customizeInAppNotification];
 
     return YES;
 }
@@ -90,6 +86,19 @@
     BDKTheme.defaultTheme.font = UIFont.robotoRegular;
     BDKTheme.defaultTheme.emphasisFont = UIFont.robotoBold;
     BDKTheme.defaultTheme.mediumFontPointSize = 15;
+}
+
+- (void)customizeInAppNotification
+{
+    //Only after the SDK is initialized, you can change the In-app notification theme and set a custom formatter.
+    //If you try to set the theme or the formatter before SDK initialization, the notificationsCoordinator will be nil and sets will not be applied.
+    //The formatter will be used to display the user information on the In-app notification heading.
+
+    BDKTheme *theme = [BDKTheme new];
+    theme.secondaryFont = [UIFont.robotoRegular fontWithSize:5];
+    BandyerSDK.instance.notificationsCoordinator.theme = theme;
+
+    BandyerSDK.instance.notificationsCoordinator.formatter = [HashtagFormatter new];
 }
 
 @end

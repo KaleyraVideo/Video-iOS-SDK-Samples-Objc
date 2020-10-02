@@ -10,11 +10,11 @@
 #import "AddressBook.h"
 #import "CallOptionsItem.h"
 #import "Contact.h"
-#import "UserInfoFetcher.h"
 #import "UserSession.h"
 #import "ContactsNavigationController.h"
 #import "ContactTableViewCell.h"
 #import "AsteriskFormatter.h"
+#import "PercentageFormatter.h"
 #import "UIColor+Custom.h"
 #import "UIFont+Custom.h"
 
@@ -264,6 +264,8 @@ NSString *const kContactCellIdentifier = @"userCellId";
     BDKTheme *theme = [BDKTheme new];
     theme.tertiaryBackgroundColor = [UIColor colorWithRed:204/255.0f green:210/255.0f blue:226/255.0f alpha:1];
 
+    //You can also format the way our SDK displays the user information inside the chat channel page. In this example, the user info will be preceded by an asterisk.
+
     BCHChannelViewControllerConfiguration* configuration = [[BCHChannelViewControllerConfiguration alloc] initWithAudioButton:YES videoButton:YES formatter:[AsteriskFormatter new] theme: theme];
     
     //Otherwise you can use other initializer.
@@ -350,6 +352,9 @@ NSString *const kContactCellIdentifier = @"userCellId";
     fileSharingTheme.largeFontPointSize = 40;
 
     config.fileSharingTheme = fileSharingTheme;
+
+    //You can also format the way our SDK displays the user information inside the call page. In this example, the user info will be preceded by a percentage.
+    config.callInfoTitleFormatter = [PercentageFormatter new];
 
     //Here, we set the configuration object created. You must set the view controller configuration object before the view controller
     //view is loaded, otherwise an exception is thrown.
