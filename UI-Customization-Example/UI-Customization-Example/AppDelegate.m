@@ -6,6 +6,8 @@
 #import <Bandyer/Bandyer.h>
 
 #import "AppDelegate.h"
+#import "UIColor+Custom.h"
+#import "UIFont+Custom.h"
 
 @interface AppDelegate ()
 
@@ -45,7 +47,42 @@
     //Now we are ready to initialize the SDK providing the app id token identifying your app in Bandyer platform.
     [BandyerSDK.instance initializeWithApplicationId:@"PUT YOUR APP ID HERE" config:config];
 
+    [self applyTheme];
+
     return YES;
+}
+
+- (void)applyTheme
+{
+    UIColor *accentColor = UIColor.accentColor;
+    
+    if (@available(iOS 14.0, *)) {
+    } else {
+        self.window.tintColor = accentColor;
+    }
+    
+    //This is the core of your customisation possibility using Bandyer SDK theme.
+    //Let's suppose that your app is highly customised. Setting the following properties will let you to apply your colors, bar properties and fonts to all Bandyer's view controllers.
+    
+    //Colors
+    BDKTheme.defaultTheme.accentColor = accentColor;
+    BDKTheme.defaultTheme.primaryBackgroundColor = UIColor.customBackground;
+    BDKTheme.defaultTheme.secondaryBackgroundColor = UIColor.customSecondary;
+    BDKTheme.defaultTheme.tertiaryBackgroundColor = UIColor.customTertiary;
+    
+    //Bars
+    BDKTheme.defaultTheme.barTranslucent = FALSE;
+    BDKTheme.defaultTheme.barStyle = UIBarStyleBlack;
+    BDKTheme.defaultTheme.keyboardAppearance = UIKeyboardAppearanceDark;
+    BDKTheme.defaultTheme.barTintColor = UIColor.customBarTintColor;
+    
+    //Fonts
+    BDKTheme.defaultTheme.navBarTitleFont = UIFont.robotoMedium;
+    BDKTheme.defaultTheme.secondaryFont = UIFont.robotoLight;
+    BDKTheme.defaultTheme.bodyFont = UIFont.robotoThin;
+    BDKTheme.defaultTheme.font = UIFont.robotoRegular;
+    BDKTheme.defaultTheme.emphasisFont = UIFont.robotoBold;
+    BDKTheme.defaultTheme.mediumFontPointSize = 15;
 }
 
 @end

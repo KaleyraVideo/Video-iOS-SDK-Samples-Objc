@@ -232,6 +232,8 @@
 		2FE9A2F22524ECC200665F89 /* UserInfoFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE9A2ED2524ECC200665F89 /* UserInfoFetcher.m */; };
 		2FE9A2F32524ECC200665F89 /* UserSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE9A2EE2524ECC200665F89 /* UserSession.m */; };
 		830B1E259D32C38DC6ECA89C /* Pods_UI_Customization_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8F4AD9350F33A7AAF96049C /* Pods_UI_Customization_Example.framework */; };
+		A1DC1D0E25270F3800175858 /* UIFont+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = A1DC1D0D25270F3800175858 /* UIFont+Custom.m */; };
+		A1DC1D172527159500175858 /* UIColor+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = A1DC1D162527159500175858 /* UIColor+Custom.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -477,6 +479,10 @@
 		2FE9A2EC2524ECC200665F89 /* UserRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserRepository.h; sourceTree = "<group>"; };
 		2FE9A2ED2524ECC200665F89 /* UserInfoFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoFetcher.m; sourceTree = "<group>"; };
 		2FE9A2EE2524ECC200665F89 /* UserSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSession.m; sourceTree = "<group>"; };
+		A1DC1D0C25270F3800175858 /* UIFont+Custom.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIFont+Custom.h"; sourceTree = "<group>"; };
+		A1DC1D0D25270F3800175858 /* UIFont+Custom.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIFont+Custom.m"; sourceTree = "<group>"; };
+		A1DC1D152527159500175858 /* UIColor+Custom.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+Custom.h"; sourceTree = "<group>"; };
+		A1DC1D162527159500175858 /* UIColor+Custom.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Custom.m"; sourceTree = "<group>"; };
 		B8F4AD9350F33A7AAF96049C /* Pods_UI_Customization_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UI_Customization_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -758,6 +764,7 @@
 		2FE9A2972524E91A00665F89 /* UI-Customization-Example */ = {
 			isa = PBXGroup;
 			children = (
+				A1DC1D0B25270E9700175858 /* Custom Theme */,
 				2F5BC34C25268BA10073F498 /* Resources */,
 				2F5BC340252688AC0073F498 /* Fonts */,
 				2FE9A2E42524ECC200665F89 /* Services */,
@@ -859,6 +866,17 @@
 				2FE9A2EE2524ECC200665F89 /* UserSession.m */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		A1DC1D0B25270E9700175858 /* Custom Theme */ = {
+			isa = PBXGroup;
+			children = (
+				A1DC1D0C25270F3800175858 /* UIFont+Custom.h */,
+				A1DC1D0D25270F3800175858 /* UIFont+Custom.m */,
+				A1DC1D152527159500175858 /* UIColor+Custom.h */,
+				A1DC1D162527159500175858 /* UIColor+Custom.m */,
+			);
+			path = "Custom Theme";
 			sourceTree = "<group>";
 		};
 		C6108FBBA370333F90FBB83B /* Frameworks */ = {
@@ -1188,6 +1206,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1DC1D172527159500175858 /* UIColor+Custom.m in Sources */,
+				A1DC1D0E25270F3800175858 /* UIFont+Custom.m in Sources */,
 				2FE9A2D02524EC1800665F89 /* ContactTableViewCell.m in Sources */,
 				2FE9A2D22524EC1800665F89 /* ContactsViewController.m in Sources */,
 				2FE9A2F02524ECC200665F89 /* UserRepository.m in Sources */,
