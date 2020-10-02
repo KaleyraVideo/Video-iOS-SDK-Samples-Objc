@@ -15,6 +15,9 @@
 #import "ContactsNavigationController.h"
 #import "ContactTableViewCell.h"
 #import "AsteriskFormatter.h"
+#import "UIColor+Custom.h"
+#import "UIFont+Custom.h"
+
 
 NSString *const kShowOptionsSegueIdentifier = @"showOptionsSegue";
 NSString *const kContactCellIdentifier = @"userCellId";
@@ -254,13 +257,19 @@ NSString *const kContactCellIdentifier = @"userCellId";
     // if audioButton is true, the channel view controller will show audio button on nav bar;
     // if videoButton is true, the channel view controller will show video button on nav bar;
     // if formatter is set, the default formatter will be overridden.
+    // if theme is set, the default theme will be overridden.
 
-    BCHChannelViewControllerConfiguration* configuration = [[BCHChannelViewControllerConfiguration alloc] initWithAudioButton:YES videoButton:YES formatter:[AsteriskFormatter new]];
+    //Let's suppose that you want to change the tertiaryBackgroundColor only inside the ChannelViewController.
+    //You can achieve this result by allocate a new instance of the theme and set the tertiaryBackgroundColor property whit the wanted value.
+    BDKTheme *theme = [BDKTheme new];
+    theme.tertiaryBackgroundColor = [UIColor colorWithRed:204/255.0f green:210/255.0f blue:226/255.0f alpha:1];
+
+    BCHChannelViewControllerConfiguration* configuration = [[BCHChannelViewControllerConfiguration alloc] initWithAudioButton:YES videoButton:YES formatter:[AsteriskFormatter new] theme: theme];
     
     //Otherwise you can use other initializer.
-    //BCHChannelViewControllerConfiguration* configuration = [[BCHChannelViewControllerConfiguration alloc] init]; //Equivalent to BCHChannelViewControllerConfiguration* configuration = [[BCHChannelViewControllerConfiguration alloc] initWithAudioButton:NO videoButton:NO formatter: nil];
+    //BCHChannelViewControllerConfiguration* configuration = [[BCHChannelViewControllerConfiguration alloc] init]; //Equivalent to BCHChannelViewControllerConfiguration* configuration = [[BCHChannelViewControllerConfiguration alloc] initWithAudioButton:NO videoButton:NO formatter:nil theme:nil];
 
-    //If no configuration is provided, the default one will be used, the one with nil user info fetcher and showing both of the buttons -> BCHChannelViewControllerConfiguration* configuration = [[BCHChannelViewControllerConfiguration alloc] initWithAudioButton:YES videoButton:YES, formatter: nil];
+    //If no configuration is provided, the default one will be used, the one with nil user info fetcher and showing both of the buttons -> BCHChannelViewControllerConfiguration* configuration = [[BCHChannelViewControllerConfiguration alloc] initWithAudioButton:YES videoButton:YES, formatter:nil theme:nil];
     channelViewController.configuration = configuration;
 
     //Please make sure to set intent after configuration, otherwise the configuration will be not taking in charge.
@@ -314,6 +323,33 @@ NSString *const kContactCellIdentifier = @"userCellId";
     //This url points to a sample mp4 video in the app bundle used only if the application is run in the simulator.
     NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"SampleVideo_640x360_10mb" ofType:@"mp4"]];
     config.fakeCapturerFileURL = url;
+
+    //Let's suppose that you want to change the navBarTitleFont only inside the BDKCallViewController.
+    //You can achieve this result by allocate a new instance of the theme and set the navBarTitleFont property whit the wanted value.
+    BDKTheme *callTheme = [BDKTheme new];
+    callTheme.navBarTitleFont = [UIFont .robotoBold fontWithSize:30];
+
+    config.callTheme = callTheme;
+
+    //The same reasoning will let you change the accentColor only inside the Whiteboard view controller.
+    BDKTheme *whiteboardTheme = [BDKTheme new];
+    whiteboardTheme.accentColor = [UIColor systemBlueColor];
+
+    config.whiteboardTheme = whiteboardTheme;
+
+    //You can also customize the theme only of the Whiteboard text editor view controller.
+    BDKTheme *whiteboardTextEditorTheme = [BDKTheme new];
+    whiteboardTextEditorTheme.bodyFont = [UIFont .robotoThin fontWithSize:30];
+
+    config.whiteboardTextEditorTheme = whiteboardTextEditorTheme;
+
+    //In the next lines you can see how it's possible to customize the File Sharing view controller theme.
+    BDKTheme *fileSharingTheme = [BDKTheme new];
+    //By setting a point size property of the theme you can change the point size of all the ll medium/large labels.
+    fileSharingTheme.mediumFontPointSize = 20;
+    fileSharingTheme.largeFontPointSize = 40;
+
+    config.fileSharingTheme = fileSharingTheme;
 
     //Here, we set the configuration object created. You must set the view controller configuration object before the view controller
     //view is loaded, otherwise an exception is thrown.
@@ -641,6 +677,11 @@ NSString *const kContactCellIdentifier = @"userCellId";
     [self bindSelectionOfContactFromRowAtIndexPath:indexPath];
 
     return indexPath;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    cell.backgroundColor = UIColor.customBackground;
 }
 
 - (void)bindSelectionOfContactFromRowAtIndexPath:(NSIndexPath *)indexPath
