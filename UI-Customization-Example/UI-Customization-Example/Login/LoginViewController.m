@@ -167,8 +167,10 @@ NSString *const kUserCellIdentifier = @"userCellId";
 
     //Here we start the chat client, providing the "user alias" of the user selected.
     [BandyerSDK.instance.chatClient start:self.selectedUserId];
+    
+    [AddressBook.sharedInstance updateFromArray:self.userIds currentUser:self.selectedUserId];
 
-    AddressBook *addressBook = [AddressBook createFromUserArray:self.userIds currentUser:self.selectedUserId];
+    AddressBook *addressBook = AddressBook.sharedInstance;
     //This statement tells the Bandyer SDK which object, conforming to `UserInfoFetcher` protocol, should use to present contact
     //information in its views.
     //The backend system does not send any user information to its clients, the SDK and the backend system identify the users in any view

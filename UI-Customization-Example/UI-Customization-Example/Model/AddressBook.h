@@ -14,7 +14,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) Contact *me;
 @property (nonatomic, strong) NSArray<Contact *> *contacts;
 
-+ (instancetype)createFromUserArray:(nullable NSArray<NSString*> *)users currentUser:(NSString *)currentUser;
+- (nullable Contact *)contactForAlias:(NSString *)alias;
+- (void)updateFromArray:(nullable NSArray<NSString *> *)users currentUser:(NSString *)currentUser;
+
++ (instancetype)sharedInstance;
 
 @end
 
