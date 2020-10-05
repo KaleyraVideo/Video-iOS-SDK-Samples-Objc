@@ -2,7 +2,7 @@
 
 This sample application shows you how it's easy and simple to integrate CallKit and VoIP notifications capabilities with Bandyer in your app.
 
-This example is only related to manage CallKit and VoIP notifications. For other examples, please visit the [Sample apps index page](https://github.com/Bandyer/Bandyer-iOS-SDK-Samples).
+This example shows you how your app should be configured in order for the BandyerSDK to handle CallKit and VoIP notifications. For other examples, please visit the [Sample apps index page](https://github.com/Bandyer/Bandyer-iOS-SDK-Samples).
 
 
 ## Quickstart
@@ -27,7 +27,7 @@ In this demo app, all the integration work is already done for you. In this sect
 
 ### Setup
 
-Before we dive into the details of how the SDK must be configured and initialized, you should add `NSCameraUsageDescription` and `NSMicrophoneUsageDescription` keys into app Info.plist, otherwise your app is going to crash anytime it tries to access camera
+Before we dive into the details of how the SDK must be configured and initialized, you should add `NSCameraUsageDescription` and `NSMicrophoneUsageDescription` keys to the app Info.plist, otherwise your app is going to crash anytime it tries to access camera
 or microphone devices.
 
 To let you build on physical devices, you should set *No* to  *Enable Bitcode* on **Build Settings** tab under **Build Options** section of your target settings.
@@ -136,8 +136,6 @@ The client SDK expects a payload in the following format:
 }
 
 ```
-
-You must provide a dictionary to call client `handleNotification:` method formatted with the format above.
 
 For further usage guideline, you can visit our dedicated [Wiki page](https://github.com/Bandyer/Bandyer-iOS-SDK/wiki/VOIP-notifications).
 

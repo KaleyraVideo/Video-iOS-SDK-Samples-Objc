@@ -2,7 +2,7 @@
 
 This sample app is going to show you how the Bandyer SDK should be configured, initialized, and how you can interact with it.
 
-This example is only related to let users make and receive a call. For other examples, please visit the [Sample apps index page](https://github.com/Bandyer/Bandyer-iOS-SDK-Samples).
+This example shows only how you can make and receive calls. For other examples, please visit the  [Sample apps index page](https://github.com/Bandyer/Bandyer-iOS-SDK-Samples).
 
 ## Quickstart
 
@@ -15,7 +15,7 @@ This example is only related to let users make and receive a call. For other exa
 
 ## Caveats
 
-This app uses fake users fetched from our backend system. We provide access to those user through a REST api which requires another set of access keys. Once obtained, replace "REST API KEY" and "REST URL" placeholders inside `UserRepository` class.
+This app uses fake users fetched from our backend system. We provide access to those users through a REST API which requires another set of access keys. Once obtained, replace "REST API KEY" and "REST URL" placeholders inside `UserRepository` class.
 
 If your backend system already provides Bandyer "user alias" for your users, then you should modify the app in order to fetch users information from you backend system instead of ours.
 
@@ -25,7 +25,7 @@ In this demo app, all the integration work is already done for you. In this sect
 
 ### Setup
 
-Before we dive into the details of how the SDK must be configured and initialized, you should add `NSCameraUsageDescription` and `NSMicrophoneUsageDescription` keys into app Info.plist, otherwise your app is going to crash anytime it tries to access camera
+Before we dive into the details of how the SDK must be configured and initialized, you should add `NSCameraUsageDescription` and `NSMicrophoneUsageDescription` keys to the app Info.plist, otherwise your app is going to crash anytime it tries to access camera
 or microphone devices.
 
 To let you build on physical devices, you should set *No* to  *Enable Bitcode* on **Build Settings** tab under **Build Options** section of your target settings.
