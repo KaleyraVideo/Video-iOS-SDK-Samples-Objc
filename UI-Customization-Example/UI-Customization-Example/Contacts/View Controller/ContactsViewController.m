@@ -347,7 +347,7 @@ NSString *const kContactCellIdentifier = @"userCellId";
 
     //In the next lines you can see how it's possible to customize the File Sharing view controller theme.
     BDKTheme *fileSharingTheme = [BDKTheme new];
-    //By setting a point size property of the theme you can change the point size of all the ll medium/large labels.
+    //By setting a point size property of the theme you can change the point size of all the medium/large labels.
     fileSharingTheme.mediumFontPointSize = 20;
     fileSharingTheme.largeFontPointSize = 40;
 
