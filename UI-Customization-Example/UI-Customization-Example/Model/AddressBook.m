@@ -7,6 +7,13 @@
 #import "Contact.h"
 #import "ContactsGenerator.h"
 
+@interface AddressBook ()
+
+@property (nonatomic, strong) Contact *me;
+@property (nonatomic, strong) NSArray<Contact *> *contacts;
+
+@end
+
 @implementation AddressBook
 
 - (id)copyWithZone:(nullable NSZone *)zone

@@ -20,7 +20,7 @@ NSString *const kUserCellIdentifier = @"userCellId";
 @property (nonatomic, strong) NSArray<NSString*> *userIds;
 @property (nonatomic, strong) NSString *selectedUserId;
 @property (nonatomic, strong) UserRepository *repository;
-@property(nonatomic) BOOL activityIndicatorShown;
+@property (nonatomic) BOOL activityIndicatorShown;
 @property (nonatomic, strong) AddressBook *addressBook;
 
 @end
