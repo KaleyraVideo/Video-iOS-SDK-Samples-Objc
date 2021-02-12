@@ -14,13 +14,15 @@
 
 - (NSString *)stringForObjectValue:(id)obj {
     
-    NSArray<BDKUserInfoDisplayItem*>* items = (NSArray<BDKUserInfoDisplayItem*> *) obj;
+    NSArray<BDKUserDetails*>* items = (NSArray<BDKUserDetails*> *) obj;
     
-    if (items) {
-        BDKUserInfoDisplayItem * item = items.firstObject;
-        if (item) {
-            NSString* firstName = item.firstName ? item.firstName : @"";
-            NSString* lastName = item.lastName ? item.lastName : @"";
+    if (items != nil)
+    {
+        BDKUserDetails * user = items.firstObject;
+        if (user != nil)
+        {
+            NSString* firstName = user.firstname ? user.firstname : @"";
+            NSString* lastName = user.lastname ? user.lastname : @"";
             return [NSString stringWithFormat:@"%@ * %@", firstName, lastName];
         }
     }

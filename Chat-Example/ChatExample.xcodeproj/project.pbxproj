@@ -219,7 +219,7 @@
 		A13FE9D323424ECC002736BC /* AddressBook.m in Sources */ = {isa = PBXBuildFile; fileRef = A13FE8FA23424ECB002736BC /* AddressBook.m */; };
 		A13FE9D423424ECC002736BC /* UserRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = A13FE8FD23424ECB002736BC /* UserRepository.m */; };
 		A13FE9D523424ECC002736BC /* ContactsGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = A13FE8FE23424ECB002736BC /* ContactsGenerator.m */; };
-		A13FE9D623424ECC002736BC /* UserInfoFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = A13FE90223424ECB002736BC /* UserInfoFetcher.m */; };
+		A13FE9D623424ECC002736BC /* UserDetailsProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = A13FE90223424ECB002736BC /* UserDetailsProvider.m */; };
 		A13FE9D723424ECC002736BC /* UserSession.m in Sources */ = {isa = PBXBuildFile; fileRef = A13FE90323424ECB002736BC /* UserSession.m */; };
 		A1EE6145234233770078D13A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A1EE6144234233770078D13A /* AppDelegate.m */; };
 		A1EE614E234233770078D13A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1EE614C234233770078D13A /* Main.storyboard */; };
@@ -452,13 +452,13 @@
 		A13FE8F823424ECB002736BC /* AddressBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBook.h; sourceTree = "<group>"; };
 		A13FE8F923424ECB002736BC /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
 		A13FE8FA23424ECB002736BC /* AddressBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBook.m; sourceTree = "<group>"; };
-		A13FE8FC23424ECB002736BC /* UserInfoFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoFetcher.h; sourceTree = "<group>"; };
+		A13FE8FC23424ECB002736BC /* UserDetailsProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailsProvider.h; sourceTree = "<group>"; };
 		A13FE8FD23424ECB002736BC /* UserRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserRepository.m; sourceTree = "<group>"; };
 		A13FE8FE23424ECB002736BC /* ContactsGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsGenerator.m; sourceTree = "<group>"; };
 		A13FE8FF23424ECB002736BC /* UserSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSession.h; sourceTree = "<group>"; };
 		A13FE90023424ECB002736BC /* ContactsGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsGenerator.h; sourceTree = "<group>"; };
 		A13FE90123424ECB002736BC /* UserRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserRepository.h; sourceTree = "<group>"; };
-		A13FE90223424ECB002736BC /* UserInfoFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoFetcher.m; sourceTree = "<group>"; };
+		A13FE90223424ECB002736BC /* UserDetailsProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailsProvider.m; sourceTree = "<group>"; };
 		A13FE90323424ECB002736BC /* UserSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSession.m; sourceTree = "<group>"; };
 		A1EE6140234233770078D13A /* ChatExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1EE6143234233770078D13A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -789,8 +789,8 @@
 			children = (
 				A13FE90023424ECB002736BC /* ContactsGenerator.h */,
 				A13FE8FE23424ECB002736BC /* ContactsGenerator.m */,
-				A13FE8FC23424ECB002736BC /* UserInfoFetcher.h */,
-				A13FE90223424ECB002736BC /* UserInfoFetcher.m */,
+				A13FE8FC23424ECB002736BC /* UserDetailsProvider.h */,
+				A13FE90223424ECB002736BC /* UserDetailsProvider.m */,
 				A13FE90123424ECB002736BC /* UserRepository.h */,
 				A13FE8FD23424ECB002736BC /* UserRepository.m */,
 				A13FE8FF23424ECB002736BC /* UserSession.h */,
@@ -1170,7 +1170,7 @@
 				A1EE6145234233770078D13A /* AppDelegate.m in Sources */,
 				A13FE9D723424ECC002736BC /* UserSession.m in Sources */,
 				A1EE6156234233780078D13A /* main.m in Sources */,
-				A13FE9D623424ECC002736BC /* UserInfoFetcher.m in Sources */,
+				A13FE9D623424ECC002736BC /* UserDetailsProvider.m in Sources */,
 				A12C4665246976D7001ACB93 /* AsteriskFormatter.m in Sources */,
 				A13FE90423424ECB002736BC /* LoginViewController.m in Sources */,
 				A13FE9D423424ECC002736BC /* UserRepository.m in Sources */,
@@ -1325,6 +1325,7 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = ChatExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1347,6 +1348,7 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = ChatExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

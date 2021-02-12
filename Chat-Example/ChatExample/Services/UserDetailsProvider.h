@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UserInfoFetcher : NSObject <BDKUserInfoFetcher>
+@interface UserDetailsProvider : NSObject <BDKUserDetailsProvider>
 
 @property (nonatomic, strong, readonly) AddressBook *addressBook;
 

@@ -9,12 +9,12 @@
 #import "AddressBook.h"
 #import "UserRepository.h"
 #import "UserSession.h"
-#import "UserInfoFetcher.h"
+#import "UserDetailsProvider.h"
 
 NSString *const kContactsSegueIdentifier = @"showContactsSegue";
 NSString *const kUserCellIdentifier = @"userCellId";
 
-@interface LoginViewController () <BCXCallClientObserver, BCHChatClientObserver>
+@interface LoginViewController () <BDKCallClientObserver, BDKChatClientObserver>
 
 @property (nonatomic, strong) NSArray<NSString*> *userIds;
 @property (nonatomic, strong) NSString *selectedUserId;
@@ -156,8 +156,11 @@ NSString *const kUserCellIdentifier = @"userCellId";
     //otherwise the SDK will notify the observer onto its background internal queue.
     [BandyerSDK.instance.callClient addObserver:self queue:dispatch_get_main_queue()];
 
+    //Then open a user session providing the "user alias" of the user selected.
+    [BandyerSDK.instance openSessionWithUserId:self.selectedUserId];
+
     //Then we start the call client providing the "user alias" of the user selected.
-    [BandyerSDK.instance.callClient start:self.selectedUserId];
+    [BandyerSDK.instance.callClient start];
 
     //We are registering as a chat client observer in order to be notified when the client changes its state.
     //We are also providing the main queue telling the SDK onto which queue should notify the observer provided,
@@ -165,15 +168,15 @@ NSString *const kUserCellIdentifier = @"userCellId";
     [BandyerSDK.instance.chatClient addObserver:self queue:dispatch_get_main_queue()];
 
     //Here we start the chat client, providing the "user alias" of the user selected.
-    [BandyerSDK.instance.chatClient start:self.selectedUserId];
+    [BandyerSDK.instance.chatClient start];
 
     AddressBook *addressBook = [AddressBook createFromUserArray:self.userIds currentUser:self.selectedUserId];
-    //This statement tells the Bandyer SDK which object, conforming to `UserInfoFetcher` protocol, should use to present contact
+    //This statement tells the Bandyer SDK which object, conforming to `UserDetailsProvider` protocol, should use to present contact
     //information in its views.
     //The backend system does not send any user information to its clients, the SDK and the backend system identify the users in any view
     //using their user aliases, it is your responsibility to match "user aliases" with the corresponding user object in your system
     //and provide those information to the Bandyer SDK.
-    BandyerSDK.instance.userInfoFetcher = [[UserInfoFetcher alloc] initWithAddressBook:addressBook];
+    BandyerSDK.instance.userDetailsProvider = [[UserDetailsProvider alloc] initWithAddressBook:addressBook];
 
     self.addressBook = addressBook;
 }
@@ -182,17 +185,17 @@ NSString *const kUserCellIdentifier = @"userCellId";
 #pragma mark - Call client observer
 //-------------------------------------------------------------------------------------------
 
-- (void)callClientWillStart:(id <BCXCallClient>)client
+- (void)callClientWillStart:(id <BDKCallClient>)client
 {
     [self clientsWillStart:BandyerSDK.instance.chatClient callClient:client];
 }
 
-- (void)callClientDidStart:(id <BCXCallClient>)client
+- (void)callClientDidStart:(id <BDKCallClient>)client
 {
     [self clientsDidStart:BandyerSDK.instance.chatClient callClient:client];
 }
 
-- (void)callClient:(id <BCXCallClient>)client didFailWithError:(NSError *)error
+- (void)callClient:(id <BDKCallClient>)client didFailWithError:(NSError *)error
 {
     //If the call client could not start for any reasons, this method will be called and the error occurred will be provided as argument.
 
@@ -203,17 +206,17 @@ NSString *const kUserCellIdentifier = @"userCellId";
 #pragma mark - Chat client observer
 //-------------------------------------------------------------------------------------------
 
-- (void)chatClientWillStart:(id <BCHChatClient>)client
+- (void)chatClientWillStart:(id <BDKChatClient>)client
 {
     [self clientsWillStart:client callClient:BandyerSDK.instance.callClient];
 }
 
-- (void)chatClientDidStart:(id <BCHChatClient>)client
+- (void)chatClientDidStart:(id <BDKChatClient>)client
 {
     [self clientsDidStart:client callClient:BandyerSDK.instance.callClient];
 }
 
-- (void)chatClient:(id <BCHChatClient>)client didFailWithError:(NSError *)error
+- (void)chatClient:(id <BDKChatClient>)client didFailWithError:(NSError *)error
 {
     //If the chat client could not start for any reasons, this method will be called and the error occurred will be provided as argument.
 
@@ -224,21 +227,21 @@ NSString *const kUserCellIdentifier = @"userCellId";
 #pragma mark - Clients observer wrapper
 //-------------------------------------------------------------------------------------------
 
-- (void)clientsWillStart:(id <BCHChatClient>)chatClient callClient:(id <BCXCallClient>)callClient
+- (void)clientsWillStart:(id <BDKChatClient>)chatClient callClient:(id <BDKCallClient>)callClient
 {
-    if (callClient.state == BCXCallClientStateStarting ||
-        chatClient.state == BCHChatClientStateStarting) {
+    if (callClient.state == BDKCallClientStateStarting ||
+        chatClient.state == BDKChatClientStateStarting) {
         self.view.userInteractionEnabled = NO;
 
         [self showActivityIndicatorInNavigationBar];
     }
 }
 
-- (void)clientsDidStart:(id <BCHChatClient>)chatClient callClient:(id <BCXCallClient>)callClient
+- (void)clientsDidStart:(id <BDKChatClient>)chatClient callClient:(id <BDKCallClient>)callClient
 {
     //Once both clients did start, we can proceed to show the end user the contacts screen.
 
-    if (callClient.state == BCXCallClientStateRunning && chatClient.state == BCHChatClientStateRunning) {
+    if (callClient.state == BDKCallClientStateRunning && chatClient.state == BDKChatClientStateRunning) {
         if (self.presentedViewController != nil)
             return;
 
@@ -250,9 +253,9 @@ NSString *const kUserCellIdentifier = @"userCellId";
     }
 }
 
-- (void)clients:(id <BCHChatClient>)chatClient callClient:(id <BCXCallClient>)callClient didFailWithError:(NSError *)error
+- (void)clients:(id <BDKChatClient>)chatClient callClient:(id <BDKCallClient>)callClient didFailWithError:(NSError *)error
 {
-    if (callClient.state == BCXCallClientStateStopped || chatClient.state == BCHChatClientStateFailed) {
+    if (callClient.state == BDKCallClientStateStopped || chatClient.state == BDKChatClientStateFailed) {
         [self hideActivityIndicatorFromNavigationBar];
         self.view.userInteractionEnabled = YES;
     }

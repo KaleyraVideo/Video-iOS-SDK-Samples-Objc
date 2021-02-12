@@ -9,7 +9,7 @@
 #import "AddressBook.h"
 #import "CallOptionsItem.h"
 #import "Contact.h"
-#import "UserInfoFetcher.h"
+#import "UserDetailsProvider.h"
 #import "UserSession.h"
 #import "ContactsNavigationController.h"
 #import "ContactTableViewCell.h"
@@ -18,7 +18,7 @@
 NSString *const kShowOptionsSegueIdentifier = @"showOptionsSegue";
 NSString *const kContactCellIdentifier = @"userCellId";
 
-@interface ContactsViewController () <CallOptionsTableViewControllerDelegate, BCXCallClientObserver, BDKCallWindowDelegate, BCHChannelViewControllerDelegate, BDKCallBannerControllerDelegate, ContactTableViewCellDelegate, BDKInAppChatNotificationTouchListener, BDKInAppFileShareNotificationTouchListener>
+@interface ContactsViewController () <CallOptionsTableViewControllerDelegate, BDKCallClientObserver, BDKCallWindowDelegate, BDKChannelViewControllerDelegate, BDKCallBannerControllerDelegate, ContactTableViewCellDelegate, BDKInAppChatNotificationTouchListener, BDKInAppFileShareNotificationTouchListener>
 
 @property (nonatomic, weak) IBOutlet UISegmentedControl *callTypeSegmentedControl;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *callOptionsBarButtonItem;
@@ -155,7 +155,8 @@ NSString *const kContactCellIdentifier = @"userCellId";
     //The maximumDuration parameter specifies how long the call can last.
     //If you provide 0, the call will be created without a maximum duration value.
     //We store the intent for later use, because we can present again the BDKCallViewController with the same call.
-    BDKMakeCallIntent *intent = [BDKMakeCallIntent intentWithCallee:aliases type:self.options.type record:self.options.record maximumDuration:self.options.maximumDuration];
+    BDKStartOutgoingCallIntent *intent = [BDKStartOutgoingCallIntent intentWithCallee:aliases
+                                                                              options: [BDKCallOptions optionsWithCallType:self.options.type recorded:self.options.record duration:self.options.maximumDuration]];
 
     //Then we trigger a presentation of BDKCallViewController.
     [self presentCallViewControllerForIntent:intent];
@@ -165,12 +166,12 @@ NSString *const kContactCellIdentifier = @"userCellId";
 #pragma mark - Receiving an incoming call
 //-------------------------------------------------------------------------------------------
 
-- (void)receiveIncomingCall
+- (void)receiveIncomingCall:(id<BDKCall>)call
 {
     //When the client detects an incoming call it will notify its observers through this method.
-    //Here we are creating an `BDKIncomingCallHandlingIntent` object, storing it for later use,
+    //Here we are creating an `BDKHandleIncomingCallIntent` object, storing it for later use,
     //then we trigger a presentation of BDKCallViewController.
-    BDKIncomingCallHandlingIntent *intent = [[BDKIncomingCallHandlingIntent alloc] init];
+    BDKHandleIncomingCallIntent *intent = [[BDKHandleIncomingCallIntent alloc] initWithCall:call];
     [self presentCallViewControllerForIntent:intent];
 }
 
@@ -178,33 +179,33 @@ NSString *const kContactCellIdentifier = @"userCellId";
 #pragma mark - Call client state changes
 //-------------------------------------------------------------------------------------------
 
-- (void)callClient:(id <BCXCallClient>)client didReceiveIncomingCall:(id <BCXCall>)call
+- (void)callClient:(id <BDKCallClient>)client didReceiveIncomingCall:(id <BDKCall>)call
 {
-    [self receiveIncomingCall];
+    [self receiveIncomingCall:call];
 }
 
-- (void)callClientDidStart:(id <BCXCallClient>)client
+- (void)callClientDidStart:(id <BDKCallClient>)client
 {
     self.view.userInteractionEnabled = YES;
     [self hideActivityIndicatorFromNavigationBar:YES];
     [self hideToast];
 }
 
-- (void)callClientDidStartReconnecting:(id <BCXCallClient>)client
+- (void)callClientDidStartReconnecting:(id <BDKCallClient>)client
 {
     self.view.userInteractionEnabled = NO;
     [self showActivityIndicatorInNavigationBar:YES];
     [self showToastWithMessage:@"Client is reconnecting, please wait" color:UIColor.orangeColor];
 }
 
-- (void)callClientWillResume:(id <BCXCallClient>)client
+- (void)callClientWillResume:(id <BDKCallClient>)client
 {
     self.view.userInteractionEnabled = NO;
     [self showActivityIndicatorInNavigationBar:YES];
     [self showToastWithMessage:@"Client is resuming, please wait" color:UIColor.orangeColor];
 }
 
-- (void)callClientDidResume:(id <BCXCallClient>)client
+- (void)callClientDidResume:(id <BDKCallClient>)client
 {
     self.view.userInteractionEnabled = YES;
     [self hideActivityIndicatorFromNavigationBar:YES];
@@ -239,14 +240,14 @@ NSString *const kContactCellIdentifier = @"userCellId";
 
 - (void)presentChatFrom:(UIViewController *)controller notification:(BDKChatNotification *)notification
 {
-    BCHOpenChatIntent *intent = [BCHOpenChatIntent openChatFrom:notification];
+    BDKOpenChatIntent *intent = [BDKOpenChatIntent openChatFrom:notification];
 
     [self presentChatFrom:controller intent:intent];
 }
 
-- (void)presentChatFrom:(UIViewController *)controller intent:(BCHOpenChatIntent *)intent
+- (void)presentChatFrom:(UIViewController *)controller intent:(BDKOpenChatIntent *)intent
 {
-    BCHChannelViewController *channelViewController = [[BCHChannelViewController alloc] init];
+    BDKChannelViewController *channelViewController = [[BDKChannelViewController alloc] init];
     channelViewController.delegate = self;
 
     //Here we are configuring the channel view controller:
@@ -257,9 +258,9 @@ NSString *const kContactCellIdentifier = @"userCellId";
     BCHChannelViewControllerConfiguration* configuration = [[BCHChannelViewControllerConfiguration alloc] initWithAudioButton:YES videoButton:YES formatter:[AsteriskFormatter new]];
     
     //Otherwise you can use other initializer.
-    //BCHChannelViewControllerConfiguration* configuration = [[BCHChannelViewControllerConfiguration alloc] init]; //Equivalent to BCHChannelViewControllerConfiguration* configuration = [[BCHChannelViewControllerConfiguration alloc] initWithAudioButton:NO videoButton:NO formatter: nil];
+    //BDKChannelViewControllerConfiguration* configuration = [[BDKChannelViewControllerConfiguration alloc] init]; //Equivalent to BDKChannelViewControllerConfiguration* configuration = [[BDKChannelViewControllerConfiguration alloc] initWithAudioButton:NO videoButton:NO formatter: nil];
 
-    //If no configuration is provided, the default one will be used, the one with nil user info fetcher and showing both of the buttons -> BCHChannelViewControllerConfiguration* configuration = [[BCHChannelViewControllerConfiguration alloc] initWithAudioButton:YES videoButton:YES, formatter: nil];
+    //If no configuration is provided, the default one will be used, the one with nil user info fetcher and showing both of the buttons -> BDKChannelViewControllerConfiguration* configuration = [[BDKChannelViewControllerConfiguration alloc] initWithAudioButton:YES videoButton:YES, formatter: nil];
     channelViewController.configuration = configuration;
 
     //Please make sure to set intent after configuration, otherwise the configuration will be not taking in charge.
@@ -443,7 +444,7 @@ NSString *const kContactCellIdentifier = @"userCellId";
     [self hideCallViewController];
 }
 
-- (void)callWindow:(BDKCallWindow *)window openChatWith:(BCHOpenChatIntent *)intent
+- (void)callWindow:(BDKCallWindow *)window openChatWith:(BDKOpenChatIntent *)intent
 {
     [self hideCallViewController];
     [self presentChatFrom:self intent:intent];
@@ -453,52 +454,35 @@ NSString *const kContactCellIdentifier = @"userCellId";
 #pragma mark - Channel view controller delegate
 //-------------------------------------------------------------------------------------------
 
-- (void)channelViewControllerDidFinish:(BCHChannelViewController *)controller
+- (void)channelViewControllerDidFinish:(BDKChannelViewController *)controller
 {
     [controller dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)channelViewController:(BCHChannelViewController *)controller didTapAudioCallWith:(NSArray *)users
+- (void)channelViewController:(BDKChannelViewController *)controller didTapAudioCallWith:(NSArray *)users
 {
     [self dismissChannelViewController:controller presentCallViewControllerWithCallee:users type:BDKCallTypeAudioUpgradable];
 }
 
-- (void)channelViewController:(BCHChannelViewController *)controller didTapVideoCallWith:(NSArray *)users
+- (void)channelViewController:(BDKChannelViewController *)controller didTapVideoCallWith:(NSArray *)users
 {
     [self dismissChannelViewController:controller presentCallViewControllerWithCallee:users type:BDKCallTypeAudioVideo];
 }
 
-- (void)channelViewController:(BCHChannelViewController *)controller willHide:(BDKCallBannerView *)banner
+- (void)dismissChannelViewController:(BDKChannelViewController *)controller presentCallViewControllerWithCallee:(NSArray<NSString *> *)callee type:(BDKCallType)type
 {
-    [self restoreStatusBarAppearance];
-}
-
-- (void)channelViewController:(BCHChannelViewController *)controller willShow:(BDKCallBannerView *)banner
-{
-    [self setStatusBarAppearanceToLight];
-}
-
-- (void)channelViewController:(BCHChannelViewController *)controller didTouchBanner:(BDKCallBannerView *)banner
-{
-    //Please remember to override the current call intent with the one saved inside call window.
-    id <BDKIntent> intent = self.callWindow.intent;
-    [controller dismissViewControllerAnimated:YES completion:^{
-        [self presentCallViewControllerForIntent:intent];
-    }];
-}
-
-- (void)dismissChannelViewController:(BCHChannelViewController *)controller presentCallViewControllerWithCallee:(NSArray<NSString *> *)callee type:(BDKCallType)type
-{
-    if ([self.presentedViewController isKindOfClass:BCHChannelViewController.class])
+    if ([self.presentedViewController isKindOfClass:BDKChannelViewController.class])
     {
         [controller dismissViewControllerAnimated:YES completion:^{
-            BDKMakeCallIntent *intent = [BDKMakeCallIntent intentWithCallee:callee type:type];
+            BDKStartOutgoingCallIntent *intent = [BDKStartOutgoingCallIntent intentWithCallee:callee
+                                                                                      options:[BDKCallOptions optionsWithCallType:type]];
             [self presentCallViewControllerForIntent:intent];
         }];
         return;
     }
 
-    BDKMakeCallIntent *intent = [BDKMakeCallIntent intentWithCallee:callee type:type];
+    BDKStartOutgoingCallIntent *intent = [BDKStartOutgoingCallIntent intentWithCallee:callee
+                                                                              options:[BDKCallOptions optionsWithCallType:type]];
     [self presentCallViewControllerForIntent:intent];
 }
 
@@ -506,17 +490,17 @@ NSString *const kContactCellIdentifier = @"userCellId";
 #pragma mark - Call Banner Controller delegate
 //-------------------------------------------------------------------------------------------
 
-- (void)callBannerController:(BDKCallBannerController *_Nonnull)controller willHide:(BDKCallBannerView *_Nonnull)banner
+- (void)callBannerControllerWillHideBanner:(BDKCallBannerController *)controller
 {
     [self restoreStatusBarAppearance];
 }
 
-- (void)callBannerController:(BDKCallBannerController *_Nonnull)controller willShow:(BDKCallBannerView *_Nonnull)banner
+- (void)callBannerControllerWillShowBanner:(BDKCallBannerController *)controller
 {
     [self setStatusBarAppearanceToLight];
 }
 
-- (void)callBannerController:(BDKCallBannerController *_Nonnull)controller didTouch:(BDKCallBannerView *_Nonnull)banner
+- (void)callBannerControllerDidTouchBanner:(BDKCallBannerController *)controller
 {
     //Please remember to override the current call intent with the one saved inside call window.
     id <BDKIntent> intent = self.callWindow.intent;
@@ -734,8 +718,7 @@ NSString *const kContactCellIdentifier = @"userCellId";
 
 - (void)contactTableViewCell:(ContactTableViewCell *_Nonnull)cell didTouch:(UIButton *_Nonnull)chatButton withCounterpart:(NSString *_Nonnull)aliasId
 {
-
-    BCHOpenChatIntent *intent = [BCHOpenChatIntent openChatWith:aliasId];
+    BDKOpenChatIntent *intent = [BDKOpenChatIntent openChatWith:aliasId];
 
     [self presentChatFrom:self intent:intent];
 }
@@ -754,7 +737,7 @@ NSString *const kContactCellIdentifier = @"userCellId";
 
 - (void)didTouchChatNotification:(BDKChatNotification * _Nonnull)notification
 {
-    if ([self.presentedViewController isKindOfClass:BCHChannelViewController.class])
+    if ([self.presentedViewController isKindOfClass:BDKChannelViewController.class])
     {
         [self.presentedViewController dismissViewControllerAnimated:YES completion:^{
             [self presentChatFrom:notification];
