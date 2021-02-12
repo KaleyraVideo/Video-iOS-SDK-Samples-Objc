@@ -2,21 +2,21 @@
 //  Copyright © 2019 Bandyer. All rights reserved.
 //
 
-#import <Bandyer/Bandyer.h>
-
 #import "ContactsViewController.h"
 #import "CallOptionsTableViewController.h"
 #import "AddressBook.h"
 #import "CallOptionsItem.h"
 #import "Contact.h"
-#import "UserInfoFetcher.h"
+#import "UserDetailsProvider.h"
 #import "UserSession.h"
 #import "ContactsNavigationController.h"
+
+#import <Bandyer/Bandyer.h>
 
 NSString *const kShowOptionsSegueIdentifier = @"showOptionsSegue";
 NSString *const kContactCellIdentifier = @"userCellId";
 
-@interface ContactsViewController () <CallOptionsTableViewControllerDelegate, BCXCallClientObserver, BDKCallWindowDelegate, BDKCallBannerControllerDelegate, BDKInAppFileShareNotificationTouchListener>
+@interface ContactsViewController () <CallOptionsTableViewControllerDelegate, BDKCallClientObserver, BDKCallWindowDelegate, BDKCallBannerControllerDelegate, BDKInAppFileShareNotificationTouchListener>
 
 @property (nonatomic, weak) IBOutlet UISegmentedControl *callTypeSegmentedControl;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *callOptionsBarButtonItem;
@@ -148,12 +148,13 @@ NSString *const kContactCellIdentifier = @"userCellId";
         [aliases addObject:self.addressBook.contacts[(NSUInteger) indexPath.row].alias];
     }
 
-    //Then we create the intent providing the aliases array (which is a required parameter) along with the type of call we want perform.
-    //The record flag specifies whether we want the call to be recorded or not.
+    //Then we create the intent providing the aliases array (which is a required parameter) along with the options for the call we want perform.
+    //The recorded flag specifies whether we want the call to be recorded or not.
     //The maximumDuration parameter specifies how long the call can last.
     //If you provide 0, the call will be created without a maximum duration value.
     //We store the intent for later use, because we can present again the BDKCallViewController with the same call.
-    BDKMakeCallIntent *intent = [BDKMakeCallIntent intentWithCallee:aliases type:self.options.type record:self.options.record maximumDuration:self.options.maximumDuration];
+    BDKStartOutgoingCallIntent *intent = [BDKStartOutgoingCallIntent intentWithCallee:aliases
+                                                                     options:[BDKCallOptions optionsWithCallType:self.options.type recorded:self.options.record duration:self.options.maximumDuration]];
 
     //Then we trigger a presentation of BDKCallViewController.
     [self presentCallViewControllerForIntent:intent];
@@ -163,11 +164,11 @@ NSString *const kContactCellIdentifier = @"userCellId";
 #pragma mark - Receiving an incoming call
 //-------------------------------------------------------------------------------------------
 
-- (void)receiveIncomingCall
+- (void)receiveIncomingCall:(id<BDKCall>)call
 {
     //When the client detects an incoming call it will notify its observers through this method.
-    //Here we are creating an `BDKIncomingCallHandlingIntent` object, storing it for later use,
-    BDKIncomingCallHandlingIntent *intent = [[BDKIncomingCallHandlingIntent alloc] init];
+    //Here we are creating an `BDKHandleIncomingCallIntent` object, storing it for later use,
+    BDKHandleIncomingCallIntent *intent = [[BDKHandleIncomingCallIntent alloc] initWithCall:call];
     //then we trigger a presentation of BDKCallViewController.
     [self presentCallViewControllerForIntent:intent];
 }
@@ -176,33 +177,33 @@ NSString *const kContactCellIdentifier = @"userCellId";
 #pragma mark - Call client state changes
 //-------------------------------------------------------------------------------------------
 
-- (void)callClient:(id <BCXCallClient>)client didReceiveIncomingCall:(id <BCXCall>)call
+- (void)callClient:(id <BDKCallClient>)client didReceiveIncomingCall:(id <BDKCall>)call
 {
-    [self receiveIncomingCall];
+    [self receiveIncomingCall:call];
 }
 
-- (void)callClientDidStart:(id <BCXCallClient>)client
+- (void)callClientDidStart:(id <BDKCallClient>)client
 {
     self.view.userInteractionEnabled = YES;
     [self hideActivityIndicatorFromNavigationBar:YES];
     [self hideToast];
 }
 
-- (void)callClientDidStartReconnecting:(id <BCXCallClient>)client
+- (void)callClientDidStartReconnecting:(id <BDKCallClient>)client
 {
     self.view.userInteractionEnabled = NO;
     [self showActivityIndicatorInNavigationBar:YES];
     [self showToastWithMessage:@"Client is reconnecting, please wait" color:UIColor.orangeColor];
 }
 
-- (void)callClientWillResume:(id <BCXCallClient>)client
+- (void)callClientWillResume:(id <BDKCallClient>)client
 {
     self.view.userInteractionEnabled = NO;
     [self showActivityIndicatorInNavigationBar:YES];
     [self showToastWithMessage:@"Client is resuming, please wait" color:UIColor.orangeColor];
 }
 
-- (void)callClientDidResume:(id <BCXCallClient>)client
+- (void)callClientDidResume:(id <BDKCallClient>)client
 {
     self.view.userInteractionEnabled = YES;
     [self hideActivityIndicatorFromNavigationBar:YES];
@@ -342,12 +343,12 @@ NSString *const kContactCellIdentifier = @"userCellId";
 
 - (IBAction)logoutBarButtonTouched:(UIBarButtonItem *)sender
 {
-    //When the user sign off, we also stop the client.
-    //We highly recommend to stop the client when the end user signs off
+    //When the user sign off, we must also close the user session on the SDK.
+    //We highly recommend to close the user session when the end user signs off
     //Failing to do so, will result in incoming calls being processed by the SDK.
     //Moreover the previously logged user will appear to the Bandyer platform as she/he is available and ready to receive calls.
     [UserSession setCurrentUser:nil];
-    [BandyerSDK.instance.callClient stop];
+    [BandyerSDK.instance closeSession];
 
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
@@ -394,7 +395,7 @@ NSString *const kContactCellIdentifier = @"userCellId";
     [self hideCallViewController];
 }
 
-- (void)callWindow:(BDKCallWindow *)window openChatWith:(BCHOpenChatIntent *)intent
+- (void)callWindow:(BDKCallWindow *)window openChatWith:(BDKOpenChatIntent *)intent
 {
     //Do nothing, since we don't have chat support as requirement.
 }
@@ -403,17 +404,17 @@ NSString *const kContactCellIdentifier = @"userCellId";
 #pragma mark - Call Banner Controller delegate
 //-------------------------------------------------------------------------------------------
 
-- (void)callBannerController:(BDKCallBannerController *_Nonnull)controller willHide:(BDKCallBannerView *_Nonnull)banner
+- (void)callBannerControllerWillHideBanner:(BDKCallBannerController *)controller
 {
     [self restoreStatusBarAppearance];
 }
 
-- (void)callBannerController:(BDKCallBannerController *_Nonnull)controller willShow:(BDKCallBannerView *_Nonnull)banner
+- (void)callBannerControllerWillShowBanner:(BDKCallBannerController *)controller
 {
     [self setStatusBarAppearanceToLight];
 }
 
-- (void)callBannerController:(BDKCallBannerController *_Nonnull)controller didTouch:(BDKCallBannerView *_Nonnull)banner
+- (void)callBannerControllerDidTouchBanner:(BDKCallBannerController *)controller
 {
     //Please remember to override the current call intent with the one saved inside call window.
     id <BDKIntent> intent = self.callWindow.intent;

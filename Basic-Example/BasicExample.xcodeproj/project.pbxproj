@@ -122,7 +122,7 @@
 		62DD28F1F010F90B038E557C /* woman_58.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 62DD23FF34325CC6D4D3B9F8 /* woman_58.jpg */; };
 		62DD292DA4E7C4C2E90563D9 /* woman_86.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 62DD25C3F82B3A67C85F6285 /* woman_86.jpg */; };
 		62DD29448E052513A132B928 /* CallOptionsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62DD29F9F9A6A575E5DC255C /* CallOptionsTableViewController.m */; };
-		62DD2947F55954B6E4627951 /* UserInfoFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 62DD29901E163B34AC4CA115 /* UserInfoFetcher.m */; };
+		62DD2947F55954B6E4627951 /* UserDetailsProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 62DD29901E163B34AC4CA115 /* UserDetailsProvider.m */; };
 		62DD294AE483B0772B2F14D3 /* woman_31.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 62DD24B3F66A55C677CBF94D /* woman_31.jpg */; };
 		62DD2952790BC33F20A624A1 /* man_24.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 62DD22E0F85D1FEF6A1AF1C8 /* man_24.jpg */; };
 		62DD2978D9C386A14DA738F3 /* man_32.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 62DD27C1A46186CC2C664D56 /* man_32.jpg */; };
@@ -338,7 +338,7 @@
 		62DD27C1A46186CC2C664D56 /* man_32.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = man_32.jpg; sourceTree = "<group>"; };
 		62DD27C390E7DA96B40E789F /* woman_77.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = woman_77.jpg; sourceTree = "<group>"; };
 		62DD27CC9D27AA3C03391E75 /* man_99.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = man_99.jpg; sourceTree = "<group>"; };
-		62DD280EC07D75FE8A555974 /* UserInfoFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoFetcher.h; sourceTree = "<group>"; };
+		62DD280EC07D75FE8A555974 /* UserDetailsProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailsProvider.h; sourceTree = "<group>"; };
 		62DD281A1991148EE4FC402C /* woman_55.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = woman_55.jpg; sourceTree = "<group>"; };
 		62DD2842F47ADD3E173B9248 /* man_95.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = man_95.jpg; sourceTree = "<group>"; };
 		62DD2843DA279B5A6C14DF85 /* man_5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = man_5.jpg; sourceTree = "<group>"; };
@@ -358,7 +358,7 @@
 		62DD296BC8AB84DEC54BBF58 /* man_83.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = man_83.jpg; sourceTree = "<group>"; };
 		62DD296EF96A0A977F1AF2A9 /* man_54.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = man_54.jpg; sourceTree = "<group>"; };
 		62DD298A17DDF97F44C7430B /* woman_9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = woman_9.jpg; sourceTree = "<group>"; };
-		62DD29901E163B34AC4CA115 /* UserInfoFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoFetcher.m; sourceTree = "<group>"; };
+		62DD29901E163B34AC4CA115 /* UserDetailsProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailsProvider.m; sourceTree = "<group>"; };
 		62DD29960F814FAF23F14915 /* UserRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserRepository.h; sourceTree = "<group>"; };
 		62DD29BAE4C9527E3CB3C947 /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
 		62DD29BE306759C717FE049B /* woman_22.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = woman_22.jpg; sourceTree = "<group>"; };
@@ -510,8 +510,8 @@
 		62DD22AC29BE648B314A3A71 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				62DD280EC07D75FE8A555974 /* UserInfoFetcher.h */,
-				62DD29901E163B34AC4CA115 /* UserInfoFetcher.m */,
+				62DD280EC07D75FE8A555974 /* UserDetailsProvider.h */,
+				62DD29901E163B34AC4CA115 /* UserDetailsProvider.m */,
 				62DD267F791B9C99592EEC69 /* ContactsGenerator.h */,
 				62DD2B539D4810977760A7A2 /* ContactsGenerator.m */,
 				62DD2A5ACB516EA6D9C4C04F /* UserRepository.m */,
@@ -1140,7 +1140,7 @@
 				62DD2B73031502BDFB3A898E /* ContactsViewController.m in Sources */,
 				62DD2F27629FEDF3F10BB8BA /* LoginViewController.m in Sources */,
 				A1D8449A234237A1009B07D3 /* ContactsNavigationController.m in Sources */,
-				62DD2947F55954B6E4627951 /* UserInfoFetcher.m in Sources */,
+				62DD2947F55954B6E4627951 /* UserDetailsProvider.m in Sources */,
 				62DD2E324F06F2B26B86FFC1 /* ContactsGenerator.m in Sources */,
 				62DD21A135EC87677726A9B2 /* UserRepository.m in Sources */,
 				62DD2AAA43D7D5C4E2B9A013 /* UserSession.m in Sources */,
@@ -1292,7 +1292,7 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = BasicExample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1314,7 +1314,7 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = BasicExample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
