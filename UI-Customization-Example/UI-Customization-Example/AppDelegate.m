@@ -3,15 +3,14 @@
 //  See LICENSE.txt for licensing information
 //
 
-#import <CallKit/CallKit.h>
-#import <Bandyer/Bandyer.h>
-
 #import "AppDelegate.h"
 #import "UIColor+Custom.h"
 #import "UIFont+Custom.h"
 #import "HashtagFormatter.h"
-#import "HandleProvider.h"
 #import "AddressBook.h"
+
+#import <Bandyer/Bandyer.h>
+#import <CallKit/CallKit.h>
 
 @interface AppDelegate ()
 
@@ -47,13 +46,10 @@
     //enables CallKit by default, it is here for completeness sake
     config.callKitEnabled = YES;
 
-    if (@available(iOS 10.0, *))
-    {
-        //The following statement is going to change the name of the app that is going to be shown by the system call UI.
-        //If you don't set this value during the configuration, the SDK will look for to the value of the
-        //CFBundleDisplayName key (or the CFBundleName, if the former is not available) found in your App 'Info.plist'.
-        config.nativeUILocalizedName = @"My wonderful app";
-    }
+    //The following statement is going to change the name of the app that is going to be shown by the system call UI.
+    //If you don't set this value during the configuration, the SDK will look for to the value of the
+    //CFBundleDisplayName key (or the CFBundleName, if the former is not available) found in your App 'Info.plist'.
+    config.nativeUILocalizedName = @"My wonderful app";
 
     //The following statement is going to change the ringtone used by the system call UI when an incoming call
     //is received. You should provide the name of the sound resource in the app bundle that is going to be used as
@@ -61,26 +57,20 @@
 
     //config.nativeUIRingToneSound = @"MyRingtoneSound";
 
-    if (@available(iOS 10.0, *))
-    {
-        //The following statements are going to change the app icon shown in the system call UI. When the user answers
-        //a call from the lock screen or when the app is not in foreground and a call is in progress, the system
-        //presents the system call UI to the end user. One of the buttons gives the user the ability to get back into your
-        //app. The following statements allows you to change that icon.
-        //Beware, the configuration object property expects the image as an NSData object. You must provide a side
-        //length 40 points square png image.
-        //It is highly recommended to set this property, otherwise a "question mark" icon placeholder is used instead.
-        UIImage *callKitIconImage = [UIImage imageNamed:@"callkit-icon"];
-        config.nativeUITemplateIconImageData = UIImagePNGRepresentation(callKitIconImage);
-    }
+    //The following statements are going to change the app icon shown in the system call UI. When the user answers
+    //a call from the lock screen or when the app is not in foreground and a call is in progress, the system
+    //presents the system call UI to the end user. One of the buttons gives the user the ability to get back into your
+    //app. The following statements allows you to change that icon.
+    //Beware, the configuration object property expects the image as an NSData object. You must provide a side
+    //length 40 points square png image.
+    //It is highly recommended to set this property, otherwise a "question mark" icon placeholder is used instead.
+    UIImage *callKitIconImage = [UIImage imageNamed:@"callkit-icon"];
+    config.nativeUITemplateIconImageData = UIImagePNGRepresentation(callKitIconImage);
 
-    if (@available(iOS 10.0, *))
-    {
-        //The following statements will tell the BandyerSDK to use the app custom BCXHandleProvider. When any call is performed this
-        //object will tell CallKit which is the name of the call opponent it should show on the system call UI.
-        config.supportedHandleTypes = [NSSet setWithObject:@(CXHandleTypeGeneric)];
-        config.handleProvider = [[HandleProvider alloc] initWithAddressBook:[AddressBook sharedInstance]];
-    }
+    //The following statements will tell the BandyerSDK which handle type your BDKUserDetailsProvider will provide when requested.
+    //When any call is performed the sdk will tell CallKit which is the name of the call opponent it should show on the system call UI
+    //using a CallKit CXHandle object.
+    config.supportedHandleTypes = [NSSet setWithObject:@(CXHandleTypeGeneric)];
 
 #error "Please initialize the Bandyer SDK with your App Id"
     //Now we are ready to initialize the SDK providing the app id token identifying your app in Bandyer platform.

@@ -8,10 +8,8 @@
 #import "MyFormatter.h"
 
 @implementation MyFormatter
-{
-}
 
-- (NSString *)stringForItems:(NSArray<BDKUserInfoDisplayItem *> *)items eachItemPrecededBySymbol:(NSString *)symbol
+- (NSString *)stringForItems:(NSArray<BDKUserDetails *> *)items eachItemPrecededBySymbol:(NSString *)symbol
 {
     NSMutableArray *mapped = [NSMutableArray arrayWithCapacity:[items count]];
     [items enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop)
@@ -22,15 +20,17 @@
     return [mapped componentsJoinedByString:@" "];
 }
 
-- (NSString *)stringForItem:(BDKUserInfoDisplayItem *)item precededBySymbol:(NSString *)symbol
+- (NSString *)stringForItem:(BDKUserDetails *)item precededBySymbol:(NSString *)symbol
 {
     NSString *value;
-    if (item.lastName == nil && item.firstName == nil)
+    if (item.lastname == nil && item.firstname == nil)
+    {
         value = item.alias;
+    }
     else
     {
-        NSString* firstName = item.firstName ? item.firstName : @"";
-        NSString* lastName = item.lastName ? item.lastName : @"";
+        NSString* firstName = item.firstname ? item.firstname : @"";
+        NSString* lastName = item.lastname ? item.lastname : @"";
         value = [NSString stringWithFormat:@"%@ %@", firstName, lastName];
     }
     return [NSString stringWithFormat:@"%@ %@", symbol, value];

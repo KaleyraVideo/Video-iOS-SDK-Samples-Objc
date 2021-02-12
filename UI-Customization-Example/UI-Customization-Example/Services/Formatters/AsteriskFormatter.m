@@ -1,11 +1,9 @@
-//
-//  Copyright © 2020 Bandyer. All rights reserved.
-//  See LICENSE.txt for licensing information
-//
-
-#import <Bandyer/Bandyer.h>
+// Copyright © 2020 Bandyer. All rights reserved.
+// See LICENSE.txt for licensing information
 
 #import "AsteriskFormatter.h"
+
+#import <Bandyer/Bandyer.h>
 
 @implementation AsteriskFormatter
 
@@ -13,15 +11,15 @@
 {
     NSString *symbol = @"*";
 
-    if ([obj isKindOfClass:[NSArray<BDKUserInfoDisplayItem*> class]])
+    if ([obj isKindOfClass:[NSArray<BDKUserDetails*> class]])
     {
-        NSArray<BDKUserInfoDisplayItem*>* items = (NSArray<BDKUserInfoDisplayItem*> *)obj;
+        NSArray<BDKUserDetails*>* items = (NSArray<BDKUserDetails*> *)obj;
         return [self stringForItems:items eachItemPrecededBySymbol:symbol];
     }
 
-    if ([obj isKindOfClass:[BDKUserInfoDisplayItem class]])
+    if ([obj isKindOfClass:[BDKUserDetails class]])
     {
-        BDKUserInfoDisplayItem *item = (BDKUserInfoDisplayItem *)obj;
+        BDKUserDetails *item = (BDKUserDetails *)obj;
         return [self stringForItem:item precededBySymbol:symbol];
     }
     

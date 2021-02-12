@@ -228,14 +228,13 @@
 		2FE9A2E22524EC9A00665F89 /* AddressBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE9A2E02524EC9A00665F89 /* AddressBook.m */; };
 		2FE9A2F02524ECC200665F89 /* UserRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE9A2E72524ECC200665F89 /* UserRepository.m */; };
 		2FE9A2F12524ECC200665F89 /* ContactsGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE9A2E82524ECC200665F89 /* ContactsGenerator.m */; };
-		2FE9A2F22524ECC200665F89 /* UserInfoFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE9A2ED2524ECC200665F89 /* UserInfoFetcher.m */; };
+		2FE9A2F22524ECC200665F89 /* UserDetailsProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE9A2ED2524ECC200665F89 /* UserDetailsProvider.m */; };
 		2FE9A2F32524ECC200665F89 /* UserSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE9A2EE2524ECC200665F89 /* UserSession.m */; };
 		32DC9498F4EA424754733B6D /* HashtagFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DC93169A8AE65DB969C77E /* HashtagFormatter.m */; };
 		32DC9572AF9A98DE05274AA5 /* PercentageFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DC98752BAA954AEEB2C783 /* PercentageFormatter.m */; };
 		32DC97F6D55EF0776728390B /* MyFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DC9C99775FA443B3852120 /* MyFormatter.m */; };
 		32DC996D9C2729D31A4EF016 /* AsteriskFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DC985EA482BC3FE836F997 /* AsteriskFormatter.m */; };
 		830B1E259D32C38DC6ECA89C /* Pods_UI_Customization_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8F4AD9350F33A7AAF96049C /* Pods_UI_Customization_Example.framework */; };
-		A1A64442252B174B000D892C /* HandleProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = A1A64440252B174B000D892C /* HandleProvider.m */; };
 		A1DC1D0E25270F3800175858 /* UIFont+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = A1DC1D0D25270F3800175858 /* UIFont+Custom.m */; };
 		A1DC1D172527159500175858 /* UIColor+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = A1DC1D162527159500175858 /* UIColor+Custom.m */; };
 /* End PBXBuildFile section */
@@ -473,13 +472,13 @@
 		2FE9A2DE2524EC9A00665F89 /* AddressBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBook.h; sourceTree = "<group>"; };
 		2FE9A2DF2524EC9A00665F89 /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
 		2FE9A2E02524EC9A00665F89 /* AddressBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBook.m; sourceTree = "<group>"; };
-		2FE9A2E62524ECC200665F89 /* UserInfoFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoFetcher.h; sourceTree = "<group>"; };
+		2FE9A2E62524ECC200665F89 /* UserDetailsProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailsProvider.h; sourceTree = "<group>"; };
 		2FE9A2E72524ECC200665F89 /* UserRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserRepository.m; sourceTree = "<group>"; };
 		2FE9A2E82524ECC200665F89 /* ContactsGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsGenerator.m; sourceTree = "<group>"; };
 		2FE9A2E92524ECC200665F89 /* UserSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSession.h; sourceTree = "<group>"; };
 		2FE9A2EB2524ECC200665F89 /* ContactsGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsGenerator.h; sourceTree = "<group>"; };
 		2FE9A2EC2524ECC200665F89 /* UserRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserRepository.h; sourceTree = "<group>"; };
-		2FE9A2ED2524ECC200665F89 /* UserInfoFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoFetcher.m; sourceTree = "<group>"; };
+		2FE9A2ED2524ECC200665F89 /* UserDetailsProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailsProvider.m; sourceTree = "<group>"; };
 		2FE9A2EE2524ECC200665F89 /* UserSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSession.m; sourceTree = "<group>"; };
 		32DC90981465AC6D474F43DF /* HashtagFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HashtagFormatter.h; sourceTree = "<group>"; };
 		32DC9209B0783DB9934F6267 /* MyFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFormatter.h; sourceTree = "<group>"; };
@@ -489,8 +488,6 @@
 		32DC985EA482BC3FE836F997 /* AsteriskFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsteriskFormatter.m; sourceTree = "<group>"; };
 		32DC98752BAA954AEEB2C783 /* PercentageFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PercentageFormatter.m; sourceTree = "<group>"; };
 		32DC9C99775FA443B3852120 /* MyFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFormatter.m; sourceTree = "<group>"; };
-		A1A64440252B174B000D892C /* HandleProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HandleProvider.m; sourceTree = "<group>"; };
-		A1A64441252B174B000D892C /* HandleProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HandleProvider.h; sourceTree = "<group>"; };
 		A1DC1D0C25270F3800175858 /* UIFont+Custom.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIFont+Custom.h"; sourceTree = "<group>"; };
 		A1DC1D0D25270F3800175858 /* UIFont+Custom.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIFont+Custom.m"; sourceTree = "<group>"; };
 		A1DC1D152527159500175858 /* UIColor+Custom.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+Custom.h"; sourceTree = "<group>"; };
@@ -866,17 +863,15 @@
 		2FE9A2E42524ECC200665F89 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				A1A64441252B174B000D892C /* HandleProvider.h */,
-				A1A64440252B174B000D892C /* HandleProvider.m */,
-				2FE9A2E62524ECC200665F89 /* UserInfoFetcher.h */,
-				2FE9A2E72524ECC200665F89 /* UserRepository.m */,
-				2FE9A2E82524ECC200665F89 /* ContactsGenerator.m */,
-				2FE9A2E92524ECC200665F89 /* UserSession.h */,
 				2FE9A2EB2524ECC200665F89 /* ContactsGenerator.h */,
-				2FE9A2EC2524ECC200665F89 /* UserRepository.h */,
-				2FE9A2ED2524ECC200665F89 /* UserInfoFetcher.m */,
-				2FE9A2EE2524ECC200665F89 /* UserSession.m */,
+				2FE9A2E82524ECC200665F89 /* ContactsGenerator.m */,
 				32DC93CE926BDB03EBDC20B9 /* Formatters */,
+				2FE9A2E62524ECC200665F89 /* UserDetailsProvider.h */,
+				2FE9A2ED2524ECC200665F89 /* UserDetailsProvider.m */,
+				2FE9A2EC2524ECC200665F89 /* UserRepository.h */,
+				2FE9A2E72524ECC200665F89 /* UserRepository.m */,
+				2FE9A2E92524ECC200665F89 /* UserSession.h */,
+				2FE9A2EE2524ECC200665F89 /* UserSession.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1238,11 +1233,10 @@
 				A1DC1D0E25270F3800175858 /* UIFont+Custom.m in Sources */,
 				2FE9A2D02524EC1800665F89 /* ContactTableViewCell.m in Sources */,
 				2FE9A2D22524EC1800665F89 /* ContactsViewController.m in Sources */,
-				A1A64442252B174B000D892C /* HandleProvider.m in Sources */,
 				2FE9A2F02524ECC200665F89 /* UserRepository.m in Sources */,
 				2FE9A29A2524E91A00665F89 /* AppDelegate.m in Sources */,
 				2FE9A2F32524ECC200665F89 /* UserSession.m in Sources */,
-				2FE9A2F22524ECC200665F89 /* UserInfoFetcher.m in Sources */,
+				2FE9A2F22524ECC200665F89 /* UserDetailsProvider.m in Sources */,
 				2FE9A2D92524EC4400665F89 /* CallOptionsItem.m in Sources */,
 				2FE9A2F12524ECC200665F89 /* ContactsGenerator.m in Sources */,
 				2FE9A2DA2524EC4400665F89 /* CallOptionsTableViewController.m in Sources */,
@@ -1401,7 +1395,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "UI-Customization-Example/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1421,7 +1415,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "UI-Customization-Example/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

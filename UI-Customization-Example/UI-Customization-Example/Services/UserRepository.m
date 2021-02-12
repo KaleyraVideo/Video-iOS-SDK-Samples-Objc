@@ -1,10 +1,7 @@
-//
 // Copyright © 2020 Bandyer. All rights reserved.
 // See LICENSE.txt for licensing information
-//
 
 #import "UserRepository.h"
-
 
 @interface UserRepository()
 

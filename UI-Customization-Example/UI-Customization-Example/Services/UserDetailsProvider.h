@@ -8,7 +8,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface HandleProvider : NSObject <BCXHandleProvider>
+@interface UserDetailsProvider : NSObject <BDKUserDetailsProvider>
+
+@property (nonatomic, strong, readonly) AddressBook *addressBook;
 
 - (instancetype)initWithAddressBook:(AddressBook *)addressBook;
 

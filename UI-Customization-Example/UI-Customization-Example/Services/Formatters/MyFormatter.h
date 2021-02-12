@@ -5,9 +5,11 @@
 
 #import <Foundation/Foundation.h>
 
+@class BDKUserDetails;
+
 @interface MyFormatter : NSFormatter
 
-- (NSString *)stringForItems:(NSArray<BDKUserInfoDisplayItem *> *)items eachItemPrecededBySymbol:(NSString *)symbol;
-- (NSString *)stringForItem:(BDKUserInfoDisplayItem *)item precededBySymbol:(NSString *)symbol;
+- (NSString *)stringForItems:(NSArray<BDKUserDetails *> *)items eachItemPrecededBySymbol:(NSString *)symbol;
+- (NSString *)stringForItem:(BDKUserDetails *)item precededBySymbol:(NSString *)symbol;
 
 @end
