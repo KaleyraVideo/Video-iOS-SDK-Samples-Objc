@@ -3,7 +3,6 @@
 //
 
 #import "AppDelegate.h"
-#import "HandleProvider.h"
 #import "AddressBook.h"
 
 #import <Bandyer/Bandyer.h>
@@ -82,10 +81,10 @@
     UIImage *callKitIconImage = [UIImage imageNamed:@"callkit-icon"];
     config.nativeUITemplateIconImageData = UIImagePNGRepresentation(callKitIconImage);
 
-    //The following statements will tell the BandyerSDK to use the app custom BCXHandleProvider. When any call is performed this
-    //object will tell CallKit which is the name of the call opponent it should show on the system call UI.
+    //The following statements will tell the BandyerSDK which handle type your BDKUserDetailsProvider will provide when requested.
+    //When any call is performed the sdk will tell CallKit which is the name of the call opponent it should show on the system call UI
+    //using a CallKit CXHandle object.
     config.supportedHandleTypes = [NSSet setWithObject:@(CXHandleTypeGeneric)];
-    config.handleProvider = [[HandleProvider alloc] initWithAddressBook:[AddressBook sharedInstance]];
 
     //The following statement is going to tell the BandyerSDK which object it must forward device push tokens to when one is received.
     config.pushRegistryDelegate = self;

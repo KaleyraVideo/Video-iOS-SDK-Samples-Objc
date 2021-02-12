@@ -2,19 +2,19 @@
 //  Copyright © 2019 Bandyer. All rights reserved.
 //
 
-#import <Bandyer/Bandyer.h>
-
 #import "LoginViewController.h"
 #import "ContactsViewController.h"
 #import "AddressBook.h"
 #import "UserRepository.h"
 #import "UserSession.h"
-#import "UserInfoFetcher.h"
+#import "UserDetailsProvider.h"
+
+#import <Bandyer/Bandyer.h>
 
 NSString *const kContactsSegueIdentifier = @"showContactsSegue";
 NSString *const kUserCellIdentifier = @"userCellId";
 
-@interface LoginViewController () <BCXCallClientObserver>
+@interface LoginViewController () <BDKCallClientObserver>
 
 @property (nonatomic, strong) NSArray<NSString*> *userIds;
 @property (nonatomic, strong) NSString *selectedUserId;
@@ -155,20 +155,23 @@ NSString *const kUserCellIdentifier = @"userCellId";
     //otherwise the SDK will notify the observer onto its background internal queue.
     [BandyerSDK.instance.callClient addObserver:self queue:dispatch_get_main_queue()];
 
-    //Then we start the call client providing the "user alias" of the user selected.
-    [BandyerSDK.instance.callClient start:self.selectedUserId];
+    //Then open a user session providing the "user alias" of the user selected.
+    [BandyerSDK.instance openSessionWithUserId:self.selectedUserId];
 
-    //Here we start the chat client, providing the "user alias" of the user selected.
-    [BandyerSDK.instance.chatClient start:self.selectedUserId];
+    //Then we start the call client.
+    [BandyerSDK.instance.callClient start];
+
+    //Here we start the chat client
+    [BandyerSDK.instance.chatClient start];
 
     [[AddressBook sharedInstance] updateFromArray:self.userIds currentUser:self.selectedUserId];
     AddressBook *addressBook = [AddressBook sharedInstance];
-    //This statement tells the Bandyer SDK which object, conforming to `UserInfoFetcher` protocol, should use to present contact
+    //This statement tells the Bandyer SDK which object, conforming to `BDKUserDetailsProvider` protocol, should use to present contact
     //information in its views.
     //The backend system does not send any user information to its clients, the SDK and the backend system identify the users in any view
     //using their user aliases, it is your responsibility to match "user aliases" with the corresponding user object in your system
     //and provide those information to the Bandyer SDK.
-    BandyerSDK.instance.userInfoFetcher = [[UserInfoFetcher alloc] initWithAddressBook:addressBook];
+    BandyerSDK.instance.userDetailsProvider = [[UserDetailsProvider alloc] initWithAddressBook:addressBook];
 
     self.addressBook = addressBook;
 }
@@ -177,14 +180,14 @@ NSString *const kUserCellIdentifier = @"userCellId";
 #pragma mark - Call client observer
 //-------------------------------------------------------------------------------------------
 
-- (void)callClientWillStart:(id <BCXCallClient>)client
+- (void)callClientWillStart:(id <BDKCallClient>)client
 {
     self.view.userInteractionEnabled = NO;
 
     [self showActivityIndicatorInNavigationBar];
 }
 
-- (void)callClientDidStart:(id <BCXCallClient>)client
+- (void)callClientDidStart:(id <BDKCallClient>)client
 {
     //Once the call client has started we can proceed to show the end user the contacts screen.
 
@@ -198,7 +201,7 @@ NSString *const kUserCellIdentifier = @"userCellId";
     self.view.userInteractionEnabled = YES;
 }
 
-- (void)callClient:(id <BCXCallClient>)client didFailWithError:(NSError *)error
+- (void)callClient:(id <BDKCallClient>)client didFailWithError:(NSError *)error
 {
     //If the call client could not start for any reasons, this method will be called and the error occurred will be provided as argument.
 

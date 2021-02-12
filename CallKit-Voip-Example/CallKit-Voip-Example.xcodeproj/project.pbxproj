@@ -225,9 +225,8 @@
 		A960D014221AEE0D00C8FAB2 /* AddressBook.m in Sources */ = {isa = PBXBuildFile; fileRef = A960CF3C221AEE0D00C8FAB2 /* AddressBook.m */; };
 		A960D015221AEE0D00C8FAB2 /* UserRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = A960CF3F221AEE0D00C8FAB2 /* UserRepository.m */; };
 		A960D016221AEE0D00C8FAB2 /* ContactsGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = A960CF40221AEE0D00C8FAB2 /* ContactsGenerator.m */; };
-		A960D017221AEE0D00C8FAB2 /* UserInfoFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = A960CF44221AEE0D00C8FAB2 /* UserInfoFetcher.m */; };
+		A960D017221AEE0D00C8FAB2 /* UserDetailsProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = A960CF44221AEE0D00C8FAB2 /* UserDetailsProvider.m */; };
 		A960D018221AEE0D00C8FAB2 /* UserSession.m in Sources */ = {isa = PBXBuildFile; fileRef = A960CF45221AEE0D00C8FAB2 /* UserSession.m */; };
-		A977E3EC247409B80000A0C2 /* HandleProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = A977E3EA247409B80000A0C2 /* HandleProvider.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -459,16 +458,14 @@
 		A960CF3A221AEE0D00C8FAB2 /* AddressBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBook.h; sourceTree = "<group>"; };
 		A960CF3B221AEE0D00C8FAB2 /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
 		A960CF3C221AEE0D00C8FAB2 /* AddressBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBook.m; sourceTree = "<group>"; };
-		A960CF3E221AEE0D00C8FAB2 /* UserInfoFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoFetcher.h; sourceTree = "<group>"; };
+		A960CF3E221AEE0D00C8FAB2 /* UserDetailsProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailsProvider.h; sourceTree = "<group>"; };
 		A960CF3F221AEE0D00C8FAB2 /* UserRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserRepository.m; sourceTree = "<group>"; };
 		A960CF40221AEE0D00C8FAB2 /* ContactsGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsGenerator.m; sourceTree = "<group>"; };
 		A960CF41221AEE0D00C8FAB2 /* UserSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSession.h; sourceTree = "<group>"; };
 		A960CF42221AEE0D00C8FAB2 /* ContactsGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsGenerator.h; sourceTree = "<group>"; };
 		A960CF43221AEE0D00C8FAB2 /* UserRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserRepository.h; sourceTree = "<group>"; };
-		A960CF44221AEE0D00C8FAB2 /* UserInfoFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoFetcher.m; sourceTree = "<group>"; };
+		A960CF44221AEE0D00C8FAB2 /* UserDetailsProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailsProvider.m; sourceTree = "<group>"; };
 		A960CF45221AEE0D00C8FAB2 /* UserSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSession.m; sourceTree = "<group>"; };
-		A977E3EA247409B80000A0C2 /* HandleProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HandleProvider.m; sourceTree = "<group>"; };
-		A977E3EB247409B80000A0C2 /* HandleProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HandleProvider.h; sourceTree = "<group>"; };
 		AC3C18C8CCAE372788EBC051 /* Pods_CallKit_Voip_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CallKit_Voip_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -791,12 +788,10 @@
 		A960CF3D221AEE0D00C8FAB2 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				A977E3EB247409B80000A0C2 /* HandleProvider.h */,
-				A977E3EA247409B80000A0C2 /* HandleProvider.m */,
 				A960CF42221AEE0D00C8FAB2 /* ContactsGenerator.h */,
 				A960CF40221AEE0D00C8FAB2 /* ContactsGenerator.m */,
-				A960CF3E221AEE0D00C8FAB2 /* UserInfoFetcher.h */,
-				A960CF44221AEE0D00C8FAB2 /* UserInfoFetcher.m */,
+				A960CF3E221AEE0D00C8FAB2 /* UserDetailsProvider.h */,
+				A960CF44221AEE0D00C8FAB2 /* UserDetailsProvider.m */,
 				A960CF43221AEE0D00C8FAB2 /* UserRepository.h */,
 				A960CF3F221AEE0D00C8FAB2 /* UserRepository.m */,
 				A960CF41221AEE0D00C8FAB2 /* UserSession.h */,
@@ -1167,10 +1162,9 @@
 				A960D014221AEE0D00C8FAB2 /* AddressBook.m in Sources */,
 				A960CF47221AEE0D00C8FAB2 /* LoginViewController.m in Sources */,
 				A960CAE7221AE7C800C8FAB2 /* main.m in Sources */,
-				A977E3EC247409B80000A0C2 /* HandleProvider.m in Sources */,
 				A960CF46221AEE0D00C8FAB2 /* ContactsViewController.m in Sources */,
 				A960D013221AEE0D00C8FAB2 /* Contact.m in Sources */,
-				A960D017221AEE0D00C8FAB2 /* UserInfoFetcher.m in Sources */,
+				A960D017221AEE0D00C8FAB2 /* UserDetailsProvider.m in Sources */,
 				A960D018221AEE0D00C8FAB2 /* UserSession.m in Sources */,
 				A960D016221AEE0D00C8FAB2 /* ContactsGenerator.m in Sources */,
 				A960D011221AEE0D00C8FAB2 /* CallOptionsItem.m in Sources */,

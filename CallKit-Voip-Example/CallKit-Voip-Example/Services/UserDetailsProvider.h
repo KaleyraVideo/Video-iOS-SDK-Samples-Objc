@@ -1,5 +1,6 @@
-// Copyright © 2020 Bandyer. All rights reserved.
-// See LICENSE.txt for licensing information
+//
+//  Copyright © 2019 Bandyer. All rights reserved.
+//
 
 #import <Foundation/Foundation.h>
 #import <Bandyer/Bandyer.h>
@@ -8,7 +9,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface HandleProvider : NSObject <BCXHandleProvider>
+@interface UserDetailsProvider : NSObject <BDKUserDetailsProvider>
+
+@property (nonatomic, strong, readonly) AddressBook *addressBook;
 
 - (instancetype)initWithAddressBook:(AddressBook *)addressBook;
 
