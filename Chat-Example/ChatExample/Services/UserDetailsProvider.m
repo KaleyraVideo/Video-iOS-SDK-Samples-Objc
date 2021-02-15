@@ -2,7 +2,7 @@
 //  Copyright © 2019 Bandyer. All rights reserved.
 //
 
-#import "UserInfoFetcher.h"
+#import "UserDetailsProvider.h"
 #import "Contact.h"
 #import "AddressBook.h"
 
