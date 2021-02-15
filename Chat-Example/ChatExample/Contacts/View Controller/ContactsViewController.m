@@ -255,7 +255,7 @@ NSString *const kContactCellIdentifier = @"userCellId";
     // if videoButton is true, the channel view controller will show video button on nav bar;
     // if formatter is set, the default formatter will be overridden.
 
-    BCHChannelViewControllerConfiguration* configuration = [[BCHChannelViewControllerConfiguration alloc] initWithAudioButton:YES videoButton:YES formatter:[AsteriskFormatter new]];
+    BDKChannelViewControllerConfiguration* configuration = [[BDKChannelViewControllerConfiguration alloc] initWithAudioButton:YES videoButton:YES formatter:[AsteriskFormatter new]];
     
     //Otherwise you can use other initializer.
     //BDKChannelViewControllerConfiguration* configuration = [[BDKChannelViewControllerConfiguration alloc] init]; //Equivalent to BDKChannelViewControllerConfiguration* configuration = [[BDKChannelViewControllerConfiguration alloc] initWithAudioButton:NO videoButton:NO formatter: nil];
