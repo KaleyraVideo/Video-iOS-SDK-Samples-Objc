@@ -266,7 +266,7 @@ NSString *const kContactCellIdentifier = @"userCellId";
 
     //You can also format the way our SDK displays the user information inside the chat channel page. In this example, the user info will be preceded by an asterisk.
 
-    BCHChannelViewControllerConfiguration* configuration = [[BCHChannelViewControllerConfiguration alloc] initWithAudioButton:YES videoButton:YES formatter:[AsteriskFormatter new] theme: theme];
+    BDKChannelViewControllerConfiguration* configuration = [[BDKChannelViewControllerConfiguration alloc] initWithAudioButton:YES videoButton:YES formatter:[AsteriskFormatter new] theme: theme];
     
     //Otherwise you can use other initializer.
     //BCHChannelViewControllerConfiguration* configuration = [[BCHChannelViewControllerConfiguration alloc] init]; //Equivalent to BCHChannelViewControllerConfiguration* configuration = [[BCHChannelViewControllerConfiguration alloc] initWithAudioButton:NO videoButton:NO formatter:nil theme:nil];
