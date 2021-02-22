@@ -154,7 +154,7 @@ NSString *const kContactCellIdentifier = @"userCellId";
     //The maximumDuration parameter specifies how long the call can last.
     //If you provide 0, the call will be created without a maximum duration value.
     //We store the intent for later use, because we can present again the BDKCallViewController with the same call.
-    BDKStartOutgoingCallIntent *intent = [BDKStartOutgoingCallIntent intentWithCallee:aliases
+    BDKStartOutgoingCallIntent *intent = [BDKStartOutgoingCallIntent intentWithCallees:aliases
                                           options:[BDKCallOptions optionsWithCallType:self.options.type recorded:self.options.record duration:self.options.maximumDuration]];
 
     //Then we trigger a presentation of BDKCallViewController.
@@ -446,27 +446,27 @@ NSString *const kContactCellIdentifier = @"userCellId";
 
 - (void)channelViewController:(BDKChannelViewController *)controller didTapAudioCallWith:(NSArray *)users
 {
-    [self dismissChannelViewController:controller presentCallViewControllerWithCallee:users type:BDKCallTypeAudioUpgradable];
+    [self dismissChannelViewController:controller presentCallViewControllerWithCallees:users type:BDKCallTypeAudioUpgradable];
 }
 
 - (void)channelViewController:(BDKChannelViewController *)controller didTapVideoCallWith:(NSArray *)users
 {
-    [self dismissChannelViewController:controller presentCallViewControllerWithCallee:users type:BDKCallTypeAudioVideo];
+    [self dismissChannelViewController:controller presentCallViewControllerWithCallees:users type:BDKCallTypeAudioVideo];
 }
 
-- (void)dismissChannelViewController:(BDKChannelViewController *)controller presentCallViewControllerWithCallee:(NSArray<NSString *> *)callee type:(BDKCallType)type
+- (void)dismissChannelViewController:(BDKChannelViewController *)controller presentCallViewControllerWithCallees:(NSArray<NSString *> *)callees type:(BDKCallType)type
 {
     if ([self.presentedViewController isKindOfClass:BDKChannelViewController.class])
     {
         [controller dismissViewControllerAnimated:YES completion:^{
-            BDKStartOutgoingCallIntent *intent = [BDKStartOutgoingCallIntent intentWithCallee:callee
+            BDKStartOutgoingCallIntent *intent = [BDKStartOutgoingCallIntent intentWithCallees:callees
                                                                                       options:[BDKCallOptions optionsWithCallType:type]];
             [self presentCallViewControllerForIntent:intent];
         }];
         return;
     }
 
-    BDKStartOutgoingCallIntent *intent = [BDKStartOutgoingCallIntent intentWithCallee:callee
+    BDKStartOutgoingCallIntent *intent = [BDKStartOutgoingCallIntent intentWithCallees:callees
                                                                               options:[BDKCallOptions optionsWithCallType:type]];
     [self presentCallViewControllerForIntent:intent];
 }
