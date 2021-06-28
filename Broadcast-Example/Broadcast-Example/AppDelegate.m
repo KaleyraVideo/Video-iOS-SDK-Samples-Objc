@@ -89,6 +89,14 @@
     //The following statement is going to tell the BandyerSDK which object it must forward device push tokens to when one is received.
     config.pushRegistryDelegate = self;
 
+    if (@available(iOS 12.0, *))
+    {
+        // This configuration object enable the sdk to talk with the broadcast extension
+        config.broadcastScreensharingConfiguration = [BDKBroadcastScreensharingToolConfiguration
+                                                      enabledWithAppGroupIdentifier:@"APP_GROUP_IDENTIFIER_GOES_HERE"
+                                                      broadcastExtensionBundleIdentifier:@"EXTENSION_BUNDLE_IDENTIFIER_GOES_HERE"];
+    }
+
 #error("Please set your notification payload keypath here")
     //This statement is going to tell the BandyerSDK where to look for incoming call information within the VoIP push notifications it receives.
     config.notificationPayloadKeyPath = @"SET YOUR PAYLOAD KEY PATH HERE";
