@@ -91,6 +91,8 @@
 
     if (@available(iOS 12.0, *))
     {
+#error("Please replace APP_GROUP_IDENTIFIER_GOES_HERE with your app group identifier")
+#error("Please replace EXTENSION_BUNDLE_IDENTIFIER_GOES_HERE with your upload extension bundle identifier")
         // This configuration object enable the sdk to talk with the broadcast extension
         config.broadcastScreensharingConfiguration = [BDKBroadcastScreensharingToolConfiguration
                                                       enabledWithAppGroupIdentifier:@"APP_GROUP_IDENTIFIER_GOES_HERE"
