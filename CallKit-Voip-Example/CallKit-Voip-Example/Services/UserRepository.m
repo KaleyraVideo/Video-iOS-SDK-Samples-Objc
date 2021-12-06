@@ -5,7 +5,6 @@
 
 #import "UserRepository.h"
 
-
 @interface UserRepository()
 
 @property (nonatomic, strong, nullable) NSURLSessionDataTask* task;
