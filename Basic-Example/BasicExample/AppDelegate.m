@@ -2,9 +2,9 @@
 //  Copyright © 2019 Bandyer. All rights reserved.
 //
 
-#import <Bandyer/Bandyer.h>
-
 #import "AppDelegate.h"
+
+#import <Bandyer/Bandyer.h>
 
 @interface AppDelegate ()
 
