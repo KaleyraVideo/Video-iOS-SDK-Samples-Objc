@@ -134,52 +134,20 @@
     {
         if ([userActivity.interaction.intent isKindOfClass:INStartCallIntent.class])
         {
-            UIViewController *visibleController = [self visibleController:self.window.rootViewController];
+            [[BDKCallWindow instance] handleINStartCallIntent:(INStartCallIntent *) userActivity.interaction.intent];
 
-            if ([visibleController isKindOfClass:BDKCallViewController.class])
-            {
-                BDKCallViewController *callController = (BDKCallViewController *) visibleController;
-                [callController handleINStartCallIntent:(INStartCallIntent *) userActivity.interaction.intent];
-                return YES;
-            }
+            return YES;
         }
-    } else
+    }
+
+    if ([userActivity.interaction.intent isKindOfClass:INStartVideoCallIntent.class])
     {
-        if (@available (iOS 10.0, *))
-        {
-            if ([userActivity.interaction.intent isKindOfClass:INStartVideoCallIntent.class])
-            {
-                UIViewController *visibleController = [self visibleController:self.window.rootViewController];
+        [[BDKCallWindow instance] handleINStartVideoCallIntent:(INStartVideoCallIntent *) userActivity.interaction.intent];
 
-                if ([visibleController isKindOfClass:BDKCallViewController.class])
-                {
-                    BDKCallViewController *callController = (BDKCallViewController *) visibleController;
-                    [callController handleINStartVideoCallIntent:(INStartVideoCallIntent *) userActivity.interaction.intent];
-                    return YES;
-                }
-            }
-        }
+        return YES;
     }
 
     return NO;
-}
-
-- (UIViewController *)visibleController:(UIViewController *)rootController
-{
-    UIViewController *visibleVC = rootController;
-
-    if (visibleVC.presentedViewController != nil)
-    {
-        if ([visibleVC.presentedViewController isKindOfClass:UINavigationController.class])
-        {
-            UINavigationController *navController = (UINavigationController *) visibleVC.presentedViewController;
-            return [self visibleController:navController.viewControllers.lastObject];
-        }
-
-        return [self visibleController:visibleVC.presentedViewController];
-    }
-
-    return visibleVC;
 }
 
 @end

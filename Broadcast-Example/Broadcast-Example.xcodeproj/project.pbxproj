@@ -225,7 +225,6 @@
 		A9D119FA2689F82000C13F49 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D119152689F82000C13F49 /* main.m */; };
 		A9D119FB2689F82000C13F49 /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D119172689F82000C13F49 /* Contact.m */; };
 		A9D119FC2689F82000C13F49 /* AddressBook.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D1191A2689F82000C13F49 /* AddressBook.m */; };
-		A9D119FE2689F82000C13F49 /* ContactsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D1191F2689F82000C13F49 /* ContactsNavigationController.m */; };
 		A9D119FF2689F82000C13F49 /* ContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D119202689F82000C13F49 /* ContactsViewController.m */; };
 		A9D11A072689F90600C13F49 /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D11A062689F90600C13F49 /* ReplayKit.framework */; };
 		A9D11A0B2689F90600C13F49 /* SampleHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D11A0A2689F90600C13F49 /* SampleHandler.m */; };
@@ -488,9 +487,7 @@
 		A9D1191A2689F82000C13F49 /* AddressBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBook.m; sourceTree = "<group>"; };
 		A9D1191C2689F82000C13F49 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A9D1191E2689F82000C13F49 /* ContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsViewController.h; sourceTree = "<group>"; };
-		A9D1191F2689F82000C13F49 /* ContactsNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsNavigationController.m; sourceTree = "<group>"; };
 		A9D119202689F82000C13F49 /* ContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsViewController.m; sourceTree = "<group>"; };
-		A9D119212689F82000C13F49 /* ContactsNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsNavigationController.h; sourceTree = "<group>"; };
 		A9D11A042689F90600C13F49 /* UploadExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = UploadExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9D11A062689F90600C13F49 /* ReplayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReplayKit.framework; path = System/Library/Frameworks/ReplayKit.framework; sourceTree = SDKROOT; };
 		A9D11A092689F90600C13F49 /* SampleHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SampleHandler.h; sourceTree = "<group>"; };
@@ -859,8 +856,6 @@
 		A9D1191D2689F82000C13F49 /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
-				A9D119212689F82000C13F49 /* ContactsNavigationController.h */,
-				A9D1191F2689F82000C13F49 /* ContactsNavigationController.m */,
 				A9D1191E2689F82000C13F49 /* ContactsViewController.h */,
 				A9D119202689F82000C13F49 /* ContactsViewController.m */,
 			);
@@ -1264,7 +1259,6 @@
 				A9D119272689F82000C13F49 /* UserRepository.m in Sources */,
 				A9D119252689F82000C13F49 /* AppDelegate.m in Sources */,
 				A9D119282689F82000C13F49 /* UserDetailsProvider.m in Sources */,
-				A9D119FE2689F82000C13F49 /* ContactsNavigationController.m in Sources */,
 				A9D1192A2689F82000C13F49 /* UserSession.m in Sources */,
 				A9D119FA2689F82000C13F49 /* main.m in Sources */,
 				A9D119FC2689F82000C13F49 /* AddressBook.m in Sources */,
