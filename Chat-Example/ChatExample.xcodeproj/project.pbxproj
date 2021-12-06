@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		32DC91CA3AA699670CC5C62D /* ContactsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DC98D4296B0235353AE0F4 /* ContactsNavigationController.m */; };
 		32DC972543CE06B7BF3A5E2E /* ContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DC9F9DD0D9389E3A1A5AF8 /* ContactsViewController.m */; };
 		32DC982297630067A3944E1C /* ContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DC95CE48646957EC89EBEC /* ContactTableViewCell.m */; };
 		A12C4665246976D7001ACB93 /* AsteriskFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A12C4664246976D7001ACB93 /* AsteriskFormatter.m */; };
@@ -230,9 +229,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		32DC91679C3570447A8399E0 /* ContactsNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsNavigationController.h; sourceTree = "<group>"; };
 		32DC95CE48646957EC89EBEC /* ContactTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactTableViewCell.m; sourceTree = "<group>"; };
-		32DC98D4296B0235353AE0F4 /* ContactsNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsNavigationController.m; sourceTree = "<group>"; };
 		32DC9AA1C18D12267C1D5DC0 /* ContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsViewController.h; sourceTree = "<group>"; };
 		32DC9B8C581CE9CBBD82AC8B /* ContactTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactTableViewCell.h; sourceTree = "<group>"; };
 		32DC9F9DD0D9389E3A1A5AF8 /* ContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsViewController.m; sourceTree = "<group>"; };
@@ -501,15 +498,6 @@
 			path = "View Controller";
 			sourceTree = "<group>";
 		};
-		32DC9BB58F6D617CBACF50E8 /* Navigation Controller */ = {
-			isa = PBXGroup;
-			children = (
-				32DC91679C3570447A8399E0 /* ContactsNavigationController.h */,
-				32DC98D4296B0235353AE0F4 /* ContactsNavigationController.m */,
-			);
-			path = "Navigation Controller";
-			sourceTree = "<group>";
-		};
 		589018FF18E164EC9974F943 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -531,7 +519,6 @@
 		A13FE82023424ECA002736BC /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
-				32DC9BB58F6D617CBACF50E8 /* Navigation Controller */,
 				32DC9A76A8FE1B4FBD84EAFF /* View Controller */,
 				32DC948E8742A0F3CFD38EFC /* Cell */,
 			);
@@ -1175,7 +1162,6 @@
 				A13FE90423424ECB002736BC /* LoginViewController.m in Sources */,
 				A13FE9D423424ECC002736BC /* UserRepository.m in Sources */,
 				A13FE90723424ECB002736BC /* CallOptionsItem.m in Sources */,
-				32DC91CA3AA699670CC5C62D /* ContactsNavigationController.m in Sources */,
 				32DC972543CE06B7BF3A5E2E /* ContactsViewController.m in Sources */,
 				32DC982297630067A3944E1C /* ContactTableViewCell.m in Sources */,
 			);
