@@ -400,7 +400,6 @@ NSString *const kContactCellIdentifier = @"userCellId";
 
 - (void)callWindow:(BDKCallWindow *)window openChatWith:(BDKOpenChatIntent *)intent
 {
-    [self hideCallViewController];
     [self presentChatFrom:self intent:intent];
 }
 
