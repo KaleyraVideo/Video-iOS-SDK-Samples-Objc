@@ -220,7 +220,6 @@
 		2FE9A2AB2524E91B00665F89 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE9A2AA2524E91B00665F89 /* main.m */; };
 		2FE9A2C42524EB3100665F89 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE9A2C22524EB3100665F89 /* LoginViewController.m */; };
 		2FE9A2D02524EC1800665F89 /* ContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE9A2C82524EC1800665F89 /* ContactTableViewCell.m */; };
-		2FE9A2D12524EC1800665F89 /* ContactsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE9A2CB2524EC1800665F89 /* ContactsNavigationController.m */; };
 		2FE9A2D22524EC1800665F89 /* ContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE9A2CF2524EC1800665F89 /* ContactsViewController.m */; };
 		2FE9A2D92524EC4400665F89 /* CallOptionsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE9A2D72524EC4400665F89 /* CallOptionsItem.m */; };
 		2FE9A2DA2524EC4400665F89 /* CallOptionsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE9A2D82524EC4400665F89 /* CallOptionsTableViewController.m */; };
@@ -460,8 +459,6 @@
 		2FE9A2C32524EB3100665F89 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		2FE9A2C82524EC1800665F89 /* ContactTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactTableViewCell.m; sourceTree = "<group>"; };
 		2FE9A2C92524EC1800665F89 /* ContactTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactTableViewCell.h; sourceTree = "<group>"; };
-		2FE9A2CB2524EC1800665F89 /* ContactsNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsNavigationController.m; sourceTree = "<group>"; };
-		2FE9A2CC2524EC1800665F89 /* ContactsNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsNavigationController.h; sourceTree = "<group>"; };
 		2FE9A2CE2524EC1800665F89 /* ContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsViewController.h; sourceTree = "<group>"; };
 		2FE9A2CF2524EC1800665F89 /* ContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsViewController.m; sourceTree = "<group>"; };
 		2FE9A2D52524EC4400665F89 /* CallOptionsItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallOptionsItem.h; sourceTree = "<group>"; };
@@ -805,7 +802,6 @@
 			isa = PBXGroup;
 			children = (
 				2FE9A2C72524EC1800665F89 /* Cell */,
-				2FE9A2CA2524EC1800665F89 /* Navigation Controller */,
 				2FE9A2CD2524EC1800665F89 /* View Controller */,
 			);
 			path = Contacts;
@@ -818,15 +814,6 @@
 				2FE9A2C92524EC1800665F89 /* ContactTableViewCell.h */,
 			);
 			path = Cell;
-			sourceTree = "<group>";
-		};
-		2FE9A2CA2524EC1800665F89 /* Navigation Controller */ = {
-			isa = PBXGroup;
-			children = (
-				2FE9A2CB2524EC1800665F89 /* ContactsNavigationController.m */,
-				2FE9A2CC2524EC1800665F89 /* ContactsNavigationController.h */,
-			);
-			path = "Navigation Controller";
 			sourceTree = "<group>";
 		};
 		2FE9A2CD2524EC1800665F89 /* View Controller */ = {
@@ -1241,7 +1228,6 @@
 				2FE9A2F12524ECC200665F89 /* ContactsGenerator.m in Sources */,
 				2FE9A2DA2524EC4400665F89 /* CallOptionsTableViewController.m in Sources */,
 				2FE9A2AB2524E91B00665F89 /* main.m in Sources */,
-				2FE9A2D12524EC1800665F89 /* ContactsNavigationController.m in Sources */,
 				2FE9A2E22524EC9A00665F89 /* AddressBook.m in Sources */,
 				2FE9A2E12524EC9A00665F89 /* Contact.m in Sources */,
 				2FE9A2C42524EB3100665F89 /* LoginViewController.m in Sources */,

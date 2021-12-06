@@ -3,26 +3,24 @@
 //  See LICENSE.txt for licensing information
 //
 
-#import <Bandyer/Bandyer.h>
-
 #import "ContactsViewController.h"
 #import "CallOptionsTableViewController.h"
 #import "AddressBook.h"
 #import "CallOptionsItem.h"
 #import "Contact.h"
 #import "UserSession.h"
-#import "ContactsNavigationController.h"
 #import "ContactTableViewCell.h"
 #import "AsteriskFormatter.h"
 #import "PercentageFormatter.h"
 #import "UIColor+Custom.h"
 #import "UIFont+Custom.h"
 
+#import <Bandyer/Bandyer.h>
 
 NSString *const kShowOptionsSegueIdentifier = @"showOptionsSegue";
 NSString *const kContactCellIdentifier = @"userCellId";
 
-@interface ContactsViewController () <CallOptionsTableViewControllerDelegate, BDKCallClientObserver, BDKCallWindowDelegate, BDKChannelViewControllerDelegate, BDKCallBannerControllerDelegate, ContactTableViewCellDelegate, BDKInAppChatNotificationTouchListener, BDKInAppFileShareNotificationTouchListener>
+@interface ContactsViewController () <CallOptionsTableViewControllerDelegate, BDKCallClientObserver, BDKCallWindowDelegate, BDKChannelViewControllerDelegate, ContactTableViewCellDelegate, BDKInAppChatNotificationTouchListener, BDKInAppFileShareNotificationTouchListener>
 
 @property (nonatomic, weak) IBOutlet UISegmentedControl *callTypeControl;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *callOptionsBarButtonItem;
@@ -35,7 +33,6 @@ NSString *const kContactCellIdentifier = @"userCellId";
 
 @property (nonatomic, strong) NSMutableArray<NSIndexPath *> *selectedContacts;
 @property (nonatomic, copy) CallOptionsItem *options;
-@property (nonatomic, strong) BDKCallBannerController *callBannerController;
 
 @end
 
@@ -71,7 +68,6 @@ NSString *const kContactCellIdentifier = @"userCellId";
 {
     _selectedContacts = [NSMutableArray new];
     _options = [CallOptionsItem new];
-    _callBannerController = [BDKCallBannerController new];
 }
 
 //-------------------------------------------------------------------------------------------
@@ -81,9 +77,6 @@ NSString *const kContactCellIdentifier = @"userCellId";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    //When view loads we have to setup custom view controllers.
-    [self setupCallBannerView];
     
     self.userBarButtonItem.title = [UserSession currentUser];
     [self disableMultipleSelection:NO];
@@ -92,17 +85,10 @@ NSString *const kContactCellIdentifier = @"userCellId";
     [BandyerSDK.instance.callClient addObserver:self queue:dispatch_get_main_queue()];
 }
 
-- (void)setupCallBannerView
-{
-    self.callBannerController.delegate = self;
-    self.callBannerController.parentViewController = self;
-}
-
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
 
-    [self.callBannerController show];
     [self setupNotificationCoordinator];
 }
 
@@ -110,16 +96,7 @@ NSString *const kContactCellIdentifier = @"userCellId";
 {
     [super viewWillDisappear:animated];
 
-    [self.callBannerController hide];
     [self disableNotificationCoordinator];
-}
-
-- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id <UIViewControllerTransitionCoordinator>)coordinator
-{
-    //Remember to call viewWillTransitionTo on custom view controllers to update UI while rotating.
-    [self.callBannerController viewWillTransitionTo:size withTransitionCoordinator:coordinator];
-    
-    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
 }
 
 //-------------------------------------------------------------------------------------------
@@ -302,7 +279,7 @@ NSString *const kContactCellIdentifier = @"userCellId";
     }];
 }
 
--(void)presentAlertControllerWithTitle:(NSString *)title message:(NSString *)message
+- (void)presentAlertControllerWithTitle:(NSString *)title message:(NSString *)message
 {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
 
@@ -443,30 +420,6 @@ NSString *const kContactCellIdentifier = @"userCellId";
 }
 
 //-------------------------------------------------------------------------------------------
-#pragma mark - StatusBar appearance
-//-------------------------------------------------------------------------------------------
-
-- (void)restoreStatusBarAppearance
-{
-    ContactsNavigationController *rootNavigationController = (ContactsNavigationController *) self.navigationController;
-
-    if (rootNavigationController)
-    {
-        [rootNavigationController restoreStatusBarAppearance];
-    }
-}
-
-- (void)setStatusBarAppearanceToLight
-{
-    ContactsNavigationController *rootNavigationController = (ContactsNavigationController *) self.navigationController;
-
-    if (rootNavigationController)
-    {
-        [rootNavigationController setStatusBarAppearance:UIStatusBarStyleLightContent];
-    }
-}
-
-//-------------------------------------------------------------------------------------------
 #pragma mark - Call options controller delegate
 //-------------------------------------------------------------------------------------------
 
@@ -486,7 +439,6 @@ NSString *const kContactCellIdentifier = @"userCellId";
 
 - (void)callWindow:(BDKCallWindow *)window openChatWith:(BDKOpenChatIntent *)intent
 {
-    [self hideCallViewController];
     [self presentChatFrom:self intent:intent];
 }
 
@@ -524,30 +476,6 @@ NSString *const kContactCellIdentifier = @"userCellId";
     BDKStartOutgoingCallIntent *intent = [BDKStartOutgoingCallIntent intentWithCallees:callees
                                                                                options:[BDKCallOptions optionsWithCallType:type]];
     [self presentCallViewControllerForIntent:intent];
-}
-
-//-------------------------------------------------------------------------------------------
-#pragma mark - Call Banner Controller delegate
-//-------------------------------------------------------------------------------------------
-
-- (void)callBannerControllerWillHideBanner:(BDKCallBannerController *)controller
-{
-    [self restoreStatusBarAppearance];
-}
-
-- (void)callBannerControllerWillShowBanner:(BDKCallBannerController *)controller
-{
-    [self setStatusBarAppearanceToLight];
-}
-
-- (void)callBannerControllerDidTouchBanner:(BDKCallBannerController *)controller
-{
-    //Please remember to override the current call intent with the one saved inside call window.
-    id <BDKIntent> intent = self.callWindow.intent;
-    if (intent)
-    {
-        [self presentCallViewControllerForIntent:intent];
-    }
 }
 
 //-------------------------------------------------------------------------------------------
