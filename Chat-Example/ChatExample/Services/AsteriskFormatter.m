@@ -1,9 +1,5 @@
 //
-//  AsteriskFormatter.m
-//  ChatExample
-//
-//  Created by Luca Tagliabue on 11/05/2020.
-//  Copyright © 2020 Acme. All rights reserved.
+// Copyright © 2018-Present. Kaleyra S.p.a. All rights reserved.
 //
 
 #import <Bandyer/Bandyer.h>

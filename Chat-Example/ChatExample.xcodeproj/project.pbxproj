@@ -529,8 +529,8 @@
 			isa = PBXGroup;
 			children = (
 				A13FE82623424ECB002736BC /* CallOptionsItem.h */,
-				A13FE82723424ECB002736BC /* CallOptionsTableViewController.h */,
 				A13FE82823424ECB002736BC /* CallOptionsItem.m */,
+				A13FE82723424ECB002736BC /* CallOptionsTableViewController.h */,
 				A13FE82923424ECB002736BC /* CallOptionsTableViewController.m */,
 			);
 			path = "Call Options";
@@ -763,10 +763,10 @@
 		A13FE8F623424ECB002736BC /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A13FE8F723424ECB002736BC /* Contact.m */,
 				A13FE8F823424ECB002736BC /* AddressBook.h */,
-				A13FE8F923424ECB002736BC /* Contact.h */,
 				A13FE8FA23424ECB002736BC /* AddressBook.m */,
+				A13FE8F923424ECB002736BC /* Contact.h */,
+				A13FE8F723424ECB002736BC /* Contact.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -774,6 +774,8 @@
 		A13FE8FB23424ECB002736BC /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				A12C4663246976D7001ACB93 /* AsteriskFormatter.h */,
+				A12C4664246976D7001ACB93 /* AsteriskFormatter.m */,
 				A13FE90023424ECB002736BC /* ContactsGenerator.h */,
 				A13FE8FE23424ECB002736BC /* ContactsGenerator.m */,
 				A13FE8FC23424ECB002736BC /* UserDetailsProvider.h */,
@@ -782,8 +784,6 @@
 				A13FE8FD23424ECB002736BC /* UserRepository.m */,
 				A13FE8FF23424ECB002736BC /* UserSession.h */,
 				A13FE90323424ECB002736BC /* UserSession.m */,
-				A12C4663246976D7001ACB93 /* AsteriskFormatter.h */,
-				A12C4664246976D7001ACB93 /* AsteriskFormatter.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -809,20 +809,20 @@
 		A1EE6142234233770078D13A /* ChatExample */ = {
 			isa = PBXGroup;
 			children = (
-				A12C466224697545001ACB93 /* ChatExample.entitlements */,
+				A1EE6143234233770078D13A /* AppDelegate.h */,
+				A1EE6144234233770078D13A /* AppDelegate.m */,
+				A1EE614F234233780078D13A /* Assets.xcassets */,
 				A13FE82523424ECB002736BC /* Call Options */,
+				A12C466224697545001ACB93 /* ChatExample.entitlements */,
 				A13FE82023424ECA002736BC /* Contacts */,
+				A1EE6154234233780078D13A /* Info.plist */,
+				A1EE6151234233780078D13A /* LaunchScreen.storyboard */,
 				A13FE81D23424ECA002736BC /* Login */,
+				A1EE6155234233780078D13A /* main.m */,
+				A1EE614C234233770078D13A /* Main.storyboard */,
 				A13FE8F623424ECB002736BC /* Model */,
 				A13FE82A23424ECB002736BC /* Resources */,
 				A13FE8FB23424ECB002736BC /* Services */,
-				A1EE6143234233770078D13A /* AppDelegate.h */,
-				A1EE6144234233770078D13A /* AppDelegate.m */,
-				A1EE614C234233770078D13A /* Main.storyboard */,
-				A1EE614F234233780078D13A /* Assets.xcassets */,
-				A1EE6151234233780078D13A /* LaunchScreen.storyboard */,
-				A1EE6154234233780078D13A /* Info.plist */,
-				A1EE6155234233780078D13A /* main.m */,
 			);
 			path = ChatExample;
 			sourceTree = "<group>";
@@ -864,7 +864,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1200;
-				ORGANIZATIONNAME = Acme;
+				ORGANIZATIONNAME = "Kaleyra S.p.a.";
 				TargetAttributes = {
 					A1EE613F234233770078D13A = {
 						CreatedOnToolsVersion = 11.0;
@@ -1309,7 +1309,6 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
-				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = ChatExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1332,7 +1331,6 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
-				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = ChatExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (

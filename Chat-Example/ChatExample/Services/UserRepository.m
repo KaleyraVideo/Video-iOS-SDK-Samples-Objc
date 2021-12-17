@@ -1,10 +1,8 @@
 //
-// Copyright © 2019 Bandyer. All rights reserved.
-// See LICENSE.txt for licensing information
+// Copyright © 2018-Present. Kaleyra S.p.a. All rights reserved.
 //
 
 #import "UserRepository.h"
-
 
 @interface UserRepository()
 
