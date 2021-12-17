@@ -1,13 +1,10 @@
 //
-//  Copyright © 2020 Bandyer. All rights reserved.
-//  See LICENSE.txt for licensing information
+// Copyright © 2018-Present. Kaleyra S.p.a. All rights reserved.
 //
 
 #import "Contact.h"
 
-
 @implementation Contact
-
 
 - (NSString *)fullName
 {
@@ -16,7 +13,6 @@
 
     return nil;
 }
-
 
 - (instancetype)init
 {
@@ -46,6 +42,5 @@
 
     return copy;
 }
-
 
 @end

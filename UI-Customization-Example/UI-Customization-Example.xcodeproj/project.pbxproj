@@ -770,21 +770,21 @@
 		2FE9A2972524E91A00665F89 /* UI-Customization-Example */ = {
 			isa = PBXGroup;
 			children = (
-				A1DC1D0B25270E9700175858 /* Custom Theme */,
-				2F5BC34C25268BA10073F498 /* Resources */,
-				2F5BC340252688AC0073F498 /* Fonts */,
-				2FE9A2E42524ECC200665F89 /* Services */,
-				2FE9A2DC2524EC9A00665F89 /* Model */,
-				2FE9A2D42524EC4400665F89 /* Call Options */,
-				2FE9A2C62524EC1800665F89 /* Contacts */,
-				2FE9A2C12524EB3100665F89 /* Login */,
 				2FE9A2982524E91A00665F89 /* AppDelegate.h */,
 				2FE9A2992524E91A00665F89 /* AppDelegate.m */,
-				2FE9A2A12524E91A00665F89 /* Main.storyboard */,
 				2FE9A2A42524E91B00665F89 /* Assets.xcassets */,
-				2FE9A2A62524E91B00665F89 /* LaunchScreen.storyboard */,
+				2FE9A2D42524EC4400665F89 /* Call Options */,
+				2FE9A2C62524EC1800665F89 /* Contacts */,
+				A1DC1D0B25270E9700175858 /* Custom Theme */,
+				2F5BC340252688AC0073F498 /* Fonts */,
 				2FE9A2A92524E91B00665F89 /* Info.plist */,
+				2FE9A2A62524E91B00665F89 /* LaunchScreen.storyboard */,
+				2FE9A2C12524EB3100665F89 /* Login */,
 				2FE9A2AA2524E91B00665F89 /* main.m */,
+				2FE9A2A12524E91A00665F89 /* Main.storyboard */,
+				2FE9A2DC2524EC9A00665F89 /* Model */,
+				2F5BC34C25268BA10073F498 /* Resources */,
+				2FE9A2E42524ECC200665F89 /* Services */,
 			);
 			path = "UI-Customization-Example";
 			sourceTree = "<group>";
@@ -792,8 +792,8 @@
 		2FE9A2C12524EB3100665F89 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				2FE9A2C22524EB3100665F89 /* LoginViewController.m */,
 				2FE9A2C32524EB3100665F89 /* LoginViewController.h */,
+				2FE9A2C22524EB3100665F89 /* LoginViewController.m */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -810,8 +810,8 @@
 		2FE9A2C72524EC1800665F89 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				2FE9A2C82524EC1800665F89 /* ContactTableViewCell.m */,
 				2FE9A2C92524EC1800665F89 /* ContactTableViewCell.h */,
+				2FE9A2C82524EC1800665F89 /* ContactTableViewCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -829,8 +829,8 @@
 			isa = PBXGroup;
 			children = (
 				2FE9A2D52524EC4400665F89 /* CallOptionsItem.h */,
-				2FE9A2D62524EC4400665F89 /* CallOptionsTableViewController.h */,
 				2FE9A2D72524EC4400665F89 /* CallOptionsItem.m */,
+				2FE9A2D62524EC4400665F89 /* CallOptionsTableViewController.h */,
 				2FE9A2D82524EC4400665F89 /* CallOptionsTableViewController.m */,
 			);
 			path = "Call Options";
@@ -839,10 +839,10 @@
 		2FE9A2DC2524EC9A00665F89 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				2FE9A2DD2524EC9A00665F89 /* Contact.m */,
 				2FE9A2DE2524EC9A00665F89 /* AddressBook.h */,
-				2FE9A2DF2524EC9A00665F89 /* Contact.h */,
 				2FE9A2E02524EC9A00665F89 /* AddressBook.m */,
+				2FE9A2DF2524EC9A00665F89 /* Contact.h */,
+				2FE9A2DD2524EC9A00665F89 /* Contact.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -868,12 +868,12 @@
 			children = (
 				32DC955D5627F46AC347A679 /* AsteriskFormatter.h */,
 				32DC985EA482BC3FE836F997 /* AsteriskFormatter.m */,
-				32DC9C99775FA443B3852120 /* MyFormatter.m */,
-				32DC9209B0783DB9934F6267 /* MyFormatter.h */,
-				32DC98752BAA954AEEB2C783 /* PercentageFormatter.m */,
-				32DC92C4B91BF09D4EBD2655 /* PercentageFormatter.h */,
-				32DC93169A8AE65DB969C77E /* HashtagFormatter.m */,
 				32DC90981465AC6D474F43DF /* HashtagFormatter.h */,
+				32DC93169A8AE65DB969C77E /* HashtagFormatter.m */,
+				32DC9209B0783DB9934F6267 /* MyFormatter.h */,
+				32DC9C99775FA443B3852120 /* MyFormatter.m */,
+				32DC92C4B91BF09D4EBD2655 /* PercentageFormatter.h */,
+				32DC98752BAA954AEEB2C783 /* PercentageFormatter.m */,
 			);
 			path = Formatters;
 			sourceTree = "<group>";
@@ -881,10 +881,10 @@
 		A1DC1D0B25270E9700175858 /* Custom Theme */ = {
 			isa = PBXGroup;
 			children = (
-				A1DC1D0C25270F3800175858 /* UIFont+Custom.h */,
-				A1DC1D0D25270F3800175858 /* UIFont+Custom.m */,
 				A1DC1D152527159500175858 /* UIColor+Custom.h */,
 				A1DC1D162527159500175858 /* UIColor+Custom.m */,
+				A1DC1D0C25270F3800175858 /* UIFont+Custom.h */,
+				A1DC1D0D25270F3800175858 /* UIFont+Custom.m */,
 			);
 			path = "Custom Theme";
 			sourceTree = "<group>";
@@ -926,6 +926,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1200;
+				ORGANIZATIONNAME = "Kaleyra S.p.a.";
 				TargetAttributes = {
 					2FE9A2942524E91A00665F89 = {
 						CreatedOnToolsVersion = 12.0.1;
@@ -1379,7 +1380,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "UI-Customization-Example/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1399,7 +1399,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "UI-Customization-Example/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
