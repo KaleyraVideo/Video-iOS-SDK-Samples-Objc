@@ -862,7 +862,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1200;
-				ORGANIZATIONNAME = Bandyer;
+				ORGANIZATIONNAME = "Kaleyra S.p.a.";
 				TargetAttributes = {
 					A960CAD3221AE7C600C8FAB2 = {
 						CreatedOnToolsVersion = 10.1;
@@ -1311,7 +1311,6 @@
 				CODE_SIGN_ENTITLEMENTS = "CallKit-Voip-Example/CallKit-Voip-Example.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
-				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "CallKit-Voip-Example/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1332,7 +1331,6 @@
 				CODE_SIGN_ENTITLEMENTS = "CallKit-Voip-Example/CallKit-Voip-Example.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
-				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "CallKit-Voip-Example/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
