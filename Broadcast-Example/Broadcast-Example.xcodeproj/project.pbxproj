@@ -556,10 +556,10 @@
 		A9D1180F2689F6FF00C13F49 /* Broadcast-Example */ = {
 			isa = PBXGroup;
 			children = (
-				A9D11A152689FCE200C13F49 /* Broadcast-Example.entitlements */,
 				A9D1191C2689F82000C13F49 /* AppDelegate.h */,
 				A9D118302689F81F00C13F49 /* AppDelegate.m */,
 				A9D1182F2689F81F00C13F49 /* Assets.xcassets */,
+				A9D11A152689FCE200C13F49 /* Broadcast-Example.entitlements */,
 				A9D1183B2689F81F00C13F49 /* Call Options */,
 				A9D1191D2689F82000C13F49 /* Contacts */,
 				A9D118312689F81F00C13F49 /* Info.plist */,
@@ -875,10 +875,10 @@
 		A9D11A082689F90600C13F49 /* UploadExtension */ = {
 			isa = PBXGroup;
 			children = (
-				A9D11A142689FC7200C13F49 /* UploadExtension.entitlements */,
+				A9D11A0C2689F90600C13F49 /* Info.plist */,
 				A9D11A092689F90600C13F49 /* SampleHandler.h */,
 				A9D11A0A2689F90600C13F49 /* SampleHandler.m */,
-				A9D11A0C2689F90600C13F49 /* Info.plist */,
+				A9D11A142689FC7200C13F49 /* UploadExtension.entitlements */,
 			);
 			path = UploadExtension;
 			sourceTree = "<group>";
@@ -932,6 +932,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1250;
+				ORGANIZATIONNAME = "Kaleyra S.p.a.";
 				TargetAttributes = {
 					A9D1180C2689F6FF00C13F49 = {
 						CreatedOnToolsVersion = 12.5.1;
@@ -1424,7 +1425,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Broadcast-Example/Broadcast-Example.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "Broadcast-Example/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1444,7 +1444,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Broadcast-Example/Broadcast-Example.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "Broadcast-Example/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1462,7 +1461,6 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = UploadExtension/UploadExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = UploadExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1483,7 +1481,6 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = UploadExtension/UploadExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = UploadExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
