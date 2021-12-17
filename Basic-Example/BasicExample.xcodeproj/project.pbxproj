@@ -776,9 +776,9 @@
 			isa = PBXGroup;
 			children = (
 				A9060D4621EF238A000D81A7 /* BasicExample */,
-				A9060D4521EF238A000D81A7 /* Products */,
-				3F348AF15E8385A80DE2F772 /* Pods */,
 				5DA8B4D1B6CCDD7B5E52EE51 /* Frameworks */,
+				3F348AF15E8385A80DE2F772 /* Pods */,
+				A9060D4521EF238A000D81A7 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -793,19 +793,19 @@
 		A9060D4621EF238A000D81A7 /* BasicExample */ = {
 			isa = PBXGroup;
 			children = (
-				A12C4661246954D7001ACB93 /* BasicExample.entitlements */,
 				A9060D4721EF238A000D81A7 /* AppDelegate.h */,
 				A9060D4821EF238A000D81A7 /* AppDelegate.m */,
-				A9060D4D21EF238A000D81A7 /* Main.storyboard */,
 				A9060D5021EF238C000D81A7 /* Assets.xcassets */,
-				A9060D5221EF238C000D81A7 /* LaunchScreen.storyboard */,
-				A9060D5521EF238C000D81A7 /* Info.plist */,
-				A9060D5621EF238C000D81A7 /* main.m */,
-				62DD2CBDB9E093E03DC6D57C /* Resources */,
-				62DD27F8496909020A3E21A1 /* Model */,
+				A12C4661246954D7001ACB93 /* BasicExample.entitlements */,
 				62DD27BCD432C77C07CD9E62 /* Call Options */,
 				62DD223767943752BF0F6856 /* Contacts */,
+				A9060D5521EF238C000D81A7 /* Info.plist */,
+				A9060D5221EF238C000D81A7 /* LaunchScreen.storyboard */,
 				62DD2399E80D13BF1E5A82D3 /* Login */,
+				A9060D5621EF238C000D81A7 /* main.m */,
+				A9060D4D21EF238A000D81A7 /* Main.storyboard */,
+				62DD27F8496909020A3E21A1 /* Model */,
+				62DD2CBDB9E093E03DC6D57C /* Resources */,
 				62DD22AC29BE648B314A3A71 /* Services */,
 			);
 			path = BasicExample;
@@ -840,7 +840,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1200;
-				ORGANIZATIONNAME = Bandyer;
+				ORGANIZATIONNAME = "Kaleyra S.p.a.";
 				TargetAttributes = {
 					A9060D4321EF238A000D81A7 = {
 						CreatedOnToolsVersion = 10.1;
@@ -1284,7 +1284,6 @@
 				CODE_SIGN_ENTITLEMENTS = BasicExample/BasicExample.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
-				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = BasicExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1306,7 +1305,6 @@
 				CODE_SIGN_ENTITLEMENTS = BasicExample/BasicExample.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
-				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = BasicExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
