@@ -247,6 +247,9 @@ NSString *const kContactCellIdentifier = @"userCellId";
     NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"SampleVideo_640x360_10mb" ofType:@"mp4"]];
     config.fakeCapturerFileURL = url;
 
+    //Comment this line or set the value to NO to disable the call rating popup
+    config.callRatingEnabled = YES;
+
     //Here, we set the configuration object created. You must set the view controller configuration object before the view controller
     //view is loaded, otherwise an exception is thrown.
     //If a call is already ongoing, the new configuration is skipped.
