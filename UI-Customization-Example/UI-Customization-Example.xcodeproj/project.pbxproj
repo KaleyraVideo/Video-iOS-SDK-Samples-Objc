@@ -236,6 +236,7 @@
 		830B1E259D32C38DC6ECA89C /* Pods_UI_Customization_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8F4AD9350F33A7AAF96049C /* Pods_UI_Customization_Example.framework */; };
 		A1DC1D0E25270F3800175858 /* UIFont+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = A1DC1D0D25270F3800175858 /* UIFont+Custom.m */; };
 		A1DC1D172527159500175858 /* UIColor+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = A1DC1D162527159500175858 /* UIColor+Custom.m */; };
+		F91F6081277F19D300FE3F45 /* ExampleLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F91F6083277F19D300FE3F45 /* ExampleLocalizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -490,6 +491,7 @@
 		A1DC1D152527159500175858 /* UIColor+Custom.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+Custom.h"; sourceTree = "<group>"; };
 		A1DC1D162527159500175858 /* UIColor+Custom.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Custom.m"; sourceTree = "<group>"; };
 		B8F4AD9350F33A7AAF96049C /* Pods_UI_Customization_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UI_Customization_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F91F6082277F19D300FE3F45 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ExampleLocalizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -785,6 +787,7 @@
 				2FE9A2DC2524EC9A00665F89 /* Model */,
 				2F5BC34C25268BA10073F498 /* Resources */,
 				2FE9A2E42524ECC200665F89 /* Services */,
+				F91F6083277F19D300FE3F45 /* ExampleLocalizable.strings */,
 			);
 			path = "UI-Customization-Example";
 			sourceTree = "<group>";
@@ -1124,6 +1127,7 @@
 				2F5BC49925268BA10073F498 /* woman_52.jpg in Resources */,
 				2F5BC42225268BA10073F498 /* man_32.jpg in Resources */,
 				2F5BC49025268BA10073F498 /* woman_43.jpg in Resources */,
+				F91F6081277F19D300FE3F45 /* ExampleLocalizable.strings in Resources */,
 				2F5BC48825268BA10073F498 /* woman_97.jpg in Resources */,
 				2F5BC4AD25268BA10073F498 /* woman_21.jpg in Resources */,
 				2F5BC44125268BA10073F498 /* man_69.jpg in Resources */,
@@ -1256,6 +1260,14 @@
 				2FE9A2A72524E91B00665F89 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		F91F6083277F19D300FE3F45 /* ExampleLocalizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F91F6082277F19D300FE3F45 /* en */,
+			);
+			name = ExampleLocalizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
