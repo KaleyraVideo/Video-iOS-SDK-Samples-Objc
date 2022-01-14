@@ -302,8 +302,8 @@ NSString *const kContactCellIdentifier = @"userCellId";
     NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"SampleVideo_640x360_10mb" ofType:@"mp4"]];
     config.fakeCapturerFileURL = url;
 
-    //Comment this line or set the value to NO to disable the call rating popup
-    config.callRatingEnabled = YES;
+    //Comment this line or set the value to NO to disable the call feedback popup
+    config.isFeedbackEnabled = YES;
 
     //Let's suppose that you want to change the navBarTitleFont only inside the BDKCallViewController.
     //You can achieve this result by allocate a new instance of the theme and set the navBarTitleFont property whit the wanted value.
@@ -332,17 +332,20 @@ NSString *const kContactCellIdentifier = @"userCellId";
 
     config.fileSharingTheme = fileSharingTheme;
 
-    // In the same way as other themes, you can customize the appearance of the call rating popup by creating a new instance of Theme
-    BDKTheme *ratingTheme = [BDKTheme new];
+    // In the same way as other themes, you can customize the appearance of the call feedback popup by creating a new instance of Theme
+    BDKTheme *feedbackTheme = [BDKTheme new];
     // Setting the accentColor property with the desired value will modify the color of the stars and the background color of the submit button
-    ratingTheme.accentColor = [UIColor systemGreenColor];
+    feedbackTheme.accentColor = [UIColor systemGreenColor];
     // You can also customize the font and emphasisFont properties
-    ratingTheme.font = UIFont.robotoThin;
-    ratingTheme.emphasisFont = UIFont.robotoBold;
+    feedbackTheme.font = UIFont.robotoThin;
+    feedbackTheme.emphasisFont = UIFont.robotoBold;
 
-    config.callRatingPopupTheme = ratingTheme;
+    config.feedbackTheme = feedbackTheme;
 
-    // Every single string in the rating popup is customizable.
+    // The delay in seconds after which the feedback popup is automatically dismissed when the user leaves a feedback.
+    config.feedbackAutoDismissDelay = 5;
+
+    // Every single string in the feedback popup is customizable.
     // To make this customization just pass the bundle containing the localization with the right keys valorized, as in this example.
     config.assetsBundle = [NSBundle mainBundle];
     // If your file is named 'Localizable' you don't need to set this value, otherwise provide the filename
