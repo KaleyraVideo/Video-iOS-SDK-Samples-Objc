@@ -8,6 +8,7 @@
 #import "UserRepository.h"
 #import "UserSession.h"
 #import "UserDetailsProvider.h"
+#import "AppDelegate.h"
 
 #import <Bandyer/Bandyer.h>
 
@@ -199,6 +200,9 @@ NSString *const kUserCellIdentifier = @"userCellId";
     [self performSegueWithIdentifier:kContactsSegueIdentifier sender:self];
     [self hideActivityIndicatorFromNavigationBar];
     self.view.userInteractionEnabled = YES;
+
+    // After the call client has started we can also start our custom callDetector, if we decided to turn off the automatic management of the VoIP push notifications by the sdk.
+    [(AppDelegate *)UIApplication.sharedApplication.delegate startCallDetectorIfNeeded];
 }
 
 - (void)callClient:(id <BDKCallClient>)client didFailWithError:(NSError *)error

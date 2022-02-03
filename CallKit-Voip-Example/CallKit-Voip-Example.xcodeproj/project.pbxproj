@@ -226,6 +226,13 @@
 		A960D016221AEE0D00C8FAB2 /* ContactsGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = A960CF40221AEE0D00C8FAB2 /* ContactsGenerator.m */; };
 		A960D017221AEE0D00C8FAB2 /* UserDetailsProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = A960CF44221AEE0D00C8FAB2 /* UserDetailsProvider.m */; };
 		A960D018221AEE0D00C8FAB2 /* UserSession.m in Sources */ = {isa = PBXBuildFile; fileRef = A960CF45221AEE0D00C8FAB2 /* UserSession.m */; };
+		F9BC0AD627AA970300ACAE43 /* ApplicationStateChangeObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = F9BC0AD527AA970300ACAE43 /* ApplicationStateChangeObserver.m */; };
+		F9BC0AD927AAA02400ACAE43 /* VoIPCallDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = F9BC0AD827AAA02400ACAE43 /* VoIPCallDetector.m */; };
+		F9BC0ADE27AAC7BE00ACAE43 /* VoIPPushTokenHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = F9BC0ADD27AAC7BE00ACAE43 /* VoIPPushTokenHandler.m */; };
+		F9BC0AE127AAC96000ACAE43 /* LegacyVoIPPushTokenHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = F9BC0AE027AAC96000ACAE43 /* LegacyVoIPPushTokenHandler.m */; };
+		F9BC0AE427AACAD900ACAE43 /* VoIPPushNotificationHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = F9BC0AE327AACAD900ACAE43 /* VoIPPushNotificationHandler.m */; };
+		F9BC0AE727AACD5600ACAE43 /* ModernVoIPPushNotificationHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = F9BC0AE627AACD5600ACAE43 /* ModernVoIPPushNotificationHandler.m */; };
+		F9BC0AEA27AACDB000ACAE43 /* LegacyVoIPPushNotificationHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = F9BC0AE927AACDB000ACAE43 /* LegacyVoIPPushNotificationHandler.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -464,6 +471,22 @@
 		A960CF44221AEE0D00C8FAB2 /* UserDetailsProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailsProvider.m; sourceTree = "<group>"; };
 		A960CF45221AEE0D00C8FAB2 /* UserSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSession.m; sourceTree = "<group>"; };
 		AC3C18C8CCAE372788EBC051 /* Pods_CallKit_Voip_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CallKit_Voip_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F9BC0AD427AA96C800ACAE43 /* ApplicationStateChangeObserver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApplicationStateChangeObserver.h; sourceTree = "<group>"; };
+		F9BC0AD527AA970300ACAE43 /* ApplicationStateChangeObserver.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApplicationStateChangeObserver.m; sourceTree = "<group>"; };
+		F9BC0AD727AAA01200ACAE43 /* VoIPCallDetector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VoIPCallDetector.h; sourceTree = "<group>"; };
+		F9BC0AD827AAA02400ACAE43 /* VoIPCallDetector.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VoIPCallDetector.m; sourceTree = "<group>"; };
+		F9BC0ADA27AAA0FA00ACAE43 /* VoIPPushNotificationHandlerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VoIPPushNotificationHandlerDelegate.h; sourceTree = "<group>"; };
+		F9BC0ADB27AAA26200ACAE43 /* VoIPCallDetectorDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VoIPCallDetectorDelegate.h; sourceTree = "<group>"; };
+		F9BC0ADC27AAC7AC00ACAE43 /* VoIPPushTokenHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VoIPPushTokenHandler.h; sourceTree = "<group>"; };
+		F9BC0ADD27AAC7BE00ACAE43 /* VoIPPushTokenHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VoIPPushTokenHandler.m; sourceTree = "<group>"; };
+		F9BC0ADF27AAC92600ACAE43 /* LegacyVoIPPushTokenHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LegacyVoIPPushTokenHandler.h; sourceTree = "<group>"; };
+		F9BC0AE027AAC96000ACAE43 /* LegacyVoIPPushTokenHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LegacyVoIPPushTokenHandler.m; sourceTree = "<group>"; };
+		F9BC0AE227AACAC700ACAE43 /* VoIPPushNotificationHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VoIPPushNotificationHandler.h; sourceTree = "<group>"; };
+		F9BC0AE327AACAD900ACAE43 /* VoIPPushNotificationHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VoIPPushNotificationHandler.m; sourceTree = "<group>"; };
+		F9BC0AE527AACD4A00ACAE43 /* ModernVoIPPushNotificationHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModernVoIPPushNotificationHandler.h; sourceTree = "<group>"; };
+		F9BC0AE627AACD5600ACAE43 /* ModernVoIPPushNotificationHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModernVoIPPushNotificationHandler.m; sourceTree = "<group>"; };
+		F9BC0AE827AACDA500ACAE43 /* LegacyVoIPPushNotificationHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LegacyVoIPPushNotificationHandler.h; sourceTree = "<group>"; };
+		F9BC0AE927AACDB000ACAE43 /* LegacyVoIPPushNotificationHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LegacyVoIPPushNotificationHandler.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -511,6 +534,7 @@
 				A960CF3D221AEE0D00C8FAB2 /* Services */,
 				A977E3E62473F7450000A0C2 /* Storyboards */,
 				A977E3E52473F7060000A0C2 /* Support */,
+				F9BC0AD227AA95D100ACAE43 /* VoIPNotifications */,
 			);
 			path = "CallKit-Voip-Example";
 			sourceTree = "<group>";
@@ -833,6 +857,37 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		F9BC0AD227AA95D100ACAE43 /* VoIPNotifications */ = {
+			isa = PBXGroup;
+			children = (
+				F9BC0AD327AA95ED00ACAE43 /* Components */,
+				F9BC0AE827AACDA500ACAE43 /* LegacyVoIPPushNotificationHandler.h */,
+				F9BC0AE927AACDB000ACAE43 /* LegacyVoIPPushNotificationHandler.m */,
+				F9BC0ADF27AAC92600ACAE43 /* LegacyVoIPPushTokenHandler.h */,
+				F9BC0AE027AAC96000ACAE43 /* LegacyVoIPPushTokenHandler.m */,
+				F9BC0AE527AACD4A00ACAE43 /* ModernVoIPPushNotificationHandler.h */,
+				F9BC0AE627AACD5600ACAE43 /* ModernVoIPPushNotificationHandler.m */,
+				F9BC0AD727AAA01200ACAE43 /* VoIPCallDetector.h */,
+				F9BC0AD827AAA02400ACAE43 /* VoIPCallDetector.m */,
+				F9BC0ADB27AAA26200ACAE43 /* VoIPCallDetectorDelegate.h */,
+				F9BC0AE227AACAC700ACAE43 /* VoIPPushNotificationHandler.h */,
+				F9BC0AE327AACAD900ACAE43 /* VoIPPushNotificationHandler.m */,
+				F9BC0ADA27AAA0FA00ACAE43 /* VoIPPushNotificationHandlerDelegate.h */,
+				F9BC0ADC27AAC7AC00ACAE43 /* VoIPPushTokenHandler.h */,
+				F9BC0ADD27AAC7BE00ACAE43 /* VoIPPushTokenHandler.m */,
+			);
+			path = VoIPNotifications;
+			sourceTree = "<group>";
+		};
+		F9BC0AD327AA95ED00ACAE43 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				F9BC0AD427AA96C800ACAE43 /* ApplicationStateChangeObserver.h */,
+				F9BC0AD527AA970300ACAE43 /* ApplicationStateChangeObserver.m */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1153,16 +1208,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9BC0AE727AACD5600ACAE43 /* ModernVoIPPushNotificationHandler.m in Sources */,
+				F9BC0AE427AACAD900ACAE43 /* VoIPPushNotificationHandler.m in Sources */,
 				A960D012221AEE0D00C8FAB2 /* CallOptionsTableViewController.m in Sources */,
 				A960D014221AEE0D00C8FAB2 /* AddressBook.m in Sources */,
+				F9BC0AD627AA970300ACAE43 /* ApplicationStateChangeObserver.m in Sources */,
+				F9BC0AD927AAA02400ACAE43 /* VoIPCallDetector.m in Sources */,
 				A960CF47221AEE0D00C8FAB2 /* LoginViewController.m in Sources */,
 				A960CAE7221AE7C800C8FAB2 /* main.m in Sources */,
 				A960CF46221AEE0D00C8FAB2 /* ContactsViewController.m in Sources */,
+				F9BC0ADE27AAC7BE00ACAE43 /* VoIPPushTokenHandler.m in Sources */,
 				A960D013221AEE0D00C8FAB2 /* Contact.m in Sources */,
+				F9BC0AE127AAC96000ACAE43 /* LegacyVoIPPushTokenHandler.m in Sources */,
 				A960D017221AEE0D00C8FAB2 /* UserDetailsProvider.m in Sources */,
 				A960D018221AEE0D00C8FAB2 /* UserSession.m in Sources */,
 				A960D016221AEE0D00C8FAB2 /* ContactsGenerator.m in Sources */,
 				A960D011221AEE0D00C8FAB2 /* CallOptionsItem.m in Sources */,
+				F9BC0AEA27AACDB000ACAE43 /* LegacyVoIPPushNotificationHandler.m in Sources */,
 				A960CAD9221AE7C600C8FAB2 /* AppDelegate.m in Sources */,
 				A960D015221AEE0D00C8FAB2 /* UserRepository.m in Sources */,
 			);
