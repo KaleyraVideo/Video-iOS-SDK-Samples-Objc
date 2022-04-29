@@ -233,8 +233,6 @@
 		F9CB5937281BFCB5008D7998 /* ContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F9CB5853281BFCB5008D7998 /* ContactTableViewCell.m */; };
 		F9CB5938281BFCB5008D7998 /* ContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9CB5857281BFCB5008D7998 /* ContactsViewController.m */; };
 		F9CB5939281BFCB5008D7998 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9CB5859281BFCB5008D7998 /* LoginViewController.m */; };
-		F9CB593E281BFE34008D7998 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9CB593A281BFE34008D7998 /* Main.storyboard */; };
-		F9CB593F281BFE34008D7998 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9CB593C281BFE34008D7998 /* LaunchScreen.storyboard */; };
 		F9CB5943281C1386008D7998 /* UIColor+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = F9CB5942281C1386008D7998 /* UIColor+Custom.m */; };
 		F9CB5946281C1874008D7998 /* UIFont+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = F9CB5945281C1874008D7998 /* UIFont+Custom.m */; };
 		F9CB5949281C2679008D7998 /* HashtagFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = F9CB5948281C2679008D7998 /* HashtagFormatter.m */; };
@@ -243,6 +241,11 @@
 		F9CB5954281C27F0008D7998 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F9CB594F281C27F0008D7998 /* Roboto-Light.ttf */; };
 		F9CB5955281C27F0008D7998 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F9CB5950281C27F0008D7998 /* Roboto-Bold.ttf */; };
 		F9CB5956281C27F0008D7998 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F9CB5951281C27F0008D7998 /* Roboto-Medium.ttf */; };
+		F9CB5957281C29C8008D7998 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9CB593D281BFE34008D7998 /* LaunchScreen.storyboard */; };
+		F9CB5958281C29C8008D7998 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9CB593B281BFE34008D7998 /* Main.storyboard */; };
+		F9CB595B281C2B37008D7998 /* PercentageFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = F9CB595A281C2B37008D7998 /* PercentageFormatter.m */; };
+		F9CB595D281C2B94008D7998 /* ExampleLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F9CB595C281C2B94008D7998 /* ExampleLocalizable.strings */; };
+		F9CB5960281C2D2D008D7998 /* MyFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = F9CB595F281C2D2C008D7998 /* MyFormatter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -503,8 +506,8 @@
 		F9CB5859281BFCB5008D7998 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		F9CB585A281BFCB5008D7998 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		F9CB585B281BFCB5008D7998 /* KaleyraVideoSample.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = KaleyraVideoSample.entitlements; sourceTree = "<group>"; };
-		F9CB593B281BFE34008D7998 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
-		F9CB593D281BFE34008D7998 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F9CB593B281BFE34008D7998 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		F9CB593D281BFE34008D7998 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F9CB5941281C12C0008D7998 /* UIColor+Custom.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+Custom.h"; sourceTree = "<group>"; };
 		F9CB5942281C1386008D7998 /* UIColor+Custom.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Custom.m"; sourceTree = "<group>"; };
 		F9CB5944281C1827008D7998 /* UIFont+Custom.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIFont+Custom.h"; sourceTree = "<group>"; };
@@ -516,6 +519,11 @@
 		F9CB594F281C27F0008D7998 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
 		F9CB5950281C27F0008D7998 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		F9CB5951281C27F0008D7998 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		F9CB5959281C2B37008D7998 /* PercentageFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PercentageFormatter.h; sourceTree = "<group>"; };
+		F9CB595A281C2B37008D7998 /* PercentageFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PercentageFormatter.m; sourceTree = "<group>"; };
+		F9CB595C281C2B94008D7998 /* ExampleLocalizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = ExampleLocalizable.strings; sourceTree = "<group>"; };
+		F9CB595E281C2D2C008D7998 /* MyFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFormatter.h; sourceTree = "<group>"; };
+		F9CB595F281C2D2C008D7998 /* MyFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFormatter.m; sourceTree = "<group>"; };
 		FF7D4B867CEE4BF871B6FDB3 /* Pods-KaleyraVideoExamples.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KaleyraVideoExamples.debug.xcconfig"; path = "Target Support Files/Pods-KaleyraVideoExamples/Pods-KaleyraVideoExamples.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -660,6 +668,7 @@
 				F9CB5775281BFCB3008D7998 /* SampleVideo_640x360_10mb.mp4 */,
 				F9CB594B281C278D008D7998 /* Storyboards */,
 				F9CB57DB281BFCB4008D7998 /* Women */,
+				F9CB595C281C2B94008D7998 /* ExampleLocalizable.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -892,18 +901,22 @@
 		F9CB5846281BFCB5008D7998 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				F9CB5847281BFCB5008D7998 /* AsteriskFormatter.m */,
-				F9CB5848281BFCB5008D7998 /* UserRepository.m */,
-				F9CB5849281BFCB5008D7998 /* UserDetailsProvider.m */,
-				F9CB584A281BFCB5008D7998 /* ContactsGenerator.m */,
-				F9CB584B281BFCB5008D7998 /* UserSession.h */,
 				F9CB584C281BFCB5008D7998 /* AsteriskFormatter.h */,
+				F9CB5847281BFCB5008D7998 /* AsteriskFormatter.m */,
 				F9CB584D281BFCB5008D7998 /* ContactsGenerator.h */,
-				F9CB584E281BFCB5008D7998 /* UserRepository.h */,
-				F9CB584F281BFCB5008D7998 /* UserDetailsProvider.h */,
-				F9CB5850281BFCB5008D7998 /* UserSession.m */,
+				F9CB584A281BFCB5008D7998 /* ContactsGenerator.m */,
 				F9CB5947281C2669008D7998 /* HashtagFormatter.h */,
 				F9CB5948281C2679008D7998 /* HashtagFormatter.m */,
+				F9CB595E281C2D2C008D7998 /* MyFormatter.h */,
+				F9CB595F281C2D2C008D7998 /* MyFormatter.m */,
+				F9CB5959281C2B37008D7998 /* PercentageFormatter.h */,
+				F9CB595A281C2B37008D7998 /* PercentageFormatter.m */,
+				F9CB584F281BFCB5008D7998 /* UserDetailsProvider.h */,
+				F9CB5849281BFCB5008D7998 /* UserDetailsProvider.m */,
+				F9CB584E281BFCB5008D7998 /* UserRepository.h */,
+				F9CB5848281BFCB5008D7998 /* UserRepository.m */,
+				F9CB584B281BFCB5008D7998 /* UserSession.h */,
+				F9CB5850281BFCB5008D7998 /* UserSession.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -958,8 +971,8 @@
 		F9CB594B281C278D008D7998 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				F9CB593C281BFE34008D7998 /* LaunchScreen.storyboard */,
-				F9CB593A281BFE34008D7998 /* Main.storyboard */,
+				F9CB593D281BFE34008D7998 /* LaunchScreen.storyboard */,
+				F9CB593B281BFE34008D7998 /* Main.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -1178,7 +1191,7 @@
 				F9CB588C281BFCB5008D7998 /* man_79.jpg in Resources */,
 				F9CB58FE281BFCB5008D7998 /* woman_20.jpg in Resources */,
 				F9CB58B7281BFCB5008D7998 /* man_75.jpg in Resources */,
-				F9CB593E281BFE34008D7998 /* Main.storyboard in Resources */,
+				F9CB5958281C29C8008D7998 /* Main.storyboard in Resources */,
 				F9CB592F281BFCB5008D7998 /* Assets.xcassets in Resources */,
 				F9CB58D8281BFCB5008D7998 /* woman_95.jpg in Resources */,
 				F9CB591D281BFCB5008D7998 /* woman_77.jpg in Resources */,
@@ -1203,6 +1216,7 @@
 				F9CB587F281BFCB5008D7998 /* man_91.jpg in Resources */,
 				F9CB5909281BFCB5008D7998 /* woman_17.jpg in Resources */,
 				F9CB58D2281BFCB5008D7998 /* woman_40.jpg in Resources */,
+				F9CB595D281C2B94008D7998 /* ExampleLocalizable.strings in Resources */,
 				F9CB58F2281BFCB5008D7998 /* woman_79.jpg in Resources */,
 				F9CB58AD281BFCB5008D7998 /* man_59.jpg in Resources */,
 				F9CB586F281BFCB5008D7998 /* man_26.jpg in Resources */,
@@ -1216,7 +1230,7 @@
 				F9CB58AC281BFCB5008D7998 /* man_65.jpg in Resources */,
 				F9CB586C281BFCB5008D7998 /* man_25.jpg in Resources */,
 				F9CB5901281BFCB5008D7998 /* woman_18.jpg in Resources */,
-				F9CB593F281BFE34008D7998 /* LaunchScreen.storyboard in Resources */,
+				F9CB5957281C29C8008D7998 /* LaunchScreen.storyboard in Resources */,
 				F9CB588B281BFCB5008D7998 /* man_92.jpg in Resources */,
 				F9CB58CF281BFCB5008D7998 /* woman_41.jpg in Resources */,
 				F9CB58C1281BFCB5008D7998 /* man_38.jpg in Resources */,
@@ -1316,7 +1330,9 @@
 				F9CB5862281BFCB5008D7998 /* LegacyVoIPPushTokenHandler.m in Sources */,
 				F9CB5865281BFCB5008D7998 /* AddressBook.m in Sources */,
 				F9CB5949281C2679008D7998 /* HashtagFormatter.m in Sources */,
+				F9CB595B281C2B37008D7998 /* PercentageFormatter.m in Sources */,
 				F9CB585F281BFCB5008D7998 /* ApplicationStateChangeObserver.m in Sources */,
+				F9CB5960281C2D2D008D7998 /* MyFormatter.m in Sources */,
 				F9CB5861281BFCB5008D7998 /* VoIPCallDetector.m in Sources */,
 				F9CB5860281BFCB5008D7998 /* LegacyVoIPPushNotificationHandler.m in Sources */,
 				F9CB585D281BFCB5008D7998 /* VoIPPushNotificationHandler.m in Sources */,
@@ -1326,25 +1342,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		F9CB593A281BFE34008D7998 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F9CB593B281BFE34008D7998 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		F9CB593C281BFE34008D7998 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F9CB593D281BFE34008D7998 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		F94A9038281BE270000C2633 /* Debug */ = {
