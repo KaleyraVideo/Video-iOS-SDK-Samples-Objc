@@ -16,3 +16,5 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+/Users/alessandro.limardo/Repos/Bandyer-iOS/Source/SDK/Configuration/BDKConfig.h
+/Users/alessandro.limardo/Repos/Bandyer-iOS/Source/SDK/Configuration/BDKConfig.m

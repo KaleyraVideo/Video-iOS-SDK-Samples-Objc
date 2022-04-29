@@ -3,6 +3,7 @@
 //
 
 #import "UserRepository.h"
+#import "Constants.h"
 
 @interface UserRepository()
 
@@ -35,10 +36,9 @@
 
     if (self)
     {
-#error "Here we are retrieving user information from the Bandyer servers. In order to retrieve user information you must provide a Bandyer REST Api Key and a REST Endpoint. Beware your app should retrieve user information from YOUR backend system not directly from ours."
-        NSString *urlString = @"REST URL";
+        NSString *urlString = [Constants restURL];
         _url = [NSURL URLWithString:urlString];
-        _apiKey = @"REST API KEY";
+        _apiKey = [Constants apiKey];
     }
 
     return self;
