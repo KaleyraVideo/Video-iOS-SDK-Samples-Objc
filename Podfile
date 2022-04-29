@@ -5,3 +5,9 @@ target 'KaleyraVideoSample' do
 
   pod 'Bandyer'
 end
+
+target 'BroadcastExtension' do
+  platform :ios, '12.0'
+
+  pod 'BandyerBroadcastExtension'
+end
