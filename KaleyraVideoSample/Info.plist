@@ -10,5 +10,10 @@
 		<string>Roboto-Bold.ttf</string>
 		<string>Roboto-Thin.ttf</string>
 	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+		<string>voip</string>
+	</array>
 </dict>
 </plist>
