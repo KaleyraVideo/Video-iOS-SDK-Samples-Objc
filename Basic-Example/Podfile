@@ -1,9 +1,0 @@
-project 'BasicExample.xcodeproj'
-
-platform :ios, '10.0'
-
-target 'BasicExample' do
-  use_frameworks!
-
-  pod 'Bandyer'
-end
