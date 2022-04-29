@@ -235,6 +235,14 @@
 		F9CB5939281BFCB5008D7998 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9CB5859281BFCB5008D7998 /* LoginViewController.m */; };
 		F9CB593E281BFE34008D7998 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9CB593A281BFE34008D7998 /* Main.storyboard */; };
 		F9CB593F281BFE34008D7998 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9CB593C281BFE34008D7998 /* LaunchScreen.storyboard */; };
+		F9CB5943281C1386008D7998 /* UIColor+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = F9CB5942281C1386008D7998 /* UIColor+Custom.m */; };
+		F9CB5946281C1874008D7998 /* UIFont+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = F9CB5945281C1874008D7998 /* UIFont+Custom.m */; };
+		F9CB5949281C2679008D7998 /* HashtagFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = F9CB5948281C2679008D7998 /* HashtagFormatter.m */; };
+		F9CB5952281C27F0008D7998 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F9CB594D281C27F0008D7998 /* Roboto-Thin.ttf */; };
+		F9CB5953281C27F0008D7998 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F9CB594E281C27F0008D7998 /* Roboto-Regular.ttf */; };
+		F9CB5954281C27F0008D7998 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F9CB594F281C27F0008D7998 /* Roboto-Light.ttf */; };
+		F9CB5955281C27F0008D7998 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F9CB5950281C27F0008D7998 /* Roboto-Bold.ttf */; };
+		F9CB5956281C27F0008D7998 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F9CB5951281C27F0008D7998 /* Roboto-Medium.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -497,6 +505,17 @@
 		F9CB585B281BFCB5008D7998 /* KaleyraVideoSample.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = KaleyraVideoSample.entitlements; sourceTree = "<group>"; };
 		F9CB593B281BFE34008D7998 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
 		F9CB593D281BFE34008D7998 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F9CB5941281C12C0008D7998 /* UIColor+Custom.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+Custom.h"; sourceTree = "<group>"; };
+		F9CB5942281C1386008D7998 /* UIColor+Custom.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Custom.m"; sourceTree = "<group>"; };
+		F9CB5944281C1827008D7998 /* UIFont+Custom.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIFont+Custom.h"; sourceTree = "<group>"; };
+		F9CB5945281C1874008D7998 /* UIFont+Custom.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIFont+Custom.m"; sourceTree = "<group>"; };
+		F9CB5947281C2669008D7998 /* HashtagFormatter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HashtagFormatter.h; sourceTree = "<group>"; };
+		F9CB5948281C2679008D7998 /* HashtagFormatter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HashtagFormatter.m; sourceTree = "<group>"; };
+		F9CB594D281C27F0008D7998 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
+		F9CB594E281C27F0008D7998 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		F9CB594F281C27F0008D7998 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
+		F9CB5950281C27F0008D7998 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		F9CB5951281C27F0008D7998 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		FF7D4B867CEE4BF871B6FDB3 /* Pods-KaleyraVideoExamples.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KaleyraVideoExamples.debug.xcconfig"; path = "Target Support Files/Pods-KaleyraVideoExamples/Pods-KaleyraVideoExamples.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -537,18 +556,18 @@
 			children = (
 				F9CB575A281BFCB3008D7998 /* AppDelegate.h */,
 				F9CB576E281BFCB3008D7998 /* AppDelegate.m */,
-				F9CB5840281BFCB4008D7998 /* Assets.xcassets */,
 				F9CB575B281BFCB3008D7998 /* Base.lproj */,
 				F9CB5841281BFCB4008D7998 /* Call Options */,
 				F9CB5851281BFCB5008D7998 /* Contacts */,
+				F9CB5940281C120D008D7998 /* Custom Theme */,
+				F94A9035281BE270000C2633 /* Info.plist */,
 				F9CB585B281BFCB5008D7998 /* KaleyraVideoSample.entitlements */,
 				F9CB5858281BFCB5008D7998 /* Login */,
+				F94A9036281BE270000C2633 /* main.m */,
 				F9CB576F281BFCB3008D7998 /* Model */,
 				F9CB5774281BFCB3008D7998 /* Resources */,
 				F9CB5846281BFCB5008D7998 /* Services */,
 				F9CB575C281BFCB3008D7998 /* VoIPNotifications */,
-				F94A9035281BE270000C2633 /* Info.plist */,
-				F94A9036281BE270000C2633 /* main.m */,
 			);
 			path = KaleyraVideoSample;
 			sourceTree = "<group>";
@@ -586,8 +605,6 @@
 		F9CB575B281BFCB3008D7998 /* Base.lproj */ = {
 			isa = PBXGroup;
 			children = (
-				F9CB593C281BFE34008D7998 /* LaunchScreen.storyboard */,
-				F9CB593A281BFE34008D7998 /* Main.storyboard */,
 			);
 			path = Base.lproj;
 			sourceTree = "<group>";
@@ -595,21 +612,21 @@
 		F9CB575C281BFCB3008D7998 /* VoIPNotifications */ = {
 			isa = PBXGroup;
 			children = (
-				F9CB575D281BFCB3008D7998 /* VoIPPushNotificationHandlerDelegate.h */,
-				F9CB575E281BFCB3008D7998 /* VoIPCallDetector.h */,
-				F9CB575F281BFCB3008D7998 /* ModernVoIPPushNotificationHandler.m */,
-				F9CB5760281BFCB3008D7998 /* LegacyVoIPPushNotificationHandler.h */,
-				F9CB5761281BFCB3008D7998 /* VoIPPushNotificationHandler.m */,
-				F9CB5762281BFCB3008D7998 /* VoIPCallDetectorDelegate.h */,
-				F9CB5763281BFCB3008D7998 /* VoIPPushTokenHandler.m */,
-				F9CB5764281BFCB3008D7998 /* LegacyVoIPPushTokenHandler.h */,
 				F9CB5765281BFCB3008D7998 /* Components */,
+				F9CB5760281BFCB3008D7998 /* LegacyVoIPPushNotificationHandler.h */,
 				F9CB5768281BFCB3008D7998 /* LegacyVoIPPushNotificationHandler.m */,
-				F9CB5769281BFCB3008D7998 /* ModernVoIPPushNotificationHandler.h */,
-				F9CB576A281BFCB3008D7998 /* VoIPCallDetector.m */,
+				F9CB5764281BFCB3008D7998 /* LegacyVoIPPushTokenHandler.h */,
 				F9CB576B281BFCB3008D7998 /* LegacyVoIPPushTokenHandler.m */,
-				F9CB576C281BFCB3008D7998 /* VoIPPushTokenHandler.h */,
+				F9CB5769281BFCB3008D7998 /* ModernVoIPPushNotificationHandler.h */,
+				F9CB575F281BFCB3008D7998 /* ModernVoIPPushNotificationHandler.m */,
+				F9CB575E281BFCB3008D7998 /* VoIPCallDetector.h */,
+				F9CB576A281BFCB3008D7998 /* VoIPCallDetector.m */,
+				F9CB5762281BFCB3008D7998 /* VoIPCallDetectorDelegate.h */,
 				F9CB576D281BFCB3008D7998 /* VoIPPushNotificationHandler.h */,
+				F9CB5761281BFCB3008D7998 /* VoIPPushNotificationHandler.m */,
+				F9CB575D281BFCB3008D7998 /* VoIPPushNotificationHandlerDelegate.h */,
+				F9CB576C281BFCB3008D7998 /* VoIPPushTokenHandler.h */,
+				F9CB5763281BFCB3008D7998 /* VoIPPushTokenHandler.m */,
 			);
 			path = VoIPNotifications;
 			sourceTree = "<group>";
@@ -637,8 +654,11 @@
 		F9CB5774281BFCB3008D7998 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				F9CB5775281BFCB3008D7998 /* SampleVideo_640x360_10mb.mp4 */,
+				F9CB5840281BFCB4008D7998 /* Assets.xcassets */,
+				F9CB594C281C27C3008D7998 /* Fonts */,
 				F9CB5776281BFCB3008D7998 /* Men */,
+				F9CB5775281BFCB3008D7998 /* SampleVideo_640x360_10mb.mp4 */,
+				F9CB594B281C278D008D7998 /* Storyboards */,
 				F9CB57DB281BFCB4008D7998 /* Women */,
 			);
 			path = Resources;
@@ -882,6 +902,8 @@
 				F9CB584E281BFCB5008D7998 /* UserRepository.h */,
 				F9CB584F281BFCB5008D7998 /* UserDetailsProvider.h */,
 				F9CB5850281BFCB5008D7998 /* UserSession.m */,
+				F9CB5947281C2669008D7998 /* HashtagFormatter.h */,
+				F9CB5948281C2679008D7998 /* HashtagFormatter.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -920,6 +942,38 @@
 				F9CB585A281BFCB5008D7998 /* LoginViewController.h */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		F9CB5940281C120D008D7998 /* Custom Theme */ = {
+			isa = PBXGroup;
+			children = (
+				F9CB5941281C12C0008D7998 /* UIColor+Custom.h */,
+				F9CB5942281C1386008D7998 /* UIColor+Custom.m */,
+				F9CB5944281C1827008D7998 /* UIFont+Custom.h */,
+				F9CB5945281C1874008D7998 /* UIFont+Custom.m */,
+			);
+			path = "Custom Theme";
+			sourceTree = "<group>";
+		};
+		F9CB594B281C278D008D7998 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				F9CB593C281BFE34008D7998 /* LaunchScreen.storyboard */,
+				F9CB593A281BFE34008D7998 /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		F9CB594C281C27C3008D7998 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				F9CB5950281C27F0008D7998 /* Roboto-Bold.ttf */,
+				F9CB594F281C27F0008D7998 /* Roboto-Light.ttf */,
+				F9CB5951281C27F0008D7998 /* Roboto-Medium.ttf */,
+				F9CB594E281C27F0008D7998 /* Roboto-Regular.ttf */,
+				F9CB594D281C27F0008D7998 /* Roboto-Thin.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -995,6 +1049,7 @@
 				F9CB58D4281BFCB5008D7998 /* woman_68.jpg in Resources */,
 				F9CB58B4281BFCB5008D7998 /* man_74.jpg in Resources */,
 				F9CB58EF281BFCB5008D7998 /* woman_78.jpg in Resources */,
+				F9CB5955281C27F0008D7998 /* Roboto-Bold.ttf in Resources */,
 				F9CB5914281BFCB5008D7998 /* woman_13.jpg in Resources */,
 				F9CB58D9281BFCB5008D7998 /* woman_42.jpg in Resources */,
 				F9CB58B2281BFCB5008D7998 /* man_70.jpg in Resources */,
@@ -1007,6 +1062,7 @@
 				F9CB586E281BFCB5008D7998 /* man_27.jpg in Resources */,
 				F9CB58C6281BFCB5008D7998 /* man_16.jpg in Resources */,
 				F9CB5883281BFCB5008D7998 /* man_50.jpg in Resources */,
+				F9CB5954281C27F0008D7998 /* Roboto-Light.ttf in Resources */,
 				F9CB5903281BFCB5008D7998 /* woman_31.jpg in Resources */,
 				F9CB5926281BFCB5008D7998 /* woman_73.jpg in Resources */,
 				F9CB58FC281BFCB5008D7998 /* woman_35.jpg in Resources */,
@@ -1064,6 +1120,7 @@
 				F9CB589D281BFCB5008D7998 /* man_81.jpg in Resources */,
 				F9CB5894281BFCB5008D7998 /* man_5.jpg in Resources */,
 				F9CB5899281BFCB5008D7998 /* man_54.jpg in Resources */,
+				F9CB5956281C27F0008D7998 /* Roboto-Medium.ttf in Resources */,
 				F9CB5916281BFCB5008D7998 /* woman_74.jpg in Resources */,
 				F9CB5918281BFCB5008D7998 /* woman_61.jpg in Resources */,
 				F9CB590A281BFCB5008D7998 /* woman_16.jpg in Resources */,
@@ -1127,6 +1184,7 @@
 				F9CB591D281BFCB5008D7998 /* woman_77.jpg in Resources */,
 				F9CB58EE281BFCB5008D7998 /* woman_44.jpg in Resources */,
 				F9CB5908281BFCB5008D7998 /* woman_32.jpg in Resources */,
+				F9CB5953281C27F0008D7998 /* Roboto-Regular.ttf in Resources */,
 				F9CB58E9281BFCB5008D7998 /* woman_91.jpg in Resources */,
 				F9CB58A3281BFCB5008D7998 /* man_57.jpg in Resources */,
 				F9CB5866281BFCB5008D7998 /* SampleVideo_640x360_10mb.mp4 in Resources */,
@@ -1184,6 +1242,7 @@
 				F9CB591E281BFCB5008D7998 /* woman_76.jpg in Resources */,
 				F9CB589A281BFCB5008D7998 /* man_68.jpg in Resources */,
 				F9CB592D281BFCB5008D7998 /* woman_64.jpg in Resources */,
+				F9CB5952281C27F0008D7998 /* Roboto-Thin.ttf in Resources */,
 				F9CB5922281BFCB5008D7998 /* woman_66.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1238,6 +1297,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9CB5863281BFCB5008D7998 /* AppDelegate.m in Sources */,
+				F9CB5946281C1874008D7998 /* UIFont+Custom.m in Sources */,
 				F9CB5939281BFCB5008D7998 /* LoginViewController.m in Sources */,
 				F94A9037281BE270000C2633 /* main.m in Sources */,
 				F9CB5937281BFCB5008D7998 /* ContactTableViewCell.m in Sources */,
@@ -1255,10 +1315,12 @@
 				F9CB585E281BFCB5008D7998 /* VoIPPushTokenHandler.m in Sources */,
 				F9CB5862281BFCB5008D7998 /* LegacyVoIPPushTokenHandler.m in Sources */,
 				F9CB5865281BFCB5008D7998 /* AddressBook.m in Sources */,
+				F9CB5949281C2679008D7998 /* HashtagFormatter.m in Sources */,
 				F9CB585F281BFCB5008D7998 /* ApplicationStateChangeObserver.m in Sources */,
 				F9CB5861281BFCB5008D7998 /* VoIPCallDetector.m in Sources */,
 				F9CB5860281BFCB5008D7998 /* LegacyVoIPPushNotificationHandler.m in Sources */,
 				F9CB585D281BFCB5008D7998 /* VoIPPushNotificationHandler.m in Sources */,
+				F9CB5943281C1386008D7998 /* UIColor+Custom.m in Sources */,
 				F9CB5936281BFCB5008D7998 /* UserSession.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

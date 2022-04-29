@@ -8,6 +8,9 @@
 #import "Constants.h"
 #import "VoIPNotifications/VoIPCallDetector.h"
 #import "VoIPNotifications/VoIPCallDetectorDelegate.h"
+#import "UIColor+Custom.h"
+#import "UIFont+Custom.h"
+#import "HashtagFormatter.h"
 
 #import <Bandyer/Bandyer.h>
 #import <PushKit/PushKit.h>
@@ -117,6 +120,60 @@
 {
     // Once you received a VoIP notification and you want the sdk to handle it, call `handleNotification(_)` method on the sdk instance.
     [BandyerSDK.instance handleNotification:payload];
+}
+
+//-------------------------------------------------------------------------------------------
+#pragma mark - UI Customization
+//-------------------------------------------------------------------------------------------
+
+- (void)applyTheme
+{
+    UIColor *accentColor = [UIColor accentColor];
+
+    if (@available(iOS 13.0, *)) {
+    } else
+    {
+        self.window.tintColor = accentColor;
+    }
+
+    // This is the core of your customisation possibility using Bandyer SDK theme.
+    // Let's suppose that your app is highly customised. Setting the following properties will let you to apply your colors, bar properties and fonts to all Bandyer's view controllers.
+
+    // Colors
+    [BDKTheme defaultTheme].accentColor = accentColor;
+    [BDKTheme defaultTheme].primaryBackgroundColor = [UIColor customBackground];
+    [BDKTheme defaultTheme].secondaryBackgroundColor = [UIColor customSecondary];
+    [BDKTheme defaultTheme].tertiaryBackgroundColor = [UIColor customTertiary];
+
+    // Bars
+    [BDKTheme defaultTheme].barTranslucent = NO;
+    [BDKTheme defaultTheme].barStyle = UIBarStyleBlack;
+    [BDKTheme defaultTheme].keyboardAppearance = UIKeyboardAppearanceDark;
+    [BDKTheme defaultTheme].barTintColor = [UIColor customBarTintColor];
+
+    //Fonts
+    [BDKTheme defaultTheme].navBarTitleFont = [UIFont robotoMedium];
+    [BDKTheme defaultTheme].secondaryFont = [UIFont robotoLight];
+    [BDKTheme defaultTheme].bodyFont = [UIFont robotoThin];
+    [BDKTheme defaultTheme].font = [UIFont robotoRegular];
+    [BDKTheme defaultTheme].emphasisFont = [UIFont robotoBold];
+    [BDKTheme defaultTheme].mediumFontPointSize = 15;
+}
+
+- (void)customizeInAppNotification
+{
+    //Only after the SDK is initialized, you can change the In-app notification theme and set a custom formatter.
+    //If you try to set the theme or the formatter before SDK initialization, the notificationsCoordinator will be nil and sets will not be applied.
+    //The formatter will be used to display the user information on the In-app notification heading.
+
+    BDKTheme *theme = [[BDKTheme alloc] init];
+    theme.secondaryFont = [[UIFont robotoRegular] fontWithSize:5];
+
+    if ([BandyerSDK instance].notificationsCoordinator)
+    {
+        [BandyerSDK instance].notificationsCoordinator.theme = theme;
+        [BandyerSDK instance].notificationsCoordinator.formatter = [[HashtagFormatter alloc] init];
+    }
 }
 
 @end
