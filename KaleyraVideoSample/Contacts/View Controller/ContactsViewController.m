@@ -20,7 +20,7 @@
 NSString *const kShowOptionsSegueIdentifier = @"showOptionsSegue";
 NSString *const kContactCellIdentifier = @"userCellId";
 
-@interface ContactsViewController () <CallOptionsTableViewControllerDelegate, BDKCallClientObserver, BDKCallWindowDelegate, BDKChannelViewControllerDelegate, ContactTableViewCellDelegate, BDKInAppChatNotificationTouchListener, BDKInAppFileShareNotificationTouchListener>
+@interface ContactsViewController () <CallOptionsTableViewControllerDelegate, BDKCallClientObserver, BDKIncomingCallObserver, BDKCallWindowDelegate, BDKChannelViewControllerDelegate, ContactTableViewCellDelegate, BDKInAppChatNotificationTouchListener, BDKInAppFileShareNotificationTouchListener>
 
 @property (nonatomic, weak) IBOutlet UISegmentedControl *callTypeSegmentedControl;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *callOptionsBarButtonItem;
@@ -83,6 +83,7 @@ NSString *const kContactCellIdentifier = @"userCellId";
 
     //When view loads we register as a client observer, in order to receive notifications about incoming calls received and client state changes.
     [BandyerSDK.instance.callClient addObserver:self queue:dispatch_get_main_queue()];
+    [BandyerSDK.instance.callClient addIncomingCallObserver:self queue:dispatch_get_main_queue()];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -128,7 +129,7 @@ NSString *const kContactCellIdentifier = @"userCellId";
     NSMutableArray *aliases = [NSMutableArray arrayWithCapacity:self.selectedContacts.count];
     for (NSIndexPath *indexPath in self.selectedContacts)
     {
-        [aliases addObject:self.addressBook.contacts[(NSUInteger) indexPath.row].alias];
+        [aliases addObject:self.addressBook.contacts[(NSUInteger) indexPath.row].userID];
     }
 
     //Then we create the intent providing the aliases array (which is a required parameter) along with the type of call we want perform.
@@ -160,37 +161,54 @@ NSString *const kContactCellIdentifier = @"userCellId";
 #pragma mark - Call client state changes
 //-------------------------------------------------------------------------------------------
 
-- (void)callClient:(id <BDKCallClient>)client didReceiveIncomingCall:(id <BDKCall>)call
+- (void)callClientWillChangeState:(id<BDKCallClient>)client oldState:(enum BDKCallClientState)oldState newState:(enum BDKCallClientState)newState
 {
-    [self receiveIncomingCall:call];
+    if (newState == BDKCallClientStateResuming)
+    {
+        [self callClientWillResume];
+    }
 }
 
-- (void)callClientDidStart:(id <BDKCallClient>)client
+- (void)callClientDidChangeState:(id<BDKCallClient>)client oldState:(enum BDKCallClientState)oldState newState:(enum BDKCallClientState)newState
+{
+    if (newState == BDKCallClientStateRunning)
+    {
+        [self callClientDidStart];
+    }
+    else if (newState == BDKCallClientStateReconnecting)
+    {
+        [self callClientDidStartReconnecting];
+    }
+}
+
+- (void)callClientDidStart
 {
     self.view.userInteractionEnabled = YES;
     [self hideActivityIndicatorFromNavigationBar:YES];
     [self hideToast];
 }
 
-- (void)callClientDidStartReconnecting:(id <BDKCallClient>)client
+- (void)callClientDidStartReconnecting
 {
     self.view.userInteractionEnabled = NO;
     [self showActivityIndicatorInNavigationBar:YES];
     [self showToastWithMessage:@"Client is reconnecting, please wait" color:UIColor.orangeColor];
 }
 
-- (void)callClientWillResume:(id <BDKCallClient>)client
+- (void)callClientWillResume
 {
     self.view.userInteractionEnabled = NO;
     [self showActivityIndicatorInNavigationBar:YES];
     [self showToastWithMessage:@"Client is resuming, please wait" color:UIColor.orangeColor];
 }
 
-- (void)callClientDidResume:(id <BDKCallClient>)client
+//-------------------------------------------------------------------------------------------
+#pragma mark - BDKIncomingCallObserver
+//-------------------------------------------------------------------------------------------
+
+- (void)callClient:(id <BDKCallClient>)client didReceiveIncomingCall:(id <BDKCall>)call
 {
-    self.view.userInteractionEnabled = YES;
-    [self hideActivityIndicatorFromNavigationBar:YES];
-    [self hideToast];
+    [self receiveIncomingCall:call];
 }
 
 //-------------------------------------------------------------------------------------------
@@ -261,11 +279,7 @@ NSString *const kContactCellIdentifier = @"userCellId";
     //Here we tell the call window what it should do and we present the BDKCallViewController if there is no another call in progress.
     //Otherwise you should manage the behaviour, for example with a UIAlert warning.
     [self.callWindow presentCallViewControllerFor:intent completion:^(NSError * error) {
-        if ([error.domain isEqualToString:BDKCallPresentationErrorDomain.value] && error.code == BDKCallPresentationErrorCodeAnotherCallOnGoing)
-        {
-            [self presentAlertControllerWithTitle:@"Warning" message:@"Another call ongoing."];
-        }
-        else if (error)
+        if (error)
         {
             [self presentAlertControllerWithTitle:@"Error" message:@"Impossible to start a call now. Try again later"];
         }
@@ -287,40 +301,39 @@ NSString *const kContactCellIdentifier = @"userCellId";
 - (void)prepareForCallViewControllerPresentation
 {
     [self initCallWindowIfNeeded];
-
-    //Here we are configuring the BDKCallWindow instance
-    //A `BDKCallViewControllerConfiguration` object instance is needed to customize the behaviour and appearance of the view controller.
-    BDKCallViewControllerConfiguration *config = [[BDKCallViewControllerConfiguration alloc] init];
-
+    
     //This url points to a sample mp4 video in the app bundle used only if the application is run in the simulator.
     NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"SampleVideo_640x360_10mb" ofType:@"mp4"]];
-    config.fakeCapturerFileURL = url;
+    
+    BDKCallViewControllerConfigurationBuilder *builder = BDKCallViewControllerConfigurationBuilder
+        .create()
+        .withFakeCapturerFileURL(url);
 
     BOOL customizeUI = NO;
 
     if (customizeUI)
     {
-        //Comment this line or set the value to NO to disable the call feedback popup
-        config.isFeedbackEnabled = YES;
+        //Comment this line to disable the call feedback popup
+        builder.withFeedbackEnabled();
 
         //Let's suppose that you want to change the navBarTitleFont only inside the BDKCallViewController.
         //You can achieve this result by allocate a new instance of the theme and set the navBarTitleFont property whit the wanted value.
         BDKTheme *callTheme = [BDKTheme new];
         callTheme.navBarTitleFont = [UIFont .robotoBold fontWithSize:30];
 
-        config.callTheme = callTheme;
+        builder.withCallTheme(callTheme);
 
         //The same reasoning will let you change the accentColor only inside the Whiteboard view controller.
         BDKTheme *whiteboardTheme = [BDKTheme new];
         whiteboardTheme.accentColor = [UIColor systemBlueColor];
 
-        config.whiteboardTheme = whiteboardTheme;
+        builder.withWhiteboardTheme(whiteboardTheme);
 
         //You can also customize the theme only of the Whiteboard text editor view controller.
         BDKTheme *whiteboardTextEditorTheme = [BDKTheme new];
         whiteboardTextEditorTheme.bodyFont = [UIFont .robotoThin fontWithSize:30];
 
-        config.whiteboardTextEditorTheme = whiteboardTextEditorTheme;
+        builder.withWhiteboardTextEditorTheme(whiteboardTextEditorTheme);
 
         //In the next lines you can see how it's possible to customize the File Sharing view controller theme.
         BDKTheme *fileSharingTheme = [BDKTheme new];
@@ -328,7 +341,7 @@ NSString *const kContactCellIdentifier = @"userCellId";
         fileSharingTheme.mediumFontPointSize = 20;
         fileSharingTheme.largeFontPointSize = 40;
 
-        config.fileSharingTheme = fileSharingTheme;
+        builder.withFileSharingTheme(fileSharingTheme);
 
         // In the same way as other themes, you can customize the appearance of the call feedback popup by creating a new instance of Theme
         BDKTheme *feedbackTheme = [BDKTheme new];
@@ -338,25 +351,22 @@ NSString *const kContactCellIdentifier = @"userCellId";
         feedbackTheme.font = UIFont.robotoThin;
         feedbackTheme.emphasisFont = UIFont.robotoBold;
 
-        config.feedbackTheme = feedbackTheme;
-
         // The delay in seconds after which the feedback popup is automatically dismissed when the user leaves a feedback.
-        config.feedbackAutoDismissDelay = 5;
-
+        builder.withFeedbackEnabledUsingThemeAndAutoDismissDelay(feedbackTheme, 5);
+        
         // Every single string in the feedback popup is customizable.
         // To make this customization just pass the bundle containing the localization with the right keys valorized, as in this example.
-        config.assetsBundle = [NSBundle mainBundle];
-        // If your file is named 'Localizable' you don't need to set this value, otherwise provide the filename
-        config.localizationTableName = @"ExampleLocalizable";
+        // If your file is named 'Localizable' you don't need to set the TableName value, otherwise provide the filename
+        builder.withCustomLocalizationsUsingBundleAndTableName([NSBundle mainBundle], @"ExampleLocalizable");
 
         //You can also format the way our SDK displays the user information inside the call page. In this example, the user info will be preceded by a percentage.
-        config.callInfoTitleFormatter = [PercentageFormatter new];
+        builder.withCallInfoTitleFormatter([PercentageFormatter new]);
     }
 
     //Here, we set the configuration object created. You must set the view controller configuration object before the view controller
     //view is loaded, otherwise an exception is thrown.
     //If a call is already ongoing, the new configuration is skipped.
-    [self.callWindow setConfiguration:config];
+    [self.callWindow setConfiguration:builder.build()];
 }
 
 - (void)initCallWindowIfNeeded
@@ -434,8 +444,7 @@ NSString *const kContactCellIdentifier = @"userCellId";
     //Failing to do so, will result in incoming calls and chat messages being processed by the SDK.
     //Moreover the previously logged user will appear to the Bandyer platform as she/he is available and ready to receive calls and chat messages.
     [UserSession setCurrentUser:nil];
-    [BandyerSDK.instance.callClient stop];
-    [BandyerSDK.instance.chatClient stop];
+    [BandyerSDK.instance disconnect];
 
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
@@ -574,7 +583,7 @@ NSString *const kContactCellIdentifier = @"userCellId";
 
     Contact *contact = self.addressBook.contacts[(NSUInteger) indexPath.row];
     cell.titleLabel.text = [contact fullName];
-    cell.subtitleLabel.text = [contact alias];
+    cell.subtitleLabel.text = [contact userID];
 
     if (tableView.allowsMultipleSelection)
     {

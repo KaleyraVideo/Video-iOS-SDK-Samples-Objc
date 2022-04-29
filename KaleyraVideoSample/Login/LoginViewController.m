@@ -10,6 +10,7 @@
 #import "UserRepository.h"
 #import "UserSession.h"
 #import "UserDetailsProvider.h"
+#import "SessionFactory.h"
 
 NSString *const kContactsSegueIdentifier = @"showContactsSegue";
 NSString *const kUserCellIdentifier = @"userCellId";
@@ -149,26 +150,18 @@ NSString *const kUserCellIdentifier = @"userCellId";
 {
     if (!self.selectedUserId)
         return;
-    //Once the end user has selected which user wants to impersonate, we start the SDK client.
-
-    //We are registering as a call client observer in order to be notified when the client changes its state.
-    //We are also providing the main queue telling the SDK onto which queue should notify the observer provided,
-    //otherwise the SDK will notify the observer onto its background internal queue.
+    
+    // Once the end user has selected which user wants to impersonate, we create a Session object for that user.
+    BDKSession *session = [SessionFactory makeSessionFor:self.selectedUserId];
+    
+    // Here we connect the BandyerSDK with the created Session object
+    [BandyerSDK.instance connect:session];
+    
+    // We are registering as a call client observer in order to be notified when the client changes its state.
+    // We are also providing the main queue telling the SDK onto which queue should notify the observer provided,
+    // otherwise the SDK will notify the observer onto its background internal queue.
     [BandyerSDK.instance.callClient addObserver:self queue:dispatch_get_main_queue()];
-
-    //Then open a user session providing the "user alias" of the user selected.
-    [BandyerSDK.instance openSessionWithUserId:self.selectedUserId];
-
-    //Then we start the call client providing the "user alias" of the user selected.
-    [BandyerSDK.instance.callClient start];
-
-    //We are registering as a chat client observer in order to be notified when the client changes its state.
-    //We are also providing the main queue telling the SDK onto which queue should notify the observer provided,
-    //otherwise the SDK will notify the observer onto its background internal queue.
     [BandyerSDK.instance.chatClient addObserver:self queue:dispatch_get_main_queue()];
-
-    //Here we start the chat client, providing the "user alias" of the user selected.
-    [BandyerSDK.instance.chatClient start];
 
     AddressBook *addressBook = [AddressBook createFromUserArray:self.userIds currentUser:self.selectedUserId];
     //This statement tells the Bandyer SDK which object, conforming to `UserDetailsProvider` protocol, should use to present contact
@@ -184,6 +177,22 @@ NSString *const kUserCellIdentifier = @"userCellId";
 //-------------------------------------------------------------------------------------------
 #pragma mark - Call client observer
 //-------------------------------------------------------------------------------------------
+
+- (void)callClientDidChangeState:(id<BDKCallClient>)client oldState:(enum BDKCallClientState)oldState newState:(enum BDKCallClientState)newState
+{
+    if (newState == BDKCallClientStateRunning)
+    {
+        [self callClientDidStart: client];
+    }
+}
+
+- (void)callClientWillChangeState:(id<BDKCallClient>)client oldState:(enum BDKCallClientState)oldState newState:(enum BDKCallClientState)newState
+{
+    if (newState == BDKCallClientStateStarting)
+    {
+        [self callClientWillStart: client];
+    }
+}
 
 - (void)callClientWillStart:(id <BDKCallClient>)client
 {
@@ -205,6 +214,22 @@ NSString *const kUserCellIdentifier = @"userCellId";
 //-------------------------------------------------------------------------------------------
 #pragma mark - Chat client observer
 //-------------------------------------------------------------------------------------------
+
+- (void)chatClientWillChangeState:(id<BDKChatClient>)client oldState:(enum BDKChatClientState)oldState newState:(enum BDKChatClientState)newState
+{
+    if (newState == BDKChatClientStateStarting)
+    {
+        [self chatClientWillStart: client];
+    }
+}
+
+- (void)chatClientDidChangeState:(id<BDKChatClient>)client oldState:(enum BDKChatClientState)oldState newState:(enum BDKChatClientState)newState
+{
+    if (newState == BDKChatClientStateRunning)
+    {
+        [self chatClientDidStart: client];
+    }
+}
 
 - (void)chatClientWillStart:(id <BDKChatClient>)client
 {
