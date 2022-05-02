@@ -531,6 +531,7 @@ NSString *const kContactCellIdentifier = @"userCellId";
     {
         [UIView animateWithDuration:0.3 animations:^(void) {
             cell.chatButton.alpha = 1;
+            cell.phoneImg.alpha = 1;
         } completion:^(BOOL finished) {
             cell.chatButton.enabled = YES;
         }];
@@ -547,6 +548,7 @@ NSString *const kContactCellIdentifier = @"userCellId";
 
         [UIView animateWithDuration:0.3 animations:^(void) {
             cell.chatButton.alpha = 0;
+            cell.phoneImg.alpha = 0;
         }];
     }
 }
@@ -580,10 +582,12 @@ NSString *const kContactCellIdentifier = @"userCellId";
     {
         cell.chatButton.enabled = NO;
         cell.chatButton.alpha = 0;
+        cell.phoneImg.alpha = 0;
     } else
     {
         cell.chatButton.enabled = YES;
         cell.chatButton.alpha = 1;
+        cell.phoneImg.alpha = 1;
     }
 
     return cell;
