@@ -138,7 +138,7 @@ NSString *const kContactCellIdentifier = @"userCellId";
     //If you provide 0, the call will be created without a maximum duration value.
     //We store the intent for later use, because we can present again the BDKCallViewController with the same call.
     BDKStartOutgoingCallIntent *intent = [BDKStartOutgoingCallIntent intentWithCallees:aliases
-                                                                               options: [BDKCallOptions optionsWithCallType:self.options.type recorded:self.options.record duration:self.options.maximumDuration]];
+                                                                               options:[BDKCallOptions optionsWithCallType:self.options.type recordingType:self.options.recordingType duration:self.options.maximumDuration]];
 
     //Then we trigger a presentation of BDKCallViewController.
     [self presentCallViewControllerForIntent:intent];

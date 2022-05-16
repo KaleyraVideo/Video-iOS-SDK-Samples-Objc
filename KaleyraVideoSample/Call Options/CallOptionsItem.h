@@ -9,7 +9,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface CallOptionsItem : NSObject <NSCopying>
 
 @property (nonatomic, assign) BDKCallType type;
-@property (nonatomic, assign) BOOL record;
+@property (nonatomic, assign) BDKCallRecordingType recordingType;
 @property (nonatomic, assign) NSUInteger maximumDuration;
 
 @end
