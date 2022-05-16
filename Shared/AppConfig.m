@@ -23,12 +23,15 @@
     
     if (self)
     {
-        _environment = BDKEnvironment.sandbox;
+        _environment = BDKEnvironmentSandbox;
+        _region = BDKRegionEurope;
+        _automaticallyHandleVoIPNotifications = YES;
         _isCallkitEnabled = YES;
         _isFilesharingEnabled = YES;
         _isInAppScreensharingEnabled = YES;
         _isWhiteboardEnabled = YES;
         _isBroadcastScreensharingEnabled = YES;
+        _isChatEnabled = YES;
     }
     
     return  self;
@@ -36,45 +39,63 @@
 
 - (nonnull BDKConfig *)makeSDKConfig:(nullable id<PKPushRegistryDelegate>)registryDelegate
 {
-    BDKConfig * config = [self createSDKConfig];
+    BDKConfigBuilder * builder = [self createSDKConfig];
 
-    [self setupCallKit:config registryDelegate:registryDelegate];
-    [self setupTools:config];
+    [self setupVoIPNotifications:builder registryDelegate:registryDelegate];
+    [self setupCallKit:builder];
+    [self setupTools:builder];
 
-    return  config;
+    return  builder.build();
 }
 
-- (BDKConfig *)createSDKConfig
+- (BDKConfigBuilder *)createSDKConfig
 {
-    BDKConfig * config = [[BDKConfig alloc] init];
+    // Here we are telling the SDK the app id token identifying your app in Bandyer platform, the region and the environment to connect to.
+    // We strongly recommend to test your app in a sandbox environment before deploying it to production.
+    BDKConfigBuilder *builder = BDKConfigBuilder.create([Constants appId], self.environment, self.region);
 
-    // Here we are telling the SDK we want to work in a sandbox environment.
-    // Beware the default environment is production, we strongly recommend to test your app in a sandbox environment.
-    config.environment = self.environment;
-
-    return  config;
+    return  builder;
 }
 
-- (void)setupCallKit:(BDKConfig*)config registryDelegate:(nullable id<PKPushRegistryDelegate>)registryDelegate
+- (void)setupVoIPNotifications:(BDKConfigBuilder*)builder registryDelegate:(nullable id<PKPushRegistryDelegate>)registryDelegate
 {
-    if (self.isCallkitEnabled)
-    {
-        [self enableCallKit:config registryDelegate:registryDelegate];
-    }
-    else
-    {
-        [self disableCallKit:config];
-    }
+    builder.voip(^(BDKVoIPPushConfigurationBuilder * voipBuilder) {
+        
+        if (self.automaticallyHandleVoIPNotifications && registryDelegate != nil)
+        {
+            //This is how you enable automatic VoIP notification handling.
+            voipBuilder.automaticBackground(registryDelegate, nil);
+        }
+        else if (!self.automaticallyHandleVoIPNotifications)
+        {
+            //This is how you enable manual VoIP notification handling.
+            voipBuilder.manual(nil);
+        }
+    });
+}
+
+- (void)setupCallKit:(BDKConfigBuilder*)builder
+{
+    builder.callKit(^(BDKCallKitConfigurationBuilder * callKitBuilder) {
+        if (self.isCallkitEnabled)
+        {
+            [self enableCallKit:callKitBuilder];
+        }
+        else
+        {
+            [self disableCallKit:callKitBuilder];
+        }
+    });
 }
 
 // If you don't want to support CallKit
 // you can set the isCallKitEnabled flag to false
 // Beware though, if CallKit is disabled the call will end if the user leaves the app while a call is in progress
-- (void)disableCallKit:(BDKConfig*)config
+- (void)disableCallKit:(BDKCallKitConfigurationBuilder*)builder
 {
     // Here we are disabling CallKit support.
     // Make sure to disable CallKit, otherwise it will be enable by default
-    config.callKitEnabled = NO;
+    builder.disabled();
 }
 
 // If you want to support CallKit, then:
@@ -82,110 +103,88 @@
 // otherwise the app will have a weird behaviour when it is launched upon receiving a VoIP notification.
 // Please check the project "Build Settings" tab under the "Other Linker Flags" directive that the CallKit
 // framework is linked as required framework
-- (void)enableCallKit:(BDKConfig*)config registryDelegate:(nullable id<PKPushRegistryDelegate>)registryDelegate
+- (void)enableCallKit:(BDKCallKitConfigurationBuilder*)builder
 {
-    // On iOS 10 and above this statement is not needed, the default configuration object
-    // enables CallKit by default, it is here for completeness sake
-    config.callKitEnabled = YES;
-
-    // The following statement is going to change the name of the app that is going to be shown by the system call UI.
-    // If you don't set this value during the configuration, the SDK will look for to the value of the
-    // CFBundleDisplayName key (or the CFBundleName, if the former is not available) found in your App Info.plist
-
-    config.nativeUILocalizedName = @"My wonderful app";
-
-    // The following statement is going to change the ringtone used by the system call UI when an incoming call
-    // is received. You should provide the name of the sound resource in the app bundle that is going to be used as
-    // ringtone. If you don't set this value, the SDK will use the default system ringtone.
-
-    // config.nativeUIRingToneSound = @"MyRingtoneSound";
-
-    // The following statements are going to change the app icon shown in the system call UI. When the user answers
-    // a call from the lock screen or when the app is not in foreground and a call is in progress, the system
-    // presents the system call UI to the end user. One of the buttons gives the user the ability to get back into your
-    // app. The following statements allows you to change that icon.
-    // Beware, the configuration object property expects the image as an NSData object. You must provide a side
-    // length 40 points square png image.
-    // It is highly recommended to set this property, otherwise a "question mark" icon placeholder is used instead.
-
-    UIImage *callKitIconImage = [UIImage imageNamed:@"callkit-icon"];
-    config.nativeUITemplateIconImageData = UIImagePNGRepresentation(callKitIconImage);
-
-    // The following statements will tell the BandyerSDK which type of handle the SDK should use with CallKit
-    config.supportedHandleTypes = [NSSet setWithObject:@(CXHandleTypeGeneric)];
-
-    if (registryDelegate)
-    {
-        // The following statement is going to tell the BandyerSDK which object it must forward device push tokens to when one is received.
-        config.pushRegistryDelegate = registryDelegate;
-    }
-
-    //Set this flag to false if you want to manually handle VoIP notifications. This flag is ignored unless the `isCallKitEnabled` flag is set to `true`.
-    config.automaticallyHandleVoIPNotifications = YES;
+    builder.enabledWithConfiguration(^(BDKCallKitProviderConfigurationBuilder * callKitProviderConfBuilder) {
+        callKitProviderConfBuilder
+        // The following statement is going to change the ringtone used by the system call UI when an incoming call
+        // is received. You should provide the name of the sound resource in the app bundle that is going to be used as
+        // ringtone. If you don't set this value, the SDK will use the default system ringtone.
+        .ringtoneSound(@"MyRingtoneSound")
+        // The following statements will tell the BandyerSDK which type of handle the SDK should use with CallKit
+        .supportedHandles(@[@(CXHandleTypeGeneric)]);
+        
+        UIImage *callKitIcon = [UIImage imageNamed:@"callkit-icon"];
+        if (callKitIcon)
+        {
+            // The following statements are going to change the app icon shown in the system call UI. When the user answers
+            // a call from the lock screen or when the app is not in foreground and a call is in progress, the system
+            // presents the system call UI to the end user. One of the buttons gives the user the ability to get back into your
+            // app. The following statements allows you to change that icon.
+            // You must provide a side length 40 points square png image.
+            // It is highly recommended to set this property, otherwise a "question mark" icon placeholder is used instead.
+            callKitProviderConfBuilder.iconImage(callKitIcon);
+        }
+    });
 }
 
-- (void)setupTools:(BDKConfig*)config
+- (void)setupTools:(BDKConfigBuilder*)builder
 {
-    [self setupBroadcastScreensharing: config];
-    [self setupInAppScreensharing: config];
-    [self setupFileSharing: config];
-    [self setupWhiteboard: config];
+    builder.tools(^(BDKToolsConfigurationBuilder * toolsBuilder) {
+        [self setupBroadcastScreensharing: toolsBuilder];
+        [self setupInAppScreensharing: toolsBuilder];
+        [self setupFileSharing: toolsBuilder];
+        [self setupWhiteboard: toolsBuilder];
+        [self setupChat:toolsBuilder];
+    });
 }
 
-- (void)setupInAppScreensharing:(BDKConfig*)config
+- (void)setupInAppScreensharing:(BDKToolsConfigurationBuilder*)builder
 {
     if (self.isInAppScreensharingEnabled)
     {
-        config.inAppScreensharingConfiguration = [BDKInAppScreensharingToolConfiguration enabled];
-    }
-    else
-    {
-        config.inAppScreensharingConfiguration = [BDKInAppScreensharingToolConfiguration disabled];
+        // This is how you enable in-app screen sharing tool. By default this tool is disabled.
+        builder.inAppScreensharing();
     }
 }
 
 // If you don't want to support the broadcast screen sharing feature
 // Comment the body of this method
-- (void)setupBroadcastScreensharing:(BDKConfig*)config
+- (void)setupBroadcastScreensharing:(BDKToolsConfigurationBuilder*)builder
 {
-    if (@available(iOS 12.0, *))
+    if (self.isBroadcastScreensharingEnabled)
     {
-        if (self.isBroadcastScreensharingEnabled)
-        {
-            // This configuration object enable the sdk to talk with the broadcast extension
-            // You must provide the app group identifier used by your app and the upload extension bundle identifier
-
-            config.broadcastScreensharingConfiguration = [BDKBroadcastScreensharingToolConfiguration enabledWithAppGroupIdentifier:[Constants appGroupIdentifier]
-                                                                                                broadcastExtensionBundleIdentifier:[Constants broadcastExtensionBundleId]];
-        }
-        else
-        {
-            config.broadcastScreensharingConfiguration = [BDKBroadcastScreensharingToolConfiguration disabled];
-        }
+        // This configuration object enable the sdk to talk with the broadcast extension
+        // You must provide the app group identifier used by your app and the upload extension bundle identifier
+        // By default this tool is disabled.
+        builder.broadcastScreensharing([Constants appGroupIdentifier], [Constants broadcastExtensionBundleId]);
     }
 }
 
-- (void)setupFileSharing:(BDKConfig*)config
+- (void)setupFileSharing:(BDKToolsConfigurationBuilder*)builder
 {
     if (self.isFilesharingEnabled)
     {
-        config.fileshareConfiguration = [BDKFileshareToolConfiguration enabled];
-    }
-    else
-    {
-        config.fileshareConfiguration = [BDKFileshareToolConfiguration disabled];
+        // This is how you enable fileshare tool. By default this tool is disabled.
+        builder.fileshare();
     }
 }
 
-- (void)setupWhiteboard:(BDKConfig*)config
+- (void)setupWhiteboard:(BDKToolsConfigurationBuilder*)builder
 {
     if (self.isWhiteboardEnabled)
     {
-        config.whiteboardConfiguration = [BDKWhiteboardToolConfiguration enabledWithUploadEnabled:YES];
+        // This is how you enable whiteboard tool. By default this tool is disabled.
+        builder.whiteboard();
     }
-    else
+}
+
+- (void)setupChat:(BDKToolsConfigurationBuilder*)builder
+{
+    if (self.isChatEnabled)
     {
-        config.whiteboardConfiguration = [BDKWhiteboardToolConfiguration disabled];
+        // This is how you enable chat tool. By default this tool is disabled.
+        builder.chat();
     }
 }
 

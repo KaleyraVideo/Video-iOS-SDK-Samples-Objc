@@ -11,7 +11,7 @@
 
 @interface UserDetailsProvider()
 
-@property (nonatomic, strong, readonly) NSDictionary<NSString*, Contact*> *aliasMap;
+@property (nonatomic, strong, readonly) NSDictionary<NSString*, Contact*> *userIdsMap;
 
 @end
 
@@ -25,24 +25,24 @@
     if (self)
     {
         _addressBook = addressBook;
-        _aliasMap = [self.class createAliasMap:addressBook];
+        _userIdsMap = [self.class createUserIdsMap:addressBook];
     }
 
     return self;
 }
 
-- (void)provideDetails:(NSArray<NSString *> *)aliases completion:(void (^)(NSArray<BDKUserDetails *> * _Nonnull))completion
+- (void)provideDetails:(NSArray<NSString *> *)userIds completion:(void (^)(NSArray<BDKUserDetails *> * _Nonnull))completion
 {
-    NSMutableArray<BDKUserDetails *> *users = [NSMutableArray arrayWithCapacity:aliases.count];
+    NSMutableArray<BDKUserDetails *> *users = [NSMutableArray arrayWithCapacity:userIds.count];
 
-    for (NSString *alias in aliases)
+    for (NSString *userId in userIds)
     {
-        Contact *contact = self.aliasMap[alias];
-        BDKUserDetails *user = [[BDKUserDetails alloc] initWithAlias:alias
-                                                           firstname:contact.firstName
-                                                            lastname:contact.lastName
-                                                               email:contact.email
-                                                            imageURL:contact.profileImageURL];
+        Contact *contact = self.userIdsMap[userId];
+        BDKUserDetails *user = [[BDKUserDetails alloc] initWithUserID:userId
+                                                            firstname:contact.firstName
+                                                             lastname:contact.lastName
+                                                                email:contact.email
+                                                             imageURL:contact.profileImageURL];
         [users addObject:user];
     }
 
@@ -54,16 +54,16 @@
 
 }
 
-+ (NSDictionary<NSString*, Contact*> *)createAliasMap:(AddressBook *)addressBook
++ (NSDictionary<NSString*, Contact*> *)createUserIdsMap:(AddressBook *)addressBook
 {
     NSMutableDictionary *map = [NSMutableDictionary dictionaryWithCapacity:addressBook.contacts.count + 1];
 
     for (Contact *contact in addressBook.contacts)
     {
-        map[contact.alias] = contact;
+        map[contact.userID] = contact;
     }
 
-    map[addressBook.me.alias] = addressBook.me;
+    map[addressBook.me.userID] = addressBook.me;
 
     return map;
 }

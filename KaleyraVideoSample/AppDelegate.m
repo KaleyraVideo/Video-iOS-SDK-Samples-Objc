@@ -47,17 +47,16 @@
     // The sdk needs a configuration object where it is specified which environment the sdk should work in.
     BDKConfig *config = [[AppConfig default] makeSDKConfig:self];
 
-    if (!config.automaticallyHandleVoIPNotifications)
+    if (!config.voip.automaticallyHandleVoIPNotifications)
     {
         // If you have set the config `automaticallyHandleVoIPNotifications` to false you have to register to VoIP notifications manually.
         // This is an example of the required implementation.
         self.callDetector = [[VoIPCallDetector alloc] initWithRegistryDelegate:self];
         self.callDetector.delegate = self;
     }
-    
-    //Now we are ready to initialize the SDK providing the app id token identifying your app in Bandyer platform.
-    [BandyerSDK.instance initializeWithApplicationId:[Constants appId]
-                                              config:config];
+
+    //Now we are ready to configure the SDK providing the configuration object previously created.
+    [BandyerSDK.instance configure:config];
 
     return YES;
 }

@@ -31,7 +31,7 @@
 
     if (copy != nil)
     {
-        copy.alias = [self.alias copyWithZone:zone];
+        copy.userID = [self.userID copyWithZone:zone];
         copy.firstName = [self.firstName copyWithZone:zone];
         copy.lastName = [self.lastName copyWithZone:zone];
         copy.email = [self.email copyWithZone:zone];

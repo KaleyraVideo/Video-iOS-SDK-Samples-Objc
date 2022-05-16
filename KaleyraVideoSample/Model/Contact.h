@@ -15,7 +15,7 @@ typedef NS_ENUM(char, Gender)
 
 @interface Contact : NSObject <NSCopying>
 
-@property (nonatomic, strong, nullable) NSString *alias;
+@property (nonatomic, strong, nullable) NSString *userID;
 
 @property (nonatomic, strong, nullable, readonly) NSString *fullName;
 

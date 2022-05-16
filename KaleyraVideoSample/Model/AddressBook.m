@@ -36,7 +36,7 @@
     [users enumerateObjectsUsingBlock:^(NSString *userId, NSUInteger idx, BOOL *stop) {
 
         Contact *contact = [ContactsGenerator generateContact];
-        contact.alias = userId;
+        contact.userID = userId;
 
         if ([userId isEqualToString:currentUser])
         {

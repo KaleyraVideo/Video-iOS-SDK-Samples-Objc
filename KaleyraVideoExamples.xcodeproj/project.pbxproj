@@ -251,6 +251,9 @@
 		F9CB596B281C2E94008D7998 /* SampleHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = F9CB596A281C2E94008D7998 /* SampleHandler.m */; };
 		F9CB596F281C2E94008D7998 /* BroadcastExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = F9CB5965281C2E94008D7998 /* BroadcastExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F9CB5974281C3050008D7998 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = F9CB5755281BEBAD008D7998 /* Constants.m */; };
+		F9CB5978281C3BF9008D7998 /* AccessTokenProviderMock.m in Sources */ = {isa = PBXBuildFile; fileRef = F9CB5977281C3BF9008D7998 /* AccessTokenProviderMock.m */; };
+		F9CB597B281C3D2A008D7998 /* SessionObserverImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = F9CB597A281C3D2A008D7998 /* SessionObserverImplementation.m */; };
+		F9CB597E281C3E6E008D7998 /* SessionFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = F9CB597D281C3E6E008D7998 /* SessionFactory.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -561,6 +564,12 @@
 		F9CB5969281C2E94008D7998 /* SampleHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SampleHandler.h; sourceTree = "<group>"; };
 		F9CB596A281C2E94008D7998 /* SampleHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SampleHandler.m; sourceTree = "<group>"; };
 		F9CB596C281C2E94008D7998 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F9CB5976281C3BED008D7998 /* AccessTokenProviderMock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccessTokenProviderMock.h; sourceTree = "<group>"; };
+		F9CB5977281C3BF9008D7998 /* AccessTokenProviderMock.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccessTokenProviderMock.m; sourceTree = "<group>"; };
+		F9CB5979281C3D1B008D7998 /* SessionObserverImplementation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SessionObserverImplementation.h; sourceTree = "<group>"; };
+		F9CB597A281C3D2A008D7998 /* SessionObserverImplementation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SessionObserverImplementation.m; sourceTree = "<group>"; };
+		F9CB597C281C3E0B008D7998 /* SessionFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SessionFactory.h; sourceTree = "<group>"; };
+		F9CB597D281C3E6E008D7998 /* SessionFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SessionFactory.m; sourceTree = "<group>"; };
 		FF7D4B867CEE4BF871B6FDB3 /* Pods-KaleyraVideoExamples.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KaleyraVideoExamples.debug.xcconfig"; path = "Target Support Files/Pods-KaleyraVideoExamples/Pods-KaleyraVideoExamples.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -614,6 +623,7 @@
 			children = (
 				F9CB575A281BFCB3008D7998 /* AppDelegate.h */,
 				F9CB576E281BFCB3008D7998 /* AppDelegate.m */,
+				F9CB5975281C3BD4008D7998 /* Authentication */,
 				F9CB575B281BFCB3008D7998 /* Base.lproj */,
 				F9CB5841281BFCB4008D7998 /* Call Options */,
 				F9CB5851281BFCB5008D7998 /* Contacts */,
@@ -1051,6 +1061,19 @@
 			path = BroadcastExtension;
 			sourceTree = "<group>";
 		};
+		F9CB5975281C3BD4008D7998 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				F9CB5976281C3BED008D7998 /* AccessTokenProviderMock.h */,
+				F9CB5977281C3BF9008D7998 /* AccessTokenProviderMock.m */,
+				F9CB5979281C3D1B008D7998 /* SessionObserverImplementation.h */,
+				F9CB597A281C3D2A008D7998 /* SessionObserverImplementation.m */,
+				F9CB597C281C3E0B008D7998 /* SessionFactory.h */,
+				F9CB597D281C3E6E008D7998 /* SessionFactory.m */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1437,9 +1460,12 @@
 				F9CB585C281BFCB5008D7998 /* ModernVoIPPushNotificationHandler.m in Sources */,
 				F9CB5864281BFCB5008D7998 /* Contact.m in Sources */,
 				F9CB5759281BEF08008D7998 /* AppConfig.m in Sources */,
+				F9CB597B281C3D2A008D7998 /* SessionObserverImplementation.m in Sources */,
 				F9CB5933281BFCB5008D7998 /* UserRepository.m in Sources */,
 				F9CB5938281BFCB5008D7998 /* ContactsViewController.m in Sources */,
 				F9CB5932281BFCB5008D7998 /* AsteriskFormatter.m in Sources */,
+				F9CB597E281C3E6E008D7998 /* SessionFactory.m in Sources */,
+				F9CB5978281C3BF9008D7998 /* AccessTokenProviderMock.m in Sources */,
 				F9CB5935281BFCB5008D7998 /* ContactsGenerator.m in Sources */,
 				F9CB585E281BFCB5008D7998 /* VoIPPushTokenHandler.m in Sources */,
 				F9CB5862281BFCB5008D7998 /* LegacyVoIPPushTokenHandler.m in Sources */,
@@ -1493,7 +1519,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1523,7 +1549,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

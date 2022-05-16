@@ -6,7 +6,8 @@
 #import "CallOptionsItem.h"
 
 #define CALL_TYPE_SECTION 0
-#define CALL_OPTIONS_SECTION 1
+#define CALL_RECORDING_SECTION 1
+#define CALL_OPTIONS_SECTION 2
 
 @interface CallOptionsTableViewController () <UITextFieldDelegate>
 
@@ -68,17 +69,12 @@
     if (indexPath.section == CALL_TYPE_SECTION)
     {
         cell.accessoryType = indexPath.row == (NSInteger) self.options.type ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+    } else if (indexPath.section == CALL_RECORDING_SECTION) {
+        cell.accessoryType = indexPath.row == (NSInteger) self.options.recordingType ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     } else if (indexPath.section == CALL_OPTIONS_SECTION)
     {
-        if (indexPath.row == 0)
-        {
-            UISwitch *recordingSwitch = (UISwitch *) cell.accessoryView;
-            recordingSwitch.on = self.options.record;
-        } else if (indexPath.row == 1)
-        {
-            UITextField *textField = (UITextField *) cell.accessoryView;
-            textField.text = [@(self.options.maximumDuration) stringValue];
-        }
+        UITextField *textField = (UITextField *) cell.accessoryView;
+        textField.text = [@(self.options.maximumDuration) stringValue];
     }
 
     return cell;
@@ -86,9 +82,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == CALL_TYPE_SECTION)
+    if (indexPath.section == CALL_TYPE_SECTION || indexPath.section == CALL_RECORDING_SECTION)
     {
-        self.options.type = (BDKCallType)indexPath.row;
+        if (indexPath.section == CALL_TYPE_SECTION)
+        {
+            self.options.type = (BDKCallType)indexPath.row;
+        } else if (indexPath.section == CALL_RECORDING_SECTION)
+        {
+            self.options.recordingType = (BDKCallRecordingType)indexPath.row;
+        }
+        
         [self.tableView reloadData];
         [self.delegate controllerDidUpdateOptions:self];
     }
@@ -111,15 +114,5 @@
     [self.delegate controllerDidUpdateOptions:self];
 }
 
-//-------------------------------------------------------------------------------------------
-#pragma mark - Actions
-//-------------------------------------------------------------------------------------------
-
-- (IBAction)recordingSwitchValueChanged:(UISwitch *)sender
-{
-    self.options.record = sender.isOn;
-    [self.tableView reloadData];
-    [self.delegate controllerDidUpdateOptions:self];
-}
 
 @end

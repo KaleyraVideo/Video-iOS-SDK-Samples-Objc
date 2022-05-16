@@ -24,7 +24,7 @@
     NSString *value;
     if (item.lastname == nil && item.firstname == nil)
     {
-        value = item.alias;
+        value = item.userID;
     }
     else
     {

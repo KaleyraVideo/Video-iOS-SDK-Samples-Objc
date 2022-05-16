@@ -12,7 +12,7 @@
     if (self)
     {
         _type = BDKCallTypeAudioVideo;
-        _record = NO;
+        _recordingType = BDKCallRecordingTypeNone;
         _maximumDuration = 0;
     }
 
@@ -27,7 +27,7 @@
     if (copy != nil)
     {
         copy.type = self.type;
-        copy.record = self.record;
+        copy.recordingType = self.recordingType;
         copy.maximumDuration = self.maximumDuration;
     }
 
