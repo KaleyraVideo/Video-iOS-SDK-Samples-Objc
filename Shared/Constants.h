@@ -1,8 +1,5 @@
 //
-//  Constants.h
-//  KaleyraVideoSample
-//
-//  Created by Alessandro Limardo on 29/04/22.
+// Copyright © 2018-Present. Kaleyra S.p.a. All rights reserved.
 //
 
 @interface Constants : NSObject
